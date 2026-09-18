@@ -608,7 +608,7 @@ margin=15,15
 option1=Withdraw 1
 option2=Withdraw All
 
-[com_76]
+[com_75]
 type=text
 x=211
 y=31
@@ -620,7 +620,7 @@ shadowed=yes
 text=Trawler Catch
 colour=0xAAAAAA
 
-[com_77]
+[com_76]
 type=text
 x=433
 y=32
@@ -633,7 +633,7 @@ text=Dump Items
 colour=0xAA4444
 overcolour=0xFFFFFF
 
-[com_78]
+[com_77]
 type=text
 x=73
 y=292
@@ -644,7 +644,7 @@ shadowed=yes
 text=Click Dump Items to close the window and discard remaining items.
 colour=0xAAAAAA
 
-[com_79]
+[com_78]
 type=graphic
 x=288
 y=34
@@ -652,7 +652,7 @@ width=36
 height=36
 graphic=steelborder2,0
 
-[com_80]
+[com_79]
 type=graphic
 x=324
 y=34
@@ -660,7 +660,7 @@ width=36
 height=36
 graphic=steelborder2,0
 
-[com_81]
+[com_80]
 type=graphic
 x=360
 y=34
@@ -668,7 +668,7 @@ width=36
 height=36
 graphic=steelborder2,0
 
-[com_82]
+[com_81]
 type=graphic
 x=396
 y=34
@@ -676,7 +676,7 @@ width=36
 height=36
 graphic=steelborder2,0
 
-[com_83]
+[com_82]
 type=graphic
 x=432
 y=34
@@ -684,7 +684,7 @@ width=36
 height=36
 graphic=steelborder2,0
 
-[com_84]
+[com_83]
 type=graphic
 x=459
 y=34
@@ -692,7 +692,7 @@ width=36
 height=36
 graphic=steelborder2,0
 
-[com_85]
+[com_84]
 type=graphic
 x=216
 y=34
@@ -700,7 +700,7 @@ width=36
 height=36
 graphic=steelborder2,0
 
-[com_86]
+[com_85]
 type=graphic
 x=180
 y=34
@@ -708,7 +708,7 @@ width=36
 height=36
 graphic=steelborder2,0
 
-[com_87]
+[com_86]
 type=graphic
 x=144
 y=34
@@ -716,7 +716,7 @@ width=36
 height=36
 graphic=steelborder2,0
 
-[com_88]
+[com_87]
 type=graphic
 x=108
 y=34
@@ -724,7 +724,7 @@ width=36
 height=36
 graphic=steelborder2,0
 
-[com_89]
+[com_88]
 type=graphic
 x=72
 y=34
@@ -732,7 +732,7 @@ width=36
 height=36
 graphic=steelborder2,0
 
-[com_90]
+[com_89]
 type=graphic
 x=36
 y=34
@@ -740,7 +740,7 @@ width=36
 height=36
 graphic=steelborder2,0
 
-[com_91]
+[com_90]
 type=graphic
 x=17
 y=34

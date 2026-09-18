@@ -63,7 +63,7 @@ mapscene=7
 [loc_1736]
 name=Staircase
 desc=I can climb down these stairs.
-model=outdoorfurniture_loc_1736
+model=loc_1736
 length=2
 op1=Climb-down
 sharelight=yes
@@ -73,7 +73,8 @@ mapscene=7
 [outdoorstairs_wooden_bottom]
 name=Staircase
 desc=I can climb up these stairs.
-model=outdoorfurniture_loc_1737
+model=outdoorstairs_wooden_bottom
+length=3
 op1=Climb-up
 sharelight=yes
 forceapproach=north

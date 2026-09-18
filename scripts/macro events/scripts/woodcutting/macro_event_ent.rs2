@@ -20,18 +20,18 @@ sound_synth(anothercry, 1, 0); // complete guess, this is near the toher wc soun
 p_opnpc(1); // not sure if p_opnpc is used (delays an extra tick)
 %macro_event = ^no_macro_event;
 
-[opnpc1,_macro_event_ent] @attempt_cut_ent;
-[opnpc3,_macro_event_ent] @cut_ent;
-[opnpcu,_macro_event_ent]
-switch_obj(last_useitem) {
-    case bronze_axe, iron_axe, steel_axe, black_axe, mithril_axe, adamant_axe, rune_axe :
-        p_opnpc(1); // gets delayed by a tick >:(
-    // case raw_herring, herring :
-    //     // note: added in 2005-2006 by mod ash?
-    //     mes("This is not the mightiest tree in the forest.");
-    //     return;
-    case default : ~displaymessage(^dm_default);
-}
+// [opnpc1,_macro_event_ent] @attempt_cut_ent;
+// [opnpc3,_macro_event_ent] @cut_ent;
+// [opnpcu,_macro_event_ent]
+// switch_obj(last_useitem) {
+//     case bronze_axe, iron_axe, steel_axe, black_axe, mithril_axe, adamant_axe, rune_axe :
+//         p_opnpc(1); // gets delayed by a tick >:(
+//     // case raw_herring, herring :
+//     //     // note: added in 2005-2006 by mod ash?
+//     //     mes("This is not the mightiest tree in the forest.");
+//     //     return;
+//     case default : ~displaymessage(^dm_default);
+// }
 
 
 

@@ -30,9 +30,10 @@ switch_component ($component) {
     case questlist:fluffs ://Gertrude's Cat: Updates QP before quest scroll is queued & uses custom quest scroll
         if_openmain(questscroll_fluffs);
     case questlist:tbwt : // Tai Bwo Wannai Trio
-        if_settext(questscroll_tbwt:com_3, $questmessage);
-        if_settext(questscroll_tbwt:com_8, tostring($questpoints));
-        if_openmain(questscroll_tbwt);
+    // todo
+        // if_settext(questscroll_tbwt:com_3, $questmessage);
+        // if_settext(questscroll_tbwt:com_8, tostring($questpoints));
+        // if_openmain(questscroll_tbwt);
     case questlist:seaslug, questlist:itwatchtower ://Seaslug & Watchtower: Updates QP before quest scroll is queued
         if_settext(questscroll:com_3, $questmessage);
         if_settext(questscroll:com_9, tostring($questpoints));

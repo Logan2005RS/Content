@@ -773,6 +773,18 @@ activecolour=0xFFFFFF
 
 [com_93]
 type=text
+x=147
+y=30
+width=212
+height=15
+center=yes
+font=p12_full
+shadowed=yes
+text=What would you like to enchant?
+colour=0xFFAA44
+
+[com_94]
+type=text
 x=40
 y=200
 width=95
@@ -785,17 +797,19 @@ text=Lava Battlestaff
 colour=0xAAAAAA
 activecolour=0xFFFFFF
 
-[com_94]
+[com_95]
 type=text
-x=147
-y=30
-width=212
-height=15
+x=152
+y=200
+width=91
+height=14
+script1op1=inv_count,inventory:inv,obj_6562
+script1=gt,0
 center=yes
 font=p12_full
-shadowed=yes
-text=What would you like to enchant?
-colour=0xFFAA44
+text=Mud Battlestaff
+colour=0xAAAAAA
+activecolour=0xFFFFFF
 
 [air]
 type=model
@@ -861,3 +875,16 @@ zoom=992
 xan=148
 yan=1400
 option=Enchant Lava Battlestaff
+
+[com_96]
+type=model
+x=180
+y=160
+buttontype=normal
+width=32
+height=32
+model=inv_staff+orb
+zoom=992
+xan=148
+yan=1400
+option=Enchant Mud Battlestaff
