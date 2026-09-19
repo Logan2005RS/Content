@@ -29,82 +29,82 @@ startbit=17
 endbit=17
 
 [varbit_185]
-basevar=varp_400
+basevar=fenk_flags
 startbit=31
 endbit=31
 
 [varbit_186]
-basevar=varp_400
+basevar=fenk_flags
 startbit=0
 endbit=0
 
 [varbit_187]
-basevar=varp_400
+basevar=fenk_flags
 startbit=1
 endbit=1
 
 [varbit_188]
-basevar=varp_400
+basevar=fenk_flags
 startbit=2
 endbit=2
 
 [varbit_189]
-basevar=varp_400
+basevar=fenk_flags
 startbit=3
 endbit=3
 
 [varbit_190]
-basevar=varp_400
+basevar=fenk_flags
 startbit=4
 endbit=4
 
 [varbit_191]
-basevar=varp_400
+basevar=fenk_flags
 startbit=5
 endbit=7
 
 [varbit_192]
-basevar=varp_400
+basevar=fenk_flags
 startbit=8
 endbit=8
 
 [varbit_193]
-basevar=varp_400
+basevar=fenk_flags
 startbit=9
 endbit=9
 
 [varbit_194]
-basevar=varp_400
+basevar=fenk_flags
 startbit=10
 endbit=10
 
 [varbit_195]
-basevar=varp_400
+basevar=fenk_flags
 startbit=11
 endbit=11
 
 [varbit_196]
-basevar=varp_400
+basevar=fenk_flags
 startbit=12
 endbit=16
 
 [varbit_197]
-basevar=varp_400
+basevar=fenk_flags
 startbit=17
 endbit=19
 
 [varbit_198]
-basevar=varp_400
+basevar=fenk_flags
 startbit=20
 endbit=20
 
 [varbit_199]
-basevar=varp_400
+basevar=fenk_flags
 startbit=21
 endbit=21
 
 [varbit_200]
-basevar=varp_400
+basevar=fenk_flags
 startbit=22
 endbit=22
 
@@ -119,77 +119,77 @@ startbit=1
 endbit=1
 
 [varbit_203]
-basevar=varp_400
+basevar=fenk_flags
 startbit=23
 endbit=23
 
 [varbit_204]
-basevar=varp_408
+basevar=ahoy_varbits_1
 startbit=0
 endbit=5
 
 [varbit_205]
-basevar=varp_408
+basevar=ahoy_varbits_1
 startbit=6
 endbit=6
 
 [varbit_206]
-basevar=varp_408
+basevar=ahoy_varbits_1
 startbit=7
 endbit=7
 
 [varbit_207]
-basevar=varp_408
+basevar=ahoy_varbits_1
 startbit=8
 endbit=8
 
 [varbit_208]
-basevar=varp_408
+basevar=ahoy_varbits_1
 startbit=9
 endbit=9
 
 [varbit_209]
-basevar=varp_408
+basevar=ahoy_varbits_1
 startbit=10
 endbit=14
 
 [varbit_210]
-basevar=varp_408
+basevar=ahoy_varbits_1
 startbit=15
 endbit=16
 
 [varbit_211]
-basevar=varp_408
+basevar=ahoy_varbits_1
 startbit=17
 endbit=18
 
 [varbit_212]
-basevar=varp_408
+basevar=ahoy_varbits_1
 startbit=19
 endbit=22
 
 [varbit_213]
-basevar=varp_408
+basevar=ahoy_varbits_1
 startbit=23
 endbit=23
 
 [varbit_214]
-basevar=varp_408
+basevar=ahoy_varbits_1
 startbit=24
 endbit=25
 
 [varbit_215]
-basevar=varp_408
+basevar=ahoy_varbits_1
 startbit=26
 endbit=26
 
 [varbit_216]
-basevar=varp_408
+basevar=ahoy_varbits_1
 startbit=27
 endbit=27
 
 [varbit_217]
-basevar=varp_408
+basevar=ahoy_varbits_1
 startbit=28
 endbit=31
 
@@ -284,197 +284,197 @@ startbit=14
 endbit=15
 
 [varbit_236]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=1
 endbit=1
 
 [varbit_237]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=2
 endbit=2
 
 [varbit_238]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=3
 endbit=3
 
 [varbit_239]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=4
 endbit=4
 
 [varbit_240]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=5
 endbit=5
 
 [varbit_241]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=6
 endbit=6
 
 [varbit_242]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=7
 endbit=7
 
 [varbit_243]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=8
 endbit=8
 
 [varbit_244]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=1
 endbit=8
 
 [varbit_245]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=9
 endbit=9
 
 [varbit_246]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=10
 endbit=10
 
 [varbit_247]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=11
 endbit=11
 
 [varbit_248]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=12
 endbit=12
 
 [varbit_249]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=13
 endbit=13
 
 [varbit_250]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=14
 endbit=14
 
 [varbit_251]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=15
 endbit=15
 
 [varbit_252]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=16
 endbit=16
 
 [varbit_253]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=20
 endbit=20
 
 [varbit_254]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=21
 endbit=21
 
 [varbit_255]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=22
 endbit=22
 
 [varbit_256]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=25
 endbit=25
 
 [varbit_257]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=29
 endbit=30
 
 [varbit_258]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=26
 endbit=26
 
 [varbit_259]
-basevar=varp_417
+basevar=onesmallfavourmulti
 startbit=18
 endbit=18
 
 [varbit_260]
-basevar=varp_423
+basevar=mdaughter_var
 startbit=0
 endbit=7
 
 [varbit_261]
-basevar=varp_423
+basevar=mdaughter_var
 startbit=8
 endbit=8
 
 [varbit_262]
-basevar=varp_423
+basevar=mdaughter_var
 startbit=9
 endbit=14
 
 [varbit_263]
-basevar=varp_423
+basevar=mdaughter_var
 startbit=15
 endbit=19
 
 [varbit_264]
-basevar=varp_423
+basevar=mdaughter_var
 startbit=20
 endbit=20
 
 [varbit_265]
-basevar=varp_423
+basevar=mdaughter_var
 startbit=21
 endbit=21
 
 [varbit_266]
-basevar=varp_423
+basevar=mdaughter_var
 startbit=22
 endbit=22
 
 [varbit_267]
-basevar=varp_423
+basevar=mdaughter_var
 startbit=23
 endbit=23
 
 [varbit_268]
-basevar=varp_423
+basevar=mdaughter_var
 startbit=24
 endbit=24
 
 [varbit_269]
-basevar=varp_423
+basevar=mdaughter_var
 startbit=25
 endbit=25
 
 [varbit_270]
-basevar=varp_423
+basevar=mdaughter_var
 startbit=26
 endbit=26
 
 [varbit_271]
-basevar=varp_423
+basevar=mdaughter_var
 startbit=27
 endbit=27
 
 [varbit_272]
-basevar=varp_423
+basevar=mdaughter_var
 startbit=28
 endbit=28
 
 [varbit_273]
-basevar=varp_423
+basevar=mdaughter_var
 startbit=29
 endbit=30
 
 [varbit_274]
-basevar=varp_423
+basevar=mdaughter_var
 startbit=31
 endbit=31
 
@@ -489,47 +489,47 @@ startbit=1
 endbit=31
 
 [varbit_277]
-basevar=varp_425
+basevar=goblin_caves
 startbit=0
 endbit=0
 
 [varbit_278]
-basevar=varp_425
+basevar=goblin_caves
 startbit=1
 endbit=2
 
 [varbit_279]
-basevar=varp_425
+basevar=goblin_caves
 startbit=3
 endbit=3
 
 [varbit_280]
-basevar=varp_425
+basevar=goblin_caves
 startbit=4
 endbit=4
 
 [varbit_281]
-basevar=varp_425
+basevar=goblin_caves
 startbit=5
 endbit=5
 
 [varbit_282]
-basevar=varp_425
+basevar=goblin_caves
 startbit=6
 endbit=8
 
 [varbit_283]
-basevar=varp_425
+basevar=goblin_caves
 startbit=9
 endbit=9
 
 [varbit_284]
-basevar=varp_425
+basevar=goblin_caves
 startbit=10
 endbit=10
 
 [varbit_285]
-basevar=varp_425
+basevar=goblin_caves
 startbit=11
 endbit=11
 
@@ -589,497 +589,497 @@ startbit=16
 endbit=16
 
 [varbit_297]
-basevar=varp_429
+basevar=easter_2005
 startbit=2
 endbit=31
 
 [varbit_298]
-basevar=varp_429
+basevar=easter_2005
 startbit=0
 endbit=1
 
 [varbit_299]
-basevar=varp_433
+basevar=dwarfrock_main
 startbit=0
 endbit=7
 
 [varbit_300]
-basevar=varp_433
+basevar=dwarfrock_main
 startbit=8
 endbit=8
 
 [varbit_301]
-basevar=varp_433
+basevar=dwarfrock_main
 startbit=9
 endbit=9
 
 [varbit_302]
-basevar=varp_433
+basevar=dwarfrock_main
 startbit=10
 endbit=10
 
 [varbit_303]
-basevar=varp_433
+basevar=dwarfrock_main
 startbit=11
 endbit=11
 
 [varbit_304]
-basevar=varp_433
+basevar=dwarfrock_main
 startbit=12
 endbit=12
 
 [varbit_305]
-basevar=varp_433
+basevar=dwarfrock_main
 startbit=13
 endbit=13
 
 [varbit_306]
-basevar=varp_433
+basevar=dwarfrock_main
 startbit=14
 endbit=14
 
 [varbit_307]
-basevar=varp_433
+basevar=dwarfrock_main
 startbit=15
 endbit=15
 
 [varbit_308]
-basevar=varp_433
+basevar=dwarfrock_main
 startbit=16
 endbit=16
 
 [varbit_309]
-basevar=varp_433
+basevar=dwarfrock_main
 startbit=17
 endbit=26
 
 [varbit_310]
-basevar=varp_433
+basevar=dwarfrock_main
 startbit=27
 endbit=27
 
 [varbit_311]
-basevar=varp_433
+basevar=dwarfrock_main
 startbit=28
 endbit=28
 
 [varbit_312]
-basevar=varp_433
+basevar=dwarfrock_main
 startbit=29
 endbit=29
 
 [varbit_313]
-basevar=varp_433
+basevar=dwarfrock_main
 startbit=30
 endbit=30
 
 [varbit_314]
-basevar=varp_433
+basevar=dwarfrock_main
 startbit=31
 endbit=31
 
 [varbit_315]
-basevar=varp_436
+basevar=feud_var_multi
 startbit=0
 endbit=1
 
 [varbit_316]
-basevar=varp_436
+basevar=feud_var_multi
 startbit=2
 endbit=3
 
 [varbit_317]
-basevar=varp_436
+basevar=feud_var_multi
 startbit=4
 endbit=6
 
 [varbit_318]
-basevar=varp_436
+basevar=feud_var_multi
 startbit=7
 endbit=8
 
 [varbit_319]
-basevar=varp_436
+basevar=feud_var_multi
 startbit=9
 endbit=10
 
 [varbit_320]
-basevar=varp_436
+basevar=feud_var_multi
 startbit=12
 endbit=12
 
 [varbit_321]
-basevar=varp_436
+basevar=feud_var_multi
 startbit=13
 endbit=13
 
 [varbit_322]
-basevar=varp_436
+basevar=feud_var_multi
 startbit=14
 endbit=14
 
 [varbit_323]
-basevar=varp_436
+basevar=feud_var_multi
 startbit=15
 endbit=15
 
 [varbit_324]
-basevar=varp_436
+basevar=feud_var_multi
 startbit=16
 endbit=16
 
 [varbit_325]
-basevar=varp_436
+basevar=feud_var_multi
 startbit=17
 endbit=20
 
 [varbit_326]
-basevar=varp_436
+basevar=feud_var_multi
 startbit=21
 endbit=21
 
 [varbit_327]
-basevar=varp_436
+basevar=feud_var_multi
 startbit=22
 endbit=22
 
 [varbit_328]
-basevar=varp_436
+basevar=feud_var_multi
 startbit=23
 endbit=24
 
 [varbit_329]
-basevar=varp_436
+basevar=feud_var_multi
 startbit=25
 endbit=26
 
 [varbit_330]
-basevar=varp_436
+basevar=feud_var_multi
 startbit=27
 endbit=27
 
 [varbit_331]
-basevar=varp_436
+basevar=feud_var_multi
 startbit=28
 endbit=28
 
 [varbit_332]
-basevar=varp_436
+basevar=feud_var_multi
 startbit=29
 endbit=29
 
 [varbit_333]
-basevar=varp_436
+basevar=feud_var_multi
 startbit=30
 endbit=30
 
 [varbit_334]
-basevar=varp_435
+basevar=main_feud_var
 startbit=0
 endbit=5
 
 [varbit_335]
-basevar=varp_435
+basevar=main_feud_var
 startbit=6
 endbit=6
 
 [varbit_336]
-basevar=varp_435
+basevar=main_feud_var
 startbit=7
 endbit=7
 
 [varbit_337]
-basevar=varp_435
+basevar=main_feud_var
 startbit=8
 endbit=8
 
 [varbit_338]
-basevar=varp_435
+basevar=main_feud_var
 startbit=9
 endbit=9
 
 [varbit_339]
-basevar=varp_435
+basevar=main_feud_var
 startbit=10
 endbit=10
 
 [varbit_340]
-basevar=varp_435
+basevar=main_feud_var
 startbit=11
 endbit=12
 
 [varbit_341]
-basevar=varp_435
+basevar=main_feud_var
 startbit=13
 endbit=14
 
 [varbit_342]
-basevar=varp_435
+basevar=main_feud_var
 startbit=15
 endbit=15
 
 [varbit_343]
-basevar=varp_435
+basevar=main_feud_var
 startbit=16
 endbit=17
 
 [varbit_344]
-basevar=varp_435
+basevar=main_feud_var
 startbit=18
 endbit=18
 
 [varbit_345]
-basevar=varp_435
+basevar=main_feud_var
 startbit=19
 endbit=19
 
 [varbit_346]
-basevar=varp_437
+basevar=golem_quest
 startbit=0
 endbit=4
 
 [varbit_347]
-basevar=varp_437
+basevar=golem_quest
 startbit=5
 endbit=6
 
 [varbit_348]
-basevar=varp_437
+basevar=golem_quest
 startbit=7
 endbit=9
 
 [varbit_349]
-basevar=varp_437
+basevar=golem_quest
 startbit=10
 endbit=10
 
 [varbit_350]
-basevar=varp_437
+basevar=golem_quest
 startbit=11
 endbit=11
 
 [varbit_351]
-basevar=varp_437
+basevar=golem_quest
 startbit=12
 endbit=12
 
 [varbit_352]
-basevar=varp_437
+basevar=golem_quest
 startbit=13
 endbit=14
 
 [varbit_353]
-basevar=varp_437
+basevar=golem_quest
 startbit=15
 endbit=15
 
 [varbit_354]
-basevar=varp_437
+basevar=golem_quest
 startbit=16
 endbit=16
 
 [varbit_355]
-basevar=varp_437
+basevar=golem_quest
 startbit=17
 endbit=17
 
 [varbit_356]
-basevar=varp_437
+basevar=golem_quest
 startbit=18
 endbit=18
 
 [varbit_357]
-basevar=varp_439
+basevar=alternate_spells
 startbit=0
 endbit=0
 
 [varbit_358]
-basevar=varp_440
+basevar=deserttreasuremain
 startbit=0
 endbit=14
 
 [varbit_359]
-basevar=varp_441
+basevar=deserttreasurevarbit
 startbit=0
 endbit=0
 
 [varbit_360]
-basevar=varp_441
+basevar=deserttreasurevarbit
 startbit=1
 endbit=1
 
 [varbit_361]
-basevar=varp_441
+basevar=deserttreasurevarbit
 startbit=2
 endbit=2
 
 [varbit_362]
-basevar=varp_441
+basevar=deserttreasurevarbit
 startbit=3
 endbit=3
 
 [varbit_363]
-basevar=varp_441
+basevar=deserttreasurevarbit
 startbit=4
 endbit=4
 
 [varbit_364]
-basevar=varp_441
+basevar=deserttreasurevarbit
 startbit=5
 endbit=5
 
 [varbit_365]
-basevar=varp_441
+basevar=deserttreasurevarbit
 startbit=6
 endbit=17
 
 [varbit_366]
-basevar=varp_441
+basevar=deserttreasurevarbit
 startbit=18
 endbit=23
 
 [varbit_367]
-basevar=varp_441
+basevar=deserttreasurevarbit
 startbit=24
 endbit=29
 
 [varbit_368]
-basevar=varp_441
+basevar=deserttreasurevarbit
 startbit=30
 endbit=30
 
 [varbit_369]
-basevar=varp_441
+basevar=deserttreasurevarbit
 startbit=31
 endbit=31
 
 [varbit_370]
-basevar=varp_442
+basevar=deserttreasurevarbit2
 startbit=0
 endbit=0
 
 [varbit_371]
-basevar=varp_442
+basevar=deserttreasurevarbit2
 startbit=1
 endbit=1
 
 [varbit_372]
-basevar=varp_442
+basevar=deserttreasurevarbit2
 startbit=2
 endbit=2
 
 [varbit_373]
-basevar=varp_442
+basevar=deserttreasurevarbit2
 startbit=3
 endbit=6
 
 [varbit_374]
-basevar=varp_442
+basevar=deserttreasurevarbit2
 startbit=7
 endbit=7
 
 [varbit_375]
-basevar=varp_442
+basevar=deserttreasurevarbit2
 startbit=8
 endbit=8
 
 [varbit_376]
-basevar=varp_442
+basevar=deserttreasurevarbit2
 startbit=9
 endbit=9
 
 [varbit_377]
-basevar=varp_442
+basevar=deserttreasurevarbit2
 startbit=10
 endbit=10
 
 [varbit_378]
-basevar=varp_442
+basevar=deserttreasurevarbit2
 startbit=11
 endbit=15
 
 [varbit_379]
-basevar=varp_442
+basevar=deserttreasurevarbit2
 startbit=16
 endbit=16
 
 [varbit_380]
-basevar=varp_442
+basevar=deserttreasurevarbit2
 startbit=17
 endbit=17
 
 [varbit_381]
-basevar=varp_442
+basevar=deserttreasurevarbit2
 startbit=18
 endbit=18
 
 [varbit_382]
-basevar=varp_442
+basevar=deserttreasurevarbit2
 startbit=19
 endbit=23
 
 [varbit_383]
-basevar=varp_442
+basevar=deserttreasurevarbit2
 startbit=24
 endbit=28
 
 [varbit_384]
-basevar=varp_442
+basevar=deserttreasurevarbit2
 startbit=29
 endbit=29
 
 [varbit_385]
-basevar=varp_442
+basevar=deserttreasurevarbit2
 startbit=30
 endbit=30
 
 [varbit_386]
-basevar=varp_442
+basevar=deserttreasurevarbit2
 startbit=31
 endbit=31
 
 [varbit_387]
-basevar=varp_440
+basevar=deserttreasuremain
 startbit=15
 endbit=15
 
 [varbit_388]
-basevar=varp_440
+basevar=deserttreasuremain
 startbit=16
 endbit=16
 
 [varbit_389]
-basevar=varp_440
+basevar=deserttreasuremain
 startbit=17
 endbit=17
 
 [varbit_390]
-basevar=varp_440
+basevar=deserttreasuremain
 startbit=18
 endbit=18
 
 [varbit_391]
-basevar=varp_440
+basevar=deserttreasuremain
 startbit=19
 endbit=19
 
 [varbit_392]
-basevar=varp_440
+basevar=deserttreasuremain
 startbit=20
 endbit=20
 
 [varbit_393]
-basevar=varp_440
+basevar=deserttreasuremain
 startbit=21
 endbit=21
 
 [varbit_394]
-basevar=varp_440
+basevar=deserttreasuremain
 startbit=22
 endbit=31
 
 [varbit_395]
-basevar=varp_443
+basevar=ics_little_multi
 startbit=20
 endbit=20
 
@@ -1089,557 +1089,557 @@ startbit=25
 endbit=25
 
 [varbit_397]
-basevar=varp_443
+basevar=ics_little_multi
 startbit=0
 endbit=2
 
 [varbit_398]
-basevar=varp_443
+basevar=ics_little_multi
 startbit=3
 endbit=3
 
 [varbit_399]
-basevar=varp_443
+basevar=ics_little_multi
 startbit=4
 endbit=4
 
 [varbit_400]
-basevar=varp_443
+basevar=ics_little_multi
 startbit=5
 endbit=7
 
 [varbit_401]
-basevar=varp_443
+basevar=ics_little_multi
 startbit=5
 endbit=5
 
 [varbit_402]
-basevar=varp_443
+basevar=ics_little_multi
 startbit=6
 endbit=6
 
 [varbit_403]
-basevar=varp_443
+basevar=ics_little_multi
 startbit=7
 endbit=7
 
 [varbit_404]
-basevar=varp_443
+basevar=ics_little_multi
 startbit=10
 endbit=10
 
 [varbit_405]
-basevar=varp_443
+basevar=ics_little_multi
 startbit=11
 endbit=11
 
 [varbit_406]
-basevar=varp_443
+basevar=ics_little_multi
 startbit=12
 endbit=12
 
 [varbit_407]
-basevar=varp_443
+basevar=ics_little_multi
 startbit=13
 endbit=13
 
 [varbit_408]
-basevar=varp_443
+basevar=ics_little_multi
 startbit=14
 endbit=15
 
 [varbit_409]
-basevar=varp_443
+basevar=ics_little_multi
 startbit=16
 endbit=18
 
 [varbit_410]
-basevar=varp_443
+basevar=ics_little_multi
 startbit=19
 endbit=19
 
 [varbit_411]
-basevar=varp_443
+basevar=ics_little_multi
 startbit=21
 endbit=21
 
 [varbit_412]
-basevar=varp_443
+basevar=ics_little_multi
 startbit=22
 endbit=22
 
 [varbit_413]
-basevar=varp_443
+basevar=ics_little_multi
 startbit=23
 endbit=24
 
 [varbit_414]
-basevar=varp_443
+basevar=ics_little_multi
 startbit=25
 endbit=25
 
 [varbit_415]
-basevar=varp_443
+basevar=ics_little_multi
 startbit=26
 endbit=27
 
 [varbit_416]
-basevar=varp_443
+basevar=ics_little_multi
 startbit=28
 endbit=28
 
 [varbit_417]
-basevar=varp_443
+basevar=ics_little_multi
 startbit=29
 endbit=31
 
 [varbit_418]
-basevar=varp_445
+basevar=main_ics_var
 startbit=0
 endbit=4
 
 [varbit_419]
-basevar=varp_445
+basevar=main_ics_var
 startbit=5
 endbit=5
 
 [varbit_420]
-basevar=varp_445
+basevar=main_ics_var
 startbit=6
 endbit=6
 
 [varbit_421]
-basevar=varp_445
+basevar=main_ics_var
 startbit=7
 endbit=7
 
 [varbit_422]
-basevar=varp_445
+basevar=main_ics_var
 startbit=8
 endbit=8
 
 [varbit_423]
-basevar=varp_445
+basevar=main_ics_var
 startbit=9
 endbit=9
 
 [varbit_424]
-basevar=varp_445
+basevar=main_ics_var
 startbit=10
 endbit=10
 
 [varbit_425]
-basevar=varp_445
+basevar=main_ics_var
 startbit=11
 endbit=11
 
 [varbit_426]
-basevar=varp_445
+basevar=main_ics_var
 startbit=12
 endbit=12
 
 [varbit_427]
-basevar=varp_445
+basevar=main_ics_var
 startbit=13
 endbit=13
 
 [varbit_428]
-basevar=varp_445
+basevar=main_ics_var
 startbit=14
 endbit=14
 
 [varbit_429]
-basevar=varp_445
+basevar=main_ics_var
 startbit=15
 endbit=15
 
 [varbit_430]
-basevar=varp_445
+basevar=main_ics_var
 startbit=16
 endbit=16
 
 [varbit_431]
-basevar=varp_445
+basevar=main_ics_var
 startbit=17
 endbit=17
 
 [varbit_432]
-basevar=varp_445
+basevar=main_ics_var
 startbit=18
 endbit=18
 
 [varbit_433]
-basevar=varp_445
+basevar=main_ics_var
 startbit=19
 endbit=19
 
 [varbit_434]
-basevar=varp_445
+basevar=main_ics_var
 startbit=20
 endbit=20
 
 [varbit_435]
-basevar=varp_445
+basevar=main_ics_var
 startbit=21
 endbit=21
 
 [varbit_436]
-basevar=varp_445
+basevar=main_ics_var
 startbit=22
 endbit=22
 
 [varbit_437]
-basevar=varp_445
+basevar=main_ics_var
 startbit=23
 endbit=23
 
 [varbit_438]
-basevar=varp_445
+basevar=main_ics_var
 startbit=24
 endbit=24
 
 [varbit_439]
-basevar=varp_445
+basevar=main_ics_var
 startbit=25
 endbit=25
 
 [varbit_440]
-basevar=varp_445
+basevar=main_ics_var
 startbit=26
 endbit=26
 
 [varbit_441]
-basevar=varp_445
+basevar=main_ics_var
 startbit=27
 endbit=27
 
 [varbit_442]
-basevar=varp_445
+basevar=main_ics_var
 startbit=28
 endbit=28
 
 [varbit_443]
-basevar=varp_445
+basevar=main_ics_var
 startbit=29
 endbit=29
 
 [varbit_444]
-basevar=varp_445
+basevar=main_ics_var
 startbit=30
 endbit=30
 
 [varbit_445]
-basevar=varp_445
+basevar=main_ics_var
 startbit=6
 endbit=30
 
 [varbit_446]
-basevar=varp_445
+basevar=main_ics_var
 startbit=31
 endbit=31
 
 [varbit_447]
-basevar=varp_446
+basevar=ics_little_multi_extra
 startbit=0
 endbit=2
 
 [varbit_448]
-basevar=varp_446
+basevar=ics_little_multi_extra
 startbit=3
 endbit=3
 
 [varbit_449]
-basevar=varp_446
+basevar=ics_little_multi_extra
 startbit=4
 endbit=4
 
 [varbit_450]
-basevar=varp_446
+basevar=ics_little_multi_extra
 startbit=5
 endbit=5
 
 [varbit_451]
-basevar=varp_449
+basevar=tog_minigame
 startbit=0
 endbit=1
 
 [varbit_452]
-basevar=varp_449
+basevar=tog_minigame
 startbit=2
 endbit=5
 
 [varbit_453]
-basevar=varp_449
+basevar=tog_minigame
 startbit=6
 endbit=6
 
 [varbit_454]
-basevar=varp_449
+basevar=tog_minigame
 startbit=7
 endbit=11
 
 [varbit_455]
-basevar=varp_449
+basevar=tog_minigame
 startbit=12
 endbit=20
 
 [varbit_456]
-basevar=varp_449
+basevar=tog_minigame
 startbit=22
 endbit=31
 
 [varbit_457]
-basevar=varp_453
+basevar=barrows_kills
 startbit=0
 endbit=0
 
 [varbit_458]
-basevar=varp_453
+basevar=barrows_kills
 startbit=1
 endbit=1
 
 [varbit_459]
-basevar=varp_453
+basevar=barrows_kills
 startbit=2
 endbit=2
 
 [varbit_460]
-basevar=varp_453
+basevar=barrows_kills
 startbit=3
 endbit=3
 
 [varbit_461]
-basevar=varp_453
+basevar=barrows_kills
 startbit=4
 endbit=4
 
 [varbit_462]
-basevar=varp_453
+basevar=barrows_kills
 startbit=5
 endbit=5
 
 [varbit_463]
-basevar=varp_453
+basevar=barrows_kills
 startbit=6
 endbit=15
 
 [varbit_464]
-basevar=varp_453
+basevar=barrows_kills
 startbit=17
 endbit=31
 
 [varbit_465]
-basevar=varp_452
+basevar=barrows
 startbit=6
 endbit=6
 
 [varbit_466]
-basevar=varp_452
+basevar=barrows
 startbit=7
 endbit=7
 
 [varbit_467]
-basevar=varp_452
+basevar=barrows
 startbit=8
 endbit=8
 
 [varbit_468]
-basevar=varp_452
+basevar=barrows
 startbit=9
 endbit=9
 
 [varbit_469]
-basevar=varp_452
+basevar=barrows
 startbit=10
 endbit=10
 
 [varbit_470]
-basevar=varp_452
+basevar=barrows
 startbit=11
 endbit=11
 
 [varbit_471]
-basevar=varp_452
+basevar=barrows
 startbit=12
 endbit=12
 
 [varbit_472]
-basevar=varp_452
+basevar=barrows
 startbit=13
 endbit=13
 
 [varbit_473]
-basevar=varp_452
+basevar=barrows
 startbit=14
 endbit=14
 
 [varbit_474]
-basevar=varp_452
+basevar=barrows
 startbit=15
 endbit=15
 
 [varbit_475]
-basevar=varp_452
+basevar=barrows
 startbit=16
 endbit=16
 
 [varbit_476]
-basevar=varp_452
+basevar=barrows
 startbit=17
 endbit=17
 
 [varbit_477]
-basevar=varp_452
+basevar=barrows
 startbit=18
 endbit=18
 
 [varbit_478]
-basevar=varp_452
+basevar=barrows
 startbit=19
 endbit=19
 
 [varbit_479]
-basevar=varp_452
+basevar=barrows
 startbit=20
 endbit=20
 
 [varbit_480]
-basevar=varp_452
+basevar=barrows
 startbit=21
 endbit=21
 
 [varbit_481]
-basevar=varp_452
+basevar=barrows
 startbit=22
 endbit=22
 
 [varbit_482]
-basevar=varp_452
+basevar=barrows
 startbit=23
 endbit=23
 
 [varbit_483]
-basevar=varp_452
+basevar=barrows
 startbit=24
 endbit=24
 
 [varbit_484]
-basevar=varp_452
+basevar=barrows
 startbit=25
 endbit=25
 
 [varbit_485]
-basevar=varp_452
+basevar=barrows
 startbit=29
 endbit=31
 
 [varbit_486]
-basevar=varp_449
+basevar=tog_minigame
 startbit=21
 endbit=21
 
 [varbit_487]
-basevar=varp_455
+basevar=zombie_ogre
 startbit=0
 endbit=4
 
 [varbit_488]
-basevar=varp_455
+basevar=zombie_ogre
 startbit=5
 endbit=7
 
 [varbit_489]
-basevar=varp_455
+basevar=zombie_ogre
 startbit=8
 endbit=8
 
 [varbit_490]
-basevar=varp_455
+basevar=zombie_ogre
 startbit=9
 endbit=9
 
 [varbit_491]
-basevar=varp_455
+basevar=zombie_ogre
 startbit=10
 endbit=10
 
 [varbit_492]
-basevar=varp_455
+basevar=zombie_ogre
 startbit=11
 endbit=11
 
 [varbit_493]
-basevar=varp_455
+basevar=zombie_ogre
 startbit=12
 endbit=12
 
 [varbit_494]
-basevar=varp_455
+basevar=zombie_ogre
 startbit=13
 endbit=13
 
 [varbit_495]
-basevar=varp_455
+basevar=zombie_ogre
 startbit=14
 endbit=15
 
 [varbit_496]
-basevar=varp_455
+basevar=zombie_ogre
 startbit=16
 endbit=16
 
 [varbit_497]
-basevar=varp_455
+basevar=zombie_ogre
 startbit=17
 endbit=18
 
 [varbit_498]
-basevar=varp_455
+basevar=zombie_ogre
 startbit=19
 endbit=19
 
 [varbit_499]
-basevar=varp_455
+basevar=zombie_ogre
 startbit=20
 endbit=20
 
 [varbit_500]
-basevar=varp_455
+basevar=zombie_ogre
 startbit=21
 endbit=21
 
 [varbit_501]
-basevar=varp_455
+basevar=zombie_ogre
 startbit=22
 endbit=22
 
 [varbit_502]
-basevar=varp_455
+basevar=zombie_ogre
 startbit=23
 endbit=23
 
 [varbit_503]
-basevar=varp_455
+basevar=zombie_ogre
 startbit=24
 endbit=25
 
 [varbit_504]
-basevar=varp_455
+basevar=zombie_ogre
 startbit=26
 endbit=26
 
 [varbit_505]
-basevar=varp_455
+basevar=zombie_ogre
 startbit=27
 endbit=27
 
 [varbit_506]
-basevar=varp_455
+basevar=zombie_ogre
 startbit=28
 endbit=30
 
 [varbit_507]
-basevar=varp_455
+basevar=zombie_ogre
 startbit=31
 endbit=31
 
@@ -1764,62 +1764,62 @@ startbit=24
 endbit=31
 
 [varbit_532]
-basevar=varp_465
+basevar=lost_tribe
 startbit=0
 endbit=10
 
 [varbit_533]
-basevar=varp_465
+basevar=lost_tribe
 startbit=12
 endbit=12
 
 [varbit_534]
-basevar=varp_465
+basevar=lost_tribe
 startbit=13
 endbit=14
 
 [varbit_535]
-basevar=varp_465
+basevar=lost_tribe
 startbit=15
 endbit=15
 
 [varbit_536]
-basevar=varp_465
+basevar=lost_tribe
 startbit=16
 endbit=16
 
 [varbit_537]
-basevar=varp_465
+basevar=lost_tribe
 startbit=17
 endbit=18
 
 [varbit_538]
-basevar=varp_465
+basevar=lost_tribe
 startbit=19
 endbit=19
 
 [varbit_539]
-basevar=varp_465
+basevar=lost_tribe
 startbit=20
 endbit=20
 
 [varbit_540]
-basevar=varp_465
+basevar=lost_tribe
 startbit=21
 endbit=21
 
 [varbit_541]
-basevar=varp_465
+basevar=lost_tribe
 startbit=22
 endbit=24
 
 [varbit_542]
-basevar=varp_466
+basevar=cutscene_var
 startbit=0
 endbit=0
 
 [varbit_543]
-basevar=varp_466
+basevar=cutscene_var
 startbit=1
 endbit=1
 
@@ -1899,7 +1899,7 @@ startbit=31
 endbit=31
 
 [varbit_559]
-basevar=varp_470
+basevar=keldagrim_temp_var
 startbit=0
 endbit=0
 
@@ -1959,72 +1959,72 @@ startbit=0
 endbit=9
 
 [varbit_571]
-basevar=varp_482
+basevar=giantdwarf_main
 startbit=0
 endbit=6
 
 [varbit_572]
-basevar=varp_482
+basevar=giantdwarf_main
 startbit=7
 endbit=7
 
 [varbit_573]
-basevar=varp_482
+basevar=giantdwarf_main
 startbit=8
 endbit=8
 
 [varbit_574]
-basevar=varp_482
+basevar=giantdwarf_main
 startbit=9
 endbit=9
 
 [varbit_575]
-basevar=varp_482
+basevar=giantdwarf_main
 startbit=10
 endbit=10
 
 [varbit_576]
-basevar=varp_482
+basevar=giantdwarf_main
 startbit=11
 endbit=14
 
 [varbit_577]
-basevar=varp_482
+basevar=giantdwarf_main
 startbit=15
 endbit=18
 
 [varbit_578]
-basevar=varp_482
+basevar=giantdwarf_main
 startbit=19
 endbit=22
 
 [varbit_579]
-basevar=varp_482
+basevar=giantdwarf_main
 startbit=23
 endbit=23
 
 [varbit_580]
-basevar=varp_482
+basevar=giantdwarf_main
 startbit=24
 endbit=24
 
 [varbit_581]
-basevar=varp_482
+basevar=giantdwarf_main
 startbit=25
 endbit=25
 
 [varbit_582]
-basevar=varp_482
+basevar=giantdwarf_main
 startbit=26
 endbit=26
 
 [varbit_583]
-basevar=varp_482
+basevar=giantdwarf_main
 startbit=27
 endbit=27
 
 [varbit_584]
-basevar=varp_482
+basevar=giantdwarf_main
 startbit=28
 endbit=28
 
@@ -2119,187 +2119,187 @@ startbit=15
 endbit=16
 
 [varbit_603]
-basevar=varp_486
+basevar=abyssal_pouches1
 startbit=0
 endbit=2
 
 [varbit_604]
-basevar=varp_486
+basevar=abyssal_pouches1
 startbit=3
 endbit=8
 
 [varbit_605]
-basevar=varp_486
+basevar=abyssal_pouches1
 startbit=9
 endbit=17
 
 [varbit_606]
-basevar=varp_486
+basevar=abyssal_pouches1
 startbit=18
 endbit=29
 
 [varbit_607]
-basevar=varp_491
+basevar=abyssal_warp
 startbit=0
 endbit=0
 
 [varbit_608]
-basevar=varp_491
+basevar=abyssal_warp
 startbit=1
 endbit=1
 
 [varbit_609]
-basevar=varp_491
+basevar=abyssal_warp
 startbit=2
 endbit=2
 
 [varbit_610]
-basevar=varp_491
+basevar=abyssal_warp
 startbit=3
 endbit=3
 
 [varbit_611]
-basevar=varp_491
+basevar=abyssal_warp
 startbit=4
 endbit=4
 
 [varbit_612]
-basevar=varp_491
+basevar=abyssal_warp
 startbit=5
 endbit=5
 
 [varbit_613]
-basevar=varp_491
+basevar=abyssal_warp
 startbit=6
 endbit=6
 
 [varbit_614]
-basevar=varp_491
+basevar=abyssal_warp
 startbit=7
 endbit=7
 
 [varbit_615]
-basevar=varp_491
+basevar=abyssal_warp
 startbit=8
 endbit=8
 
 [varbit_616]
-basevar=varp_491
+basevar=abyssal_warp
 startbit=9
 endbit=9
 
 [varbit_617]
-basevar=varp_491
+basevar=abyssal_warp
 startbit=10
 endbit=10
 
 [varbit_618]
-basevar=varp_491
+basevar=abyssal_warp
 startbit=11
 endbit=11
 
 [varbit_619]
-basevar=varp_491
+basevar=abyssal_warp
 startbit=12
 endbit=12
 
 [varbit_620]
-basevar=varp_491
+basevar=abyssal_warp
 startbit=13
 endbit=13
 
 [varbit_621]
-basevar=varp_491
+basevar=abyssal_warp
 startbit=14
 endbit=14
 
 [varbit_622]
-basevar=varp_491
+basevar=abyssal_warp
 startbit=15
 endbit=15
 
 [varbit_623]
-basevar=varp_491
+basevar=abyssal_warp
 startbit=16
 endbit=16
 
 [varbit_624]
-basevar=varp_491
+basevar=abyssal_warp
 startbit=17
 endbit=17
 
 [varbit_625]
-basevar=varp_491
+basevar=abyssal_warp
 startbit=18
 endbit=29
 
 [varbit_626]
-basevar=varp_491
+basevar=abyssal_warp
 startbit=30
 endbit=30
 
 [varbit_627]
-basevar=varp_493
+basevar=roguesden_puzzle
 startbit=0
 endbit=1
 
 [varbit_628]
-basevar=varp_493
+basevar=roguesden_puzzle
 startbit=2
 endbit=3
 
 [varbit_629]
-basevar=varp_493
+basevar=roguesden_puzzle
 startbit=4
 endbit=5
 
 [varbit_630]
-basevar=varp_493
+basevar=roguesden_puzzle
 startbit=6
 endbit=7
 
 [varbit_631]
-basevar=varp_493
+basevar=roguesden_puzzle
 startbit=8
 endbit=9
 
 [varbit_632]
-basevar=varp_493
+basevar=roguesden_puzzle
 startbit=10
 endbit=11
 
 [varbit_633]
-basevar=varp_493
+basevar=roguesden_puzzle
 startbit=12
 endbit=13
 
 [varbit_634]
-basevar=varp_493
+basevar=roguesden_puzzle
 startbit=14
 endbit=15
 
 [varbit_635]
-basevar=varp_493
+basevar=roguesden_puzzle
 startbit=16
 endbit=17
 
 [varbit_636]
-basevar=varp_493
+basevar=roguesden_puzzle
 startbit=18
 endbit=20
 
 [varbit_637]
-basevar=varp_493
+basevar=roguesden_puzzle
 startbit=21
 endbit=21
 
 [varbit_638]
-basevar=varp_493
+basevar=roguesden_puzzle
 startbit=22
 endbit=22
 
 [varbit_639]
-basevar=varp_493
+basevar=roguesden_puzzle
 startbit=23
 endbit=23
 
@@ -2389,182 +2389,182 @@ startbit=27
 endbit=27
 
 [varbit_657]
-basevar=varp_496
+basevar=recruitmentdrive
 startbit=0
 endbit=2
 
 [varbit_658]
-basevar=varp_496
+basevar=recruitmentdrive
 startbit=3
 endbit=14
 
 [varbit_659]
-basevar=varp_496
+basevar=recruitmentdrive
 startbit=15
 endbit=15
 
 [varbit_660]
-basevar=varp_496
+basevar=recruitmentdrive
 startbit=16
 endbit=16
 
 [varbit_661]
-basevar=varp_496
+basevar=recruitmentdrive
 startbit=17
 endbit=17
 
 [varbit_662]
-basevar=varp_496
+basevar=recruitmentdrive
 startbit=18
 endbit=18
 
 [varbit_663]
-basevar=varp_496
+basevar=recruitmentdrive
 startbit=19
 endbit=19
 
 [varbit_664]
-basevar=varp_496
+basevar=recruitmentdrive
 startbit=20
 endbit=20
 
 [varbit_665]
-basevar=varp_496
+basevar=recruitmentdrive
 startbit=21
 endbit=21
 
 [varbit_666]
-basevar=varp_497
+basevar=rd_rooms_tempvar
 startbit=0
 endbit=7
 
 [varbit_667]
-basevar=varp_497
+basevar=rd_rooms_tempvar
 startbit=8
 endbit=22
 
 [varbit_668]
-basevar=varp_496
+basevar=recruitmentdrive
 startbit=22
 endbit=22
 
 [varbit_669]
-basevar=varp_496
+basevar=recruitmentdrive
 startbit=23
 endbit=23
 
 [varbit_670]
-basevar=varp_496
+basevar=recruitmentdrive
 startbit=24
 endbit=24
 
 [varbit_671]
-basevar=varp_496
+basevar=recruitmentdrive
 startbit=25
 endbit=25
 
 [varbit_672]
-basevar=varp_496
+basevar=recruitmentdrive
 startbit=26
 endbit=26
 
 [varbit_673]
-basevar=varp_496
+basevar=recruitmentdrive
 startbit=27
 endbit=27
 
 [varbit_674]
-basevar=varp_496
+basevar=recruitmentdrive
 startbit=28
 endbit=28
 
 [varbit_675]
-basevar=varp_496
+basevar=recruitmentdrive
 startbit=29
 endbit=29
 
 [varbit_676]
-basevar=varp_496
+basevar=recruitmentdrive
 startbit=30
 endbit=30
 
 [varbit_677]
-basevar=varp_496
+basevar=recruitmentdrive
 startbit=31
 endbit=31
 
 [varbit_678]
-basevar=varp_497
+basevar=rd_rooms_tempvar
 startbit=23
 endbit=23
 
 [varbit_679]
-basevar=varp_497
+basevar=rd_rooms_tempvar
 startbit=24
 endbit=27
 
 [varbit_680]
-basevar=varp_498
+basevar=rd_rooms_tempvar2
 startbit=0
 endbit=2
 
 [varbit_681]
-basevar=varp_498
+basevar=rd_rooms_tempvar2
 startbit=3
 endbit=6
 
 [varbit_682]
-basevar=varp_498
+basevar=rd_rooms_tempvar2
 startbit=7
 endbit=9
 
 [varbit_683]
-basevar=varp_498
+basevar=rd_rooms_tempvar2
 startbit=10
 endbit=13
 
 [varbit_684]
-basevar=varp_498
+basevar=rd_rooms_tempvar2
 startbit=14
 endbit=16
 
 [varbit_685]
-basevar=varp_498
+basevar=rd_rooms_tempvar2
 startbit=17
 endbit=20
 
 [varbit_686]
-basevar=varp_497
+basevar=rd_rooms_tempvar
 startbit=28
 endbit=31
 
 [varbit_687]
-basevar=varp_498
+basevar=rd_rooms_tempvar2
 startbit=21
 endbit=21
 
 [varbit_688]
-basevar=varp_498
+basevar=rd_rooms_tempvar2
 startbit=22
 endbit=22
 
 [varbit_689]
-basevar=varp_498
+basevar=rd_rooms_tempvar2
 startbit=23
 endbit=23
 
 [varbit_690]
-basevar=varp_498
+basevar=rd_rooms_tempvar2
 startbit=24
 endbit=24
 
 [varbit_691]
-basevar=varp_498
+basevar=rd_rooms_tempvar2
 startbit=25
 endbit=25
 
 [varbit_692]
-basevar=varp_498
+basevar=rd_rooms_tempvar2
 startbit=26
 endbit=26
 
@@ -2604,107 +2604,107 @@ startbit=18
 endbit=31
 
 [varbit_700]
-basevar=varp_502
+basevar=farming_tree_varp
 startbit=0
 endbit=7
 
 [varbit_701]
-basevar=varp_502
+basevar=farming_tree_varp
 startbit=8
 endbit=15
 
 [varbit_702]
-basevar=varp_502
+basevar=farming_tree_varp
 startbit=16
 endbit=23
 
 [varbit_703]
-basevar=varp_502
+basevar=farming_tree_varp
 startbit=24
 endbit=31
 
 [varbit_704]
-basevar=varp_503
+basevar=farming_fruit_tree_varp
 startbit=0
 endbit=7
 
 [varbit_705]
-basevar=varp_503
+basevar=farming_fruit_tree_varp
 startbit=8
 endbit=15
 
 [varbit_706]
-basevar=varp_503
+basevar=farming_fruit_tree_varp
 startbit=16
 endbit=23
 
 [varbit_707]
-basevar=varp_503
+basevar=farming_fruit_tree_varp
 startbit=24
 endbit=31
 
 [varbit_708]
-basevar=varp_504
+basevar=farming_allotment_varp_1
 startbit=0
 endbit=7
 
 [varbit_709]
-basevar=varp_504
+basevar=farming_allotment_varp_1
 startbit=8
 endbit=15
 
 [varbit_710]
-basevar=varp_504
+basevar=farming_allotment_varp_1
 startbit=16
 endbit=23
 
 [varbit_711]
-basevar=varp_504
+basevar=farming_allotment_varp_1
 startbit=24
 endbit=31
 
 [varbit_712]
-basevar=varp_505
+basevar=farming_allotment_varp_2
 startbit=0
 endbit=7
 
 [varbit_713]
-basevar=varp_505
+basevar=farming_allotment_varp_2
 startbit=8
 endbit=15
 
 [varbit_714]
-basevar=varp_505
+basevar=farming_allotment_varp_2
 startbit=16
 endbit=23
 
 [varbit_715]
-basevar=varp_505
+basevar=farming_allotment_varp_2
 startbit=24
 endbit=31
 
 [varbit_716]
-basevar=varp_506
+basevar=farming_hops_varp
 startbit=0
 endbit=7
 
 [varbit_717]
-basevar=varp_506
+basevar=farming_hops_varp
 startbit=8
 endbit=15
 
 [varbit_718]
-basevar=varp_506
+basevar=farming_hops_varp
 startbit=16
 endbit=23
 
 [varbit_719]
-basevar=varp_506
+basevar=farming_hops_varp
 startbit=24
 endbit=31
 
 [varbit_720]
-basevar=varp_507
+basevar=farming_special_tree_varp
 startbit=0
 endbit=5
 
@@ -2714,7 +2714,7 @@ startbit=6
 endbit=7
 
 [varbit_722]
-basevar=varp_507
+basevar=farming_special_tree_varp
 startbit=8
 endbit=13
 
@@ -2724,7 +2724,7 @@ startbit=14
 endbit=15
 
 [varbit_724]
-basevar=varp_507
+basevar=farming_special_tree_varp
 startbit=16
 endbit=21
 
@@ -2734,72 +2734,72 @@ startbit=22
 endbit=23
 
 [varbit_726]
-basevar=varp_507
+basevar=farming_special_tree_varp
 startbit=24
 endbit=29
 
 [varbit_727]
-basevar=varp_507
+basevar=farming_special_tree_varp
 startbit=30
 endbit=31
 
 [varbit_728]
-basevar=varp_508
+basevar=farming_flower_varp
 startbit=0
 endbit=7
 
 [varbit_729]
-basevar=varp_508
+basevar=farming_flower_varp
 startbit=8
 endbit=15
 
 [varbit_730]
-basevar=varp_508
+basevar=farming_flower_varp
 startbit=16
 endbit=23
 
 [varbit_731]
-basevar=varp_508
+basevar=farming_flower_varp
 startbit=24
 endbit=31
 
 [varbit_732]
-basevar=varp_509
+basevar=farming_bush_varp
 startbit=0
 endbit=7
 
 [varbit_733]
-basevar=varp_509
+basevar=farming_bush_varp
 startbit=8
 endbit=15
 
 [varbit_734]
-basevar=varp_509
+basevar=farming_bush_varp
 startbit=16
 endbit=23
 
 [varbit_735]
-basevar=varp_509
+basevar=farming_bush_varp
 startbit=24
 endbit=31
 
 [varbit_736]
-basevar=varp_510
+basevar=farming_varp_9
 startbit=0
 endbit=7
 
 [varbit_737]
-basevar=varp_510
+basevar=farming_varp_9
 startbit=8
 endbit=15
 
 [varbit_738]
-basevar=varp_510
+basevar=farming_varp_9
 startbit=16
 endbit=23
 
 [varbit_739]
-basevar=varp_510
+basevar=farming_varp_9
 startbit=24
 endbit=31
 
@@ -3089,377 +3089,377 @@ startbit=30
 endbit=31
 
 [varbit_797]
-basevar=varp_518
+basevar=mourning_quest_bits
 startbit=0
 endbit=0
 
 [varbit_798]
-basevar=varp_518
+basevar=mourning_quest_bits
 startbit=7
 endbit=7
 
 [varbit_799]
-basevar=varp_518
+basevar=mourning_quest_bits
 startbit=8
 endbit=11
 
 [varbit_800]
-basevar=varp_518
+basevar=mourning_quest_bits
 startbit=12
 endbit=12
 
 [varbit_801]
-basevar=varp_518
+basevar=mourning_quest_bits
 startbit=13
 endbit=13
 
 [varbit_802]
-basevar=varp_518
+basevar=mourning_quest_bits
 startbit=14
 endbit=14
 
 [varbit_803]
-basevar=varp_518
+basevar=mourning_quest_bits
 startbit=15
 endbit=15
 
 [varbit_804]
-basevar=varp_518
+basevar=mourning_quest_bits
 startbit=16
 endbit=18
 
 [varbit_805]
-basevar=varp_518
+basevar=mourning_quest_bits
 startbit=19
 endbit=21
 
 [varbit_806]
-basevar=varp_518
+basevar=mourning_quest_bits
 startbit=22
 endbit=22
 
 [varbit_807]
-basevar=varp_518
+basevar=mourning_quest_bits
 startbit=23
 endbit=23
 
 [varbit_808]
-basevar=varp_518
+basevar=mourning_quest_bits
 startbit=24
 endbit=24
 
 [varbit_809]
-basevar=varp_518
+basevar=mourning_quest_bits
 startbit=25
 endbit=25
 
 [varbit_810]
-basevar=varp_518
+basevar=mourning_quest_bits
 startbit=26
 endbit=28
 
 [varbit_811]
-basevar=varp_520
+basevar=dagganoth_area_project
 startbit=0
 endbit=0
 
 [varbit_812]
-basevar=varp_520
+basevar=dagganoth_area_project
 startbit=11
 endbit=11
 
 [varbit_813]
-basevar=varp_520
+basevar=dagganoth_area_project
 startbit=12
 endbit=12
 
 [varbit_814]
-basevar=varp_520
+basevar=dagganoth_area_project
 startbit=13
 endbit=13
 
 [varbit_815]
-basevar=varp_520
+basevar=dagganoth_area_project
 startbit=1
 endbit=4
 
 [varbit_816]
-basevar=varp_520
+basevar=dagganoth_area_project
 startbit=5
 endbit=5
 
 [varbit_817]
-basevar=varp_520
+basevar=dagganoth_area_project
 startbit=6
 endbit=6
 
 [varbit_818]
-basevar=varp_520
+basevar=dagganoth_area_project
 startbit=7
 endbit=7
 
 [varbit_819]
-basevar=varp_520
+basevar=dagganoth_area_project
 startbit=8
 endbit=8
 
 [varbit_820]
-basevar=varp_520
+basevar=dagganoth_area_project
 startbit=9
 endbit=9
 
 [varbit_821]
-basevar=varp_520
+basevar=dagganoth_area_project
 startbit=10
 endbit=10
 
 [varbit_822]
-basevar=varp_521
+basevar=forget_main_var
 startbit=0
 endbit=7
 
 [varbit_823]
-basevar=varp_521
+basevar=forget_main_var
 startbit=8
 endbit=11
 
 [varbit_824]
-basevar=varp_521
+basevar=forget_main_var
 startbit=12
 endbit=12
 
 [varbit_825]
-basevar=varp_521
+basevar=forget_main_var
 startbit=13
 endbit=13
 
 [varbit_826]
-basevar=varp_521
+basevar=forget_main_var
 startbit=14
 endbit=14
 
 [varbit_827]
-basevar=varp_521
+basevar=forget_main_var
 startbit=15
 endbit=15
 
 [varbit_828]
-basevar=varp_521
+basevar=forget_main_var
 startbit=16
 endbit=16
 
 [varbit_829]
-basevar=varp_521
+basevar=forget_main_var
 startbit=17
 endbit=17
 
 [varbit_830]
-basevar=varp_521
+basevar=forget_main_var
 startbit=18
 endbit=18
 
 [varbit_831]
-basevar=varp_521
+basevar=forget_main_var
 startbit=19
 endbit=19
 
 [varbit_832]
-basevar=varp_521
+basevar=forget_main_var
 startbit=20
 endbit=22
 
 [varbit_833]
-basevar=varp_521
+basevar=forget_main_var
 startbit=23
 endbit=23
 
 [varbit_834]
-basevar=varp_521
+basevar=forget_main_var
 startbit=24
 endbit=24
 
 [varbit_835]
-basevar=varp_521
+basevar=forget_main_var
 startbit=25
 endbit=25
 
 [varbit_836]
-basevar=varp_521
+basevar=forget_main_var
 startbit=26
 endbit=26
 
 [varbit_837]
-basevar=varp_521
+basevar=forget_main_var
 startbit=27
 endbit=27
 
 [varbit_838]
-basevar=varp_521
+basevar=forget_main_var
 startbit=28
 endbit=28
 
 [varbit_839]
-basevar=varp_521
+basevar=forget_main_var
 startbit=29
 endbit=29
 
 [varbit_840]
-basevar=varp_521
+basevar=forget_main_var
 startbit=30
 endbit=30
 
 [varbit_841]
-basevar=varp_521
+basevar=forget_main_var
 startbit=31
 endbit=31
 
 [varbit_842]
-basevar=varp_524
+basevar=forget_puzzle_var
 startbit=0
 endbit=1
 
 [varbit_843]
-basevar=varp_524
+basevar=forget_puzzle_var
 startbit=2
 endbit=3
 
 [varbit_844]
-basevar=varp_524
+basevar=forget_puzzle_var
 startbit=4
 endbit=5
 
 [varbit_845]
-basevar=varp_524
+basevar=forget_puzzle_var
 startbit=6
 endbit=7
 
 [varbit_846]
-basevar=varp_524
+basevar=forget_puzzle_var
 startbit=8
 endbit=9
 
 [varbit_847]
-basevar=varp_524
+basevar=forget_puzzle_var
 startbit=10
 endbit=11
 
 [varbit_848]
-basevar=varp_524
+basevar=forget_puzzle_var
 startbit=12
 endbit=13
 
 [varbit_849]
-basevar=varp_524
+basevar=forget_puzzle_var
 startbit=14
 endbit=15
 
 [varbit_850]
-basevar=varp_524
+basevar=forget_puzzle_var
 startbit=16
 endbit=17
 
 [varbit_851]
-basevar=varp_524
+basevar=forget_puzzle_var
 startbit=18
 endbit=19
 
 [varbit_852]
-basevar=varp_524
+basevar=forget_puzzle_var
 startbit=20
 endbit=21
 
 [varbit_853]
-basevar=varp_524
+basevar=forget_puzzle_var
 startbit=22
 endbit=23
 
 [varbit_854]
-basevar=varp_524
+basevar=forget_puzzle_var
 startbit=24
 endbit=25
 
 [varbit_855]
-basevar=varp_524
+basevar=forget_puzzle_var
 startbit=26
 endbit=27
 
 [varbit_856]
-basevar=varp_524
+basevar=forget_puzzle_var
 startbit=28
 endbit=29
 
 [varbit_857]
-basevar=varp_524
+basevar=forget_puzzle_var
 startbit=30
 endbit=31
 
 [varbit_858]
-basevar=varp_525
+basevar=forget_puzzle_var2
 startbit=0
 endbit=1
 
 [varbit_859]
-basevar=varp_525
+basevar=forget_puzzle_var2
 startbit=2
 endbit=3
 
 [varbit_860]
-basevar=varp_525
+basevar=forget_puzzle_var2
 startbit=4
 endbit=5
 
 [varbit_861]
-basevar=varp_525
+basevar=forget_puzzle_var2
 startbit=6
 endbit=13
 
 [varbit_862]
-basevar=varp_525
+basevar=forget_puzzle_var2
 startbit=14
 endbit=21
 
 [varbit_863]
-basevar=varp_525
+basevar=forget_puzzle_var2
 startbit=22
 endbit=22
 
 [varbit_864]
-basevar=varp_525
+basevar=forget_puzzle_var2
 startbit=23
 endbit=23
 
 [varbit_865]
-basevar=varp_525
+basevar=forget_puzzle_var2
 startbit=24
 endbit=24
 
 [varbit_866]
-basevar=varp_525
+basevar=forget_puzzle_var2
 startbit=25
 endbit=25
 
 [varbit_867]
-basevar=varp_525
+basevar=forget_puzzle_var2
 startbit=26
 endbit=26
 
 [varbit_868]
-basevar=varp_525
+basevar=forget_puzzle_var2
 startbit=27
 endbit=27
 
 [varbit_869]
-basevar=varp_525
+basevar=forget_puzzle_var2
 startbit=28
 endbit=28
 
 [varbit_870]
-basevar=varp_525
+basevar=forget_puzzle_var2
 startbit=29
 endbit=29
 
 [varbit_871]
-basevar=varp_529
+basevar=farming_state_temp_3
 startbit=0
 endbit=7
 
@@ -3474,22 +3474,22 @@ startbit=6
 endbit=10
 
 [varbit_874]
-basevar=varp_531
+basevar=macro_transmit
 startbit=0
 endbit=4
 
 [varbit_875]
-basevar=varp_531
+basevar=macro_transmit
 startbit=5
 endbit=9
 
 [varbit_876]
-basevar=varp_531
+basevar=macro_transmit
 startbit=10
 endbit=14
 
 [varbit_877]
-basevar=varp_531
+basevar=macro_transmit
 startbit=15
 endbit=19
 
@@ -3529,252 +3529,252 @@ startbit=18
 endbit=22
 
 [varbit_885]
-basevar=varp_533
+basevar=tai_bwo_cleanup
 startbit=0
 endbit=9
 
 [varbit_886]
-basevar=varp_533
+basevar=tai_bwo_cleanup
 startbit=10
 endbit=19
 
 [varbit_887]
-basevar=varp_533
+basevar=tai_bwo_cleanup
 startbit=20
 endbit=20
 
 [varbit_888]
-basevar=varp_533
+basevar=tai_bwo_cleanup
 startbit=21
 endbit=23
 
 [varbit_889]
-basevar=varp_533
+basevar=tai_bwo_cleanup
 startbit=24
 endbit=25
 
 [varbit_890]
-basevar=varp_533
+basevar=tai_bwo_cleanup
 startbit=26
 endbit=27
 
 [varbit_891]
-basevar=varp_533
+basevar=tai_bwo_cleanup
 startbit=28
 endbit=29
 
 [varbit_892]
-basevar=varp_534
+basevar=tai_bwo_villagerchat
 startbit=0
 endbit=2
 
 [varbit_893]
-basevar=varp_534
+basevar=tai_bwo_villagerchat
 startbit=3
 endbit=5
 
 [varbit_894]
-basevar=varp_534
+basevar=tai_bwo_villagerchat
 startbit=6
 endbit=8
 
 [varbit_895]
-basevar=varp_534
+basevar=tai_bwo_villagerchat
 startbit=9
 endbit=11
 
 [varbit_896]
-basevar=varp_534
+basevar=tai_bwo_villagerchat
 startbit=12
 endbit=14
 
 [varbit_897]
-basevar=varp_534
+basevar=tai_bwo_villagerchat
 startbit=15
 endbit=17
 
 [varbit_898]
-basevar=varp_534
+basevar=tai_bwo_villagerchat
 startbit=18
 endbit=20
 
 [varbit_899]
-basevar=varp_534
+basevar=tai_bwo_villagerchat
 startbit=21
 endbit=23
 
 [varbit_900]
-basevar=varp_534
+basevar=tai_bwo_villagerchat
 startbit=24
 endbit=26
 
 [varbit_901]
-basevar=varp_534
+basevar=tai_bwo_villagerchat
 startbit=27
 endbit=29
 
 [varbit_902]
-basevar=varp_534
+basevar=tai_bwo_villagerchat
 startbit=0
 endbit=29
 
 [varbit_903]
-basevar=varp_534
+basevar=tai_bwo_villagerchat
 startbit=30
 endbit=30
 
 [varbit_904]
-basevar=varp_534
+basevar=tai_bwo_villagerchat
 startbit=31
 endbit=31
 
 [varbit_905]
-basevar=varp_535
+basevar=tbw_cleanup_temp
 startbit=0
 endbit=0
 
 [varbit_906]
-basevar=varp_535
+basevar=tbw_cleanup_temp
 startbit=1
 endbit=1
 
 [varbit_907]
-basevar=varp_535
+basevar=tbw_cleanup_temp
 startbit=2
 endbit=11
 
 [varbit_908]
-basevar=varp_535
+basevar=tbw_cleanup_temp
 startbit=12
 endbit=14
 
 [varbit_909]
-basevar=varp_535
+basevar=tbw_cleanup_temp
 startbit=15
 endbit=15
 
 [varbit_910]
-basevar=varp_540
+basevar=roguetrader_var
 startbit=0
 endbit=1
 
 [varbit_911]
-basevar=varp_540
+basevar=roguetrader_var
 startbit=2
 endbit=4
 
 [varbit_912]
-basevar=varp_540
+basevar=roguetrader_var
 startbit=5
 endbit=7
 
 [varbit_913]
-basevar=varp_540
+basevar=roguetrader_var
 startbit=8
 endbit=10
 
 [varbit_914]
-basevar=varp_540
+basevar=roguetrader_var
 startbit=11
 endbit=11
 
 [varbit_915]
-basevar=varp_540
+basevar=roguetrader_var
 startbit=12
 endbit=12
 
 [varbit_916]
-basevar=varp_540
+basevar=roguetrader_var
 startbit=13
 endbit=14
 
 [varbit_917]
-basevar=varp_540
+basevar=roguetrader_var
 startbit=15
 endbit=15
 
 [varbit_918]
-basevar=varp_540
+basevar=roguetrader_var
 startbit=16
 endbit=16
 
 [varbit_919]
-basevar=varp_540
+basevar=roguetrader_var
 startbit=17
 endbit=17
 
 [varbit_920]
-basevar=varp_540
+basevar=roguetrader_var
 startbit=18
 endbit=18
 
 [varbit_921]
-basevar=varp_540
+basevar=roguetrader_var
 startbit=19
 endbit=19
 
 [varbit_922]
-basevar=varp_540
+basevar=roguetrader_var
 startbit=20
 endbit=23
 
 [varbit_923]
-basevar=varp_541
+basevar=rogue_suduku1
 startbit=0
 endbit=0
 
 [varbit_924]
-basevar=varp_541
+basevar=rogue_suduku1
 startbit=1
 endbit=9
 
 [varbit_925]
-basevar=varp_541
+basevar=rogue_suduku1
 startbit=1
 endbit=1
 
 [varbit_926]
-basevar=varp_541
+basevar=rogue_suduku1
 startbit=2
 endbit=2
 
 [varbit_927]
-basevar=varp_541
+basevar=rogue_suduku1
 startbit=3
 endbit=3
 
 [varbit_928]
-basevar=varp_541
+basevar=rogue_suduku1
 startbit=4
 endbit=4
 
 [varbit_929]
-basevar=varp_541
+basevar=rogue_suduku1
 startbit=5
 endbit=5
 
 [varbit_930]
-basevar=varp_541
+basevar=rogue_suduku1
 startbit=6
 endbit=6
 
 [varbit_931]
-basevar=varp_541
+basevar=rogue_suduku1
 startbit=7
 endbit=7
 
 [varbit_932]
-basevar=varp_541
+basevar=rogue_suduku1
 startbit=8
 endbit=8
 
 [varbit_933]
-basevar=varp_541
+basevar=rogue_suduku1
 startbit=9
 endbit=9
 
 [varbit_934]
-basevar=varp_541
+basevar=rogue_suduku1
 startbit=10
 endbit=15
 
@@ -3784,122 +3784,122 @@ startbit=0
 endbit=0
 
 [varbit_936]
-basevar=varp_543
+basevar=blast_furnace_readings
 startbit=8
 endbit=9
 
 [varbit_937]
-basevar=varp_543
+basevar=blast_furnace_readings
 startbit=0
 endbit=7
 
 [varbit_938]
-basevar=varp_543
+basevar=blast_furnace_readings
 startbit=10
 endbit=10
 
 [varbit_939]
-basevar=varp_543
+basevar=blast_furnace_readings
 startbit=11
 endbit=11
 
 [varbit_940]
-basevar=varp_543
+basevar=blast_furnace_readings
 startbit=12
 endbit=29
 
 [varbit_941]
-basevar=varp_545
+basevar=blast_furnace_1
 startbit=0
 endbit=7
 
 [varbit_942]
-basevar=varp_545
+basevar=blast_furnace_1
 startbit=8
 endbit=15
 
 [varbit_943]
-basevar=varp_545
+basevar=blast_furnace_1
 startbit=16
 endbit=23
 
 [varbit_944]
-basevar=varp_545
+basevar=blast_furnace_1
 startbit=24
 endbit=31
 
 [varbit_945]
-basevar=varp_546
+basevar=blast_furnace_2
 startbit=0
 endbit=7
 
 [varbit_946]
-basevar=varp_546
+basevar=blast_furnace_2
 startbit=8
 endbit=15
 
 [varbit_947]
-basevar=varp_546
+basevar=blast_furnace_2
 startbit=16
 endbit=23
 
 [varbit_948]
-basevar=varp_546
+basevar=blast_furnace_2
 startbit=24
 endbit=31
 
 [varbit_949]
-basevar=varp_547
+basevar=blast_furnace_3
 startbit=0
 endbit=7
 
 [varbit_950]
-basevar=varp_547
+basevar=blast_furnace_3
 startbit=8
 endbit=15
 
 [varbit_951]
-basevar=varp_547
+basevar=blast_furnace_3
 startbit=16
 endbit=23
 
 [varbit_952]
-basevar=varp_547
+basevar=blast_furnace_3
 startbit=24
 endbit=31
 
 [varbit_953]
-basevar=varp_548
+basevar=blast_furnace_4
 startbit=0
 endbit=7
 
 [varbit_954]
-basevar=varp_548
+basevar=blast_furnace_4
 startbit=8
 endbit=15
 
 [varbit_955]
-basevar=varp_548
+basevar=blast_furnace_4
 startbit=16
 endbit=23
 
 [varbit_956]
-basevar=varp_548
+basevar=blast_furnace_4
 startbit=24
 endbit=31
 
 [varbit_957]
-basevar=varp_549
+basevar=blast_furnace_5
 startbit=0
 endbit=7
 
 [varbit_958]
-basevar=varp_549
+basevar=blast_furnace_5
 startbit=8
 endbit=15
 
 [varbit_959]
-basevar=varp_549
+basevar=blast_furnace_5
 startbit=16
 endbit=23
 
@@ -3909,142 +3909,142 @@ startbit=17
 endbit=20
 
 [varbit_961]
-basevar=varp_553
+basevar=garden_varp_1
 startbit=0
 endbit=5
 
 [varbit_962]
-basevar=varp_553
+basevar=garden_varp_1
 startbit=6
 endbit=6
 
 [varbit_963]
-basevar=varp_553
+basevar=garden_varp_1
 startbit=7
 endbit=8
 
 [varbit_964]
-basevar=varp_553
+basevar=garden_varp_1
 startbit=9
 endbit=10
 
 [varbit_965]
-basevar=varp_553
+basevar=garden_varp_1
 startbit=11
 endbit=12
 
 [varbit_966]
-basevar=varp_553
+basevar=garden_varp_1
 startbit=13
 endbit=13
 
 [varbit_967]
-basevar=varp_553
+basevar=garden_varp_1
 startbit=14
 endbit=16
 
 [varbit_968]
-basevar=varp_553
+basevar=garden_varp_1
 startbit=17
 endbit=18
 
 [varbit_969]
-basevar=varp_553
+basevar=garden_varp_1
 startbit=19
 endbit=19
 
 [varbit_970]
-basevar=varp_553
+basevar=garden_varp_1
 startbit=20
 endbit=20
 
 [varbit_971]
-basevar=varp_553
+basevar=garden_varp_1
 startbit=21
 endbit=22
 
 [varbit_972]
-basevar=varp_553
+basevar=garden_varp_1
 startbit=23
 endbit=23
 
 [varbit_973]
-basevar=varp_553
+basevar=garden_varp_1
 startbit=24
 endbit=24
 
 [varbit_974]
-basevar=varp_553
+basevar=garden_varp_1
 startbit=25
 endbit=25
 
 [varbit_975]
-basevar=varp_553
+basevar=garden_varp_1
 startbit=26
 endbit=26
 
 [varbit_976]
-basevar=varp_553
+basevar=garden_varp_1
 startbit=27
 endbit=28
 
 [varbit_977]
-basevar=varp_553
+basevar=garden_varp_1
 startbit=29
 endbit=30
 
 [varbit_978]
-basevar=varp_553
+basevar=garden_varp_1
 startbit=31
 endbit=31
 
 [varbit_979]
-basevar=varp_554
+basevar=garden_varp_2
 startbit=0
 endbit=2
 
 [varbit_980]
-basevar=varp_554
+basevar=garden_varp_2
 startbit=3
 endbit=5
 
 [varbit_981]
-basevar=varp_554
+basevar=garden_varp_2
 startbit=6
 endbit=8
 
 [varbit_982]
-basevar=varp_554
+basevar=garden_varp_2
 startbit=9
 endbit=11
 
 [varbit_983]
-basevar=varp_554
+basevar=garden_varp_2
 startbit=12
 endbit=14
 
 [varbit_984]
-basevar=varp_554
+basevar=garden_varp_2
 startbit=15
 endbit=17
 
 [varbit_985]
-basevar=varp_554
+basevar=garden_varp_2
 startbit=18
 endbit=21
 
 [varbit_986]
-basevar=varp_554
+basevar=garden_varp_2
 startbit=22
 endbit=24
 
 [varbit_987]
-basevar=varp_554
+basevar=garden_varp_2
 startbit=25
 endbit=27
 
 [varbit_988]
-basevar=varp_554
+basevar=garden_varp_2
 startbit=28
 endbit=30
 
@@ -4074,17 +4074,17 @@ startbit=15
 endbit=16
 
 [varbit_994]
-basevar=varp_561
+basevar=tzhaar_temp
 startbit=0
 endbit=2
 
 [varbit_995]
-basevar=varp_561
+basevar=tzhaar_temp
 startbit=3
 endbit=3
 
 [varbit_996]
-basevar=varp_561
+basevar=tzhaar_temp
 startbit=4
 endbit=4
 
@@ -4244,47 +4244,47 @@ startbit=24
 endbit=31
 
 [varbit_1028]
-basevar=varp_568
+basevar=twocats_varbit
 startbit=0
 endbit=6
 
 [varbit_1029]
-basevar=varp_568
+basevar=twocats_varbit
 startbit=7
 endbit=7
 
 [varbit_1030]
-basevar=varp_568
+basevar=twocats_varbit
 startbit=8
 endbit=9
 
 [varbit_1031]
-basevar=varp_568
+basevar=twocats_varbit
 startbit=10
 endbit=12
 
 [varbit_1032]
-basevar=varp_568
+basevar=twocats_varbit
 startbit=13
 endbit=16
 
 [varbit_1033]
-basevar=varp_568
+basevar=twocats_varbit
 startbit=17
 endbit=20
 
 [varbit_1034]
-basevar=varp_568
+basevar=twocats_varbit
 startbit=21
 endbit=24
 
 [varbit_1035]
-basevar=varp_568
+basevar=twocats_varbit
 startbit=25
 endbit=25
 
 [varbit_1036]
-basevar=varp_568
+basevar=twocats_varbit
 startbit=26
 endbit=26
 
@@ -4354,342 +4354,342 @@ startbit=30
 endbit=30
 
 [varbit_1050]
-basevar=varp_561
+basevar=tzhaar_temp
 startbit=5
 endbit=7
 
 [varbit_1051]
-basevar=varp_571
+basevar=quest_wanted
 startbit=0
 endbit=10
 
 [varbit_1052]
-basevar=varp_571
+basevar=quest_wanted
 startbit=11
 endbit=11
 
 [varbit_1053]
-basevar=varp_571
+basevar=quest_wanted
 startbit=12
 endbit=12
 
 [varbit_1054]
-basevar=varp_571
+basevar=quest_wanted
 startbit=13
 endbit=13
 
 [varbit_1055]
-basevar=varp_571
+basevar=quest_wanted
 startbit=14
 endbit=15
 
 [varbit_1056]
-basevar=varp_571
+basevar=quest_wanted
 startbit=16
 endbit=17
 
 [varbit_1057]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=24
 endbit=24
 
 [varbit_1058]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=25
 endbit=25
 
 [varbit_1059]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=26
 endbit=26
 
 [varbit_1060]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=27
 endbit=27
 
 [varbit_1061]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=28
 endbit=28
 
 [varbit_1062]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=29
 endbit=29
 
 [varbit_1063]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=30
 endbit=30
 
 [varbit_1064]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=31
 endbit=31
 
 [varbit_1065]
-basevar=varp_571
+basevar=quest_wanted
 startbit=18
 endbit=18
 
 [varbit_1066]
-basevar=varp_571
+basevar=quest_wanted
 startbit=19
 endbit=19
 
 [varbit_1067]
-basevar=varp_571
+basevar=quest_wanted
 startbit=20
 endbit=20
 
 [varbit_1068]
-basevar=varp_571
+basevar=quest_wanted
 startbit=21
 endbit=21
 
 [varbit_1069]
-basevar=varp_571
+basevar=quest_wanted
 startbit=22
 endbit=22
 
 [varbit_1070]
-basevar=varp_571
+basevar=quest_wanted
 startbit=23
 endbit=23
 
 [varbit_1071]
-basevar=varp_571
+basevar=quest_wanted
 startbit=24
 endbit=24
 
 [varbit_1072]
-basevar=varp_571
+basevar=quest_wanted
 startbit=25
 endbit=25
 
 [varbit_1073]
-basevar=varp_571
+basevar=quest_wanted
 startbit=26
 endbit=26
 
 [varbit_1074]
-basevar=varp_571
+basevar=quest_wanted
 startbit=27
 endbit=27
 
 [varbit_1075]
-basevar=varp_571
+basevar=quest_wanted
 startbit=28
 endbit=28
 
 [varbit_1076]
-basevar=varp_571
+basevar=quest_wanted
 startbit=29
 endbit=29
 
 [varbit_1077]
-basevar=varp_571
+basevar=quest_wanted
 startbit=30
 endbit=30
 
 [varbit_1078]
-basevar=varp_571
+basevar=quest_wanted
 startbit=31
 endbit=31
 
 [varbit_1079]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=0
 endbit=0
 
 [varbit_1080]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=1
 endbit=1
 
 [varbit_1081]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=2
 endbit=2
 
 [varbit_1082]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=3
 endbit=3
 
 [varbit_1083]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=4
 endbit=4
 
 [varbit_1084]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=5
 endbit=5
 
 [varbit_1085]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=6
 endbit=6
 
 [varbit_1086]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=7
 endbit=7
 
 [varbit_1087]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=8
 endbit=8
 
 [varbit_1088]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=9
 endbit=9
 
 [varbit_1089]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=10
 endbit=10
 
 [varbit_1090]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=11
 endbit=11
 
 [varbit_1091]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=12
 endbit=12
 
 [varbit_1092]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=13
 endbit=13
 
 [varbit_1093]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=14
 endbit=14
 
 [varbit_1094]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=15
 endbit=15
 
 [varbit_1095]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=16
 endbit=16
 
 [varbit_1096]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=17
 endbit=17
 
 [varbit_1097]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=18
 endbit=18
 
 [varbit_1098]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=19
 endbit=19
 
 [varbit_1099]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=20
 endbit=20
 
 [varbit_1100]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=21
 endbit=21
 
 [varbit_1101]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=22
 endbit=22
 
 [varbit_1102]
-basevar=varp_572
+basevar=quest_wanted2
 startbit=23
 endbit=23
 
 [varbit_1103]
-basevar=varp_574
+basevar=mourning_quest_part2
 startbit=0
 endbit=7
 
 [varbit_1104]
-basevar=varp_574
+basevar=mourning_quest_part2
 startbit=13
 endbit=13
 
 [varbit_1105]
-basevar=varp_574
+basevar=mourning_quest_part2
 startbit=14
 endbit=14
 
 [varbit_1106]
-basevar=varp_574
+basevar=mourning_quest_part2
 startbit=15
 endbit=20
 
 [varbit_1107]
-basevar=varp_574
+basevar=mourning_quest_part2
 startbit=21
 endbit=21
 
 [varbit_1108]
-basevar=varp_574
+basevar=mourning_quest_part2
 startbit=22
 endbit=22
 
 [varbit_1109]
-basevar=varp_574
+basevar=mourning_quest_part2
 startbit=23
 endbit=23
 
 [varbit_1110]
-basevar=varp_574
+basevar=mourning_quest_part2
 startbit=24
 endbit=24
 
 [varbit_1111]
-basevar=varp_574
+basevar=mourning_quest_part2
 startbit=25
 endbit=25
 
 [varbit_1112]
-basevar=varp_574
+basevar=mourning_quest_part2
 startbit=26
 endbit=26
 
 [varbit_1113]
-basevar=varp_574
+basevar=mourning_quest_part2
 startbit=27
 endbit=27
 
 [varbit_1114]
-basevar=varp_574
+basevar=mourning_quest_part2
 startbit=28
 endbit=28
 
 [varbit_1115]
-basevar=varp_574
+basevar=mourning_quest_part2
 startbit=29
 endbit=29
 
 [varbit_1116]
-basevar=varp_574
+basevar=mourning_quest_part2
 startbit=30
 endbit=30
 
 [varbit_1117]
-basevar=varp_574
+basevar=mourning_quest_part2
 startbit=31
 endbit=31
 
@@ -4849,642 +4849,642 @@ startbit=24
 endbit=24
 
 [varbit_1149]
-basevar=varp_579
+basevar=mourning_quest_light_doors
 startbit=0
 endbit=0
 
 [varbit_1150]
-basevar=varp_579
+basevar=mourning_quest_light_doors
 startbit=1
 endbit=1
 
 [varbit_1151]
-basevar=varp_579
+basevar=mourning_quest_light_doors
 startbit=2
 endbit=2
 
 [varbit_1152]
-basevar=varp_579
+basevar=mourning_quest_light_doors
 startbit=3
 endbit=3
 
 [varbit_1153]
-basevar=varp_579
+basevar=mourning_quest_light_doors
 startbit=4
 endbit=4
 
 [varbit_1154]
-basevar=varp_579
+basevar=mourning_quest_light_doors
 startbit=5
 endbit=5
 
 [varbit_1155]
-basevar=varp_579
+basevar=mourning_quest_light_doors
 startbit=6
 endbit=6
 
 [varbit_1156]
-basevar=varp_579
+basevar=mourning_quest_light_doors
 startbit=7
 endbit=7
 
 [varbit_1157]
-basevar=varp_579
+basevar=mourning_quest_light_doors
 startbit=8
 endbit=8
 
 [varbit_1158]
-basevar=varp_579
+basevar=mourning_quest_light_doors
 startbit=9
 endbit=9
 
 [varbit_1159]
-basevar=varp_579
+basevar=mourning_quest_light_doors
 startbit=10
 endbit=10
 
 [varbit_1160]
-basevar=varp_579
+basevar=mourning_quest_light_doors
 startbit=11
 endbit=11
 
 [varbit_1161]
-basevar=varp_579
+basevar=mourning_quest_light_doors
 startbit=12
 endbit=12
 
 [varbit_1162]
-basevar=varp_579
+basevar=mourning_quest_light_doors
 startbit=13
 endbit=13
 
 [varbit_1163]
-basevar=varp_580
+basevar=mourning_quest_beams1
 startbit=0
 endbit=2
 
 [varbit_1164]
-basevar=varp_580
+basevar=mourning_quest_beams1
 startbit=3
 endbit=5
 
 [varbit_1165]
-basevar=varp_580
+basevar=mourning_quest_beams1
 startbit=6
 endbit=8
 
 [varbit_1166]
-basevar=varp_580
+basevar=mourning_quest_beams1
 startbit=9
 endbit=11
 
 [varbit_1167]
-basevar=varp_580
+basevar=mourning_quest_beams1
 startbit=12
 endbit=14
 
 [varbit_1168]
-basevar=varp_580
+basevar=mourning_quest_beams1
 startbit=15
 endbit=17
 
 [varbit_1169]
-basevar=varp_580
+basevar=mourning_quest_beams1
 startbit=18
 endbit=20
 
 [varbit_1170]
-basevar=varp_580
+basevar=mourning_quest_beams1
 startbit=21
 endbit=23
 
 [varbit_1171]
-basevar=varp_580
+basevar=mourning_quest_beams1
 startbit=24
 endbit=26
 
 [varbit_1172]
-basevar=varp_580
+basevar=mourning_quest_beams1
 startbit=27
 endbit=29
 
 [varbit_1173]
-basevar=varp_581
+basevar=mourning_quest_beams2
 startbit=0
 endbit=2
 
 [varbit_1174]
-basevar=varp_581
+basevar=mourning_quest_beams2
 startbit=3
 endbit=5
 
 [varbit_1175]
-basevar=varp_581
+basevar=mourning_quest_beams2
 startbit=6
 endbit=8
 
 [varbit_1176]
-basevar=varp_581
+basevar=mourning_quest_beams2
 startbit=9
 endbit=11
 
 [varbit_1177]
-basevar=varp_581
+basevar=mourning_quest_beams2
 startbit=12
 endbit=14
 
 [varbit_1178]
-basevar=varp_581
+basevar=mourning_quest_beams2
 startbit=15
 endbit=17
 
 [varbit_1179]
-basevar=varp_581
+basevar=mourning_quest_beams2
 startbit=18
 endbit=20
 
 [varbit_1180]
-basevar=varp_581
+basevar=mourning_quest_beams2
 startbit=21
 endbit=23
 
 [varbit_1181]
-basevar=varp_586
+basevar=mourning_quest_vert_beams1
 startbit=0
 endbit=2
 
 [varbit_1182]
-basevar=varp_586
+basevar=mourning_quest_vert_beams1
 startbit=3
 endbit=5
 
 [varbit_1183]
-basevar=varp_586
+basevar=mourning_quest_vert_beams1
 startbit=6
 endbit=8
 
 [varbit_1184]
-basevar=varp_586
+basevar=mourning_quest_vert_beams1
 startbit=9
 endbit=11
 
 [varbit_1185]
-basevar=varp_586
+basevar=mourning_quest_vert_beams1
 startbit=12
 endbit=14
 
 [varbit_1186]
-basevar=varp_586
+basevar=mourning_quest_vert_beams1
 startbit=15
 endbit=17
 
 [varbit_1187]
-basevar=varp_586
+basevar=mourning_quest_vert_beams1
 startbit=18
 endbit=20
 
 [varbit_1188]
-basevar=varp_586
+basevar=mourning_quest_vert_beams1
 startbit=21
 endbit=23
 
 [varbit_1189]
-basevar=varp_586
+basevar=mourning_quest_vert_beams1
 startbit=24
 endbit=26
 
 [varbit_1190]
-basevar=varp_586
+basevar=mourning_quest_vert_beams1
 startbit=27
 endbit=29
 
 [varbit_1191]
-basevar=varp_587
+basevar=mourning_quest_vert_beams2
 startbit=0
 endbit=2
 
 [varbit_1192]
-basevar=varp_587
+basevar=mourning_quest_vert_beams2
 startbit=3
 endbit=5
 
 [varbit_1193]
-basevar=varp_587
+basevar=mourning_quest_vert_beams2
 startbit=6
 endbit=8
 
 [varbit_1194]
-basevar=varp_581
+basevar=mourning_quest_beams2
 startbit=24
 endbit=26
 
 [varbit_1195]
-basevar=varp_581
+basevar=mourning_quest_beams2
 startbit=27
 endbit=29
 
 [varbit_1196]
-basevar=varp_582
+basevar=mourning_quest_beams3
 startbit=0
 endbit=2
 
 [varbit_1197]
-basevar=varp_582
+basevar=mourning_quest_beams3
 startbit=3
 endbit=5
 
 [varbit_1198]
-basevar=varp_582
+basevar=mourning_quest_beams3
 startbit=6
 endbit=8
 
 [varbit_1199]
-basevar=varp_582
+basevar=mourning_quest_beams3
 startbit=9
 endbit=11
 
 [varbit_1200]
-basevar=varp_582
+basevar=mourning_quest_beams3
 startbit=12
 endbit=14
 
 [varbit_1201]
-basevar=varp_582
+basevar=mourning_quest_beams3
 startbit=15
 endbit=17
 
 [varbit_1202]
-basevar=varp_582
+basevar=mourning_quest_beams3
 startbit=18
 endbit=20
 
 [varbit_1203]
-basevar=varp_582
+basevar=mourning_quest_beams3
 startbit=21
 endbit=23
 
 [varbit_1204]
-basevar=varp_582
+basevar=mourning_quest_beams3
 startbit=24
 endbit=26
 
 [varbit_1205]
-basevar=varp_582
+basevar=mourning_quest_beams3
 startbit=27
 endbit=29
 
 [varbit_1206]
-basevar=varp_583
+basevar=mourning_quest_beams4
 startbit=0
 endbit=2
 
 [varbit_1207]
-basevar=varp_583
+basevar=mourning_quest_beams4
 startbit=3
 endbit=5
 
 [varbit_1208]
-basevar=varp_583
+basevar=mourning_quest_beams4
 startbit=6
 endbit=8
 
 [varbit_1209]
-basevar=varp_583
+basevar=mourning_quest_beams4
 startbit=9
 endbit=11
 
 [varbit_1210]
-basevar=varp_583
+basevar=mourning_quest_beams4
 startbit=12
 endbit=14
 
 [varbit_1211]
-basevar=varp_583
+basevar=mourning_quest_beams4
 startbit=15
 endbit=17
 
 [varbit_1212]
-basevar=varp_583
+basevar=mourning_quest_beams4
 startbit=18
 endbit=20
 
 [varbit_1213]
-basevar=varp_587
+basevar=mourning_quest_vert_beams2
 startbit=9
 endbit=11
 
 [varbit_1214]
-basevar=varp_587
+basevar=mourning_quest_vert_beams2
 startbit=12
 endbit=14
 
 [varbit_1215]
-basevar=varp_587
+basevar=mourning_quest_vert_beams2
 startbit=15
 endbit=17
 
 [varbit_1216]
-basevar=varp_587
+basevar=mourning_quest_vert_beams2
 startbit=18
 endbit=20
 
 [varbit_1217]
-basevar=varp_587
+basevar=mourning_quest_vert_beams2
 startbit=21
 endbit=23
 
 [varbit_1218]
-basevar=varp_587
+basevar=mourning_quest_vert_beams2
 startbit=24
 endbit=26
 
 [varbit_1219]
-basevar=varp_587
+basevar=mourning_quest_vert_beams2
 startbit=27
 endbit=29
 
 [varbit_1220]
-basevar=varp_588
+basevar=mourning_quest_vert_beams3
 startbit=0
 endbit=2
 
 [varbit_1221]
-basevar=varp_588
+basevar=mourning_quest_vert_beams3
 startbit=3
 endbit=5
 
 [varbit_1222]
-basevar=varp_588
+basevar=mourning_quest_vert_beams3
 startbit=6
 endbit=8
 
 [varbit_1223]
-basevar=varp_588
+basevar=mourning_quest_vert_beams3
 startbit=9
 endbit=11
 
 [varbit_1224]
-basevar=varp_588
+basevar=mourning_quest_vert_beams3
 startbit=12
 endbit=14
 
 [varbit_1225]
-basevar=varp_588
+basevar=mourning_quest_vert_beams3
 startbit=15
 endbit=17
 
 [varbit_1226]
-basevar=varp_588
+basevar=mourning_quest_vert_beams3
 startbit=18
 endbit=20
 
 [varbit_1227]
-basevar=varp_588
+basevar=mourning_quest_vert_beams3
 startbit=21
 endbit=23
 
 [varbit_1228]
-basevar=varp_583
+basevar=mourning_quest_beams4
 startbit=21
 endbit=23
 
 [varbit_1229]
-basevar=varp_583
+basevar=mourning_quest_beams4
 startbit=24
 endbit=26
 
 [varbit_1230]
-basevar=varp_583
+basevar=mourning_quest_beams4
 startbit=27
 endbit=29
 
 [varbit_1231]
-basevar=varp_584
+basevar=mourning_quest_beams5
 startbit=0
 endbit=2
 
 [varbit_1232]
-basevar=varp_584
+basevar=mourning_quest_beams5
 startbit=3
 endbit=5
 
 [varbit_1233]
-basevar=varp_584
+basevar=mourning_quest_beams5
 startbit=6
 endbit=8
 
 [varbit_1234]
-basevar=varp_584
+basevar=mourning_quest_beams5
 startbit=9
 endbit=11
 
 [varbit_1235]
-basevar=varp_584
+basevar=mourning_quest_beams5
 startbit=12
 endbit=14
 
 [varbit_1236]
-basevar=varp_584
+basevar=mourning_quest_beams5
 startbit=15
 endbit=17
 
 [varbit_1237]
-basevar=varp_584
+basevar=mourning_quest_beams5
 startbit=18
 endbit=20
 
 [varbit_1238]
-basevar=varp_584
+basevar=mourning_quest_beams5
 startbit=21
 endbit=23
 
 [varbit_1239]
-basevar=varp_584
+basevar=mourning_quest_beams5
 startbit=24
 endbit=26
 
 [varbit_1240]
-basevar=varp_584
+basevar=mourning_quest_beams5
 startbit=27
 endbit=29
 
 [varbit_1241]
-basevar=varp_585
+basevar=mourning_quest_beams6
 startbit=0
 endbit=2
 
 [varbit_1242]
-basevar=varp_585
+basevar=mourning_quest_beams6
 startbit=3
 endbit=5
 
 [varbit_1243]
-basevar=varp_585
+basevar=mourning_quest_beams6
 startbit=6
 endbit=8
 
 [varbit_1244]
-basevar=varp_585
+basevar=mourning_quest_beams6
 startbit=9
 endbit=11
 
 [varbit_1245]
-basevar=varp_585
+basevar=mourning_quest_beams6
 startbit=12
 endbit=14
 
 [varbit_1246]
-basevar=varp_585
+basevar=mourning_quest_beams6
 startbit=15
 endbit=17
 
 [varbit_1247]
-basevar=varp_585
+basevar=mourning_quest_beams6
 startbit=18
 endbit=20
 
 [varbit_1248]
-basevar=varp_585
+basevar=mourning_quest_beams6
 startbit=21
 endbit=23
 
 [varbit_1249]
-basevar=varp_585
+basevar=mourning_quest_beams6
 startbit=24
 endbit=26
 
 [varbit_1250]
-basevar=varp_585
+basevar=mourning_quest_beams6
 startbit=27
 endbit=29
 
 [varbit_1251]
-basevar=varp_592
+basevar=mourning_quest_beam_cross2
 startbit=21
 endbit=23
 
 [varbit_1252]
-basevar=varp_588
+basevar=mourning_quest_vert_beams3
 startbit=24
 endbit=26
 
 [varbit_1253]
-basevar=varp_588
+basevar=mourning_quest_vert_beams3
 startbit=27
 endbit=29
 
 [varbit_1254]
-basevar=varp_589
+basevar=mourning_quest_vert_beams4
 startbit=0
 endbit=2
 
 [varbit_1255]
-basevar=varp_589
+basevar=mourning_quest_vert_beams4
 startbit=3
 endbit=5
 
 [varbit_1256]
-basevar=varp_589
+basevar=mourning_quest_vert_beams4
 startbit=6
 endbit=8
 
 [varbit_1257]
-basevar=varp_589
+basevar=mourning_quest_vert_beams4
 startbit=9
 endbit=11
 
 [varbit_1258]
-basevar=varp_589
+basevar=mourning_quest_vert_beams4
 startbit=12
 endbit=14
 
 [varbit_1259]
-basevar=varp_589
+basevar=mourning_quest_vert_beams4
 startbit=15
 endbit=17
 
 [varbit_1260]
-basevar=varp_589
+basevar=mourning_quest_vert_beams4
 startbit=18
 endbit=20
 
 [varbit_1261]
-basevar=varp_589
+basevar=mourning_quest_vert_beams4
 startbit=21
 endbit=23
 
 [varbit_1262]
-basevar=varp_589
+basevar=mourning_quest_vert_beams4
 startbit=24
 endbit=26
 
 [varbit_1263]
-basevar=varp_589
+basevar=mourning_quest_vert_beams4
 startbit=27
 endbit=29
 
 [varbit_1264]
-basevar=varp_590
+basevar=mourning_quest_vert_beams5
 startbit=0
 endbit=2
 
 [varbit_1265]
-basevar=varp_590
+basevar=mourning_quest_vert_beams5
 startbit=3
 endbit=5
 
 [varbit_1266]
-basevar=varp_590
+basevar=mourning_quest_vert_beams5
 startbit=6
 endbit=8
 
 [varbit_1267]
-basevar=varp_591
+basevar=mourning_quest_beam_cross1
 startbit=0
 endbit=5
 
 [varbit_1268]
-basevar=varp_591
+basevar=mourning_quest_beam_cross1
 startbit=6
 endbit=10
 
 [varbit_1269]
-basevar=varp_591
+basevar=mourning_quest_beam_cross1
 startbit=11
 endbit=15
 
 [varbit_1270]
-basevar=varp_591
+basevar=mourning_quest_beam_cross1
 startbit=16
 endbit=20
 
 [varbit_1271]
-basevar=varp_591
+basevar=mourning_quest_beam_cross1
 startbit=21
 endbit=25
 
 [varbit_1272]
-basevar=varp_591
+basevar=mourning_quest_beam_cross1
 startbit=26
 endbit=30
 
 [varbit_1273]
-basevar=varp_592
+basevar=mourning_quest_beam_cross2
 startbit=0
 endbit=5
 
 [varbit_1274]
-basevar=varp_592
+basevar=mourning_quest_beam_cross2
 startbit=6
 endbit=10
 
 [varbit_1275]
-basevar=varp_592
+basevar=mourning_quest_beam_cross2
 startbit=11
 endbit=15
 
 [varbit_1276]
-basevar=varp_592
+basevar=mourning_quest_beam_cross2
 startbit=16
 endbit=20
 
@@ -5634,132 +5634,132 @@ startbit=31
 endbit=31
 
 [varbit_1306]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=0
 endbit=0
 
 [varbit_1307]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=1
 endbit=1
 
 [varbit_1308]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=2
 endbit=2
 
 [varbit_1309]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=3
 endbit=3
 
 [varbit_1310]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=4
 endbit=4
 
 [varbit_1311]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=5
 endbit=5
 
 [varbit_1312]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=6
 endbit=6
 
 [varbit_1313]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=7
 endbit=7
 
 [varbit_1314]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=8
 endbit=8
 
 [varbit_1315]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=9
 endbit=9
 
 [varbit_1316]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=10
 endbit=10
 
 [varbit_1317]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=11
 endbit=11
 
 [varbit_1318]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=12
 endbit=12
 
 [varbit_1319]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=13
 endbit=13
 
 [varbit_1320]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=14
 endbit=14
 
 [varbit_1321]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=15
 endbit=15
 
 [varbit_1322]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=16
 endbit=16
 
 [varbit_1323]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=17
 endbit=17
 
 [varbit_1324]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=18
 endbit=18
 
 [varbit_1325]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=19
 endbit=19
 
 [varbit_1326]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=20
 endbit=20
 
 [varbit_1327]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=21
 endbit=22
 
 [varbit_1328]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=23
 endbit=23
 
 [varbit_1329]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=24
 endbit=24
 
 [varbit_1330]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=25
 endbit=25
 
 [varbit_1331]
-basevar=varp_594
+basevar=mourning_part2_basevar2
 startbit=26
 endbit=26
 
@@ -5779,22 +5779,22 @@ startbit=8
 endbit=8
 
 [varbit_1335]
-basevar=varp_531
+basevar=macro_transmit
 startbit=0
 endbit=1
 
 [varbit_1336]
-basevar=varp_531
+basevar=macro_transmit
 startbit=2
 endbit=3
 
 [varbit_1337]
-basevar=varp_531
+basevar=macro_transmit
 startbit=4
 endbit=5
 
 [varbit_1338]
-basevar=varp_531
+basevar=macro_transmit
 startbit=6
 endbit=7
 
@@ -5819,122 +5819,122 @@ startbit=24
 endbit=31
 
 [varbit_1343]
-basevar=varp_597
+basevar=rimmington_extras_var
 startbit=3
 endbit=8
 
 [varbit_1344]
-basevar=varp_597
+basevar=rimmington_extras_var
 startbit=0
 endbit=2
 
 [varbit_1345]
-basevar=varp_599
+basevar=desert
 startbit=0
 endbit=0
 
 [varbit_1346]
-basevar=varp_599
+basevar=desert
 startbit=1
 endbit=1
 
 [varbit_1347]
-basevar=varp_599
+basevar=desert
 startbit=2
 endbit=2
 
 [varbit_1348]
-basevar=varp_599
+basevar=desert
 startbit=3
 endbit=3
 
 [varbit_1349]
-basevar=varp_599
+basevar=desert
 startbit=4
 endbit=4
 
 [varbit_1350]
-basevar=varp_599
+basevar=desert
 startbit=5
 endbit=5
 
 [varbit_1351]
-basevar=varp_599
+basevar=desert
 startbit=6
 endbit=6
 
 [varbit_1352]
-basevar=varp_599
+basevar=desert
 startbit=7
 endbit=7
 
 [varbit_1353]
-basevar=varp_599
+basevar=desert
 startbit=31
 endbit=31
 
 [varbit_1354]
-basevar=varp_601
+basevar=deal_var
 startbit=1
 endbit=4
 
 [varbit_1355]
-basevar=varp_601
+basevar=deal_var
 startbit=5
 endbit=6
 
 [varbit_1356]
-basevar=varp_601
+basevar=deal_var
 startbit=7
 endbit=10
 
 [varbit_1357]
-basevar=varp_601
+basevar=deal_var
 startbit=11
 endbit=14
 
 [varbit_1358]
-basevar=varp_601
+basevar=deal_var
 startbit=15
 endbit=19
 
 [varbit_1359]
-basevar=varp_601
+basevar=deal_var
 startbit=20
 endbit=20
 
 [varbit_1360]
-basevar=varp_601
+basevar=deal_var
 startbit=21
 endbit=21
 
 [varbit_1361]
-basevar=varp_601
+basevar=deal_var
 startbit=22
 endbit=22
 
 [varbit_1362]
-basevar=varp_601
+basevar=deal_var
 startbit=23
 endbit=23
 
 [varbit_1363]
-basevar=varp_601
+basevar=deal_var
 startbit=24
 endbit=24
 
 [varbit_1364]
-basevar=varp_601
+basevar=deal_var
 startbit=25
 endbit=25
 
 [varbit_1365]
-basevar=varp_601
+basevar=deal_var
 startbit=26
 endbit=28
 
 [varbit_1366]
-basevar=varp_601
+basevar=deal_var
 startbit=29
 endbit=31
 
@@ -5964,102 +5964,102 @@ startbit=4
 endbit=4
 
 [varbit_1372]
-basevar=varp_602
+basevar=agrith_quest_varp
 startbit=0
 endbit=6
 
 [varbit_1373]
-basevar=varp_602
+basevar=agrith_quest_varp
 startbit=7
 endbit=9
 
 [varbit_1374]
-basevar=varp_602
+basevar=agrith_quest_varp
 startbit=10
 endbit=12
 
 [varbit_1375]
-basevar=varp_602
+basevar=agrith_quest_varp
 startbit=13
 endbit=15
 
 [varbit_1376]
-basevar=varp_602
+basevar=agrith_quest_varp
 startbit=16
 endbit=18
 
 [varbit_1377]
-basevar=varp_602
+basevar=agrith_quest_varp
 startbit=19
 endbit=21
 
 [varbit_1378]
-basevar=varp_602
+basevar=agrith_quest_varp
 startbit=22
 endbit=23
 
 [varbit_1379]
-basevar=varp_602
+basevar=agrith_quest_varp
 startbit=24
 endbit=25
 
 [varbit_1380]
-basevar=varp_602
+basevar=agrith_quest_varp
 startbit=26
 endbit=27
 
 [varbit_1381]
-basevar=varp_602
+basevar=agrith_quest_varp
 startbit=28
 endbit=29
 
 [varbit_1382]
-basevar=varp_602
+basevar=agrith_quest_varp
 startbit=30
 endbit=31
 
 [varbit_1383]
-basevar=varp_604
+basevar=makinghistory
 startbit=0
 endbit=2
 
 [varbit_1384]
-basevar=varp_604
+basevar=makinghistory
 startbit=3
 endbit=5
 
 [varbit_1385]
-basevar=varp_604
+basevar=makinghistory
 startbit=6
 endbit=8
 
 [varbit_1386]
-basevar=varp_604
+basevar=makinghistory
 startbit=9
 endbit=12
 
 [varbit_1387]
-basevar=varp_604
+basevar=makinghistory
 startbit=13
 endbit=13
 
 [varbit_1388]
-basevar=varp_604
+basevar=makinghistory
 startbit=14
 endbit=14
 
 [varbit_1389]
-basevar=varp_604
+basevar=makinghistory
 startbit=15
 endbit=19
 
 [varbit_1390]
-basevar=varp_604
+basevar=makinghistory
 startbit=20
 endbit=20
 
 [varbit_1391]
-basevar=varp_604
+basevar=makinghistory
 startbit=21
 endbit=31
 
@@ -6074,182 +6074,182 @@ startbit=1
 endbit=12
 
 [varbit_1394]
-basevar=varp_453
+basevar=barrows_kills
 startbit=16
 endbit=16
 
 [varbit_1395]
-basevar=varp_610
+basevar=ratcatch_var_temp1
 startbit=0
 endbit=6
 
 [varbit_1396]
-basevar=varp_610
+basevar=ratcatch_var_temp1
 startbit=7
 endbit=13
 
 [varbit_1397]
-basevar=varp_610
+basevar=ratcatch_var_temp1
 startbit=14
 endbit=20
 
 [varbit_1398]
-basevar=varp_610
+basevar=ratcatch_var_temp1
 startbit=21
 endbit=27
 
 [varbit_1399]
-basevar=varp_611
+basevar=ratcatch_var_temp2
 startbit=0
 endbit=6
 
 [varbit_1400]
-basevar=varp_611
+basevar=ratcatch_var_temp2
 startbit=7
 endbit=13
 
 [varbit_1401]
-basevar=varp_611
+basevar=ratcatch_var_temp2
 startbit=14
 endbit=20
 
 [varbit_1402]
-basevar=varp_611
+basevar=ratcatch_var_temp2
 startbit=21
 endbit=27
 
 [varbit_1403]
-basevar=varp_611
+basevar=ratcatch_var_temp2
 startbit=29
 endbit=29
 
 [varbit_1404]
-basevar=varp_607
+basevar=main_ratcatch_var
 startbit=0
 endbit=7
 
 [varbit_1405]
-basevar=varp_607
+basevar=main_ratcatch_var
 startbit=8
 endbit=11
 
 [varbit_1406]
-basevar=varp_607
+basevar=main_ratcatch_var
 startbit=8
 endbit=8
 
 [varbit_1407]
-basevar=varp_607
+basevar=main_ratcatch_var
 startbit=9
 endbit=9
 
 [varbit_1408]
-basevar=varp_607
+basevar=main_ratcatch_var
 startbit=10
 endbit=10
 
 [varbit_1409]
-basevar=varp_607
+basevar=main_ratcatch_var
 startbit=11
 endbit=11
 
 [varbit_1410]
-basevar=varp_607
+basevar=main_ratcatch_var
 startbit=12
 endbit=12
 
 [varbit_1411]
-basevar=varp_607
+basevar=main_ratcatch_var
 startbit=13
 endbit=19
 
 [varbit_1412]
-basevar=varp_607
+basevar=main_ratcatch_var
 startbit=13
 endbit=18
 
 [varbit_1413]
-basevar=varp_607
+basevar=main_ratcatch_var
 startbit=19
 endbit=19
 
 [varbit_1414]
-basevar=varp_607
+basevar=main_ratcatch_var
 startbit=14
 endbit=14
 
 [varbit_1415]
-basevar=varp_607
+basevar=main_ratcatch_var
 startbit=15
 endbit=15
 
 [varbit_1416]
-basevar=varp_607
+basevar=main_ratcatch_var
 startbit=16
 endbit=16
 
 [varbit_1417]
-basevar=varp_607
+basevar=main_ratcatch_var
 startbit=17
 endbit=17
 
 [varbit_1418]
-basevar=varp_607
+basevar=main_ratcatch_var
 startbit=18
 endbit=18
 
 [varbit_1419]
-basevar=varp_607
+basevar=main_ratcatch_var
 startbit=19
 endbit=19
 
 [varbit_1420]
-basevar=varp_607
+basevar=main_ratcatch_var
 startbit=20
 endbit=22
 
 [varbit_1421]
-basevar=varp_607
+basevar=main_ratcatch_var
 startbit=23
 endbit=27
 
 [varbit_1422]
-basevar=varp_607
+basevar=main_ratcatch_var
 startbit=28
 endbit=28
 
 [varbit_1423]
-basevar=varp_609
+basevar=ratcatch_var_multi
 startbit=0
 endbit=6
 
 [varbit_1424]
-basevar=varp_609
+basevar=ratcatch_var_multi
 startbit=7
 endbit=7
 
 [varbit_1425]
-basevar=varp_609
+basevar=ratcatch_var_multi
 startbit=8
 endbit=8
 
 [varbit_1426]
-basevar=varp_609
+basevar=ratcatch_var_multi
 startbit=9
 endbit=9
 
 [varbit_1427]
-basevar=varp_609
+basevar=ratcatch_var_multi
 startbit=10
 endbit=10
 
 [varbit_1428]
-basevar=varp_609
+basevar=ratcatch_var_multi
 startbit=11
 endbit=11
 
 [varbit_1429]
-basevar=varp_609
+basevar=ratcatch_var_multi
 startbit=12
 endbit=12
 
@@ -6279,142 +6279,142 @@ startbit=29
 endbit=31
 
 [varbit_1435]
-basevar=varp_615
+basevar=farming_tools
 startbit=0
 endbit=0
 
 [varbit_1436]
-basevar=varp_615
+basevar=farming_tools
 startbit=1
 endbit=1
 
 [varbit_1437]
-basevar=varp_615
+basevar=farming_tools
 startbit=2
 endbit=2
 
 [varbit_1438]
-basevar=varp_615
+basevar=farming_tools
 startbit=3
 endbit=3
 
 [varbit_1439]
-basevar=varp_615
+basevar=farming_tools
 startbit=4
 endbit=7
 
 [varbit_1440]
-basevar=varp_615
+basevar=farming_tools
 startbit=8
 endbit=8
 
 [varbit_1441]
-basevar=varp_615
+basevar=farming_tools
 startbit=9
 endbit=13
 
 [varbit_1442]
-basevar=varp_615
+basevar=farming_tools
 startbit=14
 endbit=21
 
 [varbit_1443]
-basevar=varp_615
+basevar=farming_tools
 startbit=22
 endbit=29
 
 [varbit_1444]
-basevar=varp_616
+basevar=elid_main
 startbit=0
 endbit=6
 
 [varbit_1445]
-basevar=varp_616
+basevar=elid_main
 startbit=7
 endbit=7
 
 [varbit_1446]
-basevar=varp_616
+basevar=elid_main
 startbit=11
 endbit=11
 
 [varbit_1447]
-basevar=varp_616
+basevar=elid_main
 startbit=12
 endbit=12
 
 [varbit_1448]
-basevar=varp_616
+basevar=elid_main
 startbit=13
 endbit=13
 
 [varbit_1449]
-basevar=varp_616
+basevar=elid_main
 startbit=14
 endbit=14
 
 [varbit_1450]
-basevar=varp_616
+basevar=elid_main
 startbit=15
 endbit=15
 
 [varbit_1451]
-basevar=varp_616
+basevar=elid_main
 startbit=16
 endbit=16
 
 [varbit_1452]
-basevar=varp_617
+basevar=champions_defeated
 startbit=0
 endbit=0
 
 [varbit_1453]
-basevar=varp_617
+basevar=champions_defeated
 startbit=1
 endbit=1
 
 [varbit_1454]
-basevar=varp_617
+basevar=champions_defeated
 startbit=2
 endbit=2
 
 [varbit_1455]
-basevar=varp_617
+basevar=champions_defeated
 startbit=3
 endbit=3
 
 [varbit_1456]
-basevar=varp_617
+basevar=champions_defeated
 startbit=4
 endbit=4
 
 [varbit_1457]
-basevar=varp_617
+basevar=champions_defeated
 startbit=5
 endbit=5
 
 [varbit_1458]
-basevar=varp_617
+basevar=champions_defeated
 startbit=6
 endbit=6
 
 [varbit_1459]
-basevar=varp_617
+basevar=champions_defeated
 startbit=7
 endbit=7
 
 [varbit_1460]
-basevar=varp_617
+basevar=champions_defeated
 startbit=8
 endbit=8
 
 [varbit_1461]
-basevar=varp_617
+basevar=champions_defeated
 startbit=9
 endbit=9
 
 [varbit_1462]
-basevar=varp_617
+basevar=champions_defeated
 startbit=10
 endbit=10
 
@@ -6429,97 +6429,97 @@ startbit=1
 endbit=10
 
 [varbit_1465]
-basevar=varp_622
+basevar=devious_base
 startbit=0
 endbit=7
 
 [varbit_1466]
-basevar=varp_622
+basevar=devious_base
 startbit=22
 endbit=23
 
 [varbit_1467]
-basevar=varp_622
+basevar=devious_base
 startbit=27
 endbit=28
 
 [varbit_1468]
-basevar=varp_623
+basevar=win05_var
 startbit=0
 endbit=3
 
 [varbit_1469]
-basevar=varp_623
+basevar=win05_var
 startbit=4
 endbit=7
 
 [varbit_1470]
-basevar=varp_623
+basevar=win05_var
 startbit=8
 endbit=10
 
 [varbit_1471]
-basevar=varp_623
+basevar=win05_var
 startbit=11
 endbit=13
 
 [varbit_1472]
-basevar=varp_623
+basevar=win05_var
 startbit=14
 endbit=15
 
 [varbit_1473]
-basevar=varp_623
+basevar=win05_var
 startbit=16
 endbit=21
 
 [varbit_1474]
-basevar=varp_623
+basevar=win05_var
 startbit=16
 endbit=17
 
 [varbit_1475]
-basevar=varp_623
+basevar=win05_var
 startbit=18
 endbit=19
 
 [varbit_1476]
-basevar=varp_623
+basevar=win05_var
 startbit=20
 endbit=21
 
 [varbit_1477]
-basevar=varp_623
+basevar=win05_var
 startbit=22
 endbit=26
 
 [varbit_1478]
-basevar=varp_623
+basevar=win05_var
 startbit=22
 endbit=22
 
 [varbit_1479]
-basevar=varp_623
+basevar=win05_var
 startbit=23
 endbit=23
 
 [varbit_1480]
-basevar=varp_623
+basevar=win05_var
 startbit=24
 endbit=24
 
 [varbit_1481]
-basevar=varp_623
+basevar=win05_var
 startbit=25
 endbit=25
 
 [varbit_1482]
-basevar=varp_623
+basevar=win05_var
 startbit=26
 endbit=26
 
 [varbit_1483]
-basevar=varp_623
+basevar=win05_var
 startbit=27
 endbit=29
 

@@ -1,6 +1,6 @@
-[varp_394]
+[slayer_count]
 
-[varp_395]
+[slayer_target]
 
 [varp_396]
 
@@ -8,25 +8,25 @@
 
 [varp_398]
 
-[varp_399]
+[fenk_quest]
 
-[varp_400]
+[fenk_flags]
 
 [varp_401]
 
-[varp_402]
+[roving_elves_quest]
 
-[varp_403]
+[roving_elves_bits]
 
 [varp_404]
 
 [varp_405]
 
-[varp_406]
+[tutorial_progress_overlay]
 
 [varp_407]
 
-[varp_408]
+[ahoy_varbits_1]
 
 [varp_409]
 
@@ -38,13 +38,13 @@
 
 [varp_413]
 
-[varp_414]
+[musicmulti_10]
 
-[varp_415]
+[roving_update_ilfeen_chant]
 
-[varp_416]
+[onesmallfavour]
 
-[varp_417]
+[onesmallfavourmulti]
 
 [varp_418]
 
@@ -56,73 +56,73 @@
 
 [varp_422]
 
-[varp_423]
+[mdaughter_var]
 
 [varp_424]
 
-[varp_425]
+[goblin_caves]
 
 [varp_426]
 
-[varp_427]
+[option_aid]
 
 [varp_428]
 
-[varp_429]
+[easter_2005]
 
-[varp_430]
+[easter_2005_last_recipient]
 
-[varp_431]
+[easter_2005_last_giver]
 
 [varp_432]
 
-[varp_433]
+[dwarfrock_main]
 
 [varp_434]
 
-[varp_435]
+[main_feud_var]
 
-[varp_436]
+[feud_var_multi]
 
-[varp_437]
+[golem_quest]
 
 [varp_438]
 
-[varp_439]
+[alternate_spells]
 
-[varp_440]
+[deserttreasuremain]
 
-[varp_441]
+[deserttreasurevarbit]
 
-[varp_442]
+[deserttreasurevarbit2]
 
-[varp_443]
+[ics_little_multi]
 
 [varp_444]
 
-[varp_445]
+[main_ics_var]
 
-[varp_446]
+[ics_little_multi_extra]
 
-[varp_447]
+[follower_npc]
 
 [varp_448]
 
-[varp_449]
+[tog_minigame]
 
 [varp_450]
 
 [varp_451]
 
-[varp_452]
+[barrows]
 
-[varp_453]
+[barrows_kills]
 
-[varp_454]
+[worn_set]
 
-[varp_455]
+[zombie_ogre]
 
-[varp_456]
+[disease]
 
 [varp_457]
 
@@ -138,11 +138,11 @@
 
 [varp_463]
 
-[varp_464]
+[musicmulti_11]
 
-[varp_465]
+[lost_tribe]
 
-[varp_466]
+[cutscene_var]
 
 [varp_467]
 
@@ -150,7 +150,7 @@
 
 [varp_469]
 
-[varp_470]
+[keldagrim_temp_var]
 
 [varp_471]
 
@@ -164,7 +164,7 @@
 
 [varp_476]
 
-[varp_477]
+[keldagrim_train_var]
 
 [varp_478]
 
@@ -174,7 +174,7 @@
 
 [varp_481]
 
-[varp_482]
+[giantdwarf_main]
 
 [varp_483]
 
@@ -182,55 +182,55 @@
 
 [varp_485]
 
-[varp_486]
+[abyssal_pouches1]
 
-[varp_487]
+[necklace_of_binding]
 
-[varp_488]
+[rcu_pouch_degradation_med]
 
-[varp_489]
+[rcu_pouch_degradation_large]
 
-[varp_490]
+[rcu_pouch_degradation_giant]
 
-[varp_491]
+[abyssal_warp]
 
-[varp_492]
+[abyssal_miniquest]
 
-[varp_493]
+[roguesden_puzzle]
 
 [varp_494]
 
 [varp_495]
 
-[varp_496]
+[recruitmentdrive]
 
-[varp_497]
+[rd_rooms_tempvar]
 
-[varp_498]
+[rd_rooms_tempvar2]
 
-[varp_499]
+[magic_carpet_var]
 
 [varp_500]
 
 [varp_501]
 
-[varp_502]
+[farming_tree_varp]
 
-[varp_503]
+[farming_fruit_tree_varp]
 
-[varp_504]
+[farming_allotment_varp_1]
 
-[varp_505]
+[farming_allotment_varp_2]
 
-[varp_506]
+[farming_hops_varp]
 
-[varp_507]
+[farming_special_tree_varp]
 
-[varp_508]
+[farming_flower_varp]
 
-[varp_509]
+[farming_bush_varp]
 
-[varp_510]
+[farming_varp_9]
 
 [varp_511]
 
@@ -244,23 +244,23 @@
 
 [varp_516]
 
-[varp_517]
+[mourning_quest]
 
-[varp_518]
+[mourning_quest_bits]
 
 [varp_519]
 
-[varp_520]
+[dagganoth_area_project]
 
-[varp_521]
+[forget_main_var]
 
 [varp_522]
 
 [varp_523]
 
-[varp_524]
+[forget_puzzle_var]
 
-[varp_525]
+[forget_puzzle_var2]
 
 [varp_526]
 
@@ -268,19 +268,19 @@
 
 [varp_528]
 
-[varp_529]
+[farming_state_temp_3]
 
 [varp_530]
 
-[varp_531]
+[macro_transmit]
 
 [varp_532]
 
-[varp_533]
+[tai_bwo_cleanup]
 
-[varp_534]
+[tai_bwo_villagerchat]
 
-[varp_535]
+[tbw_cleanup_temp]
 
 [varp_536]
 
@@ -290,35 +290,35 @@
 
 [varp_539]
 
-[varp_540]
+[roguetrader_var]
 
-[varp_541]
+[rogue_suduku1]
 
 [varp_542]
 
-[varp_543]
+[blast_furnace_readings]
 
 [varp_544]
 
-[varp_545]
+[blast_furnace_1]
 
-[varp_546]
+[blast_furnace_2]
 
-[varp_547]
+[blast_furnace_3]
 
-[varp_548]
+[blast_furnace_4]
 
-[varp_549]
+[blast_furnace_5]
 
-[varp_550]
+[prayer_drain_counter]
 
-[varp_551]
+[prayer_drain_effect]
 
-[varp_552]
+[prayer_drain_resistance]
 
-[varp_553]
+[garden_varp_1]
 
-[varp_554]
+[garden_varp_2]
 
 [varp_555]
 
@@ -330,9 +330,9 @@
 
 [varp_559]
 
-[varp_560]
+[tzhaar_fightpit_remaining]
 
-[varp_561]
+[tzhaar_temp]
 
 [varp_562]
 
@@ -346,19 +346,19 @@
 
 [varp_567]
 
-[varp_568]
+[twocats_varbit]
 
 [varp_569]
 
 [varp_570]
 
-[varp_571]
+[quest_wanted]
 
-[varp_572]
+[quest_wanted2]
 
 [varp_573]
 
-[varp_574]
+[mourning_quest_part2]
 
 [varp_575]
 
@@ -368,71 +368,71 @@
 
 [varp_578]
 
-[varp_579]
+[mourning_quest_light_doors]
 
-[varp_580]
+[mourning_quest_beams1]
 
-[varp_581]
+[mourning_quest_beams2]
 
-[varp_582]
+[mourning_quest_beams3]
 
-[varp_583]
+[mourning_quest_beams4]
 
-[varp_584]
+[mourning_quest_beams5]
 
-[varp_585]
+[mourning_quest_beams6]
 
-[varp_586]
+[mourning_quest_vert_beams1]
 
-[varp_587]
+[mourning_quest_vert_beams2]
 
-[varp_588]
+[mourning_quest_vert_beams3]
 
-[varp_589]
+[mourning_quest_vert_beams4]
 
-[varp_590]
+[mourning_quest_vert_beams5]
 
-[varp_591]
+[mourning_quest_beam_cross1]
 
-[varp_592]
+[mourning_quest_beam_cross2]
 
 [varp_593]
 
-[varp_594]
+[mourning_part2_basevar2]
 
 [varp_595]
 
 [varp_596]
 
-[varp_597]
+[rimmington_extras_var]
 
-[varp_598]
+[musicmulti_12]
 
-[varp_599]
+[desert]
 
-[varp_600]
+[deal_quest]
 
-[varp_601]
+[deal_var]
 
-[varp_602]
+[agrith_quest_varp]
 
 [varp_603]
 
-[varp_604]
+[makinghistory]
 
 [varp_605]
 
 [varp_606]
 
-[varp_607]
+[main_ratcatch_var]
 
 [varp_608]
 
-[varp_609]
+[ratcatch_var_multi]
 
-[varp_610]
+[ratcatch_var_temp1]
 
-[varp_611]
+[ratcatch_var_temp2]
 
 [varp_612]
 
@@ -440,11 +440,11 @@
 
 [varp_614]
 
-[varp_615]
+[farming_tools]
 
-[varp_616]
+[elid_main]
 
-[varp_617]
+[champions_defeated]
 
 [varp_618]
 
@@ -454,7 +454,7 @@
 
 [varp_621]
 
-[varp_622]
+[devious_base]
 
-[varp_623]
+[win05_var]
 

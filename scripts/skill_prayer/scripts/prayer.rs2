@@ -1,3 +1,5 @@
+// todo new prayers
+
 [proc,prayer_checks](dbrow $data)(boolean)
 if (stat(prayer) < 1) {
     // osrs
