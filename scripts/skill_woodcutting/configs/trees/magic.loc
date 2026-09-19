@@ -11,4 +11,3 @@ mapscene=0
 ambient=25
 category=tree
 param=next_loc_stage,treestump2
-param=ent,macro_ent_magic

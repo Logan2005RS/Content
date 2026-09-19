@@ -1196,7 +1196,7 @@ param=death_sound,null
 param=death_drop,null
 param=combat_xp_multiplier,25
 
-[macro_ent_tree1]
+[goblin_red_soldier_1]
 name=Goblin
 desc=An ugly green creature.
 walkanim=goblin_walk
@@ -1215,7 +1215,7 @@ model6=model_5554
 recol1s=11744
 recol1d=14755
 
-[macro_ent_tree2]
+[goblin_green_soldier_1]
 name=Goblin
 desc=An ugly green creature.
 walkanim=seq_1738
@@ -1235,7 +1235,7 @@ recol1d=14755
 recol2s=15456
 recol2d=4486
 
-[macro_ent_dead_tree1]
+[giantrat_grey]
 size=2
 walkanim=giantrat_walk
 readyanim=giantrat_ready
@@ -1247,7 +1247,7 @@ model1=model_2959_npc
 recol1s=6347
 recol1d=17969
 
-[macro_ent_dead_tree2]
+[jailguard_two_patrol]
 name=Jail guard
 desc=I wonder who he's guarding?
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
@@ -1274,7 +1274,7 @@ recol3d=15684
 recol4s=14724
 recol4d=15424
 
-[macro_ent_oak]
+[jailguard_three_patrol]
 name=Jail guard
 desc=I wonder who he's guarding?
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
@@ -1299,7 +1299,7 @@ recol2d=4226
 recol3s=14724
 recol3d=15424
 
-[macro_ent_willow]
+[jailguard_four_patrol]
 name=Jail guard
 desc=I wonder who he's guarding?
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
@@ -1324,7 +1324,7 @@ recol3d=27240
 recol4s=14724
 recol4d=15424
 
-[macro_ent_yew]
+[seagull_draynor1]
 name=Gull
 desc=A sea bird.
 walkanim=bird_walk
@@ -1340,7 +1340,7 @@ recol2d=25398
 recol3s=31649
 recol3d=30241
 
-[macro_ent_maple]
+[seagull_draynor2]
 name=Gull
 desc=A sea bird.
 walkanim=bird_walk
@@ -1356,7 +1356,7 @@ recol2d=25398
 recol3s=31649
 recol3d=30241
 
-[macro_ent_magic]
+[favour_seth_groats]
 vislevel=hide
 name=Seth Groats
 desc=A large, well built farmer.

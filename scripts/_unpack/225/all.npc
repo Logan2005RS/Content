@@ -1720,7 +1720,7 @@ param=attack_sound,lizardman_attack
 param=defend_sound,lizardman_hit
 param=death_sound,lizardman_death
 
-[mummy]
+[slayer_master_1]
 vislevel=hide
 name=Turael
 desc=He looks dangerous!

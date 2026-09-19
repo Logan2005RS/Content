@@ -10,4 +10,3 @@ mapscene=3
 ambient=25
 category=tree
 param=next_loc_stage,yewtree_stump
-param=ent,macro_ent_yew
