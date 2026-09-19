@@ -531,7 +531,7 @@ model2=loc_5181
 [loc_5182]
 width=4
 length=2
-multivar=varp_399
+multivar=fenk_quest
 multiloc=0,loc_5180
 multiloc=1,loc_5180
 multiloc=2,loc_5180
@@ -21708,7 +21708,7 @@ name=carpet_rolledout_multi
 sharelight=yes
 active=yes
 length=2
-multivar=varp_499
+multivar=magic_carpet_var
 multiloc=0,loc_7394
 
 [loc_7396]

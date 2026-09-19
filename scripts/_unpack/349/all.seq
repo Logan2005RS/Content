@@ -798,7 +798,7 @@ frame9=anim_16735
 
 [seq_1574]
 replaceheldleft=hide
-replaceheldright=obj_4161
+replaceheldright=slayer_bag_of_salt
 priority=6
 frame1=anim_11264
 frame2=anim_11268
@@ -1109,7 +1109,7 @@ loops=1
 frame1=anim_12032
 
 [seq_1601]
-replaceheldright=obj_4181
+replaceheldright=werewolf_slide_hold
 replaceheldleft=hide
 frame1=anim_12165
 frame2=anim_12166
@@ -1123,7 +1123,7 @@ frame9=anim_12173
 delay9=50
 
 [seq_1602]
-replaceheldright=obj_4181
+replaceheldright=werewolf_slide_hold
 replaceheldleft=hide
 loops=9
 frame1=anim_12174
@@ -1505,7 +1505,7 @@ frame30=anim_12219
 
 [seq_1633]
 replaceheldleft=hide
-replaceheldright=obj_4193
+replaceheldright=fenk_brush3
 frame1=anim_12119
 frame2=anim_12120
 frame3=anim_12121
@@ -1530,7 +1530,7 @@ frame21=anim_12119
 
 [seq_1634]
 replaceheldleft=hide
-replaceheldright=obj_4190
+replaceheldright=fenk_brush0
 frame1=anim_12119
 frame2=anim_12120
 frame3=anim_12121
@@ -1861,7 +1861,7 @@ frame34=anim_12370
 frame35=anim_12368
 
 [seq_1652]
-replaceheldright=obj_4251
+replaceheldright=ectophial
 frame1=anim_12357
 frame2=anim_12360
 frame3=anim_12361
@@ -3317,7 +3317,7 @@ frame39=anim_13016
 [seq_1766]
 reachforward=yes
 replaceheldleft=hide
-replaceheldright=obj_4500
+replaceheldright=mdaughter_polevault
 frame1=anim_12995
 frame2=anim_13001
 frame3=anim_13002
@@ -3416,7 +3416,7 @@ frame7=anim_12975
 frame8=anim_12966
 
 [seq_1771]
-replaceheldright=obj_4498
+replaceheldright=mdaughter_rope
 replaceheldleft=hide
 replaceheldright=hide
 frame1=anim_12965
@@ -5325,7 +5325,7 @@ frame15=anim_13942
 frame16=anim_13943
 
 [seq_1877]
-replaceheldright=obj_4605
+replaceheldright=snake_flute
 replaceheldleft=hide
 frame1=anim_13866
 frame2=anim_13877
@@ -5356,7 +5356,7 @@ frame26=anim_13884
 
 [seq_1878]
 loops=3
-replaceheldright=obj_4605
+replaceheldright=snake_flute
 replaceheldleft=hide
 frame1=anim_13838
 frame2=anim_13840
@@ -5655,7 +5655,7 @@ frame4=anim_13918
 frame5=anim_13909
 
 [seq_1894]
-replaceheldleft=obj_4604
+replaceheldleft=poison_from_hag
 frame1=anim_13848
 frame2=anim_13858
 frame3=anim_13859
@@ -5676,7 +5676,7 @@ frame17=anim_13856
 frame18=anim_13857
 
 [seq_1895]
-replaceheldleft=obj_4610
+replaceheldleft=superhot_kebab_sauce
 frame1=anim_13848
 frame2=anim_13858
 frame3=anim_13859
@@ -5770,7 +5770,7 @@ frame3=anim_13971
 
 [seq_1902]
 replaceheldleft=hide
-replaceheldright=obj_4613
+replaceheldright=spinning_plate
 loops=8
 frame1=anim_13974
 frame2=anim_13985
@@ -5791,7 +5791,7 @@ frame16=anim_13981
 
 [seq_1903]
 replaceheldleft=hide
-replaceheldright=obj_4613
+replaceheldright=spinning_plate
 loops=8
 frame1=anim_14002
 frame2=anim_14013
@@ -5812,7 +5812,7 @@ frame16=anim_14009
 
 [seq_1904]
 replaceheldleft=hide
-replaceheldright=obj_4613
+replaceheldright=spinning_plate
 frame1=anim_13982
 frame2=anim_13983
 frame3=anim_13984
@@ -5825,7 +5825,7 @@ frame9=anim_13974
 
 [seq_1905]
 replaceheldleft=hide
-replaceheldright=obj_4613
+replaceheldright=spinning_plate
 frame1=anim_14010
 frame2=anim_14011
 frame3=anim_14012
@@ -5838,7 +5838,7 @@ frame9=anim_14002
 
 [seq_1906]
 replaceheldleft=hide
-replaceheldright=obj_4613
+replaceheldright=spinning_plate
 frame1=anim_13979
 frame2=anim_13980
 frame3=anim_13981
@@ -5852,7 +5852,7 @@ frame10=anim_13989
 
 [seq_1907]
 replaceheldleft=hide
-replaceheldright=obj_4613
+replaceheldright=spinning_plate
 frame1=anim_14007
 frame2=anim_14008
 frame3=anim_14009
@@ -8392,7 +8392,7 @@ frame9=anim_15550
 [seq_2059]
 loops=5
 replaceheldleft=hide
-replaceheldright=obj_4705
+replaceheldright=readbook_dummy2
 priority=0
 postanim_move=abortanim
 duplicatebehaviour=reset
@@ -10378,7 +10378,7 @@ frame12=anim_16443
 
 [seq_2144]
 replaceheldleft=hide
-replaceheldright=obj_5060
+replaceheldright=dwarf_battleaxe_anim_blunt
 frame1=anim_16412
 frame2=anim_16413
 frame3=anim_16414
@@ -10399,7 +10399,7 @@ frame17=anim_16420
 
 [seq_2145]
 replaceheldleft=hide
-replaceheldright=obj_5061
+replaceheldright=dwarf_battleaxe_anim_sharp
 frame1=anim_16412
 frame2=anim_16413
 frame3=anim_16414
@@ -12107,7 +12107,7 @@ frame32=anim_12001
 
 [seq_2261]
 replaceheldleft=hide
-replaceheldright=obj_5614
+replaceheldright=magic_carpet
 reachforward=yes
 loops=11
 priority=10
@@ -12125,7 +12125,7 @@ frame11=anim_17645
 
 [seq_2262]
 replaceheldleft=hide
-replaceheldright=obj_5614
+replaceheldright=magic_carpet
 reachforward=yes
 frame1=anim_17654
 frame2=anim_17657
@@ -12225,7 +12225,7 @@ frame7=anim_17904
 frame8=anim_17903
 
 [seq_2269]
-replaceheldleft=obj_5982
+replaceheldleft=watermelon
 replaceheldright=knife
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 frame1=anim_17857
@@ -12285,7 +12285,7 @@ frame5=anim_17827
 
 [seq_2272]
 replaceheldleft=hide
-replaceheldright=obj_5325
+replaceheldright=gardening_trowel
 reachforward=yes
 frame1=anim_17825
 frame2=anim_17828
@@ -12317,7 +12317,7 @@ frame27=anim_17825
 
 [seq_2273]
 replaceheldleft=hide
-replaceheldright=obj_5341
+replaceheldright=rake
 loops=8
 maxloops=3
 postanim_move=abortanim
@@ -12337,7 +12337,7 @@ loops=16
 maxloops=3
 reachforward=yes
 replaceheldleft=hide
-replaceheldright=obj_5329
+replaceheldright=secateurs
 frame1=anim_17780
 frame2=anim_17791
 frame3=anim_17793
@@ -12360,7 +12360,7 @@ loops=11
 maxloops=3
 reachforward=yes
 replaceheldleft=hide
-replaceheldright=obj_5329
+replaceheldright=secateurs
 frame1=anim_17780
 frame2=anim_17791
 frame3=anim_17793
@@ -12378,7 +12378,7 @@ loops=11
 maxloops=3
 reachforward=yes
 replaceheldleft=hide
-replaceheldright=obj_5329
+replaceheldright=secateurs
 frame1=anim_17780
 frame2=anim_17791
 frame3=anim_17793
@@ -12396,7 +12396,7 @@ loops=6
 maxloops=3
 reachforward=yes
 replaceheldleft=hide
-replaceheldright=obj_5329
+replaceheldright=secateurs
 frame1=anim_17780
 frame2=anim_17791
 frame3=anim_17793
@@ -12409,7 +12409,7 @@ loops=6
 maxloops=3
 reachforward=yes
 replaceheldleft=hide
-replaceheldright=obj_5329
+replaceheldright=secateurs
 frame1=anim_17782
 frame2=anim_17783
 frame3=anim_17784
@@ -12422,7 +12422,7 @@ loops=6
 maxloops=3
 reachforward=yes
 replaceheldleft=hide
-replaceheldright=obj_5329
+replaceheldright=secateurs
 frame1=anim_17796
 frame2=anim_17797
 frame3=anim_17798
@@ -12519,7 +12519,7 @@ frame30=anim_17773
 frame31=anim_17772
 
 [seq_2284]
-replaceheldright=obj_5771
+replaceheldright=keg_dwarven_stout_1
 replaceheldleft=hide
 priority=6
 reachforward=yes
@@ -12603,7 +12603,7 @@ frame19=anim_17840
 frame20=anim_17839
 
 [seq_2287]
-replaceheldright=obj_5350
+replaceheldright=plantpot_empty
 replaceheldleft=hide
 priority=6
 reachforward=yes
@@ -12633,7 +12633,7 @@ frame23=anim_17722
 frame24=anim_17721
 
 [seq_2288]
-replaceheldright=obj_6036
+replaceheldright=plant_cure
 replaceheldleft=hide
 priority=6
 reachforward=yes
@@ -12677,7 +12677,7 @@ frame37=anim_17575
 frame38=anim_17574
 
 [seq_2289]
-replaceheldright=obj_5771
+replaceheldright=keg_dwarven_stout_1
 replaceheldleft=hide
 priority=6
 frame1=anim_17671
@@ -12697,7 +12697,7 @@ frame14=anim_17676
 frame15=anim_17675
 
 [seq_2290]
-replaceheldleft=obj_5769
+replaceheldleft=calquat_fruit_keg_empty
 replaceheldright=knife
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 frame1=anim_17683
@@ -12724,7 +12724,7 @@ frame21=anim_17687
 
 [seq_2291]
 reachforward=yes
-replaceheldright=obj_5343
+replaceheldright=dibber
 replaceheldleft=hide
 priority=6
 frame1=anim_17808
@@ -12789,7 +12789,7 @@ frame24=anim_17745
 
 [seq_2293]
 reachforward=yes
-replaceheldright=obj_5340
+replaceheldright=watering_can_8
 replaceheldleft=hide
 priority=6
 frame1=anim_17847
@@ -13045,7 +13045,7 @@ delay10=2000
 
 [seq_2305]
 replaceheldright=bucket_empty
-replaceheldleft=obj_5732
+replaceheldleft=milking_stool
 reachforward=yes
 frame1=anim_17991
 frame2=anim_17992
@@ -13654,8 +13654,8 @@ frame1=anim_18212
 frame2=anim_18213
 
 [seq_2339]
-replaceheldleft=obj_6122
-replaceheldright=obj_6123
+replaceheldleft=forget_cutscene_chair
+replaceheldright=forget_cutscene_beer
 reachforward=yes
 loops=10
 frame1=anim_18221
@@ -13670,8 +13670,8 @@ frame9=anim_18230
 frame10=anim_18222
 
 [seq_2340]
-replaceheldleft=obj_6122
-replaceheldright=obj_6123
+replaceheldleft=forget_cutscene_chair
+replaceheldright=forget_cutscene_beer
 frame1=anim_18214
 frame2=anim_18215
 frame3=anim_18216
@@ -13735,7 +13735,7 @@ frame13=anim_18253
 
 [seq_2342]
 replaceheldleft=hide
-replaceheldright=obj_6123
+replaceheldright=forget_cutscene_beer
 frame1=anim_18256
 frame2=anim_18259
 frame3=anim_18260
@@ -13750,7 +13750,7 @@ frame11=anim_18258
 
 [seq_2343]
 replaceheldleft=hide
-replaceheldright=obj_6123
+replaceheldright=forget_cutscene_beer
 frame1=anim_18201
 frame2=anim_18204
 frame3=anim_18205
@@ -14234,7 +14234,7 @@ frame2=anim_18672
 
 [seq_2384]
 replaceheldright=machette
-replaceheldleft=obj_6283
+replaceheldleft=thatching_spar_med
 priority=6
 frame1=anim_18605
 frame2=anim_18610
@@ -14244,7 +14244,7 @@ frame5=anim_18613
 
 [seq_2385]
 replaceheldright=machette
-replaceheldleft=obj_6283
+replaceheldleft=thatching_spar_med
 loops=6
 priority=6
 preanim_move=delayanim
@@ -14258,7 +14258,7 @@ frame6=anim_18607
 
 [seq_2386]
 replaceheldright=machette
-replaceheldleft=obj_6283
+replaceheldleft=thatching_spar_med
 priority=6
 frame1=anim_18609
 frame2=anim_18608
@@ -14266,7 +14266,7 @@ frame3=anim_18607
 
 [seq_2387]
 replaceheldright=machette
-replaceheldleft=obj_6283
+replaceheldleft=thatching_spar_med
 priority=6
 frame1=anim_18640
 frame2=anim_18642
@@ -14295,7 +14295,7 @@ frame10=anim_18631
 
 [seq_2389]
 replaceheldright=machette
-replaceheldleft=obj_6283
+replaceheldleft=thatching_spar_med
 priority=6
 frame1=anim_18650
 frame2=anim_18655
@@ -14372,8 +14372,8 @@ frame12=anim_18703
 frame13=anim_18704
 
 [seq_2393]
-replaceheldright=obj_6291
-replaceheldleft=obj_6305
+replaceheldright=village_spider_carcass
+replaceheldleft=tbw_skewer_stick
 reachforward=yes
 priority=6
 frame1=anim_18605
@@ -14546,7 +14546,7 @@ frame3=anim_18715
 frame4=anim_18714
 
 [seq_2409]
-replaceheldright=obj_6259
+replaceheldright=broodoo_combatshield_10
 replaceheldleft=hammer
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 loops=15
@@ -14569,7 +14569,7 @@ frame15=anim_9341
 delay15=10
 
 [seq_2410]
-replaceheldright=obj_6215
+replaceheldright=broodoo_poisonshield_10
 replaceheldleft=hammer
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 loops=15
@@ -14592,7 +14592,7 @@ frame15=anim_9341
 delay15=10
 
 [seq_2411]
-replaceheldright=obj_6237
+replaceheldright=broodoo_diseaseshield_10
 replaceheldleft=hammer
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 loops=15
@@ -14752,8 +14752,8 @@ frame15=anim_18852
 frame16=anim_18853
 
 [seq_2420]
-replaceheldright=obj_6313
-replaceheldleft=obj_6283
+replaceheldright=machette_opal
+replaceheldleft=thatching_spar_med
 priority=6
 frame1=anim_18605
 frame2=anim_18610
@@ -14762,8 +14762,8 @@ frame4=anim_18612
 frame5=anim_18613
 
 [seq_2421]
-replaceheldright=obj_6313
-replaceheldleft=obj_6283
+replaceheldright=machette_opal
+replaceheldleft=thatching_spar_med
 loops=6
 priority=6
 preanim_move=delayanim
@@ -14776,16 +14776,16 @@ frame5=anim_18606
 frame6=anim_18607
 
 [seq_2422]
-replaceheldright=obj_6313
-replaceheldleft=obj_6283
+replaceheldright=machette_opal
+replaceheldleft=thatching_spar_med
 priority=6
 frame1=anim_18609
 frame2=anim_18608
 frame3=anim_18607
 
 [seq_2423]
-replaceheldright=obj_6315
-replaceheldleft=obj_6283
+replaceheldright=machette_jade
+replaceheldleft=thatching_spar_med
 priority=6
 frame1=anim_18605
 frame2=anim_18610
@@ -14794,8 +14794,8 @@ frame4=anim_18612
 frame5=anim_18613
 
 [seq_2424]
-replaceheldright=obj_6315
-replaceheldleft=obj_6283
+replaceheldright=machette_jade
+replaceheldleft=thatching_spar_med
 loops=6
 priority=6
 preanim_move=delayanim
@@ -14808,16 +14808,16 @@ frame5=anim_18606
 frame6=anim_18607
 
 [seq_2425]
-replaceheldright=obj_6315
-replaceheldleft=obj_6283
+replaceheldright=machette_jade
+replaceheldleft=thatching_spar_med
 priority=6
 frame1=anim_18609
 frame2=anim_18608
 frame3=anim_18607
 
 [seq_2426]
-replaceheldright=obj_6317
-replaceheldleft=obj_6283
+replaceheldright=machette_redtopaz
+replaceheldleft=thatching_spar_med
 priority=6
 frame1=anim_18605
 frame2=anim_18610
@@ -14826,8 +14826,8 @@ frame4=anim_18612
 frame5=anim_18613
 
 [seq_2427]
-replaceheldright=obj_6317
-replaceheldleft=obj_6283
+replaceheldright=machette_redtopaz
+replaceheldleft=thatching_spar_med
 loops=6
 priority=6
 preanim_move=delayanim
@@ -14840,16 +14840,16 @@ frame5=anim_18606
 frame6=anim_18607
 
 [seq_2428]
-replaceheldright=obj_6317
-replaceheldleft=obj_6283
+replaceheldright=machette_redtopaz
+replaceheldleft=thatching_spar_med
 priority=6
 frame1=anim_18609
 frame2=anim_18608
 frame3=anim_18607
 
 [seq_2429]
-replaceheldright=obj_6313
-replaceheldleft=obj_6283
+replaceheldright=machette_opal
+replaceheldleft=thatching_spar_med
 priority=6
 frame1=anim_18650
 frame2=anim_18655
@@ -14879,8 +14879,8 @@ frame25=anim_18651
 frame26=anim_18652
 
 [seq_2430]
-replaceheldright=obj_6315
-replaceheldleft=obj_6283
+replaceheldright=machette_jade
+replaceheldleft=thatching_spar_med
 priority=6
 frame1=anim_18650
 frame2=anim_18655
@@ -14910,8 +14910,8 @@ frame25=anim_18651
 frame26=anim_18652
 
 [seq_2431]
-replaceheldright=obj_6317
-replaceheldleft=obj_6283
+replaceheldright=machette_redtopaz
+replaceheldleft=thatching_spar_med
 priority=6
 frame1=anim_18650
 frame2=anim_18655
@@ -14943,7 +14943,7 @@ frame26=anim_18652
 [seq_2432]
 loops=4
 replaceheldleft=hide
-replaceheldright=obj_6449
+replaceheldright=blast_furnace_pump_held
 postanim_move=abortanim
 priority=10
 frame1=anim_19070
@@ -14954,7 +14954,7 @@ frame4=anim_19073
 [seq_2433]
 loops=8
 replaceheldleft=hide
-replaceheldright=obj_6451
+replaceheldright=blast_furnace_conveyor_held
 postanim_move=abortanim
 priority=10
 frame1=anim_19074
@@ -15065,7 +15065,7 @@ frame8=anim_19099
 
 [seq_2442]
 replaceheldleft=hide
-replaceheldright=obj_6448
+replaceheldright=blast_furnace_coke_spade
 loops=1
 postanim_move=delaymove
 frame1=anim_19100
@@ -15687,7 +15687,7 @@ frame7=anim_12117
 frame8=anim_12118
 
 [seq_2569]
-replaceheldright=obj_6470
+replaceheldright=supercompost_potion_4
 replaceheldleft=hide
 priority=6
 reachforward=yes
@@ -15727,7 +15727,7 @@ frame31=anim_17772
 [seq_2570]
 reachforward=yes
 replaceheldleft=hide
-replaceheldright=obj_5329
+replaceheldright=secateurs
 frame1=anim_17780
 delay1=10
 frame2=anim_17791
@@ -18108,7 +18108,7 @@ frame15=anim_20614
 frame16=anim_20615
 
 [seq_2717]
-replaceheldright=obj_6573
+replaceheldright=onyx
 replaceheldleft=hide
 frame1=anim_838
 frame2=anim_1121
@@ -19385,7 +19385,7 @@ frame15=anim_21188
 frame16=anim_21189
 
 [seq_2780]
-replaceheldright=obj_6670
+replaceheldright=fishbowl_bluefish
 replaceheldleft=hide
 frame1=anim_21102
 frame2=anim_21103
@@ -19403,7 +19403,7 @@ frame13=anim_21108
 frame14=anim_21109
 
 [seq_2781]
-replaceheldright=obj_6670
+replaceheldright=fishbowl_bluefish
 replaceheldleft=fish_food
 frame1=anim_21095
 frame2=anim_21096
@@ -19414,7 +19414,7 @@ frame6=anim_21100
 frame7=anim_21101
 
 [seq_2782]
-replaceheldright=obj_6670
+replaceheldright=fishbowl_bluefish
 replaceheldleft=hide
 frame1=anim_21110
 frame2=anim_21111
@@ -19432,7 +19432,7 @@ frame13=anim_21115
 frame14=anim_21116
 
 [seq_2783]
-replaceheldright=obj_6671
+replaceheldright=fishbowl_greenfish
 replaceheldleft=hide
 frame1=anim_21102
 frame2=anim_21103
@@ -19450,7 +19450,7 @@ frame13=anim_21108
 frame14=anim_21109
 
 [seq_2784]
-replaceheldright=obj_6671
+replaceheldright=fishbowl_greenfish
 replaceheldleft=fish_food
 frame1=anim_21095
 frame2=anim_21096
@@ -19461,7 +19461,7 @@ frame6=anim_21100
 frame7=anim_21101
 
 [seq_2785]
-replaceheldright=obj_6671
+replaceheldright=fishbowl_greenfish
 replaceheldleft=hide
 frame1=anim_21110
 frame2=anim_21111
@@ -19479,7 +19479,7 @@ frame13=anim_21115
 frame14=anim_21116
 
 [seq_2786]
-replaceheldright=obj_6672
+replaceheldright=fishbowl_spinefish
 replaceheldleft=hide
 frame1=anim_21102
 frame2=anim_21103
@@ -19497,7 +19497,7 @@ frame13=anim_21108
 frame14=anim_21109
 
 [seq_2787]
-replaceheldright=obj_6672
+replaceheldright=fishbowl_spinefish
 replaceheldleft=fish_food
 frame1=anim_21095
 frame2=anim_21096
@@ -19508,7 +19508,7 @@ frame6=anim_21100
 frame7=anim_21101
 
 [seq_2788]
-replaceheldright=obj_6672
+replaceheldright=fishbowl_spinefish
 replaceheldleft=hide
 frame1=anim_21110
 frame2=anim_21111
@@ -19901,7 +19901,7 @@ frame1=anim_3793
 [seq_2810]
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 priority=6
-replaceheldright=obj_6714
+replaceheldright=deal_wrench_blessed
 frame1=anim_2027
 frame2=anim_2331
 frame3=anim_613
@@ -19912,7 +19912,7 @@ frame7=anim_1774
 frame8=anim_2072
 
 [seq_2811]
-replaceheldright=obj_6714
+replaceheldright=deal_wrench_blessed
 frame1=anim_21375
 frame2=anim_21376
 frame3=anim_21377
@@ -19950,7 +19950,7 @@ frame14=anim_760
 frame15=anim_2472
 
 [seq_2813]
-replaceheldright=obj_6673
+replaceheldright=fishbowl_net
 replaceheldleft=hide
 reachforward=yes
 frame1=anim_21117
@@ -20346,7 +20346,7 @@ frame42=anim_21602
 frame43=anim_21595
 
 [seq_2837]
-replaceheldright=obj_6722
+replaceheldright=trick_or_treat_head
 replaceheldleft=hide
 frame1=anim_21532
 frame2=anim_21536
@@ -20355,7 +20355,7 @@ frame4=anim_21538
 
 [seq_2838]
 loops=7
-replaceheldright=obj_6722
+replaceheldright=trick_or_treat_head
 replaceheldleft=hide
 frame1=anim_21539
 frame2=anim_21540
@@ -20366,7 +20366,7 @@ frame6=anim_21533
 frame7=anim_21534
 
 [seq_2839]
-replaceheldright=obj_6722
+replaceheldright=trick_or_treat_head
 replaceheldleft=hide
 frame1=anim_21539
 frame2=anim_21538
@@ -20375,7 +20375,7 @@ frame4=anim_21536
 frame5=anim_21532
 
 [seq_2840]
-replaceheldright=obj_6722
+replaceheldright=trick_or_treat_head
 replaceheldleft=hide
 priority=2
 preanim_move=delayanim
@@ -20451,7 +20451,7 @@ frame7=anim_1368
 frame8=anim_1659
 
 [seq_2844]
-replaceheldright=obj_6722
+replaceheldright=trick_or_treat_head
 replaceheldleft=hide
 priority=2
 preanim_move=delayanim
@@ -20480,7 +20480,7 @@ frame7=anim_21693
 frame8=anim_21694
 
 [seq_2846]
-replaceheldleft=obj_6739
+replaceheldleft=dragon_axe
 replaceheldright=hide
 priority=0
 loops=6
@@ -20495,7 +20495,7 @@ frame5=anim_1176
 frame6=anim_1463
 
 [seq_2847]
-replaceheldleft=obj_6739
+replaceheldleft=dragon_axe
 replaceheldright=hide
 frame1=anim_688
 frame2=anim_978
@@ -20961,7 +20961,7 @@ frame59=anim_22150
 frame60=anim_22149
 
 [seq_2879]
-replaceheldright=obj_6748
+replaceheldright=agrith_sigil
 loops=2
 preanim_move=delayanim
 postanim_move=abortanim
@@ -20975,7 +20975,7 @@ frame6=anim_21376
 delay6=10
 
 [seq_2880]
-replaceheldright=obj_6748
+replaceheldright=agrith_sigil
 frame1=anim_21375
 frame2=anim_21376
 frame3=anim_21377
@@ -21405,7 +21405,7 @@ frame7=anim_22280
 frame8=anim_22281
 
 [seq_2902]
-replaceheldleft=obj_6772
+replaceheldleft=ratcatchers_smokey_weedpot
 replaceheldright=hide
 frame1=anim_22193
 frame2=anim_22197
@@ -21435,7 +21435,7 @@ frame25=anim_22195
 frame26=anim_22196
 
 [seq_2903]
-replaceheldleft=obj_4605
+replaceheldleft=snake_flute
 replaceheldright=hide
 loops=12
 maxloops=232
@@ -21604,7 +21604,7 @@ frame8=anim_22329
 
 [seq_2913]
 replaceheldright=needle
-replaceheldleft=obj_6788
+replaceheldleft=elid_robetop_torn
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 loops=15
 maxloops=2
@@ -21627,7 +21627,7 @@ delay15=10
 
 [seq_2914]
 replaceheldright=needle
-replaceheldleft=obj_6789
+replaceheldleft=elid_robebottoms_torn
 walkmerge=label_1,label_2,label_9,label_11,label_13,label_15,label_17,label_19,label_37,label_39,label_41,label_43,label_45
 loops=15
 maxloops=2
@@ -22917,7 +22917,7 @@ frame13=anim_23089
 frame14=anim_23089
 
 [seq_3003]
-replaceheldright=obj_6864
+replaceheldright=win05_marionette_handle
 priority=0
 preanim_move=delayanim
 postanim_move=abortanim
@@ -22968,7 +22968,7 @@ frame44=anim_23246
 frame45=anim_23247
 
 [seq_3004]
-replaceheldright=obj_6864
+replaceheldright=win05_marionette_handle
 priority=0
 preanim_move=delayanim
 postanim_move=abortanim
@@ -23020,7 +23020,7 @@ frame45=anim_23246
 frame46=anim_23247
 
 [seq_3005]
-replaceheldright=obj_6864
+replaceheldright=win05_marionette_handle
 priority=0
 preanim_move=delayanim
 postanim_move=abortanim
@@ -23044,7 +23044,7 @@ frame17=anim_23246
 frame18=anim_23247
 
 [seq_3006]
-replaceheldright=obj_6864
+replaceheldright=win05_marionette_handle
 priority=0
 preanim_move=delayanim
 postanim_move=abortanim

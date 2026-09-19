@@ -170,7 +170,7 @@ y=115
 buttontype=toggle
 width=34
 height=34
-script1op1=pushvar,prayer_drain_counter
+script1op1=pushvar,prayer15
 script1=eq,1
 activegraphic=prayerglow,0
 
@@ -181,7 +181,7 @@ y=152
 buttontype=toggle
 width=34
 height=34
-script1op1=pushvar,prayer_drain_effect
+script1op1=pushvar,prayer16
 script1=eq,1
 activegraphic=prayerglow,0
 
@@ -192,7 +192,7 @@ y=152
 buttontype=toggle
 width=34
 height=34
-script1op1=pushvar,prayer_drain_resistance
+script1op1=pushvar,prayer17
 script1=eq,1
 activegraphic=prayerglow,0
 

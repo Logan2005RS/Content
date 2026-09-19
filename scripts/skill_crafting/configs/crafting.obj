@@ -230,10 +230,10 @@ model=obj_5738
 2dyan=1604
 2dxan=432
 stackable=yes
-count1=obj_5276,2
-count2=obj_5277,3
-count3=obj_5278,4
-count4=obj_5279,5
+count1=woadleaf_2,2
+count2=woadleaf_3,3
+count3=woadleaf_4,4
+count4=woadleaf_5,5
 weight=10g
 
 [bronzecraftwire]

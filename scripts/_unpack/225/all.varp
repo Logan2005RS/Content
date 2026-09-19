@@ -204,7 +204,7 @@ scope=perm
 
 [varp_191]
 
-[desert]
+[varp_196]
 
 [varp_199]
 
@@ -285,12 +285,6 @@ type=player_uid
 
 [varp_252]
 
-[varp_253]
-
-[varp_254]
-
-[varp_255]
-
 [thread_used]
 scope=perm
 
@@ -307,6 +301,15 @@ transmit=yes
 transmit=yes
 
 [if3]
+transmit=yes
+
+[if4]
+transmit=yes
+
+[if5]
+transmit=yes
+
+[if6]
 transmit=yes
 
 [magearena]

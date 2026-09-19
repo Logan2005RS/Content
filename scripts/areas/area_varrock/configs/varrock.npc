@@ -63,8 +63,8 @@ readyanim=human_ready
 alwaysontop=yes
 vislevel=1
 multivar=varbit_1036
-multinpc=0,npc_2661
-multinpc=1,npc_2660
+multinpc=0,reldo_normal
+multinpc=1,reldo_withbook
 
 [aris]
 vislevel=1
