@@ -447,6 +447,14 @@
 [command,headicons_set](int $icons)
 // info: Set the secondary player's headicons
 [command,.headicons_set](int $icons)
+// info: Get the currently set skullicons
+[command,skullicons_get]()(int)
+// info: Get the currently set skullicons for the secondary player
+[command,.skullicons_get]()(int)
+// info: Set the player's skullicons
+[command,skullicons_set](int $icons)
+// info: Set the secondary player's skullicons
+[command,.skullicons_set](int $icons)
 // info: Requires protected access - set the player's interaction to opobj $op on the active_player
 [command,p_opobj](int $op)
 // info: Requires protected access - set the player's interaction to opplayer $op on the active_player
