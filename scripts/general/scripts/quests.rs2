@@ -26,9 +26,9 @@ if ($random < 32) {       // The least common music that plays when completing a
 // Send Quest Scroll
 switch_component ($component) {
     case questlist:itgronigen ://Obveratory: Updates QP before quest scroll is queued & uses custom quest scroll
-        if_openmain(questscroll_itgronigen);
+        // if_openmain(inter_25);
     case questlist:fluffs ://Gertrude's Cat: Updates QP before quest scroll is queued & uses custom quest scroll
-        if_openmain(questscroll_fluffs);
+        // if_openmain(inter_23);
     case questlist:tbwt : // Tai Bwo Wannai Trio
     // todo
         // if_settext(questscroll_tbwt:com_3, $questmessage);

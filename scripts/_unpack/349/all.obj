@@ -5761,7 +5761,7 @@ model=inv_trail_scroll
 [fire_object]
 name=Fire object
 model=obj_4653
-code10=seq_1920
+code10=fire_object
 op3=Study
 members=yes
 cost=250

@@ -1181,7 +1181,7 @@ frame13=anim_10597
 frame14=anim_10596
 frame15=anim_10595
 
-[seq_1436]
+[ghost_mine_boss_run]
 preanim_move=merge
 postanim_move=merge
 frame1=anim_10629

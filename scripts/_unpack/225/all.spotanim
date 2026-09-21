@@ -391,7 +391,7 @@ recol3d=32767
 // unconfirmed name
 [pickaxe_head_launch]
 model=model_7410
-anim=mummy_walk
+anim=slayer_dustdevil_dust
 
 [spotanim_74]
 model=traps_rockfall

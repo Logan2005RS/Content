@@ -1,25 +1,25 @@
-[spotanim_324]
+[slayer_basilisk_zap]
 model=spells_zap
 
-[spotanim_325]
+[slayer_broad_arrow_launch]
 model=spot_spotanim_325
 anim=arrow_launch
 
-[spotanim_326]
+[slayer_broad_arrow_travel]
 model=spot_spotanim_325
 
-[spotanim_327]
+[slayer_salt_sprinkle_spotanim]
 model=spot_spotanim_327
-anim=seq_1575
+anim=slayer_salt_sprinkle_spotanim
 ambient=50
 
-[spotanim_328]
+[slayer_magicdart_travel]
 model=spot_spotanim_328
-anim=seq_1577
+anim=slayer_magicdart_travel
 ambient=60
 contrast=60
 
-[spotanim_329]
+[slayer_magicdart_impact]
 model=spells_strike_impact
 anim=strike_impact
 ambient=60
@@ -31,15 +31,15 @@ recol2d=13934
 recol3s=31649
 recol3d=18162
 
-[spotanim_330]
+[slayer_infernalmage_magicdart_travel]
 model=spot_spotanim_328
-anim=seq_1577
+anim=slayer_magicdart_travel
 ambient=60
 contrast=60
 recol1s=16047
 recol1d=16050
 
-[spotanim_331]
+[slayer_infernalmage_magicdart_impact]
 model=spells_strike_impact
 anim=strike_impact
 ambient=60
@@ -51,7 +51,7 @@ recol2d=8716
 recol3s=31649
 recol3d=13936
 
-[spotanim_332]
+[abyssal_portal]
 model=floor_glowingcircle
 anim=sp_attackglow
 ambient=60
@@ -59,137 +59,137 @@ contrast=60
 recol1s=31658
 recol1d=8201
 
-[spotanim_333]
+[demon_spawn_portal]
 model=spot_spotanim_333
-anim=seq_1543
+anim=demon_spawn_spotanim
 
-[spotanim_334]
+[specter_goo_launch]
 model=spot_spotanim_334
-anim=seq_1569
+anim=specter_goo_launch
 resizeh=64
 resizev=64
 
-[spotanim_335]
+[specter_goo_travel]
 model=spot_spotanim_334
-anim=seq_1570
+anim=specter_goo_travel
 resizeh=64
 resizev=64
 
-[spotanim_336]
+[specter_goo_impact]
 model=spot_spotanim_334
-anim=seq_1571
+anim=specter_goo_impact
 resizeh=64
 resizev=64
 
-[spotanim_337]
+[banshee_scream]
 model=spot_spotanim_337
-anim=seq_1573
+anim=sonic_attack
 
-[spotanim_338]
+[waa_stick_travel]
 model=spot_spotanim_338
 anim=taxe_launch
 
-[spotanim_339]
+[roving_mossgiant_impact]
 model=spells_failedspell
 anim=failedspell
 ambient=40
 contrast=40
 
-[spotanim_340]
+[sp_attack_maul_spotanim]
 model=spot_spotanim_340
-anim=seq_1668
+anim=slayer_maul_sp_attack
 ambient=50
 contrast=50
 
-[spotanim_341]
+[sp_attack_abyssal_whip]
 model=spot_spotanim_341
-anim=seq_1669
+anim=slayer_whip_sp_attack
 ambient=50
 contrast=50
 
-[spotanim_342]
+[teleport_other_impact]
 model=spot_spotanim_342
-anim=seq_1813
+anim=teleport_other_impact
 ambient=100
 contrast=100
 
-[spotanim_343]
+[teleport_other_casting]
 model=spot_spotanim_343
-anim=seq_1817
+anim=teleport_other_casting
 ambient=100
 contrast=100
 
-[spotanim_344]
+[ballista_special]
 model=spot_spotanim_344
-anim=seq_1821
+anim=tele_block_travel
 
-[spotanim_345]
+[tele_block_impact]
 model=spot_spotanim_345
-anim=seq_1822
+anim=tele_block_impact
 
-[spotanim_346]
+[dwarf_rock_explosion]
 model=spells_blast_impact
 anim=blast_impact
 
-[spotanim_347]
+[sp_attack_dragon_scimitar_trail_spotanim]
 model=spot_spotanim_347
-anim=seq_1873
+anim=sp_attack_dragon_scimitar_trail
 ambient=100
 contrast=100
 
-[spotanim_348]
+[stunned_blackjack]
 model=spells_stunned
-anim=seq_1874
+anim=stunned_blackjack
 ambient=40
 contrast=40
 
-[spotanim_349]
+[snake_zeds]
 model=quest_troll_spotanims_zeds_3d
 anim=troll_zeds
 ambient=50
 contrast=50
 
-[spotanim_350]
+[vampire_bats]
 model=spot_spotanim_350
-anim=seq_1916
+anim=bat_cluster_attack
 
-[spotanim_351]
+[vampire_coffin_jump2]
 model=spot_spotanim_351
-anim=seq_1918
+anim=vampire_rise2
 
-[spotanim_352]
+[vampire_coffin_jump]
 model=spot_spotanim_351
-anim=seq_1919
+anim=vampire_rise
 
-[spotanim_353]
+[legends_lightbeam]
 model=spot_spotanim_353
-anim=seq_1924
+anim=legend_mirror_beam
 
-[spotanim_354]
+[comedy_smoke_fall]
 model=spot_spotanim_354
-anim=seq_1951
+anim=falling_comedy_smoke
 
-[spotanim_355]
+[deserttreasure_scarab_cracks_wall]
 model=loc_6519_8
-anim=seq_1936
+anim=deserttreasure_scarab_cracks_wall
 
-[spotanim_356]
+[deserttreasure_cracks_floor_spotanim]
 model=loc_6519_0
-anim=seq_1937
+anim=deserttreasure_scarab_cracks_floor
 
-[spotanim_357]
+[firewarrior_flames]
 model=spot_spotanim_357
-anim=seq_1956
+anim=burn_firewarrior
 
-[spotanim_358]
+[icebeam]
 model=spot_spotanim_353
-anim=seq_1924
+anim=legend_mirror_beam
 ambient=60
 contrast=60
 recol1s=26591
 recol1d=27487
 
-[spotanim_359]
+[icebeam_impact]
 model=spells_wave_impact
 anim=wave_impact
 ambient=60
@@ -201,169 +201,169 @@ recol2d=27487
 recol3s=30753
 recol3d=24319
 
-[spotanim_360]
+[ice_rush_travel]
 model=spot_spotanim_360
-anim=seq_1958
+anim=ice_rush_travel
 
-[spotanim_361]
+[ice_rush_impact]
 model=spot_spotanim_361
-anim=seq_1959
+anim=ice_rush_impact
 
-[spotanim_362]
+[ice_blitz_travel]
 model=spot_spotanim_362
-anim=seq_1960
+anim=ice_blitz_travel
 
-[spotanim_363]
+[ice_blitz_impact]
 model=spot_spotanim_363
-anim=seq_1961
+anim=ice_blitz_impact
 
-[spotanim_364]
+[ice_blitz_impact2]
 model=spot_spotanim_363
 resizeh=256
 resizev=256
-anim=seq_1961
+anim=ice_blitz_impact
 
-[spotanim_365]
+[ice_blitz_impact3]
 model=spot_spotanim_363
 resizeh=512
 resizev=512
-anim=seq_1961
+anim=ice_blitz_impact
 
-[spotanim_366]
+[ice_burst_travel]
 model=spot_spotanim_366
-anim=seq_1962
+anim=ice_burst_travel
 
-[spotanim_367]
+[ice_burst_impact]
 model=spot_spotanim_367
-anim=seq_1963
+anim=ice_burst_impact
 
-[spotanim_368]
+[ice_barrage_travel]
 model=spot_spotanim_368
-anim=seq_1964
+anim=ice_barrage_travel
 
-[spotanim_369]
+[ice_barrage_impact]
 model=spot_spotanim_369
-anim=seq_1965
+anim=ice_barrage_impact
 
-[spotanim_370]
+[ice_barrage_impact2]
 model=spot_spotanim_369
 resizeh=256
 resizev=256
-anim=seq_1965
+anim=ice_barrage_impact
 
-[spotanim_371]
+[ice_barrage_impact3]
 model=spot_spotanim_369
 resizeh=512
 resizev=512
-anim=seq_1965
+anim=ice_barrage_impact
 
-[spotanim_372]
+[blood_rush_travel]
 model=spot_spotanim_372
-anim=seq_1968
+anim=blood_rush_travel
 
-[spotanim_373]
+[blood_rush_impact]
 model=spot_spotanim_373
-anim=seq_1970
+anim=blood_rush_impact
 
-[spotanim_374]
+[blood_blitz_travel]
 model=spot_spotanim_374
-anim=seq_1969
+anim=blood_blitz_travel
 
-[spotanim_375]
+[blood_blitz_impact]
 model=spot_spotanim_375
-anim=seq_1971
+anim=blood_blitz_impact
 
-[spotanim_376]
+[spell_blood_burst_impact]
 model=spot_spotanim_376
-anim=seq_1966
+anim=spell_blood_burst_impact
 
-[spotanim_377]
+[spell_blood_barrage_impact]
 model=spot_spotanim_377
-anim=seq_1967
+anim=spell_blood_barrage_impact
 
-[spotanim_378]
+[shadow_rush_travel]
 model=spot_spotanim_378
-anim=seq_1974
+anim=spell_shadow_rush_travel
 
-[spotanim_379]
+[shadow_rush_impact]
 model=spot_spotanim_379
-anim=seq_1973
+anim=spell_shadow_rush_impact
 
-[spotanim_380]
+[shadow_blitz_travel]
 model=spot_spotanim_380
-anim=seq_1975
+anim=spell_shadow_blitz_travel
 
-[spotanim_381]
+[shadow_blitz_impact]
 model=spot_spotanim_381
-anim=seq_1973
+anim=spell_shadow_rush_impact
 
-[spotanim_382]
+[shadow_burst_impact]
 model=spot_spotanim_382
-anim=seq_1976
+anim=spell_shadow_burst_impact
 
-[spotanim_383]
+[shadow_barrage_impact]
 model=spot_spotanim_383
-anim=seq_1977
+anim=spell_shadow_barrage_impact
 
-[spotanim_384]
+[smoke_rush_travel]
 model=spot_spotanim_384
-anim=seq_1980
+anim=smoke_rush_travel
 ambient=100
 contrast=100
 
-[spotanim_385]
+[smoke_rush_impact]
 model=spot_spotanim_385
-anim=seq_1982
+anim=smoke_rush_impact
 ambient=100
 contrast=100
 
-[spotanim_386]
+[smoke_blitz_travel]
 model=spot_spotanim_386
-anim=seq_1981
+anim=smoke_blitz_travel
 ambient=100
 contrast=100
 
-[spotanim_387]
+[smoke_blitz_impact]
 model=spot_spotanim_387
-anim=seq_1983
+anim=smoke_blitz_impact
 ambient=100
 contrast=100
 
-[spotanim_388]
+[smoke_burst_travel]
 model=spot_spotanim_388
-anim=seq_1984
+anim=smoke_burst_travel
 ambient=100
 contrast=100
 
-[spotanim_389]
+[smoke_burst_impact]
 model=spot_spotanim_389
-anim=seq_1985
+anim=smoke_burst_impact
 ambient=100
 contrast=100
 
-[spotanim_390]
+[smoke_barrage_travel]
 model=spot_spotanim_390
-anim=seq_1986
+anim=smoke_barrage_travel
 ambient=100
 contrast=100
 
-[spotanim_391]
+[smoke_barrage_impact]
 model=spot_spotanim_391
-anim=seq_1987
+anim=smoke_barrage_impact
 ambient=100
 contrast=100
 
-[spotanim_392]
+[zaros_teleport]
 model=spot_spotanim_392
-anim=seq_1988
+anim=zaros_teleport
 
-[spotanim_393]
+[dragon_ranged_fire_attack]
 model=spot_spotanim_393
-anim=seq_1990
+anim=dragon_ranged_attacks
 
-[spotanim_394]
+[dragon_ranged_toxic_attack]
 model=spot_spotanim_393
-anim=seq_1990
+anim=dragon_ranged_attacks
 recol1s=15360
 recol1d=224
 recol2s=31201
@@ -371,9 +371,9 @@ recol2d=544
 recol3s=31649
 recol3d=736
 
-[spotanim_395]
+[dragon_ranged_ice_attack]
 model=spot_spotanim_393
-anim=seq_1990
+anim=dragon_ranged_attacks
 recol1s=15360
 recol1d=32767
 recol2s=31201
@@ -381,9 +381,9 @@ recol2d=20159
 recol3s=31649
 recol3d=15931
 
-[spotanim_396]
+[dragon_ranged_lightning_attack]
 model=spot_spotanim_393
-anim=seq_1990
+anim=dragon_ranged_attacks
 recol1s=15360
 recol1d=25
 recol2s=31201
@@ -391,88 +391,88 @@ recol2d=10585
 recol3s=31649
 recol3d=20090
 
-[spotanim_397]
+[flob]
 model=spot_spotanim_397
-anim=seq_2058
+anim=flob
 
-[spotanim_398]
+[barrows_guthan_effect]
 model=spot_spotanim_398
-anim=seq_2083
+anim=barrows_guthan_infestation
 
-[spotanim_399]
+[barrows_torag_effect]
 model=spot_spotanim_399
-anim=seq_2084
+anim=barrows_torag_corruption
 
-[spotanim_400]
+[barrows_ahirm_blighted_aura]
 model=spot_spotanim_400
-anim=seq_2086
+anim=barrows_ahrim_blighted_aura
 ambient=50
 contrast=50
 
-[spotanim_401]
+[barrows_karil_tainted_shot]
 model=spot_spotanim_401
-anim=seq_2087
+anim=barrows_karil_tainted_shot
 ambient=50
 contrast=50
 
-[spotanim_402]
+[thzfe_sporecloud]
 model=smokepuff
 anim=smokepuff
 recol1s=15855
 recol1d=12672
 
-[spotanim_403]
+[blunt_arrow_launch]
 model=spot_spotanim_403
 anim=arrow_launch
 resizeh=160
 resizev=160
 
-[spotanim_404]
+[blunt_arrow_travel]
 model=spot_spotanim_403
 resizeh=160
 resizev=160
 
-[spotanim_405]
+[goblincaves_roofcollapse]
 model=traps_rockfall
 anim=rockfall
 recol1s=15855
 recol1d=5284
 
-[spotanim_406]
+[goblincaves_roofcollapse2]
 model=spot_spotanim_406
-anim=seq_2132
+anim=big_rockfall
 recol1s=15855
 recol1d=5284
 
-[spotanim_407]
+[pyramid_attack]
 model=spot_spotanim_407
 
-[spotanim_408]
+[roguesden_flash_powder]
 model=obj_5559
 
-[spotanim_409]
+[abyssal_demon_teleport]
 model=spot_spotanim_409
-anim=seq_1535
+anim=abyssal_teleport
 ambient=50
 contrast=50
 
-[spotanim_410]
+[farming_wateringcan_water_spotanim]
 model=spot_spotanim_410
-anim=seq_2294
+anim=farming_watering_water
 
-[spotanim_411]
+[farming_ingredients_sprinkle_spot]
 model=spot_spotanim_411
-anim=seq_2296
+anim=farming_ingredient_sprinkle_spotanim
 recol1s=29599
 recol1d=18888
 
-[spotanim_412]
+[applebarrel_forcrush_spotanim]
 model=spot_spotanim_412
-anim=seq_2307
+anim=applebarrel_forcrush
 
-[spotanim_413]
+[applebarrel_rotten_forcrush_spotanim]
 model=spot_spotanim_412
-anim=seq_2307
+anim=applebarrel_forcrush
 recol1s=12033
 recol1d=13506
 recol2s=352
@@ -480,13 +480,13 @@ recol2d=16871
 recol3s=5504
 recol3d=13506
 
-[spotanim_414]
+[farming_applebarrel_forcrush_spotanim]
 model=spot_spotanim_414
-anim=seq_2307
+anim=applebarrel_forcrush
 
-[spotanim_415]
+[farming_applebarrel_rotten_forcrush_spotanim]
 model=spot_spotanim_414
-anim=seq_2307
+anim=applebarrel_forcrush
 recol1s=12033
 recol1d=13506
 recol2s=352
@@ -494,93 +494,93 @@ recol2d=16871
 recol3s=5504
 recol3d=13506
 
-[spotanim_416]
+[seq_416]
 model=spot_spotanim_416
-anim=seq_2328
+anim=paint_frog_travel
 resizeh=115
 resizev=115
 
-[spotanim_417]
+[seq_417]
 model=ogre_area_npc_chompy_toad_explode
-anim=seq_2329
+anim=paint_frog_hit
 resizeh=115
 resizev=115
 
-[spotanim_418]
+[toad_cannon_travel_blue]
 model=spot_spotanim_416
-anim=seq_2328
+anim=paint_frog_travel
 resizeh=115
 resizev=115
 recol1s=11747
 recol1d=6477
 
-[spotanim_419]
+[toad_cannon_impact_blue]
 model=ogre_area_npc_chompy_toad_explode
-anim=seq_2329
+anim=paint_frog_hit
 resizeh=115
 resizev=115
 recol1s=11747
 recol1d=6477
 
-[spotanim_420]
+[toad_cannon_travel_red]
 model=spot_spotanim_416
-anim=seq_2328
+anim=paint_frog_travel
 resizeh=115
 resizev=115
 recol1s=11747
 recol1d=18627
 
-[spotanim_421]
+[toad_cannon_impact_red]
 model=ogre_area_npc_chompy_toad_explode
-anim=seq_2329
+anim=paint_frog_hit
 resizeh=115
 resizev=115
 recol1s=11747
 recol1d=18627
 
-[spotanim_422]
+[toad_cannon_travel_yellow]
 model=spot_spotanim_416
-anim=seq_2328
+anim=paint_frog_travel
 resizeh=115
 resizev=115
 recol1s=11747
 recol1d=24131
 
-[spotanim_423]
+[toad_cannon_impact_yellow]
 model=ogre_area_npc_chompy_toad_explode
-anim=seq_2329
+anim=paint_frog_hit
 resizeh=115
 resizev=115
 recol1s=11747
 recol1d=24131
 
-[spotanim_424]
+[toad_cannon_travel_green]
 model=spot_spotanim_416
-anim=seq_2328
+anim=paint_frog_travel
 resizeh=115
 resizev=115
 
-[spotanim_425]
+[toad_cannon_impact_green]
 model=ogre_area_npc_chompy_toad_explode
-anim=seq_2329
+anim=paint_frog_hit
 resizeh=115
 resizev=115
 
-[spotanim_426]
+[mourning_stars]
 model=spot_spotanim_426
 anim=stunned
 ambient=60
 contrast=60
 
-[spotanim_427]
+[tbw_chippings]
 model=spot_spotanim_427
-anim=seq_2381
+anim=tbw_cleanup_chippings
 
-[spotanim_428]
+[tbw_shield_attack]
 model=spot_spotanim_428
-anim=seq_2404
+anim=tbw_broodoo_shield_spotanim
 
-[spotanim_429]
+[tbw_shield_impact_poison]
 model=spells_strike_impact
 anim=strike_impact
 recol1s=15360
@@ -590,7 +590,7 @@ recol2d=19299
 recol3s=31649
 recol3d=19299
 
-[spotanim_430]
+[tbw_shield_impact_disease]
 model=spells_strike_impact
 anim=strike_impact
 recol1s=15360
@@ -600,7 +600,7 @@ recol2d=29092
 recol3s=31649
 recol3d=29092
 
-[spotanim_431]
+[tbw_shield_impact_combat]
 model=spells_strike_impact
 anim=strike_impact
 recol1s=15360
@@ -610,41 +610,41 @@ recol2d=30653
 recol3s=31649
 recol3d=30653
 
-[spotanim_432]
+[human_to_skeleton_death]
 model=spot_spotanim_432
-anim=seq_2554
+anim=skeleton_become_skeleton_death
 
-[spotanim_433]
+[wom_wall_crush_casting]
 model=spot_spotanim_433
-anim=seq_2558
+anim=wall_crush_spell_casting
 ambient=60
 contrast=60
 
-[spotanim_434]
+[wom_wall_crush_travel]
 model=spot_spotanim_433
-anim=seq_2559
+anim=wall_crush_spell_travel
 ambient=60
 contrast=60
 
-[spotanim_435]
+[wom_wall_crush_impact]
 model=spot_spotanim_433
-anim=seq_2560
+anim=wall_crush_spell_impact
 ambient=60
 contrast=60
 
-[spotanim_436]
+[redemption_spotanim]
 model=spot_spotanim_436
-anim=seq_2596
+anim=redemption_spotanim
 contrast=15
 ambient=20
 
-[spotanim_437]
+[retribution_spotanim]
 model=spot_spotanim_437
-anim=seq_2597
+anim=retribution_spotanim
 contrast=15
 ambient=20
 
-[spotanim_438]
+[retfirebreath_travel]
 model=proj_firebreathtravel
 anim=firebreath_travel
 contrast=15
@@ -652,175 +652,175 @@ ambient=20
 resizeh=64
 resizev=64
 
-[spotanim_439]
+[tzhaar_firebreath_attack]
 model=spot_spotanim_439
-anim=seq_2616
+anim=tzhaar_firebreath_attack
 
-[spotanim_440]
+[tzhaar_ranged_fire_attack]
 model=spot_spotanim_393
-anim=seq_1990
+anim=dragon_ranged_attacks
 
-[spotanim_441]
+[tzhaar_floor_fire_attack]
 model=spot_spotanim_437
-anim=seq_2617
+anim=tzhaar_fire_floor
 
-[spotanim_442]
+[tzhaar_ring_throw_attack]
 model=spot_spotanim_442
-anim=seq_2615
+anim=thzaar_ring_fly
 
-[spotanim_443]
+[tzhaar_spine_attack]
 model=spot_spotanim_443
 ambient=60
 contrast=60
 
-[spotanim_444]
+[tzhaar_heal]
 model=spot_spotanim_444
-anim=seq_2640
+anim=lizard_cleric_heal_spot
 ambient=60
 contrast=60
 resizeh=200
 resizev=200
 
-[spotanim_445]
+[tzhaar_fire_launch_travel]
 model=spot_spotanim_445
-anim=seq_2648
+anim=igniferum_fire_launch_travel
 ambient=60
 contrast=60
 
-[spotanim_446]
+[tzhaar_fire_launch_impact]
 model=spot_spotanim_446
-anim=seq_2649
+anim=igniferum_fire_launch_impact
 ambient=60
 contrast=60
 
-[spotanim_447]
+[tzhaar_fire_spit_launch]
 model=spot_spotanim_439
-anim=seq_2658
+anim=tzhaar_fire_spit_launch
 ambient=60
 contrast=60
 
-[spotanim_448]
+[tzhaar_fire_spit_travel]
 model=spot_spotanim_448
-anim=seq_2659
+anim=tzhaar_fire_spit
 ambient=60
 contrast=60
 
-[spotanim_449]
+[tzhaar_fire_spit_follow_travel]
 model=spot_spotanim_449
-anim=seq_2659
+anim=tzhaar_fire_spit
 ambient=60
 contrast=60
 
-[spotanim_450]
+[tzhaar_fire_spit_end_travel]
 model=spot_spotanim_450
-anim=seq_2659
+anim=tzhaar_fire_spit
 ambient=60
 contrast=60
 
-[spotanim_451]
+[tzhaar_rock_smash]
 model=spot_spotanim_451
-anim=seq_2660
+anim=tzhaar_rock_smash
 ambient=60
 contrast=60
 
-[spotanim_452]
+[enchant_amulet2_lvl6]
 model=spells_enchant_amulet2
-anim=seq_2718
+anim=enchant_amulet2_lvl6
 recol1s=31649
 recol1d=15393
 recol2s=11489
 recol2d=8458
 
-[spotanim_453]
+[tzhaar_inferno]
 model=spot_spotanim_453
-anim=seq_2719
+anim=tzhaar_inferno
 ambient=60
 contrast=60
 
-[spotanim_454]
+[wanted_crystal_ball_scan_spotanim]
 model=spot_spotanim_454
-anim=seq_2722
+anim=wanted_crystal_ball_scan_spot
 ambient=20
 
-[spotanim_455]
+[wanted_teleport]
 model=spot_spotanim_392
-anim=seq_2725
+anim=wanted_teleport_in
 
-[spotanim_456]
+[skip_water_splash]
 model=quest_watersplash
 anim=watersplash_small
 resizeh=256
 resizev=256
 
-[spotanim_457]
+[dairy_churn_anim]
 model=loc_10093_8
-anim=seq_2789
+anim=churn_milk
 ambient=15
 contrast=10
 
-[spotanim_458]
+[dairy_churn_metal_anim]
 model=loc_10094_8
-anim=seq_2789
+anim=churn_milk
 ambient=15
 contrast=10
 
-[spotanim_459]
+[dairy_churn_shortanim]
 model=loc_10093_8
-anim=seq_2790
+anim=churn_milk_short
 ambient=10
 contrast=10
 
-[spotanim_460]
+[dairy_churn_metal_shortanim]
 model=loc_10094_8
-anim=seq_2790
+anim=churn_milk_short
 ambient=10
 contrast=10
 
-[spotanim_461]
+[dairy_churn_mediumanim]
 model=loc_10093_8
-anim=seq_2791
+anim=churn_milk_medium
 ambient=15
 contrast=10
 
-[spotanim_462]
+[dairy_churn_metal_mediumanim]
 model=loc_10094_8
-anim=seq_2791
+anim=churn_milk_medium
 ambient=15
 contrast=10
 
-[spotanim_463]
+[dairy_churn_longanim]
 model=loc_10093_8
-anim=seq_2792
+anim=churn_milk_long
 ambient=15
 contrast=10
 
-[spotanim_464]
+[dairy_churn_metal_longanim]
 model=loc_10094_8
-anim=seq_2792
+anim=churn_milk_long
 ambient=15
 contrast=10
 
-[spotanim_465]
+[deal_spotanim]
 model=spot_spotanim_465
-anim=seq_2814
+anim=summon_summon_spot
 
-[spotanim_466]
+[break_zombie_split_mid]
 model=spot_spotanim_466
-anim=seq_2828
+anim=split_mid_spot
 
-[spotanim_467]
+[break_zombie_split_head]
 model=spot_spotanim_467
-anim=seq_2830
+anim=split_head_spot
 
-[spotanim_468]
+[break_zombie_split_hip]
 model=spot_spotanim_468
-anim=seq_2832
+anim=split_hip_spot
 
-[spotanim_469]
+[steam_head_spotanim]
 model=spot_spotanim_469
-anim=seq_2834
+anim=steam_head_spot
 
-[spotanim_470]
+[zobie_melt]
 model=floor_swampbubbles
 anim=swampbubs
 resizeh=90
@@ -828,14 +828,14 @@ resizev=90
 recol1s=3301
 recol1d=11725
 
-[spotanim_471]
+[sp_attack_glow_arrow_travel_white]
 model=proj_arrowlaunch_glow
 ambient=60
 contrast=60
 recol1s=9063
 recol1d=29596
 
-[spotanim_472]
+[sp_attack_glow_arrow_launch_white]
 model=proj_arrowlaunch_glow
 anim=arrow_launch
 ambient=60
@@ -843,94 +843,94 @@ contrast=60
 recol1s=9063
 recol1d=29596
 
-[spotanim_473]
+[dagannoth_arrow_spotanim_travel]
 model=spot_spotanim_473
-anim=seq_2872
+anim=dagannoth_arrow_flight
 ambient=60
 contrast=50
 
-[spotanim_474]
+[dagannoth_arrow_spotanim_hit]
 model=spot_spotanim_474
-anim=seq_2873
+anim=dagannoth_arrow_impact
 ambient=30
 contrast=20
 
-[spotanim_475]
+[dagannoth_spine_spotanim_travel]
 model=spot_spotanim_475
-anim=seq_2874
+anim=dagannoth_spine_travel
 ambient=10
 contrast=15
 
-[spotanim_476]
+[dagannoth_spine_spotanim_travel2]
 model=spot_spotanim_476
-anim=seq_2875
+anim=dagannoth_water_creature_spine_travel
 ambient=10
 contrast=10
 
-[spotanim_477]
+[dagannoth_whirlpool]
 model=spot_spotanim_477
-anim=seq_2848
+anim=dagannoth_whirlwind_spins
 ambient=30
 contrast=30
 
 [spotanim_478]
 model=obj_6743
 
-[spotanim_479]
+[dragon_smallaxe_swoosh_spotanim]
 model=spot_spotanim_479
-anim=seq_2877
+anim=dragon_smallaxe_swoosh
 contrast=15
 ambient=20
 
-[spotanim_480]
+[summon_spotanim]
 model=spot_spotanim_465
-anim=seq_2814
+anim=summon_summon_spot
 
-[spotanim_481]
+[summon_floor_spotanim]
 model=loc_10252_8
-anim=seq_2883
+anim=summon_floor_spot
 
-[spotanim_482]
+[summon_tele]
 model=spot_spotanim_482
-anim=seq_2892
+anim=burgh_hold_hit
 recol1s=20287
 recol1d=26658
 
-[spotanim_483]
+[dark_spec_spot]
 model=spot_spotanim_483
-anim=seq_2889
+anim=dark_spec_spot
 ambient=30
 
-[spotanim_484]
+[ratcatcher_smoke]
 model=spot_spotanim_484
-anim=seq_2896
+anim=ratcatcher_smokes
 ambient=30
 contrast=30
 
-[spotanim_485]
+[ratcatcher_smoke_big]
 model=spot_spotanim_485
-anim=seq_2896
+anim=ratcatcher_smokes
 ambient=30
 contrast=30
 
-[spotanim_486]
+[kitten_angel_of_death]
 model=spot_spotanim_486
-anim=seq_2895
+anim=kitten_angel_goes_to_heaven
 resizeh=30
 resizev=40
 ambient=40
 contrast=30
 
-[spotanim_487]
+[elid_rope_hold_spotanim]
 model=spot_spotanim_487
-anim=seq_2916
+anim=elid_robe_climb_spotanim
 
-[spotanim_488]
+[champions_goblin_casting_glow]
 model=spot_spotanim_488
-anim=seq_2965
+anim=champions_goblin_casting_glow
 ambient=30
 
-[spotanim_489]
+[champions_goblin_drain_impact]
 model=spells_weaken_impact
 anim=weaken_impact
 ambient=40
@@ -938,16 +938,16 @@ contrast=40
 recol1s=32767
 recol1d=13294
 
-[spotanim_490]
+[champions_hobgoblin_spear_launch]
 model=spot_spotanim_490
-anim=seq_2960
+anim=champions_hobgoblin_spear
 ambient=10
 
-[spotanim_491]
+[champions_hobgoblin_spear_travel]
 model=spot_spotanim_491
 ambient=10
 
-[spotanim_492]
+[champions_hobgoblin_drain_impact]
 model=spells_weaken_impact
 anim=weaken_impact
 ambient=40
@@ -955,52 +955,52 @@ contrast=40
 recol1s=32767
 recol1d=30753
 
-[spotanim_493]
+[champions_imp_dagger_launch]
 model=spot_spotanim_493
-anim=seq_2956
+anim=champions_imp_dagger_launch
 ambient=10
 
-[spotanim_494]
+[champions_imp_dagger_travel]
 model=spot_spotanim_494
 ambient=10
-anim=seq_2957
+anim=champions_imp_dagger_travel
 
-[spotanim_495]
+[champions_ghoul_skull_launch]
 model=spot_spotanim_495
-anim=seq_2969
+anim=champions_ghoul_skull_launch
 ambient=10
 
-[spotanim_496]
+[champions_ghoul_skull_travel]
 model=spot_spotanim_495
-anim=seq_2970
+anim=champions_ghoul_skull_travel
 ambient=10
 
-[spotanim_497]
+[champions_lesserdemon_fire_launch]
 model=spot_spotanim_497
-anim=seq_2974
+anim=champions_lesserdemon_fire_launch
 ambient=40
 
-[spotanim_498]
+[champions_lesserdemon_fire_travel]
 model=spot_spotanim_498
 ambient=40
-anim=seq_2975
+anim=champions_lesserdemon_fire_travel
 
-[spotanim_499]
+[wyvern_skeleton_launch_iceball]
 model=spot_spotanim_499
-anim=seq_2990
+anim=wyvern_skeleton_launch_iceball
 ambient=40
 
-[spotanim_500]
+[wyvern_skeleton_travel_iceball]
 model=spot_spotanim_500
 ambient=40
-anim=seq_2991
+anim=wyvern_skeleton_travel_iceball
 
-[spotanim_501]
+[wyvern_skeleton_travel_breath]
 model=spot_spotanim_501
-anim=seq_2992
+anim=wyvern_skeleton_travel_breath
 ambient=40
 
-[spotanim_502]
+[wyvern_skeleton_impact_breath]
 model=spells_bolt_impact
 anim=bolt_impact
 ambient=40
@@ -1009,9 +1009,9 @@ recol1d=377
 recol2s=31201
 recol2d=6943
 
-[spotanim_503]
+[devious_assassin_teleport_spotanim]
 model=spot_spotanim_409
-anim=seq_2996
+anim=devious_assassin_teleport
 ambient=50
 contrast=50
 recol1s=20701
@@ -1025,9 +1025,9 @@ recol4d=8497
 recol5s=20612
 recol5d=9554
 
-[spotanim_504]
+[devious_assassin_teleportreverse_spotanim]
 model=spot_spotanim_409
-anim=seq_2996
+anim=devious_assassin_teleport
 ambient=50
 contrast=50
 recol1s=20701
@@ -1041,7 +1041,7 @@ recol4d=8497
 recol5s=20612
 recol5d=9554
 
-[spotanim_505]
+[devious_explosion]
 model=spells_wave_impact
 anim=wave_impact
 ambient=60
@@ -1055,15 +1055,15 @@ recol2d=24881
 recol3s=30753
 recol3d=21710
 
-[spotanim_506]
+[win05_explode]
 model=spot_spotanim_506
-anim=seq_3020
+anim=win05_explode
 ambient=15
 contrast=15
 
-[spotanim_507]
+[win05_marionette_jump_red]
 model=spot_spotanim_507
-anim=seq_3016
+anim=marionette_jump
 recol1s=18922
 recol1d=15525
 recol2s=16774
@@ -1071,9 +1071,9 @@ recol2d=12288
 recol3s=14661
 recol3d=8192
 
-[spotanim_508]
+[win05_marionette_walk_red]
 model=spot_spotanim_507
-anim=seq_3017
+anim=marionette_walk
 recol1s=18922
 recol1d=15525
 recol2s=16774
@@ -1081,9 +1081,9 @@ recol2d=12288
 recol3s=14661
 recol3d=8192
 
-[spotanim_509]
+[win05_marionette_bow_red]
 model=spot_spotanim_507
-anim=seq_3018
+anim=marionette_bow
 recol1s=18922
 recol1d=15525
 recol2s=16774
@@ -1091,9 +1091,9 @@ recol2d=12288
 recol3s=14661
 recol3d=8192
 
-[spotanim_510]
+[win05_marionette_dance_red]
 model=spot_spotanim_507
-anim=seq_3019
+anim=marionette_dance
 recol1s=18922
 recol1d=15525
 recol2s=16774
@@ -1101,9 +1101,9 @@ recol2d=12288
 recol3s=14661
 recol3d=8192
 
-[spotanim_511]
+[win05_marionette_jump_blue]
 model=spot_spotanim_507
-anim=seq_3016
+anim=marionette_jump
 recol1s=18922
 recol1d=6359
 recol2s=16774
@@ -1111,9 +1111,9 @@ recol2d=2195
 recol3s=14661
 recol3d=47
 
-[spotanim_512]
+[win05_marionette_walk_blue]
 model=spot_spotanim_507
-anim=seq_3017
+anim=marionette_walk
 recol1s=18922
 recol1d=6359
 recol2s=16774
@@ -1121,9 +1121,9 @@ recol2d=2195
 recol3s=14661
 recol3d=47
 
-[spotanim_513]
+[win05_marionette_bow_blue]
 model=spot_spotanim_507
-anim=seq_3018
+anim=marionette_bow
 recol1s=18922
 recol1d=6359
 recol2s=16774
@@ -1131,9 +1131,9 @@ recol2d=2195
 recol3s=14661
 recol3d=47
 
-[spotanim_514]
+[win05_marionette_dance_blue]
 model=spot_spotanim_507
-anim=seq_3019
+anim=marionette_dance
 recol1s=18922
 recol1d=6359
 recol2s=16774
@@ -1141,9 +1141,9 @@ recol2d=2195
 recol3s=14661
 recol3d=47
 
-[spotanim_515]
+[win05_marionette_jump_green]
 model=spot_spotanim_507
-anim=seq_3016
+anim=marionette_jump
 recol1s=18922
 recol1d=2498
 recol2s=16774
@@ -1151,9 +1151,9 @@ recol2d=384
 recol3s=14661
 recol3d=256
 
-[spotanim_516]
+[win05_marionette_walk_green]
 model=spot_spotanim_507
-anim=seq_3017
+anim=marionette_walk
 recol1s=18922
 recol1d=2498
 recol2s=16774
@@ -1161,9 +1161,9 @@ recol2d=384
 recol3s=14661
 recol3d=256
 
-[spotanim_517]
+[win05_marionette_bow_green]
 model=spot_spotanim_507
-anim=seq_3018
+anim=marionette_bow
 recol1s=18922
 recol1d=2498
 recol2s=16774
@@ -1171,13 +1171,12 @@ recol2d=384
 recol3s=14661
 recol3d=256
 
-[spotanim_518]
+[win05_marionette_dance_green]
 model=spot_spotanim_507
-anim=seq_3019
+anim=marionette_dance
 recol1s=18922
 recol1d=2498
 recol2s=16774
 recol2d=384
 recol3s=14661
 recol3d=256
-
