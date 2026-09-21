@@ -50,7 +50,7 @@ width=88
 height=60
 graphic=tradebacking,0
 
-[no_weapons_text]
+[com_53]
 layer=com_2
 type=graphic
 x=358
@@ -59,7 +59,7 @@ width=88
 height=60
 graphic=tradebacking,0
 
-[no_armour_text]
+[com_54]
 layer=com_2
 type=graphic
 x=394
@@ -104,7 +104,7 @@ width=36
 height=36
 graphic=miscgraphics,3
 
-[no_weapons]
+[com_55]
 layer=com_2
 type=graphic
 x=168
@@ -113,7 +113,7 @@ width=36
 height=36
 graphic=miscgraphics,3
 
-[no_armour]
+[com_56]
 layer=com_2
 type=graphic
 x=204
@@ -131,7 +131,7 @@ width=36
 height=36
 graphic=miscgraphics,3
 
-[accept_text]
+[com_57]
 layer=com_2
 type=graphic
 x=276
@@ -140,7 +140,7 @@ width=36
 height=36
 graphic=miscgraphics,3
 
-[decline_text]
+[com_58]
 layer=com_2
 type=graphic
 x=312
