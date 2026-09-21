@@ -1200,8 +1200,8 @@ param=retreat,1
 [rat]
 name=Rat
 desc=A popular dwarven delicacy.
-readyanim=seq_2704
-walkanim=seq_2703
+readyanim=mouse_ready
+walkanim=mouse_walk
 op2=Attack
 minimap=no
 resizeh=133
@@ -1989,7 +1989,7 @@ param=death_drop,bat_bones
 [cow]
 size=2
 walkanim=cow_walk
-readyanim=seq_2162
+readyanim=cow_just_ready
 name=Cow
 desc=Converts grass to beef.
 op2=Attack
@@ -5121,7 +5121,7 @@ recol6d=20799
 [cow2]
 size=2
 walkanim=cow_walk
-readyanim=seq_2162
+readyanim=cow_just_ready
 name=Cow
 desc=Beefy!
 op2=Attack
@@ -5495,7 +5495,7 @@ param=death_drop,dragon_bones
 [cow_beef]
 size=2
 walkanim=cow_walk
-readyanim=seq_2162
+readyanim=cow_just_ready
 name=Cow
 desc=A cow by any other name would smell as sweet.
 op2=Attack

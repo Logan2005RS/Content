@@ -2326,7 +2326,7 @@ frame8=anim_5251
 frame9=anim_5256
 delay9=20000
 
-[mummy_walk]
+[slayer_dustdevil_dust]
 loops=16
 frame1=anim_16708
 frame2=anim_16719
@@ -2349,7 +2349,7 @@ frame18=anim_16717
 frame19=anim_16718
 frame20=anim_16720
 
-[mummy_attack]
+[crawler_walk]
 frame1=anim_11491
 frame2=anim_11492
 frame3=anim_11493
@@ -2359,11 +2359,11 @@ frame6=anim_11496
 frame7=anim_11497
 frame8=anim_11498
 
-[mummy_block]
+[crawler_ready]
 frame1=anim_11489
 frame2=anim_11490
 
-[mummy_ready]
+[crawler_attack]
 priority=6
 frame1=anim_11453
 frame2=anim_11457
@@ -2378,7 +2378,7 @@ frame10=anim_11454
 frame11=anim_11455
 frame12=anim_11456
 
-[mummy_death]
+[crawler_death]
 priority=10
 frame1=anim_11465
 frame2=anim_11469

@@ -45,8 +45,8 @@ param=death_sound,goblin_death
 [goblin_greenarmour]
 name=Goblin
 desc=An ugly green creature.
-walkanim=seq_1738
-readyanim=seq_1737
+walkanim=goblin_walk_spear
+readyanim=goblin_ready_spear
 op2=Attack
 op1=Talk-to
 vislevel=5
@@ -78,8 +78,8 @@ param=death_sound,goblin_death
 [goblin_redarmour]
 name=Goblin
 desc=An ugly green creature.
-walkanim=seq_1738
-readyanim=seq_1737
+walkanim=goblin_walk_spear
+readyanim=goblin_ready_spear
 op2=Attack
 op1=Talk-to
 vislevel=5

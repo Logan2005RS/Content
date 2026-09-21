@@ -1162,8 +1162,8 @@ maxrange=30000
 [death_white_knight]
 name=White Knight
 desc=The Knight seems to be watching something.
-walkanim=seq_2562,seq_2562,seq_2562,seq_2562
-readyanim=seq_2561
+walkanim=human_dh_weapon_walk,human_dh_weapon_walk,human_dh_weapon_walk,human_dh_weapon_walk
+readyanim=human_dh_weapon_ready
 op1=Talk-to
 op2=Attack
 vislevel=36

@@ -3814,7 +3814,7 @@ width=2
 name=Grandfather clock
 desc=Tick-tock, it's a clock.
 model=grandfatherclock
-anim=seq_1726
+anim=tic_toc
 
 [weathervane]
 name=Weather vane
@@ -10468,7 +10468,7 @@ sharelight=yes
 name=Millstones
 desc=These huge stone discs grind grain to make flour.
 model=mill
-anim=seq_1731
+anim=mill_rotate
 width=2
 length=2
 
@@ -10541,7 +10541,7 @@ model=milltop2
 width=2
 length=2
 active=no
-anim=seq_1731
+anim=mill_rotate
 
 [milltop3]
 model=mill_top3

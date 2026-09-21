@@ -1,8 +1,8 @@
 [white_knight]
 name=White Knight
 desc=Nice armour!
-walkanim=seq_2562,seq_2562,seq_2562,seq_2562
-readyanim=seq_2561
+walkanim=human_dh_weapon_walk,human_dh_weapon_walk,human_dh_weapon_walk,human_dh_weapon_walk
+readyanim=human_dh_weapon_ready
 op2=Attack
 vislevel=36
 model1=man_head_fullhelmet

@@ -1218,8 +1218,8 @@ recol1d=14755
 [goblin_green_soldier_1]
 name=Goblin
 desc=An ugly green creature.
-walkanim=seq_1738
-readyanim=seq_1737
+walkanim=goblin_walk_spear
+readyanim=goblin_ready_spear
 op2=Attack
 resizev=125
 resizeh=125
