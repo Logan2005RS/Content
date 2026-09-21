@@ -1,4 +1,4 @@
-[com_0]
+[tzhaar_fightpit_champion]
 type=text
 x=177
 y=25
@@ -17,7 +17,7 @@ y=31
 width=191
 height=27
 
-[com_1]
+[tzhaar_fightpit_remaining]
 layer=com_2
 type=text
 x=50
