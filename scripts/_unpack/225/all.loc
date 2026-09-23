@@ -10490,7 +10490,7 @@ width=2
 length=2
 active=yes
 multivar=flour
-multiloc=0,loc_5792
+multiloc=0,millbase_empty
 multiloc=1,millbase_flour
 multiloc=2,millbase_flour
 multiloc=3,millbase_flour
@@ -13324,7 +13324,7 @@ op1=Open
 model=basic_wall
 blockrange=no
 
-[inviswall_no_blockrange]
+[invis2x2]
 model=blank
 model2=loc_4909
 width=2

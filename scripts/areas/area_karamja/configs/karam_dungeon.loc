@@ -186,7 +186,7 @@ active=yes
 sharelight=yes
 op1=Walk-across
 
-[loc_5091]
+[karam_cavewall_face1]
 model=skill_slayer_wall_cave
 recol1s=6307
 recol1d=7296
@@ -369,7 +369,7 @@ hillskew=yes
 op1=Chop-down
 op3=hidden
 
-[loc_5108]
+[karam_cavewall_vine]
 model=skill_slayer_wall_cave_vine
 recol1s=6307
 recol1d=7296
@@ -386,7 +386,7 @@ recol6d=12580
 sharelight=yes
 hillskew=yes
 
-[loc_5109]
+[karam_cavewall_vine_lev2]
 model=skill_slayer_wall_cave_lev2_vine
 recol1s=11592
 recol1d=12580
