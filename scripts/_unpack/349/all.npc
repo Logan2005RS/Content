@@ -1276,7 +1276,7 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_185
+multivar=fenk_gardener_directions
 multinpc=1,fenk_gardener
 
 [fenk_gardener_multi_2]
@@ -1284,7 +1284,7 @@ name=fenk_gardener_multi_2
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_185
+multivar=fenk_gardener_directions
 multinpc=0,fenk_gardener
 
 [fenk_fenkenstrain]
@@ -1595,7 +1595,7 @@ name=ahoy_akharanu_multi
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_217
+multivar=ahoy_questvar
 multinpc=4,ahoy_akharanu
 multinpc=5,ahoy_akharanu
 multinpc=6,ahoy_akharanu
@@ -3796,7 +3796,7 @@ size=2
 op1=Talk-to
 op2=Attack
 vislevel=1
-multivar=varbit_269
+multivar=mdaughter_bear_multi_state
 multinpc=0,mdaughter_bearman
 
 [mdaughter_bearman]
@@ -4167,7 +4167,7 @@ walkanim=dwarf_walk
 readyanim=dwarf_ready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_299
+multivar=dwarfrock_quest
 multinpc=0,dwarfrock_dondakan
 multinpc=10,dwarfrock_dondakan
 multinpc=20,dwarfrock_dondakan
@@ -4354,7 +4354,7 @@ name=dwarfrock_multi_gold_boatman
 readyanim=dwarf_ready
 walkanim=dwarf_walk
 vislevel=1
-multivar=varbit_299
+multivar=dwarfrock_quest
 multinpc=110,dwarfrock_gold_boatman
 
 [dwarfrock_gold_boatman]
@@ -4816,7 +4816,7 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=hide
 alwaysontop=yes
-multivar=varbit_344
+multivar=feud_mayor_invis
 multinpc=0,feud_mayor_geom
 
 [feud_mayor_geom]
@@ -4929,7 +4929,7 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=hide
 alwaysontop=yes
-multivar=varbit_334
+multivar=feud_var
 multinpc=28,feud_bjseller
 
 [feud_bandit_boss]
@@ -4937,7 +4937,7 @@ name=feud_bandit_boss
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=hide
-multivar=varbit_338
+multivar=feud_bandit_boss_vis
 multinpc=1,feud_bandit_boss_vis
 
 [feud_bandit_boss_vis]
@@ -4964,7 +4964,7 @@ name=feud_arabian_guard_multi
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=56
-multivar=varbit_340
+multivar=feud_npc_multi
 multinpc=0,feud_arabian_guard1_1
 multinpc=1,feud_arabian_guard1_1
 multinpc=2,feud_arabian_guard1_2
@@ -5024,7 +5024,7 @@ name=feud_arabian_guard2_multi
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=41
-multivar=varbit_340
+multivar=feud_npc_multi
 multinpc=0,feud_arabian_guard2_1
 multinpc=1,feud_arabian_guard2_1
 multinpc=2,feud_arabian_guard2_2
@@ -5137,7 +5137,7 @@ name=feud_villager_multi_1
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=3
-multivar=varbit_340
+multivar=feud_npc_multi
 multinpc=0,feud_villager_1_1
 multinpc=1,feud_villager_1_2
 multinpc=2,feud_villager_1_3
@@ -5222,7 +5222,7 @@ name=feud_villager_multi_2
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=3
-multivar=varbit_340
+multivar=feud_npc_multi
 multinpc=0,feud_villager_2_1
 multinpc=1,feud_villager_2_2
 multinpc=2,feud_villager_2_3
@@ -5304,7 +5304,7 @@ name=feud_villager_multi_3
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=3
-multivar=varbit_340
+multivar=feud_npc_multi
 multinpc=0,feud_villager_3_1
 multinpc=1,feud_villager_3_2
 multinpc=2,feud_villager_3_3
@@ -5383,7 +5383,7 @@ name=feud_menap_boss
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=hide
-multivar=varbit_335
+multivar=feud_boss_vis
 multinpc=1,feud_menap_boss_vis
 
 [feud_menap_boss2]
@@ -5391,7 +5391,7 @@ name=feud_menap_boss2
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=hide
-multivar=varbit_336
+multivar=feud_boss_vis2
 multinpc=1,feud_menap_boss_vis
 
 [feud_menap_boss_vis]
@@ -5444,7 +5444,7 @@ name=feud_egyptian_doorman_multi
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=55
-multivar=varbit_340
+multivar=feud_npc_multi
 multinpc=0,feud_egyptian_doorman_1
 multinpc=1,feud_egyptian_doorman_1
 multinpc=2,feud_egyptian_doorman_2
@@ -5533,7 +5533,7 @@ name=Golem
 readyanim=clay_golem_ready
 walkanim=clay_golem_walk
 vislevel=1
-multivar=varbit_348
+multivar=golem_clay
 multinpc=0,golem_broken_golem
 multinpc=1,golem_broken_golem
 multinpc=2,golem_partially_broken_golem
@@ -5880,7 +5880,7 @@ name=fourdiamonds_elder
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_358
+multivar=deserttreasure
 multinpc=0,fd_elder_village
 multinpc=1,fd_elder_village
 multinpc=2,fd_elder_village
@@ -5928,7 +5928,7 @@ name=fourdiamonds_elder2
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_358
+multivar=deserttreasure
 multinpc=10,fd_elder_by_mirrors
 multinpc=11,fd_elder_by_mirrors
 multinpc=12,fd_elder_by_mirrors
@@ -6169,7 +6169,7 @@ readyanim=troll_ready
 vislevel=hide
 resizeh=72
 resizev=72
-multivar=varbit_382
+multivar=fd_icewarrior_subquest
 multinpc=0,fourdiamonds_troll_child_crying
 multinpc=1,fourdiamonds_troll_child_okay
 multinpc=2,fourdiamonds_troll_child_okay
@@ -6379,7 +6379,7 @@ turnspeed=0
 size=2
 turnspeed=0
 vislevel=34
-multivar=varbit_380
+multivar=fd_icewarrior_dadfree
 multinpc=0,fd_trollblock1
 multinpc=1,fd_troll_dad
 
@@ -6399,7 +6399,7 @@ turnspeed=0
 size=2
 turnspeed=0
 vislevel=34
-multivar=varbit_381
+multivar=fd_icewarrior_mumfree
 multinpc=0,fd_trollblock2
 multinpc=1,fd_troll_mum
 
@@ -6419,7 +6419,7 @@ desc=An ice troll.
 walkanim=troll_walk
 readyanim=troll_ready
 vislevel=1
-multivar=varbit_382
+multivar=fd_icewarrior_subquest
 multinpc=4,fd_troll_dad
 multinpc=5,fd_troll_dad
 
@@ -6446,7 +6446,7 @@ desc=An ice troll.
 walkanim=troll_walk
 readyanim=troll_ready
 vislevel=1
-multivar=varbit_382
+multivar=fd_icewarrior_subquest
 multinpc=4,fd_troll_mum
 multinpc=5,fd_troll_mum
 
@@ -6794,7 +6794,7 @@ walkanim=ghost_walk
 readyanim=ghost_ready
 vislevel=hide
 size=2
-multivar=varbit_358
+multivar=deserttreasure
 multinpc=13,azzanadra_real
 multinpc=14,azzanadra_real
 
@@ -7146,7 +7146,7 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_418
+multivar=ics_little_var
 multinpc=19,ics_little_hipriest_vis
 multinpc=20,ics_little_hipriest_vis
 multinpc=21,ics_little_hipriest_vis
@@ -7160,7 +7160,7 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_408
+multivar=ics_little_priestvis
 multinpc=0,ics_little_hipriest_vis
 
 [ics_little_hipriest_vis]
@@ -7197,7 +7197,7 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_418
+multivar=ics_little_var
 multinpc=19,ics_little_priest
 multinpc=20,ics_little_priest
 multinpc=21,ics_little_priest
@@ -7468,7 +7468,7 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_415
+multivar=ics_wanderermulti
 multinpc=0,ics_little_redheadlady
 
 [ics_little_multi_wanderer1]
@@ -7477,7 +7477,7 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_415
+multivar=ics_wanderermulti
 multinpc=2,ics_little_redheadlady
 
 [ics_little_multi_wanderer2]
@@ -7486,7 +7486,7 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_415
+multivar=ics_wanderermulti
 multinpc=3,ics_little_redheadlady
 
 [ics_little_redheadlady_normeyes]
@@ -7676,7 +7676,7 @@ walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halbe
 readyanim=human_staffready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_418
+multivar=ics_little_var
 multinpc=24,ics_little_ic_vis
 
 [ics_little_ic_vis]
@@ -7717,7 +7717,7 @@ walkanim=ghost_walk
 readyanim=ghost_ready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_449
+multivar=ics_specvis
 multinpc=1,ics_little_spectre_vis
 
 [ics_little_spectre_vis]
@@ -7837,7 +7837,7 @@ recol5d=30449
 name=multi_vanstrom_stranger_entity
 turnspeed=0
 vislevel=1
-multivar=varbit_396
+multivar=thsfm_vanstrom_hide
 multinpc=0,route_vanstrom_klause_sitting
 multinpc=1,canafis_stranger
 
@@ -8864,7 +8864,7 @@ name=Sigmund
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_532
+multivar=lost_tribe_quest
 multinpc=0,lost_tribe_sigmund_there
 multinpc=1,lost_tribe_sigmund_there
 multinpc=2,lost_tribe_sigmund_there
@@ -8881,7 +8881,7 @@ name=lost_tribe_sigmund_leaving
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_540
+multivar=lost_tribe_sigmund_leaving
 multinpc=1,lost_tribe_sigmund_there
 
 [lost_tribe_sigmund_ham]
@@ -8889,7 +8889,7 @@ name=lost_tribe_sigmund_ham
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_532
+multivar=lost_tribe_quest
 multinpc=10,lost_tribe_sigmund_ham_there
 multinpc=11,lost_tribe_sigmund_ham_there
 
@@ -8979,7 +8979,7 @@ name=lost_tribe_guide
 readyanim=cave_goblin_bone_spear_ready
 walkanim=cave_goblin_bone_spear_walk
 vislevel=1
-multivar=varbit_532
+multivar=lost_tribe_quest
 multinpc=9,lost_tribe_guide_1op
 multinpc=10,lost_tribe_guide_1op
 multinpc=11,lost_tribe_guide_1op
@@ -9839,7 +9839,7 @@ desc=A trader for the Red Axe mining company.
 readyanim=dwarf_drunkready
 walkanim=dwarf_drunkwalk
 vislevel=hide
-multivar=varbit_581
+multivar=giantdwarf_red_traders_gone
 multinpc=0,dwarf_city_red_trader1
 
 [dwarf_city_red_trader1]
@@ -9871,7 +9871,7 @@ desc=A trader for the Red Axe mining company.
 readyanim=dwarf_drunkready
 walkanim=dwarf_drunkwalk
 vislevel=hide
-multivar=varbit_581
+multivar=giantdwarf_red_traders_gone
 multinpc=0,dwarf_city_red_trader2
 
 [dwarf_city_red_trader2]
@@ -10279,7 +10279,7 @@ desc=Models for sculptures.
 walkanim=dwarf_walk
 readyanim=dwarf_ready
 vislevel=hide
-multivar=varbit_576
+multivar=giantdwarf_model_state
 multinpc=0,dwarf_city_shop_sculpture_model
 multinpc=1,dwarf_city_shop_sculpture_model_boots
 multinpc=2,dwarf_city_shop_sculpture_model_torso
@@ -11673,7 +11673,7 @@ desc=He's had a fair bit to drink...
 readyanim=dwarf_drunkready
 walkanim=dwarf_drunkwalk
 vislevel=hide
-multivar=varbit_559
+multivar=keldagrim_kebab_status
 multinpc=0,dwarf_city_drunken_dwarf
 multinpc=1,dwarf_city_drunken_kebab
 
@@ -12324,7 +12324,7 @@ desc=A dwarven enforcer.
 walkanim=dwarf_walk
 readyanim=dwarf_ready
 vislevel=hide
-multivar=varbit_579
+multivar=giantdwarf_cutscene_guard_visible
 multinpc=1,dwarf_city_berserker_cutscene
 
 [dwarf_city_berserker_cutscene]
@@ -13692,7 +13692,7 @@ alwaysontop=yes
 turnspeed=0
 op1=Talk-to
 vislevel=1
-multivar=varbit_346
+multivar=golem_a
 multinpc=10,magic_carpet_seller5
 
 [magic_carpet_seller5]
@@ -13730,7 +13730,7 @@ readyanim=human_ready
 alwaysontop=yes
 op1=Talk-to
 vislevel=hide
-multivar=varbit_395
+multivar=ics_ent_open
 multinpc=1,magic_carpet_seller6
 
 [magic_carpet_seller6]
@@ -13773,7 +13773,7 @@ readyanim=human_ready
 alwaysontop=yes
 op1=Talk-to
 vislevel=hide
-multivar=varbit_395
+multivar=ics_ent_open
 multinpc=1,magic_carpet_seller7
 
 [magic_carpet_seller7]
@@ -13828,7 +13828,7 @@ readyanim=monkey_ready
 alwaysontop=yes
 vislevel=hide
 op1=Talk-to
-multivar=varbit_395
+multivar=ics_ent_open
 multinpc=1,magic_carpet_monkey
 
 [magic_carpet_multi_monkey2]
@@ -13838,7 +13838,7 @@ readyanim=monkey_ready
 alwaysontop=yes
 vislevel=hide
 op1=Talk-to
-multivar=varbit_346
+multivar=golem_a
 multinpc=10,magic_carpet_monkey
 
 [farming_shopkeeper_1]
@@ -15331,7 +15331,7 @@ desc=A gnomic inventor
 walkanim=midget_walk
 readyanim=midget_ready
 vislevel=hide
-multivar=varbit_799
+multivar=mourning_gnome
 multinpc=7,mourner_hideout_gnome_head
 multinpc=8,mourner_hideout_gnome_head
 multinpc=9,mourner_hideout_gnome_head
@@ -15432,7 +15432,7 @@ name=Eluned
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_797
+multivar=mourning_can_see_eluned
 multinpc=1,roving_female_woodelf_temp_1
 
 [roving_female_woodelf_temp_1]
@@ -15521,7 +15521,7 @@ name=secret_ghost1
 walkanim=human_secret_ghost_transwalk_f
 readyanim=human_secret_ghost_transready
 vislevel=1
-multivar=varbit_393
+multivar=fd_ladder_present
 multinpc=1,secret_ghost_explorer
 
 [secret_ghost2]
@@ -15529,7 +15529,7 @@ name=secret_ghost2
 walkanim=human_secret_ghost_transwalk_f
 readyanim=human_secret_ghost_transready
 vislevel=1
-multivar=varbit_393
+multivar=fd_ladder_present
 multinpc=1,secret_ghost_thief
 
 [secret_ghost3]
@@ -15537,7 +15537,7 @@ name=secret_ghost3
 walkanim=human_secret_ghost_transwalk_f
 readyanim=human_secret_ghost_transready
 vislevel=1
-multivar=varbit_393
+multivar=fd_ladder_present
 multinpc=1,secret_ghost_thief
 
 [secret_ghost4]
@@ -15545,7 +15545,7 @@ name=secret_ghost4
 walkanim=human_secret_ghost_transwalk_f
 readyanim=human_secret_ghost_transready
 vislevel=1
-multivar=varbit_393
+multivar=fd_ladder_present
 multinpc=1,secret_ghost_thief
 
 [secret_ghost5]
@@ -15553,7 +15553,7 @@ name=secret_ghost5
 walkanim=human_secret_ghost_transwalk_f
 readyanim=human_secret_ghost_transready
 vislevel=1
-multivar=varbit_393
+multivar=fd_ladder_present
 multinpc=1,secret_ghost_mage
 
 [secret_ghost6]
@@ -15561,7 +15561,7 @@ name=secret_ghost6
 walkanim=human_secret_ghost_transwalk_f
 readyanim=human_secret_ghost_transready
 vislevel=1
-multivar=varbit_393
+multivar=fd_ladder_present
 multinpc=1,secret_ghost_mage
 
 [secret_ghost7]
@@ -15569,7 +15569,7 @@ name=secret_ghost7
 walkanim=human_secret_ghost_transwalk_f
 readyanim=human_secret_ghost_transready
 vislevel=1
-multivar=varbit_393
+multivar=fd_ladder_present
 multinpc=1,secret_ghost_mage
 
 [secret_ghost8]
@@ -15577,7 +15577,7 @@ name=secret_ghost8
 walkanim=human_secret_ghost_transwalk_f
 readyanim=human_secret_ghost_transready
 vislevel=1
-multivar=varbit_393
+multivar=fd_ladder_present
 multinpc=1,secret_ghost_messenger
 
 [secret_ghost9]
@@ -15585,7 +15585,7 @@ name=secret_ghost9
 walkanim=human_secret_ghost_transwalk_f
 readyanim=human_secret_ghost_transready
 vislevel=1
-multivar=varbit_393
+multivar=fd_ladder_present
 multinpc=1,secret_ghost_messenger
 
 [secret_ghost10]
@@ -15593,7 +15593,7 @@ name=secret_ghost10
 walkanim=human_secret_ghost_transwalk_f
 readyanim=human_secret_ghost_transready
 vislevel=1
-multivar=varbit_393
+multivar=fd_ladder_present
 multinpc=1,secret_ghost_messenger
 
 [secret_ghost11]
@@ -15601,7 +15601,7 @@ name=secret_ghost11
 walkanim=human_secret_ghost_transwalk_f
 readyanim=human_secret_ghost_transready
 vislevel=1
-multivar=varbit_393
+multivar=fd_ladder_present
 multinpc=1,secret_ghost_spy
 
 [secret_ghost12]
@@ -15609,7 +15609,7 @@ name=secret_ghost12
 walkanim=human_secret_ghost_transwalk_f
 readyanim=human_secret_ghost_transready
 vislevel=1
-multivar=varbit_393
+multivar=fd_ladder_present
 multinpc=1,secret_ghost_spy
 
 [secret_ghost13]
@@ -15617,7 +15617,7 @@ name=secret_ghost13
 walkanim=human_secret_ghost_transwalk_f
 readyanim=human_secret_ghost_transready
 vislevel=1
-multivar=varbit_393
+multivar=fd_ladder_present
 multinpc=1,secret_ghost_spy
 
 [secret_ghost14]
@@ -15625,7 +15625,7 @@ name=secret_ghost14
 walkanim=human_secret_ghost_transwalk_f
 readyanim=human_secret_ghost_transready
 vislevel=1
-multivar=varbit_393
+multivar=fd_ladder_present
 multinpc=1,secret_ghost_swordsman
 
 [secret_ghost15]
@@ -15633,7 +15633,7 @@ name=secret_ghost15
 walkanim=human_secret_ghost_transwalk_f
 readyanim=human_secret_ghost_transready
 vislevel=1
-multivar=varbit_393
+multivar=fd_ladder_present
 multinpc=1,secret_ghost_swordsman
 
 [secret_ghost16]
@@ -15641,7 +15641,7 @@ name=secret_ghost16
 walkanim=human_secret_ghost_transwalk_f
 readyanim=human_secret_ghost_transready
 vislevel=1
-multivar=varbit_393
+multivar=fd_ladder_present
 multinpc=1,secret_ghost_swordsman
 
 [secret_ghost_thief]
@@ -15833,7 +15833,7 @@ desc=The head secretary of the Red Axe mining company.
 readyanim=dwarf_ready
 walkanim=dwarf_walk
 vislevel=hide
-multivar=varbit_582
+multivar=giantdwarf_red_axe_gone
 multinpc=0,dwarf_city_secretary_red_axe
 
 [dwarf_city_director_red_axe_multi]
@@ -15842,7 +15842,7 @@ desc=One of the leaders of the business Consortium, a ruler of Keldagrim.
 walkanim=dwarf_walk_walkingstick
 readyanim=dwarf_ready_walkingstick
 vislevel=hide
-multivar=varbit_582
+multivar=giantdwarf_red_axe_gone
 multinpc=0,dwarf_city_director_red_axe
 
 [dwarf_city_evil_cat_multi]
@@ -15852,7 +15852,7 @@ walkanim=cat_walk
 readyanim=cat_sleep_ready
 vislevel=hide
 turnspeed=0
-multivar=varbit_582
+multivar=giantdwarf_red_axe_gone
 multinpc=0,dwarf_city_evil_cat
 
 [dwarf_city_gnome_emissary_multi]
@@ -15861,7 +15861,7 @@ desc=Apparantly negotiating some business with the Red Axe.
 readyanim=midget_ready
 walkanim=midget_walk
 vislevel=hide
-multivar=varbit_582
+multivar=giantdwarf_red_axe_gone
 multinpc=0,dwarf_city_gnome_emissary
 
 [dwarf_city_gnome_female_emissary_multi]
@@ -15870,7 +15870,7 @@ desc=A gnome traveller, visiting Keldagrim.
 readyanim=midget_ready
 walkanim=midget_walk
 vislevel=hide
-multivar=varbit_582
+multivar=giantdwarf_red_axe_gone
 multinpc=0,dwarf_city_gnome_female_emissary
 
 [dwarf_city_gnome_male_emissary_multi]
@@ -15879,7 +15879,7 @@ desc=A gnome traveller, visiting Keldagrim.
 readyanim=midget_ready
 walkanim=midget_walk
 vislevel=hide
-multivar=varbit_582
+multivar=giantdwarf_red_axe_gone
 multinpc=0,dwarf_city_gnome_male_emissary
 
 [dwarf_city_train_conductor8]
@@ -16428,7 +16428,7 @@ name=viking_dagganoth_cave_ferryman_rellekka
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_staffready
 vislevel=1
-multivar=varbit_814
+multivar=dag_island_quick_travel
 multinpc=0,viking_dagganoth_cave_ferryman_1op
 multinpc=1,viking_dagganoth_cave_ferryman_island
 
@@ -17586,7 +17586,7 @@ desc=A local Tai Bwo Wannai Villager.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_892
+multivar=chat_sharimika
 multinpc=1,tbwcu_sharimika
 multinpc=2,tbwcu_sharimika_nosticks
 multinpc=3,tbwcu_sharimika_nosticks
@@ -17648,7 +17648,7 @@ desc=A local Tai Bwo Wannai Villager.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_892
+multivar=chat_sharimika
 multinpc=1,tbwcu_mamma_bufetta
 multinpc=2,tbwcu_mamma_bufetta_nosticks
 multinpc=3,tbwcu_mamma_bufetta_nosticks
@@ -17715,7 +17715,7 @@ name=tbwcu_layleen_multinpc
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_894
+multivar=chat_layleen
 multinpc=1,tbwcu_layleen
 multinpc=2,tbwcu_layleen_nosticks
 multinpc=3,tbwcu_layleen_nosticks
@@ -17774,7 +17774,7 @@ name=tbwcu_karaday_multinpc
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_895
+multivar=chat_karaday
 multinpc=1,tbwcu_karaday
 multinpc=2,tbwcu_karaday_nosticks
 multinpc=3,tbwcu_karaday_nosticks
@@ -17835,7 +17835,7 @@ name=tbwcu_safta_doc_multinpc
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_staffready
 vislevel=1
-multivar=varbit_896
+multivar=chat_safta
 multinpc=1,tbwcu_safta_doc
 multinpc=2,tbwcu_safta_doc_nosticks
 multinpc=3,tbwcu_safta_doc_nosticks
@@ -17908,7 +17908,7 @@ name=tbwcu_gabooty_multinpc
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_897
+multivar=chat_gabooty
 multinpc=1,tbwcu_gabooty
 multinpc=2,tbwcu_gabooty_nosticks
 multinpc=3,tbwcu_gabooty_nosticks
@@ -17981,7 +17981,7 @@ name=tbwcu_fanellaman_multinpc
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_staffready
 vislevel=1
-multivar=varbit_898
+multivar=chat_fanellaman
 multinpc=1,tbwcu_fanellaman
 multinpc=2,tbwcu_fanellaman_nosticks
 multinpc=3,tbwcu_fanellaman_nosticks
@@ -18056,7 +18056,7 @@ name=tbwcu_jagbakoba_multinpc
 walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halberdwalk_r
 readyanim=human_staffready
 vislevel=1
-multivar=varbit_899
+multivar=chat_jag
 multinpc=1,tbwcu_jagbakoba
 multinpc=2,tbwcu_jagbakoba_nosticks
 multinpc=3,tbwcu_jagbakoba_nosticks
@@ -18127,7 +18127,7 @@ name=tbwcu_murcaily_multinpc
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_staffready
 vislevel=1
-multivar=varbit_900
+multivar=chat_murc
 multinpc=1,tbwcu_murcaily
 multinpc=2,tbwcu_murcaily_nosticks
 multinpc=3,tbwcu_murcaily_nosticks
@@ -18204,7 +18204,7 @@ name=tbwcu_rionasta_multinpc
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_staffready
 vislevel=1
-multivar=varbit_901
+multivar=chat_rion
 multinpc=1,tbwcu_rionasta
 multinpc=2,tbwcu_rionasta_nosticks
 multinpc=3,tbwcu_rionasta_nosticks
@@ -19392,7 +19392,7 @@ name=garden_trolley
 walkanim=tranquillity_trolley_move_one_square
 alwaysontop=yes
 vislevel=1
-multivar=varbit_965
+multivar=garden_trolley_varbit
 multinpc=0,garden_trolley_empty
 multinpc=1,garden_trolley_saradomin
 multinpc=2,garden_trolley_king
@@ -20781,7 +20781,7 @@ walkanim=cat_walk
 readyanim=cat_ready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1028
+multivar=twocats_quest
 multinpc=60,ics_little_cat_visible
 multinpc=65,ics_little_cat_visible
 multinpc=70,ics_little_cat_visible
@@ -20806,7 +20806,7 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1032
+multivar=twocats_chores_tidyhuman
 multinpc=0,twocats_unferth_bald
 multinpc=1,twocats_unferth_shorthair
 multinpc=2,twocats_unferth_mediumhair
@@ -23137,7 +23137,7 @@ walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halbe
 readyanim=human_staffready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1065
+multivar=wanted_mission1
 multinpc=1,wanted_solus
 
 [wanted_solus2]
@@ -23147,7 +23147,7 @@ walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halbe
 readyanim=human_staffready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1067
+multivar=wanted_mission2
 multinpc=1,wanted_solus
 
 [wanted_solus3]
@@ -23157,7 +23157,7 @@ walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halbe
 readyanim=human_staffready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1069
+multivar=wanted_mission3
 multinpc=1,wanted_solus
 
 [wanted_solus4]
@@ -23167,7 +23167,7 @@ walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halbe
 readyanim=human_staffready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1071
+multivar=wanted_mission4
 multinpc=1,wanted_solus
 
 [wanted_solus5]
@@ -23177,7 +23177,7 @@ walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halbe
 readyanim=human_staffready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1073
+multivar=wanted_mission5
 multinpc=1,wanted_solus
 
 [wanted_solus6]
@@ -23187,7 +23187,7 @@ walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halbe
 readyanim=human_staffready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1075
+multivar=wanted_mission6
 multinpc=1,wanted_solus
 
 [wanted_solus7]
@@ -23197,7 +23197,7 @@ walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halbe
 readyanim=human_staffready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1077
+multivar=wanted_mission7
 multinpc=1,wanted_solus
 
 [wanted_solus8]
@@ -23207,7 +23207,7 @@ walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halbe
 readyanim=human_staffready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1079
+multivar=wanted_mission8
 multinpc=1,wanted_solus
 
 [wanted_solus9]
@@ -23217,7 +23217,7 @@ walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halbe
 readyanim=human_staffready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1081
+multivar=wanted_mission9
 multinpc=1,wanted_solus
 
 [wanted_solus10]
@@ -23227,7 +23227,7 @@ walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halbe
 readyanim=human_staffready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1083
+multivar=wanted_mission10
 multinpc=1,wanted_solus
 
 [wanted_solus11]
@@ -23237,7 +23237,7 @@ walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halbe
 readyanim=human_staffready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1085
+multivar=wanted_mission11
 multinpc=1,wanted_solus
 
 [wanted_solus12]
@@ -23247,7 +23247,7 @@ walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halbe
 readyanim=human_staffready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1087
+multivar=wanted_mission12
 multinpc=1,wanted_solus
 
 [wanted_solus13]
@@ -23257,7 +23257,7 @@ walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halbe
 readyanim=human_staffready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1089
+multivar=wanted_mission13
 multinpc=1,wanted_solus
 
 [wanted_solus14]
@@ -23267,7 +23267,7 @@ walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halbe
 readyanim=human_staffready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1091
+multivar=wanted_mission14
 multinpc=1,wanted_solus
 
 [wanted_solus15]
@@ -23277,7 +23277,7 @@ walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halbe
 readyanim=human_staffready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1093
+multivar=wanted_mission15
 multinpc=1,wanted_solus
 
 [wanted_solus16]
@@ -23287,7 +23287,7 @@ walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halbe
 readyanim=human_staffready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1095
+multivar=wanted_mission16
 multinpc=1,wanted_solus
 
 [wanted_solus17]
@@ -23297,7 +23297,7 @@ walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halbe
 readyanim=human_staffready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1097
+multivar=wanted_mission17
 multinpc=1,wanted_solus
 
 [wanted_solus18]
@@ -23307,7 +23307,7 @@ walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halbe
 readyanim=human_staffready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1099
+multivar=wanted_mission18
 multinpc=1,wanted_solus
 
 [wanted_solus19]
@@ -23317,7 +23317,7 @@ walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halbe
 readyanim=human_staffready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1101
+multivar=wanted_mission19
 multinpc=1,wanted_solus
 
 [wanted_solus_fake_woman]
@@ -23327,7 +23327,7 @@ walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halbe
 readyanim=human_staffready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1069
+multivar=wanted_mission3
 multinpc=1,wanted_solus_fake_woman_base_config
 
 [wanted_solus_fake_woman_base_config]
@@ -23608,7 +23608,7 @@ walkanim=dwarf_walk
 readyanim=dwarf_ready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1330
+multivar=mourning_light_door_1_c_first_time
 multinpc=1,mourning_deathalter_dwarf_vis
 
 [mourning_deathalter_dwarf_vis]
@@ -23753,7 +23753,7 @@ readyanim=drunk_player_ready
 op1=Talk-To
 op3=Sober-Up
 vislevel=48
-multivar=varbit_1344
+multivar=skippy_state
 multinpc=0,skippy
 multinpc=1,damp_skippy
 multinpc=2,hungover_skippy
@@ -24122,7 +24122,7 @@ size=2
 vislevel=hide
 walkanim=camel_walk
 readyanim=camel_ready
-multivar=varbit_1353
+multivar=desert_alkharid_alis_visible
 multinpc=0,camel
 multinpc=1,alice_the_camel
 
@@ -24174,7 +24174,7 @@ name=ali_the_smith_multinpc
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_1353
+multivar=desert_alkharid_alis_visible
 multinpc=1,ali_the_smith
 
 [ali_the_farmer_multinpc]
@@ -24182,7 +24182,7 @@ name=ali_the_farmer_multinpc
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_1353
+multivar=desert_alkharid_alis_visible
 multinpc=1,ali_the_farmer
 
 [ali_the_tailor_multinpc]
@@ -24190,7 +24190,7 @@ name=ali_the_tailor_multinpc
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_1353
+multivar=desert_alkharid_alis_visible
 multinpc=1,ali_the_tailor
 
 [ali_the_guard_multinpc]
@@ -24198,7 +24198,7 @@ name=ali_the_guard_multinpc
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_1353
+multivar=desert_alkharid_alis_visible
 multinpc=1,ali_the_guard
 
 [ali_the_smith]
@@ -26065,7 +26065,7 @@ name=agrith_reen_alkharid
 walkanim=walk_walkingstick,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_staffready
 vislevel=1
-multivar=varbit_1372
+multivar=agrith_quest
 multinpc=0,agrith_reen
 multinpc=10,agrith_reen
 multinpc=20,agrith_reen
@@ -26075,7 +26075,7 @@ name=agrith_reen_uzer
 walkanim=walk_walkingstick,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_staffready
 vislevel=1
-multivar=varbit_1382
+multivar=agrith_reen_uzer
 multinpc=1,agrith_reen
 
 [agrith_reen]
@@ -26149,7 +26149,7 @@ name=agrith_badden_uzer
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_1381
+multivar=agrith_badden_uzer
 multinpc=1,agrith_badden
 
 [agrith_badden]
@@ -26294,7 +26294,7 @@ name=agrith_dave_at_portal
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_1372
+multivar=agrith_quest
 multinpc=10,agrith_dave
 multinpc=20,agrith_dave
 multinpc=30,agrith_dave
@@ -26569,7 +26569,7 @@ walkanim=sand_storm_npc
 readyanim=sand_storm_npc
 size=3
 vislevel=1
-multivar=varbit_1372
+multivar=agrith_quest
 multinpc=90,agrith_sandy
 multinpc=100,agrith_sandy
 multinpc=110,agrith_sandy
@@ -26592,7 +26592,7 @@ name=agrith_dave_in_passage
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_1380
+multivar=agrith_convinced_dave
 multinpc=1,agrith_dave
 
 [agrith_dave_walking]
@@ -26600,7 +26600,7 @@ name=agrith_dave_walking
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_1380
+multivar=agrith_convinced_dave
 multinpc=2,agrith_dave
 
 [agrith_badden_walking]
@@ -26608,7 +26608,7 @@ name=agrith_badden_walking
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_1381
+multivar=agrith_badden_uzer
 multinpc=2,agrith_badden
 
 [agrith_reen_walking]
@@ -26616,7 +26616,7 @@ name=agrith_reen_walking
 walkanim=walk_walkingstick,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_staffready
 vislevel=1
-multivar=varbit_1382
+multivar=agrith_reen_uzer
 multinpc=2,agrith_reen
 
 [agrith_golem_walking]
@@ -26624,7 +26624,7 @@ name=agrith_golem_walking
 readyanim=clay_golem_ready
 walkanim=clay_golem_walk
 vislevel=1
-multivar=varbit_348
+multivar=golem_clay
 multinpc=5,golem_fixed_golem
 
 [agrith_golem_throneroom]
@@ -26656,14 +26656,14 @@ head1=npc_1908_head
 name=agrith_tanya_falling
 turnspeed=0
 vislevel=2
-multivar=varbit_1372
+multivar=agrith_quest
 multinpc=90,agrith_tanya
 
 [agrith_tanya_ghost]
 name=agrith_tanya_ghost
 readyanim=ghost_attack
 vislevel=hide
-multivar=varbit_1372
+multivar=agrith_quest
 multinpc=90,agrith_noncombat_ghost
 
 [agrith_noncombat_ghost]
@@ -26717,7 +26717,7 @@ desc=Sullen looking Ghost Woman.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=hide
-multivar=varbit_1387
+multivar=makinghistory_melina_pres
 multinpc=0,makinghistory_melina
 
 [makinghistory_melina_fade_npc]
@@ -26752,7 +26752,7 @@ desc=Not a happy ghost.
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=hide
-multivar=varbit_1388
+multivar=makinghistory_droalak_pres
 multinpc=0,makinghistory_droalak
 
 [makinghistory_droalak_fade_npc]
@@ -27683,7 +27683,7 @@ name=vc_partyrat_multi1
 readyanim=mouse_ready
 walkanim=mouse_walk
 vislevel=1
-multivar=varbit_1424
+multivar=vc_raton_off1
 multinpc=0,vc_party_rat
 
 [vc_partyrat_multi2]
@@ -27691,7 +27691,7 @@ name=vc_partyrat_multi2
 readyanim=mouse_ready
 walkanim=mouse_walk
 vislevel=1
-multivar=varbit_1425
+multivar=vc_raton_off2
 multinpc=0,vc_party_rat
 
 [vc_partyrat_multi3]
@@ -27699,7 +27699,7 @@ name=vc_partyrat_multi3
 readyanim=mouse_ready
 walkanim=mouse_walk
 vislevel=1
-multivar=varbit_1426
+multivar=vc_raton_off3
 multinpc=0,vc_party_rat
 
 [vc_partyrat_multi4]
@@ -27707,7 +27707,7 @@ name=vc_partyrat_multi4
 readyanim=mouse_ready
 walkanim=mouse_walk
 vislevel=1
-multivar=varbit_1427
+multivar=vc_raton_off4
 multinpc=0,vc_party_rat
 
 [vc_partyrat_multi5]
@@ -27715,7 +27715,7 @@ name=vc_partyrat_multi5
 readyanim=mouse_ready
 walkanim=mouse_walk
 vislevel=1
-multivar=varbit_1428
+multivar=vc_raton_off5
 multinpc=0,vc_party_rat
 
 [vc_partyrat_multi6]
@@ -27723,7 +27723,7 @@ name=vc_partyrat_multi6
 readyanim=mouse_ready
 walkanim=mouse_walk
 vislevel=1
-multivar=varbit_1429
+multivar=vc_raton_off6
 multinpc=0,vc_party_rat
 
 [vc_party_rat]
@@ -29233,7 +29233,7 @@ model1=npc_3048
 name=elid_ranging_target_multinpc
 turnspeed=0
 vislevel=1
-multivar=varbit_1451
+multivar=elid_rangingchannel
 multinpc=0,elid_ranging_target
 multinpc=1,elid_ranging_target_done
 
@@ -29654,7 +29654,7 @@ name=devious_monk_hooded
 walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 vislevel=1
-multivar=varbit_1467
+multivar=devious_monk
 multinpc=0,devious_monk_hooded_visable
 
 [devious_monk_hooded_visable]
@@ -29688,7 +29688,7 @@ name=devious_monk_dead
 size=2
 readyanim=devious_dead
 vislevel=1
-multivar=varbit_1467
+multivar=devious_monk
 multinpc=1,devious_monk_dead_visable
 
 [devious_monk_dead_visable]

@@ -79,7 +79,7 @@ protect=no
 
 [action_delay]
 
-[autocast_spell]
+[varp_59]
 scope=perm
 
 [goblinquest]

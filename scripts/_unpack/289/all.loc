@@ -505,7 +505,7 @@ retex1d=mossybricks
 sharelight=yes
 blockrange=no
 
-[loc_4909]
+[inviswall_no_blockrange]
 model=blank
 model2=loc_4909
 shadow=no

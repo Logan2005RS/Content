@@ -62,7 +62,7 @@ walkanim=human_walk_f,human_walk_b,human_walk_l,human_walk_r
 readyanim=human_ready
 alwaysontop=yes
 vislevel=1
-multivar=varbit_1036
+multivar=twocats_reldo
 multinpc=0,reldo_normal
 multinpc=1,reldo_withbook
 

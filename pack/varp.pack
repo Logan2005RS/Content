@@ -57,7 +57,7 @@
 56=com_attacksound
 57=com_maxhit
 58=action_delay
-59=autocast_spell
+59=varp_59
 60=sheepherderquest
 61=sheepherdervar
 62=goblinquest
@@ -407,7 +407,7 @@
 406=tutorial_progress_overlay
 407=varp_407
 408=ahoy_varbits_1
-409=varp_409
+409=ahoy_varbits_2
 410=varp_410
 411=varp_411
 412=varp_412
@@ -591,7 +591,7 @@
 590=mourning_quest_vert_beams5
 591=mourning_quest_beam_cross1
 592=mourning_quest_beam_cross2
-593=varp_593
+593=mourning_part2_basevar1
 594=mourning_part2_basevar2
 595=varp_595
 596=varp_596
