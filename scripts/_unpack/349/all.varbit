@@ -1,30 +1,30 @@
-[varbit_179]
-basevar=varp_396
+[waa_goalcounter]
+basevar=waa_varbits
 startbit=7
 endbit=11
 
-[varbit_180]
-basevar=varp_396
+[waa_playing_skullball]
+basevar=waa_varbits
 startbit=12
 endbit=12
 
-[varbit_181]
-basevar=varp_396
+[waa_nocdcounter]
+basevar=waa_varbits
 startbit=13
 endbit=16
 
-[varbit_182]
-basevar=varp_396
+[waa_balldirection]
+basevar=waa_varbits
 startbit=0
 endbit=2
 
-[varbit_183]
-basevar=varp_396
+[waa_ballcounter]
+basevar=waa_varbits
 startbit=3
 endbit=6
 
-[varbit_184]
-basevar=varp_396
+[waa_ballhitsgoal]
+basevar=waa_varbits
 startbit=17
 endbit=17
 
@@ -223,58 +223,58 @@ basevar=ahoy_varbits_2
 startbit=25
 endbit=27
 
-[varbit_224]
-basevar=varp_412
+[runedraw_runes_picked]
+basevar=runedraw_varp_1
 startbit=0
 endbit=9
 
-[varbit_225]
-basevar=varp_412
+[runedraw_runes_remaining]
+basevar=runedraw_varp_1
 startbit=10
 endbit=13
 
-[varbit_226]
-basevar=varp_412
+[runedraw_next_slot_right]
+basevar=runedraw_varp_1
 startbit=14
 endbit=17
 
-[varbit_227]
-basevar=varp_412
+[runedraw_next_slot_left]
+basevar=runedraw_varp_1
 startbit=18
 endbit=21
 
-[varbit_228]
-basevar=varp_412
+[runedraw_held_right]
+basevar=runedraw_varp_1
 startbit=22
 endbit=22
 
-[varbit_229]
-basevar=varp_412
+[runedraw_held_left]
+basevar=runedraw_varp_1
 startbit=23
 endbit=23
 
-[varbit_230]
-basevar=varp_413
+[runedraw_score_left]
+basevar=runedraw_varp_2
 startbit=0
 endbit=5
 
-[varbit_231]
-basevar=varp_413
+[runedraw_score_right]
+basevar=runedraw_varp_2
 startbit=6
 endbit=11
 
-[varbit_232]
-basevar=varp_413
+[runedraw_resigned]
+basevar=runedraw_varp_2
 startbit=25
 endbit=25
 
-[varbit_233]
-basevar=varp_413
+[runedraw_won_last_game]
+basevar=runedraw_varp_2
 startbit=26
 endbit=26
 
-[varbit_234]
-basevar=varp_413
+[runedraw_gameover]
+basevar=runedraw_varp_2
 startbit=27
 endbit=27
 
@@ -888,7 +888,7 @@ basevar=golem_quest
 startbit=18
 endbit=18
 
-[varbit_357]
+[zaros_spellbook]
 basevar=alternate_spells
 startbit=0
 endbit=0
@@ -1823,78 +1823,78 @@ basevar=cutscene_var
 startbit=1
 endbit=1
 
-[varbit_544]
-basevar=varp_467
+[keldagrim_company_brownengine]
+basevar=keldagrim_companies1
 startbit=0
 endbit=7
 
-[varbit_545]
-basevar=varp_467
+[keldagrim_company_greengemstone]
+basevar=keldagrim_companies1
 startbit=8
 endbit=15
 
-[varbit_546]
-basevar=varp_467
+[keldagrim_company_yellowfortune]
+basevar=keldagrim_companies1
 startbit=16
 endbit=23
 
-[varbit_547]
-basevar=varp_467
+[keldagrim_company_blueopal]
+basevar=keldagrim_companies1
 startbit=24
 endbit=31
 
-[varbit_548]
-basevar=varp_468
+[keldagrim_company_silvercog]
+basevar=keldagrim_companies2
 startbit=0
 endbit=7
 
-[varbit_549]
-basevar=varp_468
+[keldagrim_company_purplepewter]
+basevar=keldagrim_companies2
 startbit=8
 endbit=15
 
-[varbit_550]
-basevar=varp_468
+[keldagrim_company_whitechisel]
+basevar=keldagrim_companies2
 startbit=16
 endbit=23
 
-[varbit_551]
-basevar=varp_468
+[keldagrim_company_brownengine_introduced]
+basevar=keldagrim_companies2
 startbit=24
 endbit=24
 
-[varbit_552]
-basevar=varp_468
+[keldagrim_company_greengemstone_introduced]
+basevar=keldagrim_companies2
 startbit=25
 endbit=25
 
-[varbit_553]
-basevar=varp_468
+[keldagrim_company_yellowfortune_introduced]
+basevar=keldagrim_companies2
 startbit=26
 endbit=26
 
-[varbit_554]
-basevar=varp_468
+[keldagrim_company_blueopal_introduced]
+basevar=keldagrim_companies2
 startbit=27
 endbit=27
 
-[varbit_555]
-basevar=varp_468
+[keldagrim_company_silvercog_introduced]
+basevar=keldagrim_companies2
 startbit=28
 endbit=28
 
-[varbit_556]
-basevar=varp_468
+[keldagrim_company_purplepewter_introduced]
+basevar=keldagrim_companies2
 startbit=29
 endbit=29
 
-[varbit_557]
-basevar=varp_468
+[keldagrim_company_whitechisel_introduced]
+basevar=keldagrim_companies2
 startbit=30
 endbit=30
 
-[varbit_558]
-basevar=varp_468
+[keldagrim_companies_initialized]
+basevar=keldagrim_companies2
 startbit=31
 endbit=31
 
@@ -2029,22 +2029,22 @@ startbit=28
 endbit=28
 
 [varbit_585]
-basevar=varp_483
+basevar=giantdwarf_subquests
 startbit=0
 endbit=9
 
 [varbit_586]
-basevar=varp_483
+basevar=giantdwarf_subquests
 startbit=10
 endbit=19
 
 [varbit_587]
-basevar=varp_483
+basevar=giantdwarf_subquests
 startbit=20
 endbit=25
 
 [varbit_588]
-basevar=varp_483
+basevar=giantdwarf_subquests
 startbit=26
 endbit=31
 
@@ -2084,37 +2084,37 @@ startbit=17
 endbit=17
 
 [wom_task]
-basevar=varp_279
+basevar=awarded_points
 startbit=0
 endbit=5
 
 [wom_number]
-basevar=varp_279
+basevar=awarded_points
 startbit=6
 endbit=9
 
 [bolren_got_orbs]
-basevar=varp_279
+basevar=awarded_points
 startbit=10
 endbit=11
 
 [gnometracker_h]
-basevar=varp_279
+basevar=awarded_points
 startbit=12
 endbit=12
 
 [gnometracker_y]
-basevar=varp_279
+basevar=awarded_points
 startbit=13
 endbit=13
 
 [gnometracker_x]
-basevar=varp_279
+basevar=awarded_points
 startbit=14
 endbit=14
 
 [ballista]
-basevar=varp_279
+basevar=awarded_points
 startbit=15
 endbit=16
 
@@ -2304,12 +2304,12 @@ startbit=23
 endbit=23
 
 [roguesden_started]
-basevar=varp_495
+basevar=roguesden
 startbit=0
 endbit=0
 
 [roguesden_progress]
-basevar=varp_495
+basevar=roguesden
 startbit=1
 endbit=31
 
@@ -2709,7 +2709,7 @@ startbit=0
 endbit=5
 
 [spirit_tree_sarim_compost_varbit]
-basevar=varp_514
+basevar=farming_varp_13
 startbit=6
 endbit=7
 
@@ -2719,7 +2719,7 @@ startbit=8
 endbit=13
 
 [spirit_tree_etc_compost_varbit]
-basevar=varp_514
+basevar=farming_varp_13
 startbit=14
 endbit=15
 
@@ -2729,7 +2729,7 @@ startbit=16
 endbit=21
 
 [spirit_tree_brimhaven_compost_varbit]
-basevar=varp_514
+basevar=farming_varp_13
 startbit=22
 endbit=23
 
@@ -2804,247 +2804,247 @@ startbit=24
 endbit=31
 
 [farming_compost_bin_varbit_1]
-basevar=varp_511
+basevar=farming_varp_10
 startbit=0
 endbit=7
 
 [farming_compost_bin_varbit_2]
-basevar=varp_511
+basevar=farming_varp_10
 startbit=8
 endbit=15
 
 [farming_compost_bin_varbit_3]
-basevar=varp_511
+basevar=farming_varp_10
 startbit=16
 endbit=23
 
 [farming_compost_bin_varbit_4]
-basevar=varp_511
+basevar=farming_varp_10
 startbit=24
 endbit=31
 
 [farming_cactus_varbit]
-basevar=varp_512
+basevar=farming_varp_11
 startbit=0
 endbit=5
 
 [cactus_compost_varbit]
-basevar=varp_512
+basevar=farming_varp_11
 startbit=6
 endbit=7
 
 [farming_mushroom_varbit]
-basevar=varp_512
+basevar=farming_varp_11
 startbit=8
 endbit=13
 
 [mushroom_compost_varbit]
-basevar=varp_512
+basevar=farming_varp_11
 startbit=14
 endbit=15
 
 [farming_belladonna_varbit]
-basevar=varp_512
+basevar=farming_varp_11
 startbit=16
 endbit=21
 
 [belladonna_compost_varbit]
-basevar=varp_512
+basevar=farming_varp_11
 startbit=22
 endbit=23
 
 [farming_growth_counter]
-basevar=varp_512
+basevar=farming_varp_11
 startbit=24
 endbit=31
 
-[varbit_751]
-basevar=varp_513
+[farming_compost_varbit_veg_1]
+basevar=farming_varp_12
 startbit=0
 endbit=1
 
-[varbit_752]
-basevar=varp_513
+[farming_compost_varbit_veg_2]
+basevar=farming_varp_12
 startbit=2
 endbit=3
 
-[varbit_753]
-basevar=varp_513
+[farming_compost_varbit_veg_3]
+basevar=farming_varp_12
 startbit=4
 endbit=5
 
-[varbit_754]
-basevar=varp_513
+[farming_compost_varbit_veg_4]
+basevar=farming_varp_12
 startbit=6
 endbit=7
 
-[varbit_755]
-basevar=varp_513
+[farming_compost_varbit_veg_5]
+basevar=farming_varp_12
 startbit=8
 endbit=9
 
-[varbit_756]
-basevar=varp_513
+[farming_compost_varbit_veg_6]
+basevar=farming_varp_12
 startbit=10
 endbit=11
 
-[varbit_757]
-basevar=varp_513
+[farming_compost_varbit_veg_7]
+basevar=farming_varp_12
 startbit=12
 endbit=13
 
-[varbit_758]
-basevar=varp_513
+[farming_compost_varbit_veg_8]
+basevar=farming_varp_12
 startbit=14
 endbit=15
 
-[varbit_759]
-basevar=varp_513
+[farming_compost_varbit_hops_1]
+basevar=farming_varp_12
 startbit=16
 endbit=17
 
-[varbit_760]
-basevar=varp_513
+[farming_compost_varbit_hops_2]
+basevar=farming_varp_12
 startbit=18
 endbit=19
 
-[varbit_761]
-basevar=varp_513
+[farming_compost_varbit_hops_3]
+basevar=farming_varp_12
 startbit=20
 endbit=21
 
-[varbit_762]
-basevar=varp_513
+[farming_compost_varbit_hops_4]
+basevar=farming_varp_12
 startbit=22
 endbit=23
 
-[varbit_763]
-basevar=varp_513
+[farming_compost_varbit_flower_1]
+basevar=farming_varp_12
 startbit=24
 endbit=25
 
-[varbit_764]
-basevar=varp_513
+[farming_compost_varbit_flower_2]
+basevar=farming_varp_12
 startbit=26
 endbit=27
 
-[varbit_765]
-basevar=varp_513
+[farming_compost_varbit_flower_3]
+basevar=farming_varp_12
 startbit=28
 endbit=29
 
-[varbit_766]
-basevar=varp_513
+[farming_compost_varbit_flower_4]
+basevar=farming_varp_12
 startbit=30
 endbit=31
 
-[varbit_767]
-basevar=varp_514
+[farming_compost_varbit_tree_1]
+basevar=farming_varp_13
 startbit=0
 endbit=1
 
-[varbit_768]
-basevar=varp_514
+[farming_compost_varbit_tree_2]
+basevar=farming_varp_13
 startbit=2
 endbit=3
 
-[varbit_769]
-basevar=varp_514
+[farming_compost_varbit_tree_3]
+basevar=farming_varp_13
 startbit=4
 endbit=5
 
-[varbit_770]
-basevar=varp_514
+[farming_compost_varbit_tree_4]
+basevar=farming_varp_13
 startbit=6
 endbit=7
 
-[varbit_771]
-basevar=varp_514
+[farming_compost_varbit_fruit_tree_1]
+basevar=farming_varp_13
 startbit=8
 endbit=9
 
-[varbit_772]
-basevar=varp_514
+[farming_compost_varbit_fruit_tree_2]
+basevar=farming_varp_13
 startbit=10
 endbit=11
 
-[varbit_773]
-basevar=varp_514
+[farming_compost_varbit_fruit_tree_3]
+basevar=farming_varp_13
 startbit=12
 endbit=13
 
-[varbit_774]
-basevar=varp_514
+[farming_compost_varbit_fruit_tree_4]
+basevar=farming_varp_13
 startbit=14
 endbit=15
 
-[varbit_775]
-basevar=varp_514
+[farming_compost_varbit_bush_1]
+basevar=farming_varp_13
 startbit=16
 endbit=17
 
-[varbit_776]
-basevar=varp_514
+[farming_compost_varbit_bush_2]
+basevar=farming_varp_13
 startbit=18
 endbit=19
 
-[varbit_777]
-basevar=varp_514
+[farming_compost_varbit_bush_3]
+basevar=farming_varp_13
 startbit=20
 endbit=21
 
-[varbit_778]
-basevar=varp_514
+[farming_compost_varbit_bush_4]
+basevar=farming_varp_13
 startbit=22
 endbit=23
 
-[varbit_779]
-basevar=varp_514
+[farming_nature_amulet_patch]
+basevar=farming_varp_13
 startbit=24
 endbit=31
 
-[varbit_780]
-basevar=varp_515
+[farming_herb_varbit_1]
+basevar=farming_varp_14
 startbit=0
 endbit=7
 
-[varbit_781]
-basevar=varp_515
+[farming_herb_varbit_2]
+basevar=farming_varp_14
 startbit=8
 endbit=15
 
-[varbit_782]
-basevar=varp_515
+[farming_herb_varbit_3]
+basevar=farming_varp_14
 startbit=16
 endbit=23
 
-[varbit_783]
-basevar=varp_515
+[farming_herb_varbit_4]
+basevar=farming_varp_14
 startbit=24
 endbit=31
 
-[varbit_784]
-basevar=varp_516
+[farming_gardener_varbit]
+basevar=farming_varp_15
 startbit=0
 endbit=23
 
-[varbit_785]
-basevar=varp_516
+[farming_compost_varbit_herb_1]
+basevar=farming_varp_15
 startbit=24
 endbit=25
 
-[varbit_786]
-basevar=varp_516
+[farming_compost_varbit_herb_2]
+basevar=farming_varp_15
 startbit=26
 endbit=27
 
-[varbit_787]
-basevar=varp_516
+[farming_compost_varbit_herb_3]
+basevar=farming_varp_15
 startbit=28
 endbit=29
 
-[varbit_788]
-basevar=varp_516
+[farming_compost_varbit_herb_4]
+basevar=farming_varp_15
 startbit=30
 endbit=31
 
@@ -3458,18 +3458,18 @@ basevar=forget_puzzle_var2
 startbit=29
 endbit=29
 
-[varbit_871]
+[farming_old_patch_state]
 basevar=farming_state_temp_3
 startbit=0
 endbit=7
 
-[varbit_872]
-basevar=varp_530
+[macro_evil_bob_exposition]
+basevar=macro_evil_bob_var
 startbit=0
 endbit=5
 
-[varbit_873]
-basevar=varp_530
+[macro_evil_bob_trigger]
+basevar=macro_evil_bob_var
 startbit=6
 endbit=10
 
@@ -3513,18 +3513,18 @@ basevar=xplamp
 startbit=24
 endbit=31
 
-[varbit_882]
-basevar=varp_530
+[macro_evil_bob_attention]
+basevar=macro_evil_bob_var
 startbit=11
 endbit=16
 
-[varbit_883]
-basevar=varp_530
+[macro_evil_bob_spotchosen]
+basevar=macro_evil_bob_var
 startbit=17
 endbit=17
 
-[varbit_884]
-basevar=varp_530
+[macro_evil_bob_fishlocation]
+basevar=macro_evil_bob_var
 startbit=18
 endbit=22
 
@@ -3778,8 +3778,8 @@ basevar=rogue_suduku1
 startbit=10
 endbit=15
 
-[varbit_935]
-basevar=varp_542
+[blast_furnace_pumping]
+basevar=blast_furnace
 startbit=0
 endbit=0
 
@@ -3904,7 +3904,7 @@ startbit=16
 endbit=23
 
 [wom_bankjob]
-basevar=varp_279
+basevar=awarded_points
 startbit=17
 endbit=20
 
@@ -4048,28 +4048,28 @@ basevar=garden_varp_2
 startbit=28
 endbit=30
 
-[varbit_989]
-basevar=varp_555
+[garden_quiz_total]
+basevar=garden_varp_temp
 startbit=0
 endbit=7
 
-[varbit_990]
-basevar=varp_555
+[garden_quiz_count]
+basevar=garden_varp_temp
 startbit=8
 endbit=10
 
-[varbit_991]
-basevar=varp_555
+[garden_quiz_score_a]
+basevar=garden_varp_temp
 startbit=11
 endbit=12
 
-[varbit_992]
-basevar=varp_555
+[garden_quiz_score_b]
+basevar=garden_varp_temp
 startbit=13
 endbit=14
 
-[varbit_993]
-basevar=varp_555
+[garden_quiz_score_c]
+basevar=garden_varp_temp
 startbit=15
 endbit=16
 
@@ -4088,158 +4088,158 @@ basevar=tzhaar_temp
 startbit=4
 endbit=4
 
-[varbit_997]
-basevar=varp_562
+[bankpin_a]
+basevar=bankpin_1
 startbit=0
 endbit=3
 
-[varbit_998]
-basevar=varp_562
+[bankpin_b]
+basevar=bankpin_1
 startbit=4
 endbit=7
 
-[varbit_999]
-basevar=varp_562
+[bankpin_c]
+basevar=bankpin_1
 startbit=8
 endbit=11
 
-[varbit_1000]
-basevar=varp_562
+[bankpin_d]
+basevar=bankpin_1
 startbit=12
 endbit=15
 
-[varbit_1001]
-basevar=varp_562
+[bankpin_e]
+basevar=bankpin_1
 startbit=16
 endbit=19
 
-[varbit_1002]
-basevar=varp_562
+[bankpin_f]
+basevar=bankpin_1
 startbit=20
 endbit=23
 
-[varbit_1003]
-basevar=varp_562
+[bankpin_g]
+basevar=bankpin_1
 startbit=24
 endbit=27
 
-[varbit_1004]
-basevar=varp_562
+[bankpin_h]
+basevar=bankpin_1
 startbit=28
 endbit=31
 
-[varbit_1005]
-basevar=varp_563
+[bankpin_i]
+basevar=bankpin_2
 startbit=0
 endbit=3
 
-[varbit_1006]
-basevar=varp_563
+[bankpin_j]
+basevar=bankpin_2
 startbit=4
 endbit=7
 
-[varbit_1007]
-basevar=varp_563
+[bankpin_guess]
+basevar=bankpin_2
 startbit=8
 endbit=21
 
-[varbit_1008]
-basevar=varp_563
+[bankpin_unlocked]
+basevar=bankpin_2
 startbit=22
 endbit=22
 
-[varbit_1009]
-basevar=varp_563
+[bankpin_counter]
+basevar=bankpin_2
 startbit=23
 endbit=25
 
 [varbit_1010]
-basevar=varp_563
+basevar=bankpin_2
 startbit=26
 endbit=28
 
 [varbit_1011]
-basevar=varp_563
+basevar=bankpin_2
 startbit=29
 endbit=30
 
-[varbit_1012]
-basevar=varp_536
+[bankpin_true]
+basevar=villrand
 startbit=0
 endbit=13
 
-[varbit_1013]
-basevar=varp_536
+[bankpin_next]
+basevar=villrand
 startbit=14
 endbit=27
 
-[varbit_1014]
-basevar=varp_536
+[bankpin_status]
+basevar=villrand
 startbit=28
 endbit=29
 
-[varbit_1015]
-basevar=varp_536
+[bankpin_delay]
+basevar=villrand
 startbit=30
 endbit=30
 
-[varbit_1016]
-basevar=varp_528
+[farming_protection_start]
+basevar=farming_state_temp_2
 startbit=8
 endbit=15
 
-[varbit_1017]
-basevar=varp_528
+[farming_protection_end]
+basevar=farming_state_temp_2
 startbit=0
 endbit=7
 
-[varbit_1018]
-basevar=varp_566
+[farming_growth_probability]
+basevar=farming_growth_data
 startbit=0
 endbit=6
 
-[varbit_1019]
-basevar=varp_566
+[farming_growth_offset_success]
+basevar=farming_growth_data
 startbit=7
 endbit=14
 
-[varbit_1020]
-basevar=varp_566
+[farming_growth_offset_failure]
+basevar=farming_growth_data
 startbit=15
 endbit=22
 
-[varbit_1021]
-basevar=varp_566
+[farming_growth_state_type]
+basevar=farming_growth_data
 startbit=23
 endbit=28
 
-[varbit_1022]
-basevar=varp_566
+[farming_growth_multiplier]
+basevar=farming_growth_data
 startbit=29
 endbit=31
 
-[varbit_1023]
-basevar=varp_566
+[brewing_state_valid]
+basevar=farming_growth_data
 startbit=0
 endbit=0
 
-[varbit_1024]
-basevar=varp_566
+[brewing_multiplier]
+basevar=farming_growth_data
 startbit=1
 endbit=7
 
-[varbit_1025]
-basevar=varp_566
+[brewing_offset_failure_2]
+basevar=farming_growth_data
 startbit=8
 endbit=15
 
-[varbit_1026]
-basevar=varp_566
+[brewing_offset_failure_1]
+basevar=farming_growth_data
 startbit=16
 endbit=23
 
-[varbit_1027]
-basevar=varp_566
+[brewing_offset_success]
+basevar=farming_growth_data
 startbit=24
 endbit=31
 
@@ -4288,68 +4288,68 @@ basevar=twocats_varbit
 startbit=26
 endbit=26
 
-[varbit_1037]
-basevar=dragon_shield
+[cat_activitylvl]
+basevar=cat_colour
 startbit=0
 endbit=2
 
-[varbit_1038]
-basevar=dragon_shield
+[cat_recentkills]
+basevar=cat_colour
 startbit=3
 endbit=7
 
-[varbit_1039]
-basevar=dragon_shield
+[cat_lastgonehunting]
+basevar=cat_colour
 startbit=8
 endbit=12
 
-[varbit_1040]
-basevar=dragon_shield
+[cat_mousetotal]
+basevar=cat_colour
 startbit=13
 endbit=21
 
-[varbit_1041]
-basevar=dragon_shield
+[cat_stroke]
+basevar=cat_colour
 startbit=22
 endbit=29
 
-[varbit_1042]
-basevar=dragon_shield
+[cat_mood]
+basevar=cat_colour
 startbit=30
 endbit=31
 
-[varbit_1043]
-basevar=varp_569
+[cat_namevar_lettr_1]
+basevar=cat_name
 startbit=0
 endbit=4
 
-[varbit_1044]
-basevar=varp_569
+[cat_namevar_lettr_2]
+basevar=cat_name
 startbit=5
 endbit=9
 
-[varbit_1045]
-basevar=varp_569
+[cat_namevar_lettr_3]
+basevar=cat_name
 startbit=10
 endbit=14
 
-[varbit_1046]
-basevar=varp_569
+[cat_namevar_lettr_4]
+basevar=cat_name
 startbit=15
 endbit=19
 
-[varbit_1047]
-basevar=varp_569
+[cat_namevar_lettr_5]
+basevar=cat_name
 startbit=20
 endbit=24
 
-[varbit_1048]
-basevar=varp_569
+[cat_namevar_lettr_6]
+basevar=cat_name
 startbit=25
 endbit=29
 
-[varbit_1049]
-basevar=varp_569
+[cat_namevar_set]
+basevar=cat_name
 startbit=30
 endbit=30
 
@@ -4694,157 +4694,157 @@ startbit=31
 endbit=31
 
 [mourning_pillar_1_1]
-basevar=varp_575
+basevar=mourning_quest_pillers0
 startbit=0
 endbit=3
 
 [mourning_pillar_1_3]
-basevar=varp_575
+basevar=mourning_quest_pillers0
 startbit=4
 endbit=7
 
 [mourning_pillar_1_6]
-basevar=varp_575
+basevar=mourning_quest_pillers0
 startbit=8
 endbit=11
 
 [mourning_pillar_1_7]
-basevar=varp_575
+basevar=mourning_quest_pillers0
 startbit=12
 endbit=15
 
 [mourning_pillar_1_10]
-basevar=varp_575
+basevar=mourning_quest_pillers0
 startbit=16
 endbit=19
 
 [mourning_pillar_1_11]
-basevar=varp_575
+basevar=mourning_quest_pillers0
 startbit=20
 endbit=23
 
 [mourning_pillar_1_12]
-basevar=varp_575
+basevar=mourning_quest_pillers0
 startbit=24
 endbit=27
 
 [mourning_pillar_1_13]
-basevar=varp_575
+basevar=mourning_quest_pillers0
 startbit=28
 endbit=31
 
 [mourning_pillar_1_14]
-basevar=varp_576
+basevar=mourning_quest_pillers1
 startbit=0
 endbit=3
 
 [mourning_pillar_1_16]
-basevar=varp_576
+basevar=mourning_quest_pillers1
 startbit=4
 endbit=7
 
 [mourning_pillar_2_2]
-basevar=varp_576
+basevar=mourning_quest_pillers1
 startbit=8
 endbit=11
 
 [mourning_pillar_2_3]
-basevar=varp_576
+basevar=mourning_quest_pillers1
 startbit=12
 endbit=15
 
 [mourning_pillar_2_5]
-basevar=varp_576
+basevar=mourning_quest_pillers1
 startbit=16
 endbit=19
 
 [mourning_pillar_2_6]
-basevar=varp_576
+basevar=mourning_quest_pillers1
 startbit=20
 endbit=23
 
 [mourning_pillar_2_7]
-basevar=varp_576
+basevar=mourning_quest_pillers1
 startbit=24
 endbit=27
 
 [mourning_pillar_2_9]
-basevar=varp_576
+basevar=mourning_quest_pillers1
 startbit=28
 endbit=31
 
 [mourning_pillar_2_11]
-basevar=varp_577
+basevar=mourning_quest_pillers2
 startbit=0
 endbit=3
 
 [mourning_pillar_2_15]
-basevar=varp_577
+basevar=mourning_quest_pillers2
 startbit=4
 endbit=7
 
 [mourning_pillar_2_16]
-basevar=varp_577
+basevar=mourning_quest_pillers2
 startbit=8
 endbit=11
 
 [mourning_pillar_3_1]
-basevar=varp_577
+basevar=mourning_quest_pillers2
 startbit=12
 endbit=15
 
 [mourning_pillar_3_3]
-basevar=varp_577
+basevar=mourning_quest_pillers2
 startbit=16
 endbit=19
 
 [mourning_pillar_3_5]
-basevar=varp_577
+basevar=mourning_quest_pillers2
 startbit=20
 endbit=23
 
 [mourning_pillar_3_6]
-basevar=varp_577
+basevar=mourning_quest_pillers2
 startbit=24
 endbit=27
 
 [mourning_pillar_3_8]
-basevar=varp_577
+basevar=mourning_quest_pillers2
 startbit=28
 endbit=31
 
 [mourning_pillar_3_10]
-basevar=varp_578
+basevar=mourning_quest_pillers3
 startbit=0
 endbit=3
 
 [mourning_pillar_3_11]
-basevar=varp_578
+basevar=mourning_quest_pillers3
 startbit=4
 endbit=7
 
 [mourning_pillar_3_12]
-basevar=varp_578
+basevar=mourning_quest_pillers3
 startbit=8
 endbit=11
 
 [mourning_pillar_3_13]
-basevar=varp_578
+basevar=mourning_quest_pillers3
 startbit=12
 endbit=15
 
 [mourning_pillar_3_15]
-basevar=varp_578
+basevar=mourning_quest_pillers3
 startbit=16
 endbit=19
 
 [mourning_pillar_3_16]
-basevar=varp_578
+basevar=mourning_quest_pillers3
 startbit=20
 endbit=23
 
 [mourning_pillar_1_b]
-basevar=varp_578
+basevar=mourning_quest_pillers3
 startbit=24
 endbit=24
 
@@ -5773,7 +5773,7 @@ basevar=xplamp
 startbit=4
 endbit=7
 
-[rightclick_report_abuse_disabled]
+[varbit_1334]
 basevar=xplamp
 startbit=8
 endbit=8
@@ -6048,7 +6048,7 @@ basevar=makinghistory
 startbit=14
 endbit=14
 
-[varbit_1389]
+[makinghistory_minikeynxt]
 basevar=makinghistory
 startbit=15
 endbit=19
@@ -6064,12 +6064,12 @@ startbit=21
 endbit=31
 
 [varbit_1392]
-basevar=varp_605
+basevar=makinghistory2
 startbit=0
 endbit=0
 
 [varbit_1393]
-basevar=varp_605
+basevar=makinghistory2
 startbit=1
 endbit=12
 
@@ -6253,28 +6253,28 @@ basevar=ratcatch_var_multi
 startbit=12
 endbit=12
 
-[varbit_1430]
-basevar=varp_612
+[ratpits_arena]
+basevar=ratpits_var
 startbit=0
 endbit=3
 
-[varbit_1431]
-basevar=varp_612
+[ratpits_kills]
+basevar=ratpits_var
 startbit=4
 endbit=10
 
-[varbit_1432]
-basevar=varp_612
+[ratpits_wager]
+basevar=ratpits_var
 startbit=11
 endbit=27
 
-[varbit_1433]
-basevar=varp_612
+[ratpits_infightflag]
+basevar=ratpits_var
 startbit=28
 endbit=28
 
-[varbit_1434]
-basevar=varp_612
+[ratpits_tactics]
+basevar=ratpits_var
 startbit=29
 endbit=31
 
@@ -6419,12 +6419,12 @@ startbit=10
 endbit=10
 
 [spectator_toplevel_enabled]
-basevar=varp_618
+basevar=champions_varbit
 startbit=0
 endbit=0
 
 [varbit_1464]
-basevar=varp_618
+basevar=champions_varbit
 startbit=1
 endbit=10
 
@@ -6524,6 +6524,6 @@ startbit=27
 endbit=29
 
 [farming_bugtracker]
-basevar=varp_279
+basevar=awarded_points
 startbit=21
 endbit=21
