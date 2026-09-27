@@ -2,7 +2,7 @@
 
 [slayer_target]
 
-[varp_396]
+[waa_varbits]
 
 [varp_397]
 
@@ -34,9 +34,9 @@
 
 [varp_411]
 
-[varp_412]
+[runedraw_varp_1]
 
-[varp_413]
+[runedraw_varp_2]
 
 [musicmulti_10]
 
@@ -46,7 +46,7 @@
 
 [onesmallfavourmulti]
 
-[varp_418]
+[favour_keyring]
 
 [varp_419]
 
@@ -144,9 +144,9 @@
 
 [cutscene_var]
 
-[varp_467]
+[keldagrim_companies1]
 
-[varp_468]
+[keldagrim_companies2]
 
 [varp_469]
 
@@ -176,7 +176,7 @@
 
 [giantdwarf_main]
 
-[varp_483]
+[giantdwarf_subquests]
 
 [varp_484]
 
@@ -200,7 +200,7 @@
 
 [varp_494]
 
-[varp_495]
+[roguesden]
 
 [recruitmentdrive]
 
@@ -232,17 +232,17 @@
 
 [farming_varp_9]
 
-[varp_511]
+[farming_varp_10]
 
-[varp_512]
+[farming_varp_11]
 
-[varp_513]
+[farming_varp_12]
 
-[varp_514]
+[farming_varp_13]
 
-[varp_515]
+[farming_varp_14]
 
-[varp_516]
+[farming_varp_15]
 
 [mourning_quest]
 
@@ -264,13 +264,13 @@
 
 [varp_526]
 
-[varp_527]
+[farming_state_temp]
 
-[varp_528]
+[farming_state_temp_2]
 
 [farming_state_temp_3]
 
-[varp_530]
+[macro_evil_bob_var]
 
 [macro_transmit]
 
@@ -282,7 +282,7 @@
 
 [tbw_cleanup_temp]
 
-[varp_536]
+[villrand]
 
 [varp_537]
 
@@ -294,11 +294,11 @@
 
 [rogue_suduku1]
 
-[varp_542]
+[blast_furnace]
 
 [blast_furnace_readings]
 
-[varp_544]
+[blast_furnace_ore_on_conveyor]
 
 [blast_furnace_1]
 
@@ -320,7 +320,7 @@
 
 [garden_varp_2]
 
-[varp_555]
+[garden_varp_temp]
 
 [varp_556]
 
@@ -334,21 +334,21 @@
 
 [tzhaar_temp]
 
-[varp_562]
+[bankpin_1]
 
-[varp_563]
+[bankpin_2]
 
 [varp_564]
 
 [varp_565]
 
-[varp_566]
+[farming_growth_data]
 
 [varp_567]
 
 [twocats_varbit]
 
-[varp_569]
+[cat_name]
 
 [varp_570]
 
@@ -356,17 +356,17 @@
 
 [quest_wanted2]
 
-[varp_573]
+[white_knight_kill_tally]
 
 [mourning_quest_part2]
 
-[varp_575]
+[mourning_quest_pillers0]
 
-[varp_576]
+[mourning_quest_pillers1]
 
-[varp_577]
+[mourning_quest_pillers2]
 
-[varp_578]
+[mourning_quest_pillers3]
 
 [mourning_quest_light_doors]
 
@@ -416,11 +416,11 @@
 
 [agrith_quest_varp]
 
-[varp_603]
+[agrith_region]
 
 [makinghistory]
 
-[varp_605]
+[makinghistory2]
 
 [varp_606]
 
@@ -434,7 +434,7 @@
 
 [ratcatch_var_temp2]
 
-[varp_612]
+[ratpits_var]
 
 [varp_613]
 
@@ -446,13 +446,13 @@
 
 [champions_defeated]
 
-[varp_618]
+[champions_varbit]
 
 [varp_619]
 
-[varp_620]
+[champions_xp_hitpoints]
 
-[varp_621]
+[champions_xp_slayer]
 
 [devious_base]
 
