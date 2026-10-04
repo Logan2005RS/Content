@@ -22,3 +22,6 @@ if (finduid(%npc_aggressive_player) = true) {
 npc_anim(npc_param(death_anim), 0);
 npc_delay(1); // osrs has an extra tick of delay here. I think this delay can vary from npc to npc
 npc_del;
+if (npc_findhero = ^true) {
+    ~champions_scroll_drop;
+}

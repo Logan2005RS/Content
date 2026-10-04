@@ -17,6 +17,9 @@ if (db_getfield($data, prayers:members, 0) = ^true & map_members = ^false) {
 if (~duel_arena_prayer_check = false) {
     return(false);
 }
+if (~champions_prayer_check = false) {
+    return(false);
+}
 return(true);
 
 [proc,prayer_activate](dbrow $data)

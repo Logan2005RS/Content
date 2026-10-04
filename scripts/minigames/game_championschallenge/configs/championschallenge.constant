@@ -1,0 +1,25 @@
+^champion_none = 0
+^champion_earthwarrior = 1
+^champion_ghoul = 2
+^champion_giant = 3
+^champion_goblin = 4
+^champion_hobgoblin = 5
+^champion_imp = 6
+^champion_jogre = 7
+^champion_lesserdemon = 8
+^champion_skeleton = 9
+^champion_zombie = 10
+
+^champions_required_qp = 32
+^champions_scroll_chance = 5000
+^champions_champion_duration = 288
+
+^champions_spawn_coord = 0_49_152_34_30
+^champions_arena_coord = 0_49_152_44_30
+^champions_corridor_coord = 0_49_152_46_30
+^champions_portcullis_x = 45
+^champions_basement_statue_coord = 0_49_152_49_30
+^champions_basement_ladder_coord = 0_49_152_54_29
+^champions_guild_trapdoor_coord = 0_49_52_54_28
+
+^champions_goblin_maxhit = 4

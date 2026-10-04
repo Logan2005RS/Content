@@ -4,6 +4,9 @@ p_stopaction;
 if (~npc_is_attackable() = false) {
     return;
 }
+if (~champions_attack_check(^melee_style) = false) {
+    return;
+}
 
 if (%action_delay > map_clock) {
     p_opnpc(2); // it is guaranteed here that we are already within op distance

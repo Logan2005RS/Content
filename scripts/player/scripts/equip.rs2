@@ -16,6 +16,9 @@ if (p_finduid(uid) = true) {
     if (~duel_arena_flower_power_equip_check($obj) = false) {
         return;
     }
+    if (~champions_equip_check($obj) = false) {
+        return;
+    }
     // might be rework behaviour, hard to confirm
     if(inzone(0_51_147_0_0, 0_51_147_19_63, coord) = true) {
         if(npc_find(coord, desertminingmercenary2, 4, 2) = true | npc_find(coord, desertminingmercenary1, 4, 2) = true) {

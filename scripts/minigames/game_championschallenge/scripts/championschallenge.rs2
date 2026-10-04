@@ -1,0 +1,180 @@
+[opnpc1,champions_doorman]
+~chatnpc("<p,neutral>Is there something I can help you with?");
+switch_int (~p_choice3("I was given a challenge, what now?", 1, "What is this place?", 2, "Nothing thanks.", 3)) {
+    case 1 :
+        ~chatplayer("<p,neutral>I was given a challenge, what now?");
+        ~chatnpc("<p,neutral>Well pass it here and we'll get you started.");
+    case 2 :
+        ~chatplayer("<p,neutral>What is this place?");
+        ~chatnpc("<p,neutral>This is the champions' arena. The champions of various races use it to duel those they deem worthy of the honour. If you find a challenge scroll in your travels, bring it here to face your challenger.");
+    case 3 :
+        ~chatplayer("<p,neutral>Nothing thanks.");
+}
+
+[opnpcu,champions_doorman]
+def_int $champion = ~champions_scroll_champion(last_useitem);
+if ($champion = ^champion_none) {
+    ~displaymessage(^dm_default);
+    return;
+}
+~chatnpc("<p,neutral>So you want to accept the challenge huh? Well there are some specific rules for these Champion fights. For this fight you're <~champions_rule($champion)>. Do you still want to proceed?");
+if (~p_choice2("Yes, let me at him!", 1, "No thanks, I'll pass.", 2) = 2) {
+    ~chatplayer("<p,neutral>No thanks, I'll pass.");
+    return;
+}
+~chatplayer("<p,neutral>Yes, let me at him!");
+%champions_varbit = $champion;
+~chatnpc("<p,neutral>Your challenger is ready, please go down through the trapdoor when you're ready.");
+
+[oploc1,champions_trap_door_closed]
+mes("The trapdoor opens...");
+sound_synth(door_open, 1, 0);
+loc_change(champions_trap_door_open, 100);
+
+[oploc1,champions_trap_door_open]
+p_arrivedelay;
+mes("You climb down through the trapdoor...");
+~climb_ladder(^champions_basement_ladder_coord, false);
+
+[oploc2,champions_trap_door_open]
+mes("You close the trapdoor.");
+sound_synth(door_close, 1, 0);
+loc_change(champions_trap_door_closed, 100);
+
+[oploc1,champions_ladderup]
+p_arrivedelay;
+~climb_ladder(^champions_guild_trapdoor_coord, true);
+
+[oploc1,champions_statue_trap]
+sound_synth(door_open, 1, 0);
+loc_change(champions_statue_trap_open, 100);
+
+[oploc1,champions_statue_trap_open]
+p_arrivedelay;
+~climb_ladder(^champions_corridor_coord, false);
+
+[oploc1,champions_arenaladder]
+p_arrivedelay;
+~climb_ladder(^champions_basement_statue_coord, true);
+
+[oploc1,champions_portcullis]
+p_arrivedelay;
+if (coordx(coord) < coordx(loc_coord)) {
+    %champions_varbit = ^champion_none;
+    hint_stop;
+    p_teleport(movecoord(loc_coord, 1, 0, 0));
+    return;
+}
+if (%champions_varbit = ^champion_none) {
+    ~chatnpc_specific("Larxus", champions_doorman, "<p,neutral>You need to arrange a challenge with me before you enter the arena.");
+    return;
+}
+def_int $champion = %champions_varbit;
+def_namedobj $scroll = enum(int, namedobj, champions_scrolls, $champion);
+if (inv_total(inv, $scroll) = 0) {
+    %champions_varbit = ^champion_none;
+    ~chatnpc_specific("Larxus", champions_doorman, "<p,neutral>You need to arrange a challenge with me before you enter the arena.");
+    return;
+}
+if (~champions_entry_check($champion) = false) {
+    return;
+}
+inv_del(inv, $scroll, 1);
+p_teleport(movecoord(loc_coord, -1, 0, 0));
+p_delay(0);
+~champions_spawn($champion);
+
+[proc,champions_spawn](int $champion)
+npc_add(^champions_spawn_coord, enum(int, npc, champions_npcs, $champion), ^champions_champion_duration);
+%champions_challenger = uid;
+hint_npc;
+%aggressive_npc = npc_uid;
+npc_setmode(opplayer2);
+
+[ai_timer,_champions_champion]
+if (finduid(%champions_challenger) = false) {
+    ~champions_champion_leave;
+    return;
+}
+if (~inzone_coord_pair_table(champions_arena_zones, coord) = false) {
+    ~champions_champion_leave;
+}
+
+[proc,champions_champion_leave]
+spotanim_map(smokepuff, npc_coord, 124, 0);
+npc_del;
+
+[ai_queue3,_champions_champion]
+gosub(npc_death);
+if (npc_findhero = ^true) {
+    if (%champions_challenger = uid) {
+        queue(champions_victory, 1, ~champions_npc_champion(npc_type));
+    }
+}
+
+[queue,champions_victory](int $champion)
+def_int $xp = enum(int, int, champions_xp, $champion);
+switch_int ($champion) {
+    case ^champion_earthwarrior : %champions_defeated_earthwarrior = 1;
+    case ^champion_ghoul : %champions_defeated_ghoul = 1;
+    case ^champion_giant : %champions_defeated_giant = 1;
+    case ^champion_goblin : %champions_defeated_goblin = 1;
+    case ^champion_hobgoblin : %champions_defeated_hobgoblin = 1;
+    case ^champion_imp : %champions_defeated_imp = 1;
+    case ^champion_jogre : %champions_defeated_jogre = 1;
+    case ^champion_lesserdemon : %champions_defeated_lesserdemon = 1;
+    case ^champion_skeleton : %champions_defeated_skeleton = 1;
+    case ^champion_zombie : %champions_defeated_zombie = 1;
+}
+%champions_varbit = ^champion_none;
+%champions_xp_hitpoints = $xp;
+%champions_xp_slayer = 0;
+stat_advance(hitpoints, multiply($xp, 10));
+hint_stop;
+if_settext(champions_scroll:champions_scroll_text, "Well done, you defeated the <enum(int, string, champions_names, $champion)> Champion!");
+if_setobject(champions_scroll:champions_scroll_model, enum(int, namedobj, champions_scrolls, $champion), 340);
+if_sethide(champions_scroll:com_7, true);
+if_openmain(champions_scroll);
+
+[ai_queue1,champions_hobgoblin] ~npc_default_retaliate_ap;
+[ai_opplayer2,champions_hobgoblin] npc_setmode(applayer2);
+[ai_applayer2,champions_hobgoblin] ~npc_rangeattack;
+
+[ai_queue1,champions_skeleton] ~npc_default_retaliate_ap;
+[ai_opplayer2,champions_skeleton] npc_setmode(applayer2);
+[ai_applayer2,champions_skeleton] ~npc_rangeattack;
+
+[ai_queue1,champions_goblin] ~npc_default_retaliate_ap;
+[ai_opplayer2,champions_goblin] npc_setmode(applayer2);
+[ai_applayer2,champions_goblin]
+if (%npc_action_delay > map_clock) {
+    npc_setmode(applayer2);
+    return;
+}
+if (~npc_check_notcombat = false) {
+    npc_setmode(null);
+    return;
+}
+if (~npc_check_notcombat_self = false) {
+    return;
+}
+npc_anim(npc_param(attack_anim), 0);
+spotanim_npc(champions_goblin_casting_glow, 92, 0);
+sound_synth(npc_param(attack_sound), 1, 0);
+%npc_action_delay = add(map_clock, npc_param(attackrate));
+
+def_int $damage = 0;
+def_int $attack_roll = ~npc_magic_attack_roll;
+def_int $defence_roll = ~player_defence_roll_specific(^magic_style);
+if (randominc($attack_roll) > randominc($defence_roll)) {
+    $damage = randominc(^champions_goblin_maxhit);
+}
+if (~check_protect_prayer(^magic_style) = true) {
+    $damage = 0;
+}
+if_close;
+spotanim_pl(champions_goblin_drain_impact, 92, 60);
+anim(%com_defendanim, 60);
+queue(combat_damage_player, 2, $damage);
+queue*(playerhit_n_retaliate, 2)(npc_uid);
+~npc_set_attack_vars;

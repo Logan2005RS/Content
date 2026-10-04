@@ -2,6 +2,9 @@
 if (~npc_is_attackable = false) {
     return;
 }
+if (~champions_attack_check(^ranged_style) = false) {
+    return;
+}
 
 if (%action_delay > map_clock) {
     p_opnpc(2);

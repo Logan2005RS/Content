@@ -1,0 +1,132 @@
+[proc,champions_in_challenge]()(int)
+if (%champions_varbit = ^champion_none) {
+    return(^champion_none);
+}
+if (~inzone_coord_pair_table(champions_arena_zones, coord) = false) {
+    return(^champion_none);
+}
+return(%champions_varbit);
+
+[proc,champions_npc_champion](npc $npc)(int)
+def_int $i = 1;
+while ($i <= enum_getoutputcount(champions_npcs)) {
+    if (enum(int, npc, champions_npcs, $i) = $npc) {
+        return($i);
+    }
+    $i = add($i, 1);
+}
+return(^champion_none);
+
+[proc,champions_rule](int $champion)(string)
+switch_int ($champion) {
+    case ^champion_earthwarrior : return("not allowed to use any Prayers");
+    case ^champion_ghoul : return("only allowed to take Weapons, no other items are allowed");
+    case ^champion_giant : return("only allowed to use Melee attacks, no Ranged or Magic");
+    case ^champion_goblin : return("only allowed to use Magic attacks, no Melee or Ranged");
+    case ^champion_hobgoblin : return("not allowed to use any Melee attacks");
+    case ^champion_imp : return("not allowed to use any Special Attacks");
+    case ^champion_jogre : return("not allowed to use any Ranged attacks");
+    case ^champion_lesserdemon : return("not allowed any Weapons or Armour");
+    case ^champion_skeleton : return("only allowed to use Ranged attacks, no Melee or Magic");
+    case ^champion_zombie : return("not allowed to use any Magic attacks");
+}
+return("");
+
+[proc,champions_attack_check](int $style)(boolean)
+if (npc_category ! champions_champion) {
+    return(true);
+}
+switch_int (~champions_npc_champion(npc_type)) {
+    case ^champion_giant :
+        if ($style ! ^melee_style) {
+            mes("You can use only melee in this challenge.");
+            return(false);
+        }
+    case ^champion_goblin :
+        if ($style ! ^magic_style) {
+            mes("You can use only spells in this challenge.");
+            return(false);
+        }
+    case ^champion_hobgoblin :
+        if ($style = ^melee_style) {
+            mes("You cannot use melee in this challenge.");
+            return(false);
+        }
+    case ^champion_jogre :
+        if ($style = ^ranged_style) {
+            mes("You cannot use ranged weapons.");
+            return(false);
+        }
+    case ^champion_skeleton :
+        if ($style ! ^ranged_style) {
+            mes("You can use only ranged weapons in this challenge.");
+            return(false);
+        }
+    case ^champion_zombie :
+        if ($style = ^magic_style) {
+            mes("You cannot use spells in this challenge.");
+            return(false);
+        }
+}
+return(true);
+
+[proc,champions_spec_check]()(boolean)
+if (npc_category = champions_champion & npc_type = champions_imp) {
+    mes("Larxus said you couldn't use special attacks in this duel.");
+    return(false);
+}
+return(true);
+
+[proc,champions_prayer_check]()(boolean)
+if (~champions_in_challenge = ^champion_earthwarrior) {
+    mes("For this fight you're not allowed to use prayers!");
+    return(false);
+}
+return(true);
+
+[proc,champions_equip_check](obj $obj)(boolean)
+switch_int (~champions_in_challenge) {
+    case ^champion_ghoul :
+        if (oc_wearpos($obj) ! ^wearpos_rhand) {
+            mes("You can use only weapons in this challenge.");
+            return(false);
+        }
+    case ^champion_lesserdemon :
+        mes("You cannot wear any equipment in this challenge.");
+        return(false);
+}
+return(true);
+
+[proc,champions_entry_check](int $champion)(boolean)
+def_int $i = 0;
+switch_int ($champion) {
+    case ^champion_earthwarrior :
+        ~prayer_deactivate_all;
+    case ^champion_ghoul :
+        while ($i < inv_size(worn)) {
+            if (inv_getobj(worn, $i) ! null & $i ! ^wearpos_rhand) {
+                ~chatnpc_specific("Larxus", champions_doorman, "<p,neutral>For this fight you're only allowed to take Weapons, no other items are allowed.");
+                return(false);
+            }
+            $i = add($i, 1);
+        }
+        $i = 0;
+        while ($i < inv_size(inv)) {
+            if (inv_getobj(inv, $i) ! null) {
+                if (oc_wearpos(inv_getobj(inv, $i)) ! ^wearpos_rhand) {
+                    ~chatnpc_specific("Larxus", champions_doorman, "<p,neutral>For this fight you're only allowed to take Weapons, no other items are allowed.");
+                    return(false);
+                }
+            }
+            $i = add($i, 1);
+        }
+    case ^champion_lesserdemon :
+        while ($i < inv_size(worn)) {
+            if (inv_getobj(worn, $i) ! null) {
+                ~chatnpc_specific("Larxus", champions_doorman, "<p,neutral>For this fight you're not allowed any Weapons or Armour.");
+                return(false);
+            }
+            $i = add($i, 1);
+        }
+}
+return(true);

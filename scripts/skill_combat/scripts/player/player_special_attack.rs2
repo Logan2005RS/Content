@@ -3,6 +3,9 @@
 if (~npc_is_attackable() = false) {
     return;
 }
+if (~champions_spec_check = false) {
+    return;
+}
 if (~sa_enough_energy = false) {
     return;
 }

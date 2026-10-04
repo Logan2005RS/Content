@@ -1,0 +1,14 @@
+[champions_defeated]
+scope=perm
+transmit=yes
+protect=no
+
+[champions_varbit]
+scope=perm
+protect=no
+
+[champions_xp_hitpoints]
+transmit=yes
+
+[champions_xp_slayer]
+transmit=yes

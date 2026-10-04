@@ -7,6 +7,9 @@
 if (~npc_is_attackable = false) { // test: wormbrain's special mes shows before if you dont have enough runes to autocast a specific spell
     return;
 }
+if (~champions_attack_check(^magic_style) = false) {
+    return;
+}
 def_dbrow $spell_data = ~get_spell_data(%autocast_spell);
 if (~check_spell_requirements($spell_data) = false) {
     if (%autocast_spell = db_getfield($spell_data, magic_spell_table:spell, 0)) { // matches osrs behavior
@@ -107,6 +110,9 @@ if (~player_in_combat_check = false) {
 }
 // check if npc is attackable
 if (~npc_is_attackable_opt = false) {
+    return(false);
+}
+if (~champions_attack_check(^magic_style) = false) {
     return(false);
 }
 return(true);

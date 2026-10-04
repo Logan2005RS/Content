@@ -1,0 +1,38 @@
+[opheld1,champions_challenge_earthwarrior] ~champions_read_scroll("I challenge you to a duel, come to the arena", "beneath the Champions' Guild and fight me if you", "dare.", "", "Champion of Earth Warriors");
+[opheld1,champions_challenge_ghoul] ~champions_read_scroll("Come and duel me at the Champions' Guild, I'll", "make sure nothing goes to waste.", "", "Champion of Ghouls", "");
+[opheld1,champions_challenge_giant] ~champions_read_scroll("Get yourself to the Champions' Guild, if you dare", "to face me puny human.", "", "Champion of Giants", "");
+[opheld1,champions_challenge_goblin] ~champions_read_scroll("Fight me if you think you can human, I'll wait", "for you in the Champions' Guild.", "", "Champion of Goblins", "");
+[opheld1,champions_challenge_hobgoblin] ~champions_read_scroll("You won't defeat me, though you're welcome to", "try at the Champions' Guild.", "", "Champion of Hobgoblins", "");
+[opheld1,champions_challenge_imp] ~champions_read_scroll("How about picking on someone your own size? I'll", "see you at the Champions' Guild.", "", "Champion of Imps", "");
+[opheld1,champions_challenge_jogre] ~champions_read_scroll("You think you can defeat me? Come to the", "Champions' Guild and prove it!", "", "Champion of Jogres", "");
+[opheld1,champions_challenge_lesserdemon] ~champions_read_scroll("Come to the Champions' Guild so I can banish", "you mortal!", "", "Champion of Lesser Demons", "");
+[opheld1,champions_challenge_skeleton] ~champions_read_scroll("I'll be waiting at the Champions' Guild to collect", "your bones.", "", "Champion of Skeletons", "");
+[opheld1,champions_challenge_zombie] ~champions_read_scroll("You come to Champions' Guild, you fight me, I", "squish you, I get brains!", "", "Champion of Zombies", "");
+
+[proc,champions_read_scroll](string $line1, string $line2, string $line3, string $line4, string $line5)
+if_settext(messagescroll_handwriting:com_1, ^string_empty);
+if_settext(messagescroll_handwriting:com_2, $line1);
+if_settext(messagescroll_handwriting:com_3, $line2);
+if_settext(messagescroll_handwriting:com_4, $line3);
+if_settext(messagescroll_handwriting:com_5, $line4);
+if_settext(messagescroll_handwriting:com_6, $line5);
+if_settext(messagescroll_handwriting:com_7, ^string_empty);
+if_settext(messagescroll_handwriting:com_8, ^string_empty);
+if_openmain(messagescroll_handwriting);
+
+[proc,champions_scroll_champion](obj $obj)(int)
+return(enum(obj, int, champions_scroll_lookup, $obj));
+
+[proc,champions_scroll_drop]
+if (%qp < ^champions_required_qp) {
+    return;
+}
+def_int $champion = enum(npc, int, champions_scroll_drops, npc_type);
+if ($champion = ^champion_none) {
+    return;
+}
+if (random(^champions_scroll_chance) ! 0) {
+    return;
+}
+obj_add(npc_coord, enum(int, namedobj, champions_scrolls, $champion), 1, ^lootdrop_duration);
+mes("@red@A Champion's scroll falls to the ground as you slay your opponent.");

@@ -126,6 +126,10 @@ if (%npc_macro_event_target ! null & %npc_macro_event_target ! uid) {
     mes("It's not after you."); // https://youtu.be/y58EFTJNIH8
     return(false);
 }
+if (%champions_challenger ! null & %champions_challenger ! uid) {
+    mes("It's not after you.");
+    return(false);
+}
 return(true);
 
 // version of this has no period, used for crumble undead?
@@ -149,6 +153,10 @@ if (map_multiway(npc_coord) = false & nc_param(npc_type, npc_forcemulti) = ^fals
 }
 if (%npc_macro_event_target ! null & %npc_macro_event_target ! uid) {
     mes("It's not after you."); // https://youtu.be/y58EFTJNIH8
+    return(false);
+}
+if (%champions_challenger ! null & %champions_challenger ! uid) {
+    mes("It's not after you.");
     return(false);
 }
 return(true);

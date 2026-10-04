@@ -141,6 +141,9 @@ if (map_blocked($coord) = true) {
 if (~inzone_coord_pair_table(bank_zones, coord) = true) { // zone based checks use coord instead of loc_coord
     return(false);
 }
+if (~inzone_coord_pair_table(champions_arena_zones, coord) = true) {
+    return(false);
+}
 return(true);
 
 [proc,push_player](coord $origin_coord)
