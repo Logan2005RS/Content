@@ -198,8 +198,11 @@ if(%viking = ^viking_complete) {
     if(last_useitem = raw_shark) {
         @enchant_lyre_charges(magic_strung_lyre_2);
     }
-    if(last_useitem = raw_seaturtle | last_useitem = raw_mantaray) {
+    if(last_useitem = raw_seaturtle) {
         @enchant_lyre_charges(magic_strung_lyre_4);
+    }
+    if(last_useitem = raw_mantaray) {
+        @enchant_lyre_charges(magic_strung_lyre_3);
     }
 }
 if(~get_viking_olaf_progress < ^olaf_complete & ~get_viking_olaf_progress > ^olaf_not_started) {
