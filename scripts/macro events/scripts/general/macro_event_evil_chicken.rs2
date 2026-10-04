@@ -1,0 +1,72 @@
+[proc,macro_evil_chicken_spawn]
+npc_say(~macro_evil_chicken_taunt);
+%npc_macro_event_target = uid;
+%macro_event = ^no_macro_event;
+%aggressive_npc = npc_uid;
+npc_setmode(applayer2);
+
+[proc,macro_evil_chicken_taunt]()(string)
+switch_int (random(6)) {
+    case 0 : return("Bwuk");
+    case 1 : return("Bwuk bwuk bwuk");
+    case 2 : return("Flee from me, <displayname>!");
+    case 3 : return("Begone, <displayname>!");
+    case 4 : return("Bwaaaauuuk bwuk bwuk");
+    case default : return("MUAHAHAHAHAA!");
+}
+
+[ai_timer,_macro_event_evil_chicken]
+if (finduid(%npc_macro_event_target) = false) {
+    ~macro_event_disappear;
+    return;
+}
+if (npc_range(coord) > ^evil_chicken_range | coordy(coord) ! coordy(npc_coord)) {
+    mes("The Evil Chicken realises you're out of range and vanishes.");
+    ~macro_event_disappear;
+    return;
+}
+npc_say(~macro_evil_chicken_taunt);
+
+[ai_queue1,_macro_event_evil_chicken] ~npc_default_retaliate_ap;
+
+[ai_opplayer2,_macro_event_evil_chicken] npc_setmode(applayer2);
+
+[ai_applayer2,_macro_event_evil_chicken]
+if (%npc_action_delay > map_clock) {
+    npc_setmode(applayer2);
+    return;
+}
+if (~npc_check_notcombat = false) {
+    npc_setmode(null);
+    return;
+}
+if (~npc_check_notcombat_self = false) {
+    return;
+}
+if_close;
+npc_anim(npc_param(attack_anim), 0);
+sound_synth(npc_param(attack_sound), 1, 0);
+%npc_action_delay = add(map_clock, npc_param(attackrate));
+def_int $duration = ~player_projectile(npc_coord, coord, uid, banshee_scream, 42, 36, 52, 15, 0, 11, 5);
+
+def_int $damage = 0;
+def_int $attack_roll = ~npc_magic_attack_roll;
+def_int $defence_roll = ~player_defence_roll_specific(^magic_style);
+if (randominc($attack_roll) > randominc($defence_roll)) {
+    $damage = randominc(enum(npc, int, macro_event_evil_chicken_maxhit, npc_type));
+}
+if (~check_protect_prayer(^magic_style) = true) {
+    $damage = 0;
+}
+anim(%com_defendanim, $duration);
+queue(combat_damage_player, calc($duration / 30), $damage);
+queue*(playerhit_n_retaliate, calc($duration / 30))(npc_uid);
+~npc_set_attack_vars;
+
+[ai_queue3,_macro_event_evil_chicken]
+gosub(npc_death);
+if (npc_findhero = ^true) {
+    obj_add(npc_coord, bones, 1, ^lootdrop_duration);
+    obj_add(npc_coord, raw_chicken, 1, ^lootdrop_duration);
+    obj_add(npc_coord, feather, ~random_range(50, 299), ^lootdrop_duration);
+}

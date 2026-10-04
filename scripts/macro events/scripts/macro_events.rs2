@@ -45,6 +45,7 @@ switch_int ($event) {
     case ^macro_certer : ~macro_certer_spawn;
     case ^macro_rick_turpentine : ~macro_rick_turpentine_spawn;
     case ^macro_jekyll : ~macro_jekyll_spawn;
+    case ^macro_evil_chicken : ~macro_evil_chicken_spawn;
     case ^macro_drill_demon : ~macro_drill_demon_spawn;
     case ^macro_quiz_master : ~macro_quiz_master_spawn;
 }
@@ -137,6 +138,9 @@ if (npc_finduid(%macro_event_uid) = true) {
 [proc,macro_event_npc](int $event)(npc)
 if ($event = ^macro_certer) {
     return(enum(int, npc, macro_certer_npcs, random(enum_getoutputcount(macro_certer_npcs))));
+}
+if ($event = ^macro_evil_chicken) {
+    return(enum(int, npc, macro_event_evil_chicken_levels, ~macro_event_combat_level));
 }
 return(enum(int, npc, general_macro_events, $event));
 

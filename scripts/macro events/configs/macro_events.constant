@@ -13,21 +13,23 @@
 
 ^macro_jekyll = 9
 
-^macro_mime = 10
+^macro_evil_chicken = 10
+
+^macro_mime = 11
 ^macro_mime_solve_1 = 100
 ^macro_mime_solve_2 = 101
 ^macro_mime_solve_3 = 102
 
-^macro_maze = 11
+^macro_maze = 12
 
-^macro_drill_demon = 12
+^macro_drill_demon = 13
 
-^macro_quiz_master = 13
+^macro_quiz_master = 14
 
-^macro_evil_bob = 14
-^macro_freaky_forester = 15
-^macro_pillory = 16
-^macro_lost_and_found = 17
+^macro_evil_bob = 15
+^macro_freaky_forester = 16
+^macro_pillory = 17
+^macro_lost_and_found = 18
 
 ^no_macro_event = 0
 
@@ -66,7 +68,9 @@
 ^macro_mime_lean = 3
 
 ^members_macro_count = 2
-^teleport_macro_start = 10
+^teleport_macro_start = 11
+
+^evil_chicken_range = 8
 
 ^rick_turpentine_angry = -2
 ^rick_turpentine_happy = -1
