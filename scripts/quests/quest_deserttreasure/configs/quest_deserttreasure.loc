@@ -1,0 +1,931 @@
+[sword_haunted_well]
+name=Smokey well
+desc=There is a rope leading to the bottom of this smoke filled well.
+model=loc_6279
+active=yes
+op1=Climb-down
+
+[sword_haunted_well_go_up]
+name=Rope
+desc=Climb this rope to go up.
+model=outdoorfurniture_rope
+active=yes
+op1=Climb-up
+mapscene=7
+
+[4d_ladder2]
+name=Ladder
+desc=I can climb this.
+model=furniture_ladder
+active=yes
+op1=Climb-up
+mapscene=7
+
+[4d_standing_torch1]
+name=4d_standing_torch1
+active=yes
+anim=fire
+multivar=fd_torch_count1
+multiloc=0,4d_standing_torch1_unlit
+multiloc=1,4d_standing_torch1_lit
+
+[4d_standing_torch1_unlit]
+name=Standing Torch
+desc=An old mystical torch.
+model=loc_6404
+recol1s=15855
+recol1d=8420
+recol2s=12684
+recol2d=6306
+active=yes
+ambient=30
+contrast=15
+
+[4d_standing_torch1_lit]
+name=Standing Torch
+desc=An old mystical torch.
+model=loc_6404
+model2=loc_6413
+recol1s=15855
+recol1d=13603
+recol2s=12684
+recol2d=13603
+anim=fire
+ambient=30
+contrast=15
+
+[4d_standing_torch2]
+name=4d_standing_torch2
+active=yes
+anim=fire
+multivar=fd_torch_count2
+multiloc=0,4d_standing_torch2_unlit
+multiloc=1,4d_standing_torch2_lit
+
+[4d_standing_torch2_unlit]
+name=Standing Torch
+desc=An old mystical torch.
+model=loc_6404
+recol1s=15855
+recol1d=8420
+recol2s=12684
+recol2d=6306
+active=yes
+ambient=30
+contrast=15
+
+[4d_standing_torch2_lit]
+name=Standing Torch
+desc=An old mystical torch.
+model=loc_6404
+model2=loc_6413
+recol1s=15855
+recol1d=13603
+recol2s=12684
+recol2d=13603
+anim=fire
+ambient=30
+contrast=15
+
+[4d_standing_torch3]
+name=4d_standing_torch3
+active=yes
+anim=fire
+multivar=fd_torch_count3
+multiloc=0,4d_standing_torch3_unlit
+multiloc=1,4d_standing_torch3_lit
+
+[4d_standing_torch3_unlit]
+name=Standing Torch
+desc=An old mystical torch.
+model=loc_6404
+recol1s=15855
+recol1d=8420
+recol2s=12684
+recol2d=6306
+active=yes
+ambient=30
+contrast=15
+
+[4d_standing_torch3_lit]
+name=Standing Torch
+desc=An old mystical torch.
+model=loc_6404
+model2=loc_6413
+recol1s=15855
+recol1d=13603
+recol2s=12684
+recol2d=13603
+anim=fire
+ambient=30
+contrast=15
+
+[4d_standing_torch4]
+name=4d_standing_torch4
+active=yes
+anim=fire
+multivar=fd_torch_count4
+multiloc=0,4d_standing_torch4_unlit
+multiloc=1,4d_standing_torch4_lit
+
+[4d_standing_torch4_unlit]
+name=Standing Torch
+desc=An old mystical torch.
+model=loc_6404
+recol1s=15855
+recol1d=8420
+recol2s=12684
+recol2d=6306
+active=yes
+ambient=30
+contrast=15
+
+[4d_standing_torch4_lit]
+name=Standing Torch
+desc=An old mystical torch.
+model=loc_6404
+model2=loc_6413
+recol1s=15855
+recol1d=13603
+recol2s=12684
+recol2d=13603
+anim=fire
+ambient=30
+contrast=15
+
+[fd_firedungeon_shutchest]
+name=Burnt chest
+desc=I wonder what's inside?
+model=furniture_chestclosed
+recol1s=10570
+recol1d=5285
+op1=Open
+forceapproach=north
+
+[fd_firedungeon_openchest]
+model=furniture_chestopen
+recol1s=10570
+recol1d=5285
+active=no
+forceapproach=north
+
+[vampire_trap1]
+name=Trapdoor
+desc=I wonder what that's there for...
+model=furniture_hiddentrapdoor_closed
+blockrange=no
+op1=Open
+
+[vampire_trap2]
+name=Trapdoor
+desc=I wonder what that's there for...
+model=furniture_hiddentrapdoor_open
+blockrange=no
+op1=Climb-down
+
+[vampire_ladder]
+name=Ladder
+desc=I can climb this.
+model=furniture_ladder
+active=yes
+op1=Climb-up
+mapscene=7
+
+[vampire_big_grave_noblood]
+name=Vampire tomb
+desc=An ancient looking tomb.
+model=loc_6437
+width=5
+length=3
+
+[vampire_big_grave_withblood]
+name=Vampire tomb
+desc=An ancient looking tomb.
+model=loc_6438
+anim=vampire_coffin_open
+width=5
+length=3
+
+[trollrescue_troll_cave_entrance]
+name=Cave entrance
+desc=Looks like a small cave.
+recol1s=10400
+recol1d=30655
+recol2s=8288
+recol2d=25372
+recol3s=6176
+recol3d=21144
+recol4s=4096
+recol4d=17971
+recol5s=2048
+recol5d=13747
+width=3
+length=2
+shadow=no
+op1=Enter
+multivar=fd_icewarrior_trollskilled
+multiloc=0,trollrescue_troll_cave_entrance5
+multiloc=1,trollrescue_troll_cave_entrance4
+multiloc=2,trollrescue_troll_cave_entrance3
+multiloc=3,trollrescue_troll_cave_entrance2
+multiloc=4,trollrescue_troll_cave_entrance1
+multiloc=5,trollrescue_troll_cave_entrance_multi
+
+[trollrescue_troll_cave_entrance1]
+name=Cave entrance
+desc=Blocked by an icicle.
+model=cave_entrance3
+model2=loc_6442
+recol1s=10400
+recol1d=30655
+recol2s=8288
+recol2d=25372
+recol3s=6176
+recol3d=21144
+recol4s=4096
+recol4d=17971
+recol5s=2048
+recol5d=13747
+width=3
+length=2
+shadow=no
+op1=Enter
+
+[trollrescue_troll_cave_entrance2]
+name=Cave entrance
+desc=Blocked by two icicles.
+model=cave_entrance3
+model2=loc_6443
+recol1s=10400
+recol1d=30655
+recol2s=8288
+recol2d=25372
+recol3s=6176
+recol3d=21144
+recol4s=4096
+recol4d=17971
+recol5s=2048
+recol5d=13747
+width=3
+length=2
+shadow=no
+op1=Enter
+
+[trollrescue_troll_cave_entrance3]
+name=Cave entrance
+desc=Blocked by three icicles.
+model=cave_entrance3
+model2=loc_6444
+recol1s=10400
+recol1d=30655
+recol2s=8288
+recol2d=25372
+recol3s=6176
+recol3d=21144
+recol4s=4096
+recol4d=17971
+recol5s=2048
+recol5d=13747
+width=3
+length=2
+shadow=no
+op1=Enter
+
+[trollrescue_troll_cave_entrance4]
+name=Cave entrance
+desc=Blocked by four icicles.
+model=cave_entrance3
+model2=loc_6445
+recol1s=10400
+recol1d=30655
+recol2s=8288
+recol2d=25372
+recol3s=6176
+recol3d=21144
+recol4s=4096
+recol4d=17971
+recol5s=2048
+recol5d=13747
+width=3
+length=2
+shadow=no
+op1=Enter
+
+[trollrescue_troll_cave_entrance5]
+name=Cave entrance
+desc=Blocked by five icicles.
+model=cave_entrance3
+model2=loc_6446
+recol1s=10400
+recol1d=30655
+recol2s=8288
+recol2d=25372
+recol3s=6176
+recol3d=21144
+recol4s=4096
+recol4d=17971
+recol5s=2048
+recol5d=13747
+width=3
+length=2
+shadow=no
+op1=Enter
+
+[trollrescue_troll_cave_entrance_multi]
+name=Cave entrance
+desc=Looks like a small cave.
+model=cave_entrance3
+recol1s=10400
+recol1d=30655
+recol2s=8288
+recol2d=25372
+recol3s=6176
+recol3d=21144
+recol4s=4096
+recol4d=17971
+recol5s=2048
+recol5d=13747
+width=3
+length=2
+shadow=no
+op1=Enter
+
+[trollrescue_troll_cave_exit]
+name=Cave exit
+desc=Looks like a small cave.
+model=cave_entrance3
+recol1s=10400
+recol1d=30655
+recol2s=8288
+recol2d=25372
+recol3s=6176
+recol3d=21144
+recol4s=4096
+recol4d=17971
+recol5s=2048
+recol5d=13747
+width=3
+length=2
+shadow=no
+op1=Enter
+
+[fd_bandit_shutchest]
+name=Secure chest
+desc=It looks very sturdy.
+model=furniture_chestclosed
+recol1s=10570
+recol1d=14720
+op1=Open
+forceapproach=north
+
+[fd_bandit_openchest]
+model=furniture_chestopen
+recol1s=10570
+recol1d=14720
+active=no
+forceapproach=north
+
+[fd_shadowladder]
+name=Ladder
+desc=I can climb this.
+model=furniture_ladder
+active=yes
+op1=Climb-up
+mapscene=7
+
+[fd_shadowladder1]
+name=fd_shadowladder1
+active=yes
+multivar=fd_ladder_present
+multiloc=1,fd_shadow_ladder_there
+
+[fd_shadow_ladder_there]
+name=Ladder
+desc=A ladder that's almost not there at all...
+model=loc_6523
+active=yes
+op1=Climb-down
+
+[fd_fw_metalgateclosed_l]
+name=Gate
+desc=A wrought iron gate.
+model=outdoorfurniture_metalgateclosedl
+op1=Open
+active=yes
+
+[fd_fw_metalgateclosed_r]
+name=Gate
+desc=A wrought iron gate.
+model=outdoorfurniture_metalgateclosedl
+op1=Open
+mirror=yes
+active=yes
+
+[desert_trasure_back_door_skew]
+name=Tunnel
+desc=A mysterious tunnel-like structure.
+model=loc_6481
+length=2
+hillskew=yes
+op1=Enter
+
+[desert_treasure_oblix1]
+name=Obelisk
+desc=You can feel a mysterious power emanating from it...
+active=yes
+length=2
+width=2
+resizex=256
+resizey=256
+resizez=256
+anim=oblix_open
+multivar=fd_column_blood
+multiloc=0,desert_treasure_oblix_a
+multiloc=1,fd_blood_column
+
+[desert_treasure_oblix_a]
+name=Obelisk
+desc=You can feel a mysterious power emanating from it...
+model=loc_6483
+recol1s=15855
+recol1d=19553
+recol2s=20011
+recol2d=26059
+length=2
+width=2
+resizex=256
+resizey=256
+resizez=256
+anim=oblix_open
+
+[fd_blood_column]
+name=Obelisk
+desc=You can feel a mysterious power emanating from it...
+model=loc_6484
+recol1s=15855
+recol1d=19553
+recol2s=20011
+recol2d=26059
+length=2
+width=2
+length=2
+width=2
+resizex=256
+resizey=256
+resizez=256
+anim=oblix_open
+
+[desert_treasure_oblix2]
+name=Obelisk
+desc=You can feel a mysterious power emanating from it...
+active=yes
+length=2
+width=2
+resizex=256
+resizey=256
+resizez=256
+anim=oblix_open
+multivar=fd_column_fire
+multiloc=0,desert_treasure_oblix_b
+multiloc=1,fd_smoke_column
+
+[desert_treasure_oblix_b]
+name=Obelisk
+desc=You can feel a mysterious power emanating from it...
+model=loc_6483
+recol1s=15855
+recol1d=22264
+recol2s=20011
+recol2d=20082
+length=2
+width=2
+resizex=256
+resizey=256
+resizez=256
+anim=oblix_open
+
+[fd_smoke_column]
+name=Obelisk
+desc=You can feel a mysterious power emanating from it...
+model=loc_6484
+recol1s=15855
+recol1d=22264
+recol2s=20011
+recol2d=20082
+length=2
+width=2
+length=2
+width=2
+resizex=256
+resizey=256
+resizez=256
+anim=oblix_open
+
+[desert_treasure_oblix3]
+name=Obelisk
+desc=You can feel a mysterious power emanating from it...
+active=yes
+length=2
+width=2
+resizex=256
+resizey=256
+resizez=256
+anim=oblix_open
+multivar=fd_column_ice
+multiloc=0,desert_treasure_oblix_c
+multiloc=1,fd_ice_column
+
+[desert_treasure_oblix_c]
+name=Obelisk
+desc=You can feel a mysterious power emanating from it...
+model=loc_6483
+recol1s=15855
+recol1d=18207
+recol2s=20011
+recol2d=19060
+length=2
+width=2
+resizex=256
+resizey=256
+resizez=256
+anim=oblix_open
+
+[fd_ice_column]
+name=Obelisk
+desc=You can feel a mysterious power emanating from it...
+model=loc_6484
+recol1s=15855
+recol1d=18207
+recol2s=20011
+recol2d=19060
+length=2
+width=2
+length=2
+width=2
+resizex=256
+resizey=256
+resizez=256
+anim=oblix_open
+
+[desert_treasure_oblix4]
+name=Obelisk
+desc=You can feel a mysterious power emanating from it...
+active=yes
+length=2
+width=2
+resizex=256
+resizey=256
+resizez=256
+anim=oblix_open
+multivar=fd_column_shadow
+multiloc=0,desert_treasure_oblix_d
+multiloc=1,fd_shadow_column
+
+[desert_treasure_oblix_d]
+name=Obelisk
+desc=You can feel a mysterious power emanating from it...
+model=loc_6483
+recol1s=15855
+recol1d=6341
+recol2s=20011
+recol2d=10568
+length=2
+width=2
+resizex=256
+resizey=256
+resizez=256
+anim=oblix_open
+
+[fd_shadow_column]
+name=Obelisk
+desc=You can feel a mysterious power emanating from it...
+model=loc_6484
+recol1s=15855
+recol1d=6341
+recol2s=20011
+recol2d=10568
+length=2
+width=2
+length=2
+width=2
+resizex=256
+resizey=256
+resizez=256
+anim=oblix_open
+
+[desert_laddertop]
+name=Ladder
+desc=I can climb down this.
+model=loc_6497
+active=yes
+op1=Climb-down
+mapscene=7
+
+[desert_laddertop3_2]
+name=Ladder
+desc=I can climb down this.
+model=loc_6497
+active=yes
+op1=Climb-down
+mapscene=7
+
+[desert_laddertop2_1]
+name=Ladder
+desc=I can climb down this.
+model=loc_6497
+active=yes
+op1=Climb-down
+mapscene=7
+
+[desert_laddertop1_0]
+name=Ladder
+desc=I can climb down this.
+model=loc_6497
+active=yes
+op1=Climb-down
+mapscene=7
+
+[desert_ladder0_1]
+name=Ladder
+desc=I can climb this.
+model=loc_6501
+active=yes
+op1=Climb-up
+mapscene=7
+
+[desert_ladder1_2]
+name=Ladder
+desc=I can climb this.
+model=loc_6501
+active=yes
+op1=Climb-up
+mapscene=7
+
+[desert_ladder2_3]
+name=Ladder
+desc=I can climb this.
+model=loc_6501
+active=yes
+op1=Climb-up
+mapscene=7
+
+[desert_ladder]
+name=Ladder
+desc=I can climb this.
+model=loc_6501
+active=yes
+op1=Climb-up
+mapscene=7
+
+[four_diamonds_door_1]
+name=Pyramid entrance
+desc=A smooth, sandstone door that is slightly warm to the touch.
+model=loc_6545
+active=yes
+op1=Open
+
+[four_diamonds_dooropen_1]
+model=loc_6546
+blockwalk=no
+active=no
+
+[four_diamonds_door_mirror]
+name=Pyramid entrance
+desc=A smooth, sandstone door that is slightly warm to the touch.
+model=loc_6545
+mirror=yes
+active=yes
+op1=Open
+
+[four_diamonds_dooropen_mirror]
+model=loc_6546
+mirror=yes
+blockwalk=no
+active=no
+
+[dia_down]
+name=dia_down
+active=yes
+anim=glowingcircle
+multivar=deserttreasure
+multiloc=15,dt_portal
+
+[dt_portal]
+name=Portal
+desc=A portal that leads you out of the pyramid.
+model=floor_glowingcircle
+anim=glowingcircle
+op1=Use
+ambient=100
+contrast=100
+active=yes
+
+[dt_zaros_altar]
+name=Altar
+desc=A mysterious ancient altar to some forgotten god...
+model=loc_6552
+width=3
+op1=Pray-at
+
+[dt_ancient_temple_door_open]
+name=Doorway
+desc=Opens into another area.
+model=loc_6553
+active=yes
+op1=Open
+
+[dt_ancient_temple_door_close]
+model=loc_6554
+active=no
+
+[dt_ancient_temple_door_open_mirror]
+name=Doorway
+desc=Opens into another area.
+model=loc_6553
+active=yes
+op1=Open
+mirror=yes
+
+[dt_ancient_temple_door_close_mirror]
+model=loc_6554
+active=no
+mirror=yes
+
+[sword_mirror1]
+name=sword_mirror1
+active=yes
+anim=legend_mirror_ready
+multivar=fd_mirror_present
+multiloc=0,cactus
+multiloc=1,fd_mirror1
+
+[fd_mirror1]
+name=Mystical mirror
+desc=A magical aura seems to shimmer over the glass...
+model=loc_6423
+recol1s=24165
+recol1d=25295
+active=yes
+op1=Look-into
+category=fd_mirror
+param=fd_mirror_index,1
+
+[sword_mirror2]
+name=sword_mirror2
+active=yes
+anim=legend_mirror_ready
+multivar=fd_mirror_present
+multiloc=0,cactus
+multiloc=1,fd_mirror2
+
+[fd_mirror2]
+name=Mystical mirror
+desc=A magical aura seems to shimmer over the glass...
+model=loc_6423
+recol1s=24165
+recol1d=25295
+active=yes
+anim=legend_mirror_ready
+op1=Look-into
+category=fd_mirror
+param=fd_mirror_index,2
+
+[sword_mirror3]
+name=sword_mirror3
+active=yes
+anim=legend_mirror_ready
+multivar=fd_mirror_present
+multiloc=0,cactus
+multiloc=1,fd_mirror3
+
+[fd_mirror3]
+name=Mystical mirror
+desc=A magical aura seems to shimmer over the glass...
+model=loc_6423
+recol1s=24165
+recol1d=25295
+active=yes
+anim=legend_mirror_ready
+op1=Look-into
+category=fd_mirror
+param=fd_mirror_index,3
+
+[sword_mirror4]
+name=sword_mirror4
+active=yes
+anim=legend_mirror_ready
+multivar=fd_mirror_present
+multiloc=0,cactus
+multiloc=1,fd_mirror4
+
+[fd_mirror4]
+name=Mystical mirror
+desc=A magical aura seems to shimmer over the glass...
+model=loc_6423
+recol1s=24165
+recol1d=25295
+active=yes
+anim=legend_mirror_ready
+op1=Look-into
+category=fd_mirror
+param=fd_mirror_index,4
+
+[sword_mirror5]
+name=sword_mirror5
+active=yes
+anim=legend_mirror_ready
+multivar=fd_mirror_present
+multiloc=0,cactus
+multiloc=1,fd_mirror5
+
+[fd_mirror5]
+name=Mystical mirror
+desc=A magical aura seems to shimmer over the glass...
+model=loc_6423
+recol1s=24165
+recol1d=25295
+active=yes
+anim=legend_mirror_ready
+op1=Look-into
+category=fd_mirror
+param=fd_mirror_index,5
+
+[sword_mirror6]
+name=sword_mirror6
+active=yes
+anim=legend_mirror_ready
+multivar=fd_mirror_present
+multiloc=0,cactus
+multiloc=1,fd_mirror6
+
+[fd_mirror6]
+name=Mystical mirror
+desc=A magical aura seems to shimmer over the glass...
+model=loc_6423
+recol1s=24165
+recol1d=25295
+active=yes
+anim=legend_mirror_ready
+op1=Look-into
+category=fd_mirror
+param=fd_mirror_index,6
+
+[deserttreasure_sarcophigi_door]
+name=Sarcophagus
+desc=A fancy name for a coffin.
+model=loc_6506
+active=yes
+hillskew=yes
+op1=Search
+category=fd_sarcophagus
+
+[deserttreasure_sarcophigi_door_2]
+name=Sarcophagus
+desc=A strange thing to leave lying around...
+model=loc_6507
+active=yes
+hillskew=yes
+op1=Search
+category=fd_sarcophagus
+
+[deserttreasure_sarcophigi_door_3]
+name=Sarcophagus
+desc=I hope this is just ornamental...
+model=loc_6508
+active=yes
+hillskew=yes
+op1=Search
+category=fd_sarcophagus
+
+[deserttreasure_sarcophigi_door_4]
+name=Sarcophagus
+desc=I hope this is just ornamental...
+model=loc_6506
+recol1s=23113
+recol1d=12620
+active=yes
+hillskew=yes
+op1=Search
+category=fd_sarcophagus
+
+[deserttreasure_sarcophigi_door_5]
+name=Sarcophagus
+desc=I hope this is just ornamental...
+model=loc_6507
+recol1s=23113
+recol1d=12620
+active=yes
+hillskew=yes
+op1=Search
+category=fd_sarcophagus
+
+[deserttreasure_sarcophigi_door_6]
+name=Sarcophagus
+desc=I hope this is just ornamental...
+model=loc_6508
+recol1s=23113
+recol1d=12620
+active=yes
+hillskew=yes
+op1=Search
+category=fd_sarcophagus

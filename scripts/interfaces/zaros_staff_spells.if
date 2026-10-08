@@ -53,7 +53,7 @@ shadowed=yes
 text=Select a Combat Spell
 colour=0xB0A392
 
-[com_6]
+[cancelspell]
 type=text
 x=143
 y=169
@@ -65,7 +65,7 @@ shadowed=yes
 text=cancel
 colour=0x808080
 
-[com_7]
+[zsb_ice_rush]
 type=graphic
 x=143
 y=12
@@ -227,7 +227,7 @@ text=%1/2
 colour=0xC00000
 activecolour=0x00C000
 
-[com_18]
+[zsb_ice_blitz]
 type=graphic
 x=143
 y=96
@@ -389,7 +389,7 @@ text=%1/3
 colour=0xC00000
 activecolour=0x00C000
 
-[com_29]
+[zsb_ice_burst]
 type=graphic
 x=143
 y=52
@@ -551,7 +551,7 @@ text=%1/4
 colour=0xC00000
 activecolour=0x00C000
 
-[com_40]
+[zsb_ice_barrage]
 type=graphic
 x=143
 y=136
@@ -705,7 +705,7 @@ text=%1/6
 colour=0xC00000
 activecolour=0x00C000
 
-[com_51]
+[zsb_blood_rush]
 type=graphic
 x=103
 y=12
@@ -851,7 +851,7 @@ text=%1/1
 colour=0xC00000
 activecolour=0x00C000
 
-[com_62]
+[zsb_blood_blitz]
 type=graphic
 x=103
 y=96
@@ -967,7 +967,7 @@ text=%1/4
 colour=0xC00000
 activecolour=0x00C000
 
-[com_71]
+[zsb_blood_burst]
 type=graphic
 x=103
 y=52
@@ -1113,7 +1113,7 @@ text=%1/2
 colour=0xC00000
 activecolour=0x00C000
 
-[com_82]
+[zsb_blood_barrage]
 type=graphic
 x=103
 y=136
@@ -1259,7 +1259,7 @@ text=%1/1
 colour=0xC00000
 activecolour=0x00C000
 
-[com_93]
+[zsb_smoke_rush]
 type=graphic
 x=23
 y=12
@@ -1463,7 +1463,7 @@ text=%1/4
 colour=0xC00000
 activecolour=0x00C000
 
-[com_106]
+[zsb_smoke_blitz]
 type=graphic
 x=23
 y=95
@@ -1661,7 +1661,7 @@ text=%1/2
 colour=0xC00000
 activecolour=0x00C000
 
-[com_119]
+[zsb_smoke_burst]
 type=graphic
 x=23
 y=52
@@ -1865,7 +1865,7 @@ text=%1/2
 colour=0xC00000
 activecolour=0x00C000
 
-[com_132]
+[zsb_smoke_barrage]
 type=graphic
 x=23
 y=136
@@ -2069,7 +2069,7 @@ text=%1/4
 colour=0xC00000
 activecolour=0x00C000
 
-[com_145]
+[zsb_shadow_rush]
 type=graphic
 x=63
 y=12
@@ -2257,7 +2257,7 @@ text=%1/1
 colour=0xC00000
 activecolour=0x00C000
 
-[com_158]
+[zsb_shadow_blitz]
 type=graphic
 x=63
 y=96
@@ -2445,7 +2445,7 @@ text=%1/2
 colour=0xC00000
 activecolour=0x00C000
 
-[com_171]
+[zsb_shadow_burst]
 type=graphic
 x=63
 y=52
@@ -2633,7 +2633,7 @@ text=%1/2
 colour=0xC00000
 activecolour=0x00C000
 
-[com_184]
+[zsb_shadow_barrage]
 type=graphic
 x=63
 y=136

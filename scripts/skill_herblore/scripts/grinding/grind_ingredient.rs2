@@ -83,3 +83,10 @@ inv_add(inv, $refined, 1);
 mes($message);
 anim(human_herbing_grind, 0);
 sound_synth(grind_snail, 1, 0); // Note this is different.
+
+[opheldu,garlic]
+if (oc_category(last_useitem) = fd_silver_pot) {
+    mes("You need to crush the garlic before adding it to the pot.");
+    return;
+}
+~attempt_grind_ingredient(last_useslot, last_slot);

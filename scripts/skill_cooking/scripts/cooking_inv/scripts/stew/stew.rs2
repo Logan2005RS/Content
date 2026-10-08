@@ -14,6 +14,10 @@ switch_obj (last_useitem) {
 }
 
 [opheldu,spicespot]
+if (oc_category(last_useitem) = fd_silver_pot) {
+    ~fd_pot_add_ingredient(last_item, last_useitem, last_slot, last_useslot);
+    return;
+}
 switch_obj (last_useitem) {
     case uncooked_stew : @make_curry;
 }

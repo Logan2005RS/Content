@@ -61,6 +61,9 @@ queue(macro_event_login, 0, 0);
 // logging out when posioned would continue to poison you after logging back in in 2006
 // https://forum.tip.it/topic/76167-poison-effect-on-f2p/
 ~set_poison_login;
+~set_disease_login;
+~fd_stranger_start;
+~fd_update_ring_visibility;
 // update weight-reduction equipment (in the case where you switch from f2p <-> p2p)
 ~update_weight_equipment;
 ~ferment_wines_login;
@@ -102,7 +105,7 @@ inv_transmit(worn, wornitems:wear);
 if_settab(wornitems, ^tab_wornitems);
 
 if_settab(prayer, ^tab_prayer);
-if_settab(magic, ^tab_magic);
+~settab_magic;
 if_settab(friends, ^tab_friends);
 if_settab(ignore, ^tab_ignore);
 if_settab(logout, ^tab_logout);

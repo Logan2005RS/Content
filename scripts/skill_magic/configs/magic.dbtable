@@ -9,6 +9,7 @@ column=name,string
 column=members,boolean
 column=levelrequired,int
 column=runesrequired,namedobj,int,namedobj,int,namedobj,int
+column=runesrequired_extra,namedobj,int
 column=wornrequired,namedobj
 column=worn_reqmessage,string
 column=experience,int

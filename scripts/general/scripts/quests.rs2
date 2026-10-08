@@ -296,7 +296,19 @@ if (%mm_main >= ^mm_complete) {
     $questpoints = add($questpoints, ^mm_questpoints); 
 }
 if (%routequest >= ^routequest_complete) {
-    $questpoints = add($questpoints, ^routequest_questpoints); 
+    $questpoints = add($questpoints, ^routequest_questpoints);
+}
+if (%deserttreasure = ^deserttreasure_complete) {
+    $questpoints = add($questpoints, ^deserttreasure_questpoints);
+}
+if (%tog_juna_bowl = ^tog_complete) {
+    $questpoints = add($questpoints, ^tog_questpoints);
+}
+if (%zogre = ^zogre_complete) {
+    $questpoints = add($questpoints, ^zogre_questpoints);
+}
+if (%lost_tribe_quest = ^lost_tribe_complete) {
+    $questpoints = add($questpoints, ^lost_tribe_questpoints);
 }
 return ($questpoints);
 
@@ -377,8 +389,18 @@ if (testbit(%ibanmulti, ^upass_started_bit) = ^true & %upass ! ^upass_complete) 
 ~send_quest_progress_colour(questlist:eadgar, %eadgar_quest, ^eadgar_complete);
 ~send_quest_progress_colour(questlist:mm, %mm_main, ^mm_complete);
 ~send_quest_progress_colour(questlist:routequest, %routequest, ^routequest_complete);
+~send_quest_progress_colour(questlist:deserttreasure, %deserttreasure, ^deserttreasure_complete);
+~send_quest_progress_colour(questlist:tog, %tog_juna_bowl, ^tog_complete);
+~send_quest_progress_colour(questlist:zogre, %zogre, ^zogre_complete);
+~send_quest_progress_colour(questlist:losttribe, %lost_tribe_quest, ^lost_tribe_complete);
 if_settab(questlist, ^tab_quest_journal);
 
 if (%drunkmonkquest >= ^drunkmonk_spoken_to_omad) {
     settimer(blanket_ladder, 1);
 }
+
+[proc,quest_req_colour](int $value, int $required)(string)
+if ($value >= $required) {
+    return("@str@");
+}
+return("@dre@");

@@ -173,3 +173,17 @@ data=stun_damage,2
 data=success_chance,40,240
 data=loot,coins,40,40,128
 data=pocket,Fremennik's pocket
+
+[pickpocket_desert_bandit]
+table=pickpocket
+data=npc,fourdiamonds_sword_bandit_1
+data=npc,fourdiamonds_sword_bandit_free
+data=level,53
+data=experience,794
+data=stun_ticks,8
+data=stun_damage,3
+data=success_chance,60,220
+data=loot,coins,30,30,100
+data=loot,1doseantipoison,1,1,14
+data=loot,lockpick,1,1,14
+data=pocket,bandit's pocket

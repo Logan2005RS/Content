@@ -79,9 +79,6 @@ protect=no
 
 [action_delay]
 
-[varp_59]
-scope=perm
-
 [goblinquest]
 scope=perm
 
@@ -160,8 +157,6 @@ type=player_uid
 [last_logout]
 scope=perm
 
-[varp_135]
-
 [varp_136]
 
 [varp_137]
@@ -197,8 +192,6 @@ scope=perm
 
 [marketthief]
 scope=perm
-
-[varp_82]
 
 [varp_191]
 

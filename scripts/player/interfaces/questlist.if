@@ -1170,7 +1170,7 @@ colour=0xFF0000
 overcolour=0xFFFFFF
 option=The Golem
 
-[com_35]
+[deserttreasure]
 layer=com_0
 type=text
 x=10
@@ -1200,7 +1200,7 @@ colour=0xFF0000
 overcolour=0xFFFFFF
 option=Icthlarin's Little Helper
 
-[com_37]
+[tog]
 layer=com_0
 type=text
 x=10
@@ -1215,7 +1215,7 @@ colour=0xFF0000
 overcolour=0xFFFFFF
 option=Tears of Guthix
 
-[com_38]
+[zogre]
 layer=com_0
 type=text
 x=10
@@ -1245,7 +1245,7 @@ colour=0xFF0000
 overcolour=0xFFFFFF
 option=The Giant Dwarf
 
-[com_40]
+[losttribe]
 layer=com_0
 type=text
 x=10

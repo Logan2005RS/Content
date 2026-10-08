@@ -1,0 +1,402 @@
+[four_diamonds_etchings]
+name=Etchings
+recol1s=24174
+recol1d=24272
+recol2s=21003
+recol2d=21101
+recol3s=17832
+recol3d=17930
+desc=A copy of the engravings found on a mysterious stone tablet.
+model=inv_map_scroll
+2dxof=-1
+2dyof=56
+2dzoom=990
+2dyan=1716
+2dxan=264
+members=yes
+cost=250
+tradeable=no
+weight=10g
+
+[four_diamonds_translation_primer]
+name=Translation
+recol1s=13472
+recol1d=12387
+recol2s=29594
+recol2d=29587
+desc=A rough translation made from archaeological etchings.
+iop1=Read
+members=yes
+model=inv_book
+2dzoom=840
+2dyan=152
+2dxan=256
+cost=250
+tradeable=no
+weight=1lb
+
+[fd_firekey]
+name=Warm key
+recol1s=31393
+recol1d=17799
+desc=This key is unusually warm to the touch.
+model=inv_key
+2dxof=-3
+2dyof=5
+2dzoom=700
+2dyan=20
+2dxan=328
+members=yes
+cost=250
+tradeable=no
+weight=10g
+
+[fd_ring_visibility]
+name=Ring of visibility
+recol1s=32767
+recol1d=22241
+desc=A ring that allows you to see things that are normally invisible...
+members=yes
+cost=350
+model=inv_ring_no_gem
+2dxof=3
+2dyof=-35
+2dzoom=830
+2dyan=180
+2dzan=2024
+2dxan=268
+iop2=Wear
+wearpos=ring
+weight=4g
+
+[fd_crushed_garlic]
+name=Garlic powder
+recol1s=21140
+recol1d=24309
+desc=Finely ground garlic powder.
+model=inv_ash
+2dxof=-6
+2dzoom=1210
+2dyan=1892
+2dxan=264
+members=yes
+cost=1
+cost=10
+weight=10g
+
+[fd_sword_cross]
+name=Gilded cross
+desc=An old and strangely shaped metal cross.
+members=yes
+model=obj_4674
+2dyof=-5
+2dzoom=1020
+2dxan=540
+cost=250
+tradeable=no
+weight=10g
+
+[staff_of_zaros]
+name=Ancient staff
+desc=A magical staff of ancient origin...
+members=yes
+model=obj_4675
+2dxof=-5
+2dyof=2
+2dzoom=1490
+2dyan=1400
+2dxan=148
+iop2=Wield
+manwear=obj_4675_manwear,0
+womanwear=obj_4675_manwear,6
+cost=100000
+wearpos=righthand
+category=weapon_staff
+weight=2lb
+param=stabattack,10
+param=slashattack,-1
+param=crushattack,40
+param=magicattack,15
+param=stabdefence,2
+param=slashdefence,3
+param=crushdefence,1
+param=magicdefence,15
+param=strengthbonus,50
+param=attackrate,5
+param=ready_baseanim,human_staffready
+param=walk_f_baseanim,human_halberdwalk_f
+param=walk_b_baseanim,human_halberdwalk_b
+param=walk_l_baseanim,human_halberdwalk_l
+param=walk_r_baseanim,human_halberdwalk_r
+param=running_baseanim,human_halberdrunning
+param=turnonspot_baseanim,human_halberdturnonspot
+param=crushattack_anim,human_stafforb_pummel
+param=defend_anim,human_stafforb_block
+param=crush_sound,staff_hit
+
+[bandit_brew]
+name=Bandit's brew
+recol1s=25025
+recol1d=20806
+recol2s=31367
+recol2d=20806
+desc=A cheeky little lager.
+cost=500
+iop1=Drink
+members=yes
+model=inv_beer
+2dxof=-3
+2dyof=2
+2dzoom=660
+2dyan=1904
+2dxan=140
+weight=1lb
+
+[fd_silver_pot]
+name=Silver pot
+recol1s=16643
+recol1d=21140
+recol2s=14529
+recol2d=17969
+recol3s=12448
+recol3d=15855
+recol4s=10336
+recol4d=13741
+recol5s=8224
+recol5d=10570
+desc=A silver pot made by Ruantun.
+members=yes
+model=inv_pot-empty
+2dxof=-1
+2dyof=2
+2dzoom=990
+2dyan=8
+2dxan=112
+cost=250
+tradeable=no
+weight=1lb
+category=fd_silver_pot
+
+[fd_silver_pot_blessed]
+name=Blessed pot
+recol1s=16643
+recol1d=21140
+recol2s=14529
+recol2d=17969
+recol3s=12448
+recol3d=15855
+recol4s=10336
+recol4d=13741
+recol5s=8224
+recol5d=10570
+desc=A silver pot made by Ruantun and blessed on Entrana.
+members=yes
+model=inv_pot-empty
+2dxof=-1
+2dyof=2
+2dzoom=990
+2dyan=8
+2dxan=112
+cost=250
+tradeable=no
+weight=1lb
+category=fd_silver_pot
+
+[fd_silver_pot_blood]
+name=Silver pot
+desc=A silver pot made by Ruantun filled with your blood.
+members=yes
+model=obj_4660
+2dxof=-1
+2dyof=2
+2dzoom=990
+2dyan=8
+2dxan=112
+cost=250
+tradeable=no
+weight=1lb
+category=fd_silver_pot
+
+[fd_silver_pot_blood_blessed]
+name=Blessed pot
+desc=A blessed silver pot made by Ruantun filled with your blood.
+members=yes
+model=obj_4660
+2dxof=-1
+2dyof=2
+2dzoom=990
+2dyan=8
+2dxan=112
+cost=250
+tradeable=no
+weight=1lb
+category=fd_silver_pot
+
+[fd_silver_pot_blood_garlic]
+name=Silver pot
+desc=A silver pot made by Ruantun filled with blood and garlic.
+members=yes
+model=obj_4660
+2dxof=-1
+2dyof=2
+2dzoom=990
+2dyan=8
+2dxan=112
+cost=250
+tradeable=no
+weight=1lb
+category=fd_silver_pot
+
+[fd_silver_pot_blood_garlic_blessed]
+name=Blessed pot
+desc=A blessed silver pot filled with blood and garlic.
+members=yes
+model=obj_4660
+2dxof=-1
+2dyof=2
+2dzoom=990
+2dyan=8
+2dxan=112
+cost=250
+tradeable=no
+weight=1lb
+category=fd_silver_pot
+
+[fd_silver_pot_blood_garlic_spiced]
+name=Silver pot
+desc=A silver pot made by Ruantun filled with blood, garlic and spices.
+members=yes
+model=obj_4660
+2dxof=-1
+2dyof=2
+2dzoom=990
+2dyan=8
+2dxan=112
+cost=250
+tradeable=no
+weight=1lb
+category=fd_silver_pot
+
+[fd_silver_pot_blood_garlic_spiced_blessed]
+name=Blessed pot
+desc=A blessed silver pot filled with blood, garlic and spices.
+members=yes
+model=obj_4660
+2dxof=-1
+2dyof=2
+2dzoom=990
+2dyan=8
+2dxan=112
+cost=250
+tradeable=no
+weight=1lb
+category=fd_silver_pot
+
+[fd_silver_pot_blood_spiced]
+name=Silver pot
+desc=A silver pot made by Ruantun filled with blood and spices.
+members=yes
+model=obj_4660
+2dxof=-1
+2dyof=2
+2dzoom=990
+2dyan=8
+2dxan=112
+cost=250
+tradeable=no
+weight=1lb
+category=fd_silver_pot
+
+[fd_silver_pot_blood_spiced_blessed]
+name=Blessed pot
+desc=A blessed silver pot filled with blood and spices.
+members=yes
+model=obj_4660
+2dxof=-1
+2dyof=2
+2dzoom=990
+2dyan=8
+2dxan=112
+cost=250
+tradeable=no
+weight=1lb
+category=fd_silver_pot
+
+[fd_blood_diamond]
+name=Blood diamond
+members=yes
+desc=The Diamond of Blood.
+model=inv_gem
+2dxof=-5
+2dyof=7
+2dzoom=780
+2dyan=220
+2dzan=1860
+2dxan=368
+cost=250
+tradeable=no
+weight=10g
+
+[fd_icediamond]
+name=Ice diamond
+recol1s=16417
+recol1d=19135
+recol2s=11264
+recol2d=12991
+recol3s=30257
+recol3d=32767
+model=obj_4671
+desc=The Diamond of Ice.
+members=yes
+model=inv_gem
+2dxof=-5
+2dyof=7
+2dzoom=780
+2dyan=220
+2dzan=1860
+2dxan=368
+cost=250
+tradeable=no
+weight=10g
+
+[fd_diamond_fire]
+name=Smoke diamond
+recol1s=16417
+recol1d=10570
+recol2s=11264
+recol2d=6341
+recol3s=30257
+recol3d=17969
+desc=The Diamond of Smoke.
+members=yes
+model=inv_gem
+2dxof=-5
+2dyof=7
+2dzoom=780
+2dyan=220
+2dzan=1860
+2dxan=368
+cost=250
+tradeable=no
+weight=10g
+
+[fd_dark_diamond]
+name=Shadow diamond
+recol1s=16417
+recol1d=7399
+recol2s=11264
+recol2d=4228
+recol3s=30257
+recol3d=21173
+desc=The Diamond of Shadow.
+members=yes
+model=inv_gem
+2dxof=-5
+2dyof=7
+2dzoom=780
+2dyan=220
+2dzan=1860
+2dxan=368
+cost=250
+tradeable=no
+weight=10g

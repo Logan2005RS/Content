@@ -1,4 +1,7 @@
 [opnpc1,archaeological_expert]
+if (~deserttreasure_terry = true) {
+    return;
+}
 def_int $progress = ~itexam_progress;
 
 if ($progress = ^itexam_complete) {

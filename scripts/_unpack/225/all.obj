@@ -869,16 +869,6 @@ cost=20
 weight=10g
 category=category_715
 
-[garlic]
-name=Garlic
-desc=A clove of garlic.
-cost=3
-model=inv_garlic
-2dzoom=670
-2dyan=116
-2dxan=116
-weight=1oz
-
 [ice_gloves]
 name=Ice gloves
 desc=These will keep my hands cold!

@@ -15,6 +15,22 @@
 [if_button,staff_spells:ssb13] @set_autocast_spell(^water_wave);
 [if_button,staff_spells:ssb14] @set_autocast_spell(^earth_wave);
 [if_button,staff_spells:ssb15] @set_autocast_spell(^fire_wave);
+[if_button,zaros_staff_spells:zsb_smoke_rush] @set_autocast_spell(^smoke_rush);
+[if_button,zaros_staff_spells:zsb_shadow_rush] @set_autocast_spell(^shadow_rush);
+[if_button,zaros_staff_spells:zsb_blood_rush] @set_autocast_spell(^blood_rush);
+[if_button,zaros_staff_spells:zsb_ice_rush] @set_autocast_spell(^ice_rush);
+[if_button,zaros_staff_spells:zsb_smoke_burst] @set_autocast_spell(^smoke_burst);
+[if_button,zaros_staff_spells:zsb_shadow_burst] @set_autocast_spell(^shadow_burst);
+[if_button,zaros_staff_spells:zsb_blood_burst] @set_autocast_spell(^blood_burst);
+[if_button,zaros_staff_spells:zsb_ice_burst] @set_autocast_spell(^ice_burst);
+[if_button,zaros_staff_spells:zsb_smoke_blitz] @set_autocast_spell(^smoke_blitz);
+[if_button,zaros_staff_spells:zsb_shadow_blitz] @set_autocast_spell(^shadow_blitz);
+[if_button,zaros_staff_spells:zsb_blood_blitz] @set_autocast_spell(^blood_blitz);
+[if_button,zaros_staff_spells:zsb_ice_blitz] @set_autocast_spell(^ice_blitz);
+[if_button,zaros_staff_spells:zsb_smoke_barrage] @set_autocast_spell(^smoke_barrage);
+[if_button,zaros_staff_spells:zsb_shadow_barrage] @set_autocast_spell(^shadow_barrage);
+[if_button,zaros_staff_spells:zsb_blood_barrage] @set_autocast_spell(^blood_barrage);
+[if_button,zaros_staff_spells:zsb_ice_barrage] @set_autocast_spell(^ice_barrage);
 
 [label,open_autocast_interface]
 if_close;
@@ -22,7 +38,17 @@ if (p_finduid(uid) = false) { // cant open autocast interface if delayed
     return;
 }
 %attackstyle_magic = 0;
+if (%zaros_spellbook = 1 & inv_getobj(worn, ^wearpos_rhand) = staff_of_zaros) {
+    if_settab(zaros_staff_spells, 0);
+    return;
+}
 if_settab(staff_spells, 0);
+
+[if_button,zaros_staff_spells:cancelspell]
+if_close;
+if (p_finduid(uid) = true) {
+    ~initalltabs;
+}
 
 [if_button,staff_spells:cancelspell]
 if_close;

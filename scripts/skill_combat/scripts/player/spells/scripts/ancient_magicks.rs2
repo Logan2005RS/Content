@@ -1,0 +1,236 @@
+[apnpct,magic_zaros:smoke_rush] ~pvm_ancient_spell(^smoke_rush);
+[apnpct,magic_zaros:shadow_rush] ~pvm_ancient_spell(^shadow_rush);
+[apnpct,magic_zaros:blood_rush] ~pvm_ancient_spell(^blood_rush);
+[apnpct,magic_zaros:ice_rush] ~pvm_ancient_spell(^ice_rush);
+[apnpct,magic_zaros:smoke_burst] ~pvm_ancient_spell(^smoke_burst);
+[apnpct,magic_zaros:shadow_burst] ~pvm_ancient_spell(^shadow_burst);
+[apnpct,magic_zaros:blood_burst] ~pvm_ancient_spell(^blood_burst);
+[apnpct,magic_zaros:ice_burst] ~pvm_ancient_spell(^ice_burst);
+[apnpct,magic_zaros:smoke_blitz] ~pvm_ancient_spell(^smoke_blitz);
+[apnpct,magic_zaros:shadow_blitz] ~pvm_ancient_spell(^shadow_blitz);
+[apnpct,magic_zaros:blood_blitz] ~pvm_ancient_spell(^blood_blitz);
+[apnpct,magic_zaros:ice_blitz] ~pvm_ancient_spell(^ice_blitz);
+[apnpct,magic_zaros:smoke_barrage] ~pvm_ancient_spell(^smoke_barrage);
+[apnpct,magic_zaros:shadow_barrage] ~pvm_ancient_spell(^shadow_barrage);
+[apnpct,magic_zaros:blood_barrage] ~pvm_ancient_spell(^blood_barrage);
+[apnpct,magic_zaros:ice_barrage] ~pvm_ancient_spell(^ice_barrage);
+
+[applayert,magic_zaros:smoke_rush] ~pvp_ancient_spell(^smoke_rush);
+[applayert,magic_zaros:shadow_rush] ~pvp_ancient_spell(^shadow_rush);
+[applayert,magic_zaros:blood_rush] ~pvp_ancient_spell(^blood_rush);
+[applayert,magic_zaros:ice_rush] ~pvp_ancient_spell(^ice_rush);
+[applayert,magic_zaros:smoke_burst] ~pvp_ancient_spell(^smoke_burst);
+[applayert,magic_zaros:shadow_burst] ~pvp_ancient_spell(^shadow_burst);
+[applayert,magic_zaros:blood_burst] ~pvp_ancient_spell(^blood_burst);
+[applayert,magic_zaros:ice_burst] ~pvp_ancient_spell(^ice_burst);
+[applayert,magic_zaros:smoke_blitz] ~pvp_ancient_spell(^smoke_blitz);
+[applayert,magic_zaros:shadow_blitz] ~pvp_ancient_spell(^shadow_blitz);
+[applayert,magic_zaros:blood_blitz] ~pvp_ancient_spell(^blood_blitz);
+[applayert,magic_zaros:ice_blitz] ~pvp_ancient_spell(^ice_blitz);
+[applayert,magic_zaros:smoke_barrage] ~pvp_ancient_spell(^smoke_barrage);
+[applayert,magic_zaros:shadow_barrage] ~pvp_ancient_spell(^shadow_barrage);
+[applayert,magic_zaros:blood_barrage] ~pvp_ancient_spell(^blood_barrage);
+[applayert,magic_zaros:ice_barrage] ~pvp_ancient_spell(^ice_barrage);
+
+[proc,ancient_spell_element](int $spell)(int)
+return(modulo(sub($spell, ^smoke_rush), 4));
+
+[proc,ancient_spell_tier](int $spell)(int)
+return(divide(sub($spell, ^smoke_rush), 4));
+
+[proc,ancient_spell_multi](int $spell)(boolean)
+def_int $tier = ~ancient_spell_tier($spell);
+if ($tier = 1 | $tier = 3) {
+    return(true);
+}
+return(false);
+
+[proc,ancient_spell_impact_sound](int $spell)(synth)
+switch_int ($spell) {
+    case ^smoke_rush : return(smoke_rush_impact);
+    case ^shadow_rush : return(shadow_rush_impact);
+    case ^blood_rush : return(blood_rush_impact);
+    case ^ice_rush : return(ice_rush_impact);
+    case ^smoke_burst : return(smoke_burst_impact);
+    case ^shadow_burst : return(shadow_burst_impact);
+    case ^blood_burst : return(blood_burst_impact);
+    case ^ice_burst : return(ice_burst_impact);
+    case ^smoke_blitz : return(smoke_blitz_impact);
+    case ^shadow_blitz : return(shadow_blitz_impact);
+    case ^blood_blitz : return(blood_blitz_impact);
+    case ^ice_blitz : return(ice_blitz_impact);
+    case ^smoke_barrage : return(smoke_barrage_impact);
+    case ^shadow_barrage : return(shadow_barrage_impact);
+    case ^blood_barrage : return(blood_barrage_impact);
+    case ^ice_barrage : return(ice_barrage_impact);
+}
+return(null);
+
+[proc,ancient_spell_freeze_time](int $spell)(int)
+switch_int ($spell) {
+    case ^ice_rush : return(8);
+    case ^ice_burst : return(16);
+    case ^ice_blitz : return(24);
+    case ^ice_barrage : return(32);
+}
+return(0);
+
+[proc,ancient_spell_drain_percent](int $spell)(int)
+switch_int ($spell) {
+    case ^shadow_rush, ^shadow_burst : return(10);
+    case ^shadow_blitz, ^shadow_barrage : return(15);
+}
+return(0);
+
+[proc,ancient_spell_poison](int $spell)(int)
+switch_int ($spell) {
+    case ^smoke_rush, ^smoke_burst : return(10);
+    case ^smoke_blitz, ^smoke_barrage : return(20);
+}
+return(0);
+
+[proc,ancient_spell_check_book](int $spell)(boolean)
+if (%zaros_spellbook ! 1) {
+    p_stopaction;
+    return(false);
+}
+return(true);
+
+[proc,ancient_spell_duration](int $duration, int $distance)(int)
+if ($duration > 0) {
+    return($duration);
+}
+return(calc(51 + $distance * 10));
+
+[proc,pvm_ancient_spell](int $spell)
+if (~ancient_spell_check_book($spell) = false) {
+    return;
+}
+def_dbrow $spell_data = ~get_spell_data($spell);
+if (~pvm_combat_spell_checks($spell_data) = false) {
+    return;
+}
+def_int $duration = ~ancient_spell_duration(~pvm_spell_cast($spell_data), npc_range(coord));
+def_npc_uid $target = npc_uid;
+def_coord $center = npc_coord;
+~pvm_ancient_hit($spell_data, $spell, $duration);
+if (~ancient_spell_multi($spell) = false | map_multiway(coord) = false | map_multiway($center) = false) {
+    return;
+}
+def_int $count = 1;
+npc_huntall($center, 1, ^vis_lineofsight);
+while (npc_findnext = true & $count < 9) {
+    if (npc_uid ! $target & npc_hasop(2) = true & npc_stat(hitpoints) > 0 & map_multiway(npc_coord) = true) {
+        ~pvm_ancient_hit($spell_data, $spell, $duration);
+        $count = add($count, 1);
+    }
+}
+
+[proc,pvm_ancient_hit](dbrow $spell_data, int $spell, int $duration)
+if (~player_npc_hit_roll(^magic_style) = false) {
+    ~pvm_spell_fail($spell_data, $duration);
+    return;
+}
+def_int $damagestyle = ^style_magic_normal;
+if (%damagestyle = ^style_melee_defensive) {
+    $damagestyle = ^style_magic_defensive;
+}
+sound_synth(~ancient_spell_impact_sound($spell), 0, $duration);
+def_int $damage = randominc(~npc_max_dealt(~magic_spell_maxhit($spell_data), $spell));
+~npc_retaliate(calc($duration / 30 + 1));
+npc_queue(2, $damage, calc($duration / 30 + 1));
+def_int $damage_capped = min($damage, npc_stat(hitpoints));
+~give_combat_experience($damagestyle, $damage_capped, %npc_combat_xp_multiplier);
+npc_heropoints($damage_capped);
+spotanim_npc(db_getfield($spell_data, magic_spell_table:spotanim_target, 0), $duration);
+if (~ancient_spell_element($spell) = 2 & $damage_capped > 0) {
+    stat_heal(hitpoints, divide($damage_capped, 4), 0);
+}
+def_int $poison = ~ancient_spell_poison($spell);
+if ($poison > 0 & random(4) = 0) {
+    if (map_members = ^true & $poison > %npc_poison) {
+        npc_settimer(30);
+        %npc_poison = $poison;
+    }
+}
+def_int $drain = ~ancient_spell_drain_percent($spell);
+if ($drain > 0 & npc_stat(attack) >= npc_basestat(attack)) {
+    npc_statsub(attack, 0, $drain);
+}
+def_int $freeze = ~ancient_spell_freeze_time($spell);
+if ($freeze > 0 & npc_category ! castlewars_barricade & calc(%npc_stunned + 5) <= map_clock) {
+    %npc_stunned = calc(map_clock + $freeze + 1);
+    npc_walktrigger(8, 0);
+}
+
+[proc,pvp_ancient_spell](int $spell)
+if (~ancient_spell_check_book($spell) = false) {
+    return;
+}
+def_dbrow $spell_data = ~get_spell_data($spell);
+if (~pvp_combat_spell_checks($spell_data) = false) {
+    return;
+}
+def_int $duration = ~ancient_spell_duration(~pvp_spell_cast($spell_data), distance(coord, .coord));
+def_coord $center = .coord;
+def_player_uid $target = .uid;
+~pvp_ancient_hit($spell_data, $spell, $duration);
+if (~ancient_spell_multi($spell) = false | map_multiway(coord) = false | map_multiway($center) = false) {
+    return;
+}
+def_int $count = 1;
+huntall($center, 1, ^vis_lineofsight);
+while (.huntnext = true & $count < 9) {
+    if (.uid ! $target & .uid ! uid & map_multiway(.coord) = true & .stat(hitpoints) > 0) {
+        if (~pvp_is_attackable = true) {
+            ~pvp_ancient_hit($spell_data, $spell, $duration);
+            $count = add($count, 1);
+        }
+    }
+}
+
+[proc,pvp_ancient_hit](dbrow $spell_data, int $spell, int $duration)
+if (~pvp_hit_roll(^magic_style) = false) {
+    ~pvp_spell_fail($spell_data, $duration);
+    return;
+}
+def_int $damagestyle = ^style_magic_normal;
+if (%damagestyle = ^style_melee_defensive) {
+    $damagestyle = ^style_magic_defensive;
+}
+def_synth $sound = ~ancient_spell_impact_sound($spell);
+sound_synth($sound, 1, $duration);
+.sound_synth($sound, 1, $duration);
+def_int $maxhit = ~magic_spell_maxhit($spell_data);
+if (~.check_protect_prayer(^magic_style) = true) {
+    $maxhit = scale(6, 10, $maxhit);
+}
+def_int $damage = min(randominc($maxhit), .stat(hitpoints));
+~.pvp_damage(calc($duration / 30 + 1), $damage);
+~give_combat_experience_pvp($damagestyle, $damage, ~pvp_xp_multiplier(~.player_combat_level));
+both_heropoints($damage);
+.spotanim_pl(db_getfield($spell_data, magic_spell_table:spotanim_target, 0), $duration);
+.queue*(pvp_retaliate, calc($duration / 30 + 1))(uid);
+if (~ancient_spell_element($spell) = 2 & $damage > 0) {
+    stat_heal(hitpoints, divide($damage, 4), 0);
+}
+def_int $poison = ~ancient_spell_poison($spell);
+if ($poison > 0 & random(4) = 0) {
+    .queue(poison_player, 0, $poison);
+}
+def_int $drain = ~ancient_spell_drain_percent($spell);
+if ($drain > 0 & .stat(attack) >= .stat_base(attack)) {
+    .mes("You feel weakened.");
+    .stat_drain(attack, 0, $drain);
+}
+def_int $freeze = ~ancient_spell_freeze_time($spell);
+if ($freeze > 0 & calc(.%frozen + 5) <= map_clock & .getwalktrigger() ! duel_arena_no_move) {
+    if (~.check_protect_prayer(^magic_style) = true) {
+        $freeze = divide($freeze, 2);
+    }
+    if (.p_finduid(.uid) = true) {
+        .p_walk(.coord);
+    }
+    .%pk_binder = uid;
+    .queue(pvp_freeze_player, 0, $freeze);
+}

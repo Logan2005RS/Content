@@ -1,0 +1,54 @@
+^deserttreasure_not_started = 0
+^deserttreasure_started = 1
+^deserttreasure_given_etchings = 2
+^deserttreasure_got_translation = 3
+^deserttreasure_given_translation = 4
+^deserttreasure_agreed_partner = 5
+^deserttreasure_bought_drink = 6
+^deserttreasure_heard_diamonds = 7
+^deserttreasure_eblis_explained = 8
+^deserttreasure_gathering_ingredients = 9
+^deserttreasure_ingredients_given = 10
+^deserttreasure_seen_mirrors = 11
+^deserttreasure_pyramid_open = 12
+^deserttreasure_azzanadra_freed = 13
+^deserttreasure_spoken_azzanadra = 14
+^deserttreasure_complete = 15
+
+^fd_magiclogs_needed = 12
+^fd_steelbars_needed = 6
+^fd_glass_needed = 6
+
+^fd_shadow_not_started = 0
+^fd_shadow_told_damis = 1
+^fd_shadow_declined = 2
+^fd_shadow_agreed = 3
+^fd_shadow_given_cross = 4
+^fd_shadow_damis_first_dead = 5
+^fd_shadow_complete = 6
+
+^fd_blood_not_started = 0
+^fd_blood_declined = 1
+^fd_blood_agreed = 2
+^fd_blood_told_pot = 3
+^fd_blood_got_pot = 4
+^fd_blood_filled_pot = 5
+^fd_blood_dessous_dead = 6
+^fd_blood_complete = 7
+
+^fd_ice_not_started = 0
+^fd_ice_given_sweet = 1
+^fd_ice_agreed = 2
+^fd_ice_kamil_dead = 3
+^fd_ice_complete = 4
+
+^fd_smoke_well = 0_51_46_46_18
+^fd_smoke_well_bottom = 0_50_146_5_35
+^fd_smoke_well_top = 0_51_46_46_19
+^fd_shadow_ladder_bottom = 0_41_79_5_16
+^fd_shadow_ladder_top = 0_39_53_51_30
+^fd_pyramid_entrance = 3_45_77_29_37
+^fd_pyramid_outside = 0_50_45_33_7
+^fd_pyramid_top = 0_50_45_33_18
+
+^deserttreasure_slayer_level = 10

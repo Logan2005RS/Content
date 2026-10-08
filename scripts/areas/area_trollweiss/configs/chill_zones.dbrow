@@ -2,3 +2,9 @@
 table=coord_pair_table
 // Trollweiss Mountain
 data=coord_pair,0_44_58_6_31,0_44_58_10_33
+// Ice Path
+data=coord_pair,0_44_58_23_0,0_44_58_63_63
+data=coord_pair,0_45_58_0_0,0_45_58_63_63
+data=coord_pair,0_44_59_0_0,0_44_59_63_63
+data=coord_pair,1_44_59_0_0,1_44_59_63_63
+data=coord_pair,2_44_59_0_0,2_44_59_63_63

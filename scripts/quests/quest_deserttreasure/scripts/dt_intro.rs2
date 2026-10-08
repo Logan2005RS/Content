@@ -1,0 +1,890 @@
+[proc,deserttreasure_quests_met]()(boolean)
+if (%itexamlevel ! ^itexam_complete) {
+    return(false);
+}
+if (%ikov < ^ikov_completed_armadyl) {
+    return(false);
+}
+if (%desertrescue ! ^desertrescue_complete) {
+    return(false);
+}
+if (%troll_quest ! ^troll_complete) {
+    return(false);
+}
+if (%priestperil < ^priestperil_complete) {
+    return(false);
+}
+if (%waterfall_quest ! ^waterfall_complete) {
+    return(false);
+}
+return(true);
+
+[proc,deserttreasure_skills_met]()(boolean)
+if (stat_base(thieving) < 53 | stat_base(magic) < 50 | stat_base(firemaking) < 50) {
+    return(false);
+}
+return(true);
+
+[proc,deserttreasure_wearing_god_item]()(boolean)
+def_int $slot = 0;
+while ($slot < inv_size(worn)) {
+    def_obj $obj = inv_getobj(worn, $slot);
+    if ($obj ! null) {
+        def_string $name = lowercase(oc_name($obj));
+        if (string_indexof_string("saradomin", $name) ! -1 | string_indexof_string("zamorak", $name) ! -1) {
+            return(true);
+        }
+    }
+    $slot = add($slot, 1);
+}
+return(false);
+
+[proc,deserttreasure_diamond_count]()(int)
+def_int $count = 0;
+if (inv_total(inv, fd_blood_diamond) > 0) {
+    $count = add($count, 1);
+}
+if (inv_total(inv, fd_icediamond) > 0) {
+    $count = add($count, 1);
+}
+if (inv_total(inv, fd_diamond_fire) > 0) {
+    $count = add($count, 1);
+}
+if (inv_total(inv, fd_dark_diamond) > 0) {
+    $count = add($count, 1);
+}
+return($count);
+
+[opnpc1,fourdiamonds_indiana]
+~chatplayer("<p,neutral>Hello there.");
+if (%deserttreasure = ^deserttreasure_not_started) {
+    if (~deserttreasure_quests_met = false) {
+        ~mesbox("He seems to be lost in his own thoughts...");
+        return;
+    }
+    ~chatnpc("<p,happy>Howdy stranger. What brings you out to these parts?");
+    @asgarnia_intro_menu;
+}
+if (%deserttreasure = ^deserttreasure_complete) {
+    @asgarnia_post_quest;
+}
+switch_int (%deserttreasure) {
+    case ^deserttreasure_started : @asgarnia_etchings;
+    case ^deserttreasure_given_etchings, ^deserttreasure_got_translation : @asgarnia_translation;
+    case ^deserttreasure_given_translation : @asgarnia_partners;
+}
+if (%deserttreasure >= ^deserttreasure_pyramid_open) {
+    @asgarnia_ate_diamonds;
+}
+if (~deserttreasure_diamond_count = 4) {
+    @asgarnia_four_diamonds;
+}
+if (%deserttreasure >= ^deserttreasure_eblis_explained) {
+    ~chatnpc("<p,happy>Hello again. You find any signs of that treasure yet?");
+    ~chatplayer("<p,neutral>Not as such... Although I think I'm onto something of a promising lead...");
+    ~chatplayer("<p,quiz>Did you ever hear of something called the Diamonds of Azzanadra?");
+    ~chatnpc("<p,happy>Diamonds of Azzanadra? That sounds very promising indeed!");
+    ~chatplayer("<p,quiz>So you have heard of them?");
+    ~chatnpc("<p,laugh>Nope, never heard of them before, but you said diamonds! Diamonds are always promising!");
+    return;
+}
+~chatnpc("<p,happy>Hello again. You find any signs of that treasure yet?");
+~chatplayer("<p,neutral>Not yet...");
+~chatnpc("<p,neutral>Well, head south to that bandit camp. I bet if there's anything out here, they'll know about it.");
+~chatnpc("<p,neutral>Don't let on it might be valuable though! Those thieves will steal it as soon as look at you!");
+
+[label,asgarnia_intro_menu]
+def_int $choice = ~p_choice4("What are you doing here?", 1, "Do you have any quests?", 2, "Who are you?", 3, "Nothing really.", 4);
+if ($choice = 1) {
+    ~chatplayer("<p,quiz>Nothing much - What are you doing here? It doesn't seem like there's much to do out here in the desert!");
+    ~chatnpc("<p,neutral>Well, that's where you'd be wrong. I work for the Archaeological Society of Varrock, and have been excavating around here recently.");
+    ~chatnpc("<p,quiz>Was there something you specifically wanted?");
+    @asgarnia_intro_menu;
+} else if ($choice = 2) {
+    @asgarnia_start_quest;
+} else if ($choice = 3) {
+    ~chatplayer("<p,quiz>Who are you, anyway?");
+    ~chatnpc("<p,shock>You don't recognise me??? I am the world famous Asgarnia Smith, Archaeologist extraordinaire!");
+    ~chatnpc("<p,happy>I am the one who discovered the long forgotten Temple of Ikov! The one who unearthed the strange trap filled arena in Brimhaven!");
+    ~chatnpc("<p,quiz>I'm the leading archaeological expert of our time! I was voted archaeologist of the year four years running by the Varrock Herald! Are you REALLY sure you've never heard of me?");
+    ~chatplayer("<p,neutral>No, I really haven't.");
+    ~chatnpc("<p,confused>Well then, I'm confused. Why did you come over and speak to me if you don't know who I am? What do you want?");
+    @asgarnia_intro_menu;
+}
+~chatplayer("<p,neutral>Nothing really. I'm just wandering around for no good reason.");
+~chatnpc("<p,neutral>Uh-huh. Well, if you'll excuse me, I have a lot more work to do before I can bed down for the night.");
+
+[label,asgarnia_start_quest]
+~chatplayer("<p,quiz>Do you have any quests? Call it a hunch, but you look like the type of man who might...");
+~chatnpc("<p,neutral>Well, it's funny you should say that. I'm not sure if I would really call it a quest as such, but I found this ancient stone tablet in one of my excavations, and it would really help me out if you could go and take it back to the digsite for me and get it examined.");
+~chatnpc("<p,neutral>It's very old, and I don't recognise any of the inscriptions on it.");
+if (stat_base(stat18) < ^deserttreasure_slayer_level) {
+    ~mesbox("You need a Slayer level of <tostring(^deserttreasure_slayer_level)> to start this quest.");
+    return;
+}
+if (~deserttreasure_skills_met = false) {
+    ~mesbox("Before starting this quest, be aware that one or more of your skill levels are lower than what is required to fully complete it.");
+}
+if (~p_choice2_header("Yes.", 1, "No.", 2, "Start the Desert Treasure quest?") = 2) {
+    ~chatplayer("<p,neutral>No thanks. Playing delivery boy doesn't really sound much like fun to me.");
+    ~chatnpc("<p,neutral>Well, okay. Can't say as I blame you for thinking that. I'll go take it there myself later I guess.");
+    return;
+}
+~chatplayer("<p,quiz>Sure, I was heading that way anyway. Any particular person at the digsite you want me to talk to?");
+~chatnpc("<p,neutral>His name's Terry Balando. Give it to nobody but him. I'm sorry, I can't entrust you with the actual tablet I found, it is far too valuable to give away, but I took these etchings - they should be enough for him to make");
+~chatnpc("<p,neutral>a preliminary translation on. Come back and let me know what he says, I would hate to waste my time excavating anything that isn't worth my time as a world famous archaeologist!");
+%deserttreasure = ^deserttreasure_started;
+~zogre_give_or_drop(four_diamonds_etchings, 1);
+~objbox(four_diamonds_etchings, "Asgarnia Smith hands you some etchings.", 250, 0, divide(^objbox_height, 2));
+~send_quest_progress(questlist:deserttreasure, %deserttreasure, ^deserttreasure_complete);
+
+[label,asgarnia_etchings]
+~chatnpc("<p,quiz>So what did Terry Balando say about those etchings? Did he give you a translation for me?");
+if (inv_total(inv, four_diamonds_etchings) > 0) {
+    ~chatplayer("<p,sad>Um... yeah... about that... I kind of didn't go and speak to him yet...");
+    ~chatnpc("<p,angry>Well what are you waiting for? A written invitation? All I want you to do is take those etchings up to the digsite for me!");
+    ~chatplayer("<p,neutral>Okay, I'll do that then.");
+    return;
+}
+~chatplayer("<p,sad>Um... yeah... about that... I kind of lost those etchings you gave me...");
+~chatnpc("<p,angry>Well how in the world did you do that? (sigh) Okay, I'll make another set, but try not to lose these ones this time!");
+~zogre_give_or_drop(four_diamonds_etchings, 1);
+~objbox(four_diamonds_etchings, "Asgarnia Smith hands you some etchings.", 250, 0, divide(^objbox_height, 2));
+
+[label,asgarnia_translation]
+~chatnpc("<p,quiz>So what did Terry Balando say about those etchings? Did he give you a translation for me?");
+if (inv_total(inv, four_diamonds_translation_primer) = 0) {
+    ~chatplayer("<p,neutral>Yeah, he did. But I don't have it with me.");
+    ~chatnpc("<p,neutral>...");
+    ~chatnpc("<p,neutral>I see.");
+    ~chatnpc("<p,angry>Well could you go and get me that translation? It could be vital!");
+    return;
+}
+~chatplayer("<p,happy>Yeah, he did. I have it here in this book.");
+~chatnpc("<p,quiz>Did you take a read of this? It will do you good to understand how this profession works. Here, have a read.");
+if (~p_choice2("Read book", 1, "Don't read book", 2) = 1) {
+    @deserttreasure_read_translation;
+}
+~chatplayer("<p,neutral>Yeah, I did. Kind of boring really.");
+inv_del(inv, four_diamonds_translation_primer, 1);
+%deserttreasure = ^deserttreasure_given_translation;
+~chatnpc("<p,happy>Excellent. Just give me a moment to read this, and talk to me again in a second.");
+
+[label,asgarnia_partners]
+~chatnpc("<p,neutral>Hmmm. Interesting. It seems to me like there's some kind of treasure hidden out in the desert.");
+~chatnpc("<p,happy>So what do you say? Fancy being a treasure hunter like me?");
+~chatplayer("<p,confused>Uh... don't you mean archaeologist?");
+~chatnpc("<p,neutral>Yeeees... An archaeologist...");
+~chatnpc("<p,neutral>It's all this hot sun getting to me I think.");
+~chatnpc("<p,neutral>Well anyway, let's just assume there is a treasure hidden in the desert somewhere, and let's just say for the sake of argument that maybe if I found a big stash of gold and treasure I wouldn't necessarily just hand it");
+~chatnpc("<p,neutral>all over to the Museum of Varrock.");
+~chatnpc("<p,neutral>Let's also say, purely hypothetically, that if there were such a big stash of treasure and someone were to help me find it, then that hypothetical person might be entitled to, oh, let's say a purely for the sake of");
+~chatnpc("<p,neutral>argument thirty percent split...");
+~chatplayer("<p,neutral>Fifty percent.");
+~chatnpc("<p,happy>That's right!");
+~chatnpc("<p,neutral>A purely for the sake of argument fifty-fifty split on this hypothetical treasure, should it exist...");
+~chatnpc("<p,quiz>Do you see where I'm going with this?");
+~chatplayer("<p,neutral>You want me to help you find some treasure for a fifty percent share, as long as I don't tell anybody, and your reputation as an esteemed archaeologist with the Museum of Varrock remains intact, and nobody");
+~chatplayer("<p,neutral>discovers you're actually just a treasure hunter?");
+~chatnpc("<p,sad>Uh... yes, but the way you said it makes it sound like I'm doing something wrong...");
+~chatnpc("<p,quiz>So what do you say? Partners?");
+if (~p_choice2("Help him", 1, "Don't help him", 2) = 1) {
+    @asgarnia_agree_partner;
+}
+~chatplayer("<p,angry>This all sounds very immoral, and I don't want any part of your seedy little schemes.");
+~chatnpc("<p,sad>Aw, c'mon, cut me a break here! Look, nobody is really getting hurt, right? This treasure is either going to lie around in some underground ruin, or lie around in some museum for");
+~chatnpc("<p,neutral>people to look at!");
+~chatnpc("<p,neutral>It makes sense for the people to go to all the risk to get a little payback for it, right? Besides, anything of real historical value we can hand over to the museum - we'll just keep the cash for");
+~chatnpc("<p,happy>ourselves!");
+if (~p_choice2("Help him", 1, "Don't help him", 2) = 1) {
+    @asgarnia_agree_partner;
+}
+~chatplayer("<p,angry>I don't trust anything about your little scheme, including you! I want nothing to do with this!");
+~chatnpc("<p,neutral>Eh, you'll come running back when you realise just how much money we could be talking here.");
+~chatnpc("<p,neutral>I'll see you again when you come crawling back, begging to be cut in on the deal.");
+
+[label,asgarnia_agree_partner]
+~chatplayer("<p,neutral>Well... I guess nobody is really going to lose out on anything, and we don't even know if there is any treasure...");
+~chatplayer("<p,happy>Aw, go on then. Count me in.");
+%deserttreasure = ^deserttreasure_agreed_partner;
+~chatnpc("<p,happy>That's what I like to hear! Now, if we split up we'll be able to find treasure quicker.");
+~chatnpc("<p,neutral>I'll continue searching around here in this Bedabin Camp, you head due South to the Bandit Village. If either of us find anything, we'll come find each other and say what, okay?");
+~chatnpc("<p,neutral>You head due South, see what you can find out about this tablet.");
+
+[label,asgarnia_four_diamonds]
+~chatnpc("<p,happy>Hello again. How's the treasure hunting going?");
+~chatplayer("<p,happy>Well, I've found four diamonds.");
+~chatnpc("<p,shock>What? But you've been gone ages!");
+~chatnpc("<p,quiz>C'mon, you can be square with me, you must have found more treasure than just four measly diamonds by now!");
+~chatplayer("<p,neutral>No, I really haven't.");
+~chatnpc("<p,neutral>Hmmm. Well, okay a deal is a deal. Hand two of them over.");
+~chatplayer("<p,neutral>Actually, I think I'm going to need them to gain access to the real treasure...");
+~chatnpc("<p,happy>REALLY? Great, I love treasure!");
+~chatnpc("<p,happy>Don't worry about two measly diamonds if you think they'll lead to something better!");
+~chatnpc("<p,laugh>I don't usually get out of bed for less than a hundred gold bars!");
+
+[label,asgarnia_ate_diamonds]
+~chatnpc("<p,happy>Hello again, apprentice archaeologist. How's the treasure hunting going?");
+~chatplayer("<p,neutral>Well... I found four diamonds...");
+~chatnpc("<p,happy>Great! Pass me my share, and it's a good job all around!");
+~chatplayer("<p,sad>Um... sorry, I can't.");
+~chatnpc("<p,angry>Huh? You're not trying to break a deal here are ya???");
+~chatplayer("<p,neutral>No, it's just... There were these weird pillars around this pyramid...");
+~chatnpc("<p,quiz>Yes?");
+~chatplayer("<p,sad>Um... Well...");
+~chatplayer("<p,sad>They kind of... ate the diamonds...");
+~chatnpc("<p,confused>Pyramid columns ate your diamonds?");
+~chatnpc("<p,angry>That's a crazy story kid. Why would you go putting diamonds into them in the first place anyway? Diamonds!");
+~chatnpc("<p,angry>Of all things!");
+~chatplayer("<p,neutral>Well, I have this feeling there is some better treasure inside that pyramid, and I needed to put the diamonds in to gain entrance.");
+~chatnpc("<p,quiz>Well what are you wasting time talking to me for?");
+~chatnpc("<p,happy>Go get me some treasure, pal!");
+
+[label,asgarnia_post_quest]
+~chatnpc("<p,happy>Hello again. You find any signs of that treasure yet?");
+~chatplayer("<p,neutral>Well... not as such, but I unleashed a powerful demon from its tomb in return for unbelievable magical power.");
+~chatnpc("<p,quiz>So... no gold then?");
+~chatplayer("<p,sad>Not as such, no. Sorry about that.");
+~chatnpc("<p,sad>Aw... I was hoping to go abroad on holiday this year.");
+~chatnpc("<p,neutral>Maybe I'll go check out Karamja next, I hear there's treasure to be found there...");
+def_int $choice = ~p_choice4("Tell me of your adventures", 1, "Tell me how you became an Archaeologist", 2, "Nice hat!", 3, "See you later...", 4);
+if ($choice = 1) {
+    ~chatplayer("<p,neutral>I was wondering...");
+    ~chatplayer("<p,quiz>As you are a big famous archaeologist, maybe you could spare the time to tell me a couple of tales of your exploits?");
+    ~chatnpc("<p,happy>Hey, sure thing kid! Well, this one time I found this spooky old temple in the middle of the jungle.");
+    ~chatnpc("<p,neutral>The entrance was hidden from sight by all these vines and stuff, and it was full of zombies and crazy tribesmen and stuff.");
+    ~chatnpc("<p,neutral>That wasn't the worst thing though! There were all these crazy traps that were hidden around the place too!");
+    ~chatnpc("<p,neutral>Well anyway, I found the secret entrance, fought my way in through the zombies and tribesmen, and came to a big pedestal with a statue of solid gold sat on top of it!");
+    ~chatplayer("<p,shock>Solid gold, huh? Wow.");
+    ~chatnpc("<p,neutral>That's right! It was a cunning trap though! As soon as I picked up the statue, a trapdoor opened up underneath me, and I fell into a darkened room, full of");
+    ~chatnpc("<p,neutral>bones, and the biggest meanest tribesman you ever did see!");
+    ~chatnpc("<p,neutral>Huge he was, and real ugly looking! He had this huge sword too, and he came running towards me screaming something in some language I didn't understand!");
+    ~chatplayer("<p,quiz>What did you do?");
+    ~chatnpc("<p,neutral>Well, while he was screaming at me, and swinging his sword around in front of me, trying to intimidate me before attacking, I cooly and calmly...");
+    ~chatplayer("<p,quiz>Yes?");
+    ~chatnpc("<p,neutral>All the while, knowing that if I died in this spot nobody would even know where I was...");
+    ~chatplayer("<p,quiz>What then?");
+    ~chatnpc("<p,neutral>I knew, if this tribesman killed me, that would be the end of Asgarnia Smith, and all of his treasure hunting...");
+    ~chatplayer("<p,angry>SO WHAT DID YOU DO?!?!");
+    ~chatnpc("<p,neutral>Well, while he was screaming and waving his sword around, I stood behind a nearby stalactite, then shot him with my shortbow.");
+    ~chatnpc("<p,happy>And that was how I recovered the Golden Monkey of Tee-Ta-Toh.");
+} else if ($choice = 2) {
+    ~chatplayer("<p,quiz>So... How exactly did you get into this line of work anyway?");
+    ~chatplayer("<p,neutral>It seems an odd choice of career for a man like yourself.");
+    ~chatnpc("<p,happy>Thinking of joining your pal Asgarnia in the wonderful world of treasure hun- um, archaeology, huh?");
+    ~chatnpc("<p,neutral>Well, it all started the day I was fishing in Catherby, funnily enough.");
+    ~chatnpc("<p,neutral>Ah yes, I remember it well... I was just sat there, hoping to catch a bass or two, when I made the most amazing discovery!");
+    ~chatnpc("<p,neutral>In my fishing nets, I had found an ancient casket, marred and worn by centuries underwater!");
+    ~chatnpc("<p,neutral>With trembling hands, I slowly and cautiously opened it, wondering what ancient secret may have been kept inside...");
+    ~chatnpc("<p,neutral>What valuable heirloom may have been dredged up by my nets that had not decayed underwater long ago...");
+    ~chatnpc("<p,quiz>And you know what I found inside?");
+    ~chatplayer("<p,quiz>No, what?");
+    ~chatnpc("<p,happy>I found 320 coins! Just like that! Just by fishing I had found 320 coins! 320 coins! Can you believe it?");
+    ~chatplayer("<p,neutral>Um... Yes, yes I can.");
+    ~chatnpc("<p,neutral>Well, it might not seem much to us now kid, but back then, it was a revelation!");
+    ~chatnpc("<p,neutral>Why waste my time fishing when there were secret treasures from long ago hidden around the world?");
+    ~chatnpc("<p,happy>I immediately applied to the Museum of Varrock as a field agent, and the rest is history!");
+} else if ($choice = 3) {
+    ~chatplayer("<p,happy>Nice hat!");
+    ~chatnpc("<p,happy>Hey, thanks kid. Looking snazzy is an important part of being a treasure hunter!");
+} else {
+    ~chatplayer("<p,neutral>Well, I'll see you again sometime maybe. Sorry I couldn't get you any treasure...");
+    ~chatnpc("<p,happy>Ah, don't sweat it kid. I'll be honest with ya - I'm already rich many times over, and it's more the kicks of being a treasure hunter I do it for than the actual cash!");
+}
+
+[opheld1,four_diamonds_translation_primer] @deserttreasure_read_translation;
+
+[label,deserttreasure_read_translation]
+%book_page = 0;
+%open_book = four_diamonds_translation_primer;
+@book_flip_page(0, 0, 3, deserttreasure_translation_book);
+
+[proc,deserttreasure_translation_book]
+switch_int (%book_page) {
+    case 0 : ~book("Translation", "This is a rough translation of the stone tablet brought to me by courier earlier today.||The cuneiforms of this particular tablet are far different to anything I have previously seen in my career as an archaeological expert.|Where possible I have given as accurate a translation as possible, but some of the words I have attempted to translate hold different meanings depending upon their intonation and context;");
+    case 1 : ~book("Translation", "Due to my unfamiliarity with this language, I have given possible translations for these words wherever I have encountered them. Wherever I have a word in brackets, it is a word which has many meanings depending on the context, although the general meaning should be clear to even a casual study.|Hopefully this translation will help you in your excavations Asgarnia, and as usual I look forward to seeing what relics you bring back to the Museum of Varrock this time!|Your friend, as always,|Terry Balando");
+    case 2 : ~book("Translation", "Translation follows:||(There are some missing sentence fragments here, presumably from a stone tablet preceding this one which you have not yet discovered)||...the permanent (exile/journey) of the people ended.|And so it came to pass, that deep in the (fiery/uncomfortable) desert, the gods (argued/decided) amongst themselves that the (fortress/home) would be the (selected/chosen) place that would (imprison/conceal) the (wealth/power).");
+    case 3 : ~book("Translation", "Thus (guarded/protected) by the (unusually archaic word here, I believe it means either the sick or the dead depending on context) and (defended/trapped) by the (diamonds/crystals) of (this word is untranslatable). So it was that the gods left the four (diamonds/crystals) as the (key/secret). (Guarded/Protected) by the (again, this word has no modern equivalent) and held by the (worthy/strong) so that the (wealth/power) might forever be (imprisoned/concealed).|There seems to be some further missing information continued onto a further tablet, but from this preliminary translation I think you may be onto something very big indeed!");
+}
+
+[proc,deserttreasure_terry]()(boolean)
+if (%deserttreasure = ^deserttreasure_not_started) {
+    return(false);
+}
+if (%deserttreasure >= ^deserttreasure_given_translation) {
+    if (~p_choice2_header("Ask about the Desert Treasure quest.", 1, "Ask about the Digsite quest.", 2, "What would you like to talk about?") = 2) {
+        return(false);
+    }
+    ~chatnpc("<p,quiz>Hello again. Was that translation any use to Asgarnia?");
+    ~chatplayer("<p,happy>I think it was, thanks!");
+    return(true);
+}
+if (%deserttreasure = ^deserttreasure_got_translation) {
+    if (inv_total(inv, four_diamonds_translation_primer) = 0 & inv_total(bank, four_diamonds_translation_primer) = 0) {
+        ~chatplayer("<p,sad>I lost that translation you gave me...");
+        ~chatnpc("<p,happy>Oh, no matter, I mostly remember what it said anyway! Here you go!");
+        ~zogre_give_or_drop(four_diamonds_translation_primer, 1);
+        return(true);
+    }
+    ~chatnpc("<p,quiz>Hello again. Was that translation any use to Asgarnia?");
+    ~chatplayer("<p,sad>I, uh, kind of didn't take it to him yet...");
+    ~chatnpc("<p,confused>Whyever not? You're the strangest delivery boy I've ever met!");
+    return(true);
+}
+if (%deserttreasure = ^deserttreasure_given_etchings) {
+    ~chatnpc("<p,happy>There you go, that book contains the sum of my translating ability. If you would be so kind as to take that back to Asgarnia, I think it will reassure him that he is on the");
+    ~chatnpc("<p,happy>right track for a find of great archaeological importance");
+    ~zogre_give_or_drop(four_diamonds_translation_primer, 1);
+    %deserttreasure = ^deserttreasure_got_translation;
+    ~objbox(four_diamonds_translation_primer, "Terry Balando hands you a translation.", 250, 0, divide(^objbox_height, 2));
+    ~chatplayer("<p,shock>Wow! You write really quickly don't you?");
+    ~chatnpc("<p,laugh>What can I say? It's a skill I picked up through my many years of taking field notes!");
+    return(true);
+}
+~chatplayer("<p,quiz>Hello, are you Terry Balando?");
+~chatnpc("<p,neutral>That's right, who wants to know...?");
+~chatnpc("<p,happy>Ah yes, I recognise you! You're the fellow who found that strange artefact about Zaros for the museum, aren't you? What can I do for you now?");
+if (inv_total(inv, four_diamonds_etchings) = 0) {
+    ~chatplayer("<p,sad>I had some etchings to deliver to you, but I don't have them on me...");
+    ~chatnpc("<p,neutral>Then... you better go get them for me?");
+    return(true);
+}
+~chatplayer("<p,neutral>That's right. I was in the desert down by the Bedabin Camp, and I found an archaeologist who asked me to deliver this to you.");
+~chatnpc("<p,shock>You spoke to the legendary Asgarnia Smith??? Quickly, let me see what he had to give you! He is always at the forefront of archaeological breakthroughs!");
+inv_del(inv, four_diamonds_etchings, 1);
+%deserttreasure = ^deserttreasure_given_etchings;
+~chatplayer("<p,quiz>So what does the inscription say? Anything interesting?");
+~chatnpc("<p,shock>This... this is fascinating! These cuneiforms seem to predate even the settlement we are excavating here... Yes, yes, this is most interesting indeed!");
+~chatplayer("<p,quiz>Can you translate it for me?");
+~chatnpc("<p,neutral>Well, I am not familiar with this particular language, but the similarities inherent in the pictographs seem to show a prevalent trend towards a syllabary consistent with the phonemes we have discovered in this excavation!");
+~chatplayer("<p,confused>Um... So, can you translate it for me or not?");
+~chatnpc("<p,neutral>Well, unfortunately this is the only example of this particular language I have ever seen, but I might be able to make a rough translation, of sorts...");
+~chatnpc("<p,neutral>It might be slightly obscure on the finer details, but it should be good enough to understand the rough meaning of what was originally written. Please, just wait a moment, I will write up what I can");
+~chatnpc("<p,happy>translate into a journal for you. Then you can take it back to Asgarnia, I think he will be extremely interested in the translation!");
+return(true);
+
+[opnpc1,fourdiamonds_bartender]
+if (%deserttreasure < ^deserttreasure_bought_drink) {
+    ~chatnpc("<p,angry>If you're not buying anything, I have nothing to say to you.");
+    def_int $choice = 0;
+    if (%deserttreasure >= ^deserttreasure_agreed_partner) {
+        $choice = ~p_choice2("Ask about Desert Treasure", 1, "Buy a drink", 2);
+    } else {
+        $choice = 2;
+        ~chatplayer("<p,quiz>I'd like to buy a drink.");
+    }
+    if ($choice = 1) {
+        @fd_bartender_treasure;
+    }
+    @fd_bartender_buy;
+}
+~chatnpc("<p,angry>You've had your drink, now get out of here. I have nothing to say to the-");
+~chatplayer("<p,neutral>No, Wait! Look, I'm here on an archaeological expedition for the Museum of Varrock.");
+~chatplayer("<p,neutral>I am only here looking for artefacts...");
+~chatnpc("<p,neutral>Oh really? Our inheritance is only sand and death. What do you expect to find out here in this desert forsaken by the gods?");
+if (%deserttreasure >= ^deserttreasure_heard_diamonds) {
+    def_int $choice2 = ~p_choice4("I heard about treasure...", 1, "I heard about four diamonds...", 2, "I heard about a fortress...", 3, "I heard of the Diamonds of Azzanadra.", 4);
+    if ($choice2 = 4) {
+        ~chatplayer("<p,quiz>Tell me all you know about the Diamonds of Azzanadra.");
+        ~chatnpc("<p,neutral>Not that I think it's any of your business, but when I was a child I remember hearing the legend.");
+        ~chatnpc("<p,neutral>I don't recall it particularly well, other than they are said to contain an incredible power.");
+        ~chatnpc("<p,angry>If you really want to hear more about it you'd be best off finding someone who cares about the past, and the history of this area, and stop bothering me.");
+        return;
+    }
+    @fd_bartender_option($choice2);
+}
+@fd_bartender_option(~p_choice3("I heard about treasure...", 1, "I heard about four diamonds...", 2, "I heard about a fortress...", 3));
+
+[label,fd_bartender_option](int $choice)
+if ($choice = 1) {
+    @fd_bartender_treasure;
+} else if ($choice = 2) {
+    ~chatplayer("<p,neutral>I heard a rumour about four diamonds or crystals...");
+    ~chatnpc("<p,shock>The four diamonds of Azzanadra??? How came you to know of this?");
+    ~chatplayer("<p,quiz>You've heard of them then?");
+    ~chatnpc("<p,neutral>It's just a fairy tale for children. Maybe one of the village elders might know more, but it's not really something I care about.");
+    ~chatnpc("<p,angry>Now get out of here, your sort isn't welcome in my bar.");
+    if (%deserttreasure = ^deserttreasure_bought_drink) {
+        %deserttreasure = ^deserttreasure_heard_diamonds;
+    }
+    return;
+}
+~chatplayer("<p,neutral>Certain things have led me to believe there may be some kind of ruined fortress around here...");
+~chatnpc("<p,neutral>Doubt it. What in the world would someone need to guard against in the middle of this desert?");
+~chatnpc("<p,laugh>A bad attack of sand? I think you're on the wrong track here, stranger.");
+
+[label,fd_bartender_treasure]
+~chatplayer("<p,neutral>As I understand it there's some kind of hidden treasure in these parts...");
+~chatnpc("<p,laugh>Look around pal. Does it looks like there's any treasure near here?");
+~chatnpc("<p,angry>If I were you I'd get lost before someone takes a dislike to your face and removes it for you.");
+
+[label,fd_bartender_buy]
+if (inv_total(inv, coins) < 650) {
+    ~chatnpc("<p,angry>You ain't got the 650 coins it costs to buy it, and I'm glad 'cos I didn't want to serve you anyway.");
+    return;
+}
+~chatnpc("<p,quiz>What's that? You wanna buy a beer? It'll cost ya 650 coins.");
+if (~p_choice2("Buy a beer", 1, "Don't buy anything", 2) = 2) {
+    ~chatnpc("<p,angry>Get out of my bar then! We don't like your sort round here!");
+    return;
+}
+if (inv_total(inv, coins) < 650) {
+    return;
+}
+inv_del(inv, coins, 650);
+~zogre_give_or_drop(bandit_brew, 1);
+if (%deserttreasure >= ^deserttreasure_agreed_partner & %deserttreasure < ^deserttreasure_bought_drink) {
+    %deserttreasure = ^deserttreasure_bought_drink;
+}
+~chatnpc("<p,angry>There you go. Now get out, we don't like your sort around here.");
+
+[opheld1,bandit_brew]
+inv_delslot(inv, last_slot);
+anim(human_eat, 0);
+sound_synth(liquid, 0, 0);
+mes("You drink the beer. You feel slightly reinvigorated...");
+mes("...and slightly dizzy too.");
+stat_heal(hitpoints, 1, 0);
+stat_add(thieving, 1, 0);
+stat_add(attack, 1, 0);
+stat_sub(strength, 3, 6);
+stat_sub(defence, 3, 6);
+inv_add(inv, beer_glass, 1);
+
+[opnpc1,fourdiamonds_elder]
+if (~deserttreasure_wearing_god_item = true) {
+    ~chatnpc("<p,angry>I have nothing to say to you, false prophet!");
+    return;
+}
+if (%deserttreasure < ^deserttreasure_agreed_partner) {
+    ~chatnpc("<p,angry>Leave us to our fate. We care nothing for the world that betrayed us, or those that come from it.");
+    return;
+}
+if (%deserttreasure = ^deserttreasure_ingredients_given) {
+    ~chatnpc("<p,neutral>Meet me again in the desert East of here, I will use these ingredients to create a scrying glass for you.");
+    return;
+}
+if (%deserttreasure = ^deserttreasure_gathering_ingredients) {
+    @eblis_ingredients;
+}
+~chatplayer("<p,neutral>Hello. I represent the Museum of Varrock, and I have reason to believe there may be some kinds of artefacts of historical significance in the nearby area...");
+~chatnpc("<p,angry>Ah yes. The only time people care about our existence is when they think they have something to gain from us.");
+~chatnpc("<p,angry>I have nothing to say to you. You and your kind are not welcome here.");
+~chatplayer("<p,neutral>Please, if I can just have a few minutes of your time to ask some questions...?");
+~chatnpc("<p,neutral>(sigh) I suppose I can spare you that. What do you wish to know about?");
+@eblis_menu;
+
+[label,eblis_menu]
+def_int $choice = 0;
+if (%deserttreasure >= ^deserttreasure_heard_diamonds) {
+    $choice = ~p_choice5("Why is this village so hostile?", 1, "Do you know anything about treasure near here?", 2, "Do you know anything about a fortress near here?", 3, "Tell me of the four diamonds of Azzanadra", 5, "Nothing thanks.", 4);
+} else {
+    $choice = ~p_choice4("Why is this village so hostile?", 1, "Do you know anything about treasure near here?", 2, "Do you know anything about a fortress near here?", 3, "Nothing thanks.", 4);
+}
+switch_int ($choice) {
+    case 1 : @eblis_hostile;
+    case 2 :
+        ~chatplayer("<p,neutral>I was wondering if you knew anything about some treasure somewhere around here?");
+        ~chatplayer("<p,neutral>I have some evidence that there might be some kind of treasure hidden very close to this village...");
+        ~chatnpc("<p,angry>If I knew of any treasure I would not choose to spend my life in this gods-forsaken desert.");
+    case 3 :
+        ~chatplayer("<p,quiz>Do you know anything about some kind of fortress nearby? I have reason to believe there is, or at least used to be, some kind of fortress very close to here...");
+        ~chatnpc("<p,neutral>Nobody would build anything in this wasteland unless they were forced to, to survive.");
+        ~chatnpc("<p,neutral>I know of no fortress, I know of no reason why anyone would ever bother doing anything out here in the desert.");
+    case 5 : @eblis_diamonds;
+    case default :
+        ~chatplayer("<p,neutral>Actually, there was nothing I really wanted to ask you about.");
+        ~chatnpc("<p,angry>Yes, it is exactly like your sort to waste my time in such a way.");
+}
+
+[label,eblis_hostile]
+~chatplayer("<p,angry>Why are all of the people here so hostile? You would think I was asking you for money instead of just for answers to a few questions...");
+~chatnpc("<p,angry>It is a long story, and I doubt you have much interest in hearing it. Your sort never are, you just take what you can of ours, and then abandon us once more to the desert.");
+if (~p_choice2("No, I want to hear this story.", 1, "I don't care about your story.", 2) = 1) {
+    ~chatplayer("<p,neutral>Actually, I'd be quite interested to hear what it is you have to say to excuse the attitude everybody in this village seems to have.");
+    ~chatnpc("<p,neutral>Ah, it all begun many generations ago, when our ancestors were the proud rulers of these lands...");
+    ~chatnpc("<p,neutral>My ancestors lived far to the North of here, and our lands stretched from the sea in the East to the river Lum, and the mountain of ice. From coast to coast, North to South, our domain was absolute.");
+    ~chatnpc("<p,neutral>Our god was kind to us, and blessed us with prosperity and happiness, and in return we were merciless to his enemies wherever we found them.");
+    ~chatnpc("<p,sad>Then came the betrayal.");
+    ~chatnpc("<p,sad>Our god was banished, leaving us helpless to our fates.");
+    ~chatnpc("<p,sad>Without his protection, we were forced to fend for ourselves once more, against the enemies that sought to destroy us through their petty jealousies.");
+    ~chatnpc("<p,angry>But we did not succumb without fighting! The spiteful Saradomin and pathetic Zamorak warred with each other, but the hatred they had for each other was as nothing to the hatred they held towards us!");
+    ~chatnpc("<p,sad>With each battle they waged, we lost more and more land, unable to fight on all fronts, and were pushed further and further South into this gods-forsaken desert.");
+    ~chatnpc("<p,sad>Our greatest hero, Azzanadra, was finally trapped in a strange stone structure to the South of here, and bound within by terrible powers...");
+    ~chatnpc("<p,sad>And with that our lands, our homes, our very lives were stolen from us! Too weak to reclaim what was rightfully ours, we made our homes here, knowing that someday Azzanadra will");
+    ~chatnpc("<p,neutral>return with his magnificent power, and bring us back to our former glory...");
+    ~chatplayer("<p,confused>So you're upset because of something that happened hundreds of years ago?");
+    ~chatplayer("<p,neutral>Seems to me like maybe you should find some closure, and let the past go...");
+    ~chatnpc("<p,angry>The insults heaped upon my race will never be forgotten, will never be forgiven and will never again be overlooked.");
+    ~chatnpc("<p,angry>Someday, a harsh wind will blow upon this land, uncovering the wrongs of the past, and we will get back what is rightfully ours. Until such a day we will bide our time here, and will");
+    ~chatnpc("<p,angry>always be ready with our blades for our righteous vengeance.");
+    return;
+}
+~chatplayer("<p,angry>I don't really care what your story is to be honest, there is no excuse for such rudeness or hostility.");
+~chatplayer("<p,angry>I have done nothing wrong to you, but everybody here treats me like I have committed some great crime against the village.");
+~chatnpc("<p,angry>That is because, from our point of view, you have.");
+~chatplayer("<p,confused>What? Just because I entered your village?");
+~chatnpc("<p,angry>You have no right to be here! You have no right to the life you have, for it was taken at our expense!");
+~chatplayer("<p,angry>Whatever... No wonder all you loonies live out here in the desert by yourselves.");
+
+[label,eblis_diamonds]
+~chatplayer("<p,quiz>So tell me... Did you ever hear of something called the Diamonds of Azzanadra?");
+~chatnpc("<p,shock>This is the treasure which you seek???");
+~chatnpc("<p,happy>Please accept my apologies! I thought you were but some opportunistic thief, looking to steal what heritage we have left! Now I see that you are in fact a brave adventurer,");
+~chatnpc("<p,happy>looking to restore our glories back upon us!");
+~chatplayer("<p,neutral>Uh... yeah... So anyway, you have heard of them?");
+~chatnpc("<p,happy>Heard of them? Of course I have heard of them! They are the legacy of the great Mahjarrat hero, Azzanadra!");
+~chatplayer("<p,neutral>So... do you have any idea where they might be? I have a feeling they will be very valuable.");
+~chatplayer("<p,neutral>Uh, valuable as historical artefacts I mean, obviously.");
+~chatnpc("<p,neutral>They were stolen by warriors of the false god Zamorak generations ago. When you find the warriors, you will find the diamonds.");
+~chatnpc("<p,neutral>I suspect they will not willingly part with such objects of power however.");
+~chatnpc("<p,neutral>Beware too, for these warriors are very powerful; they have taken the powers of the diamonds into themselves!");
+~chatplayer("<p,quiz>How do you mean?");
+~chatnpc("<p,neutral>Each diamond has an elemental quality...");
+~chatnpc("<p,neutral>There is the Diamond of Blood, the Diamond of Ice, the Diamond of Smoke and the Diamond of Shadow.");
+~chatnpc("<p,neutral>You should expect the warriors to have taken some aspect of these diamonds as their own...");
+~chatplayer("<p,quiz>Do you have any idea how I could track down these warriors somehow, then?");
+~chatnpc("<p,neutral>There is an ancient spell I know of that may spy upon such power... But it will require a few ingredients for it to work.");
+~chatnpc("<p,neutral>Should you be willing to get these ingredients for me, I will be able to locate the rough area where each of these warriors has taken refuge. The spell is imprecise, but it should help you get on the");
+~chatnpc("<p,neutral>right track in your search.");
+~chatnpc("<p,quiz>Is your desire for our freedom strong enough? Will you gather the ingredients for this spell for me?");
+if (%deserttreasure = ^deserttreasure_heard_diamonds) {
+    %deserttreasure = ^deserttreasure_eblis_explained;
+}
+if (~p_choice2("Yes", 1, "No", 2) = 2) {
+    ~chatplayer("<p,neutral>Actually I don't feel like going on a shopping trip for you right now.");
+    ~chatnpc("<p,sad>As you wish. I should have known not to get my hopes up that our long cursed life may soon be at an end...");
+    return;
+}
+~chatplayer("<p,neutral>Sure, what do you need?");
+%deserttreasure = ^deserttreasure_gathering_ingredients;
+~chatnpc("<p,neutral>For this spell, I will need to make some scrying glasses. I will need enough so that we can view the realm in its entirety.");
+~chatnpc("<p,neutral>When enchanted, the scrying glass will be able to let us view any area that has been influenced by the presence of the Diamonds of Azzanadra.");
+~chatplayer("<p,quiz>Okay, but what exactly do you need for this spell?");
+@eblis_list_ingredients;
+
+[label,eblis_list_ingredients]
+~chatnpc("<p,neutral>Well, six scrying glasses should be sufficient. For each scrying glass, I will need two magic logs, a steel bar and some molten glass. This makes a total of 12 magic logs, 6 pieces of molten");
+~chatnpc("<p,neutral>glass, and 6 steel bars.");
+~chatnpc("<p,neutral>In addition, for the actual spell to enchant the glasses, I will require one set of normal bones, some ash, some charcoal and a single blood rune.");
+~chatnpc("<p,quiz>Do you understand me, adventurer?");
+~chatplayer("<p,quiz>Quick question; what kind of bones do you need?");
+~chatnpc("<p,neutral>Standard bones. Other types of bones are of no use to me in this spell.");
+if (~p_choice2("Yes, I will go get those for you.", 1, "No, please repeat those ingredients.", 2) = 2) {
+    @eblis_list_ingredients;
+}
+~chatplayer("<p,neutral>It's a slightly odd collection of ingredients, but I shouldn't have too much trouble getting those for you.");
+
+[label,eblis_ingredients]
+if (~eblis_has_any_ingredient = true) {
+    ~chatplayer("<p,neutral>I have some of the stuff you are looking for with me...");
+    ~chatnpc("<p,neutral>Thank you, pass over the ingredients so that I may begin working on the spell.");
+    ~eblis_take_ingredient(magic_logs, %fd_magiclog, ^fd_magiclogs_needed, "You hand over some magic logs.");
+    ~eblis_take_ingredient(steel_bar, %fd_steelbar, ^fd_steelbars_needed, "You hand over some steel bars.");
+    ~eblis_take_ingredient(molten_glass, %fd_glass, ^fd_glass_needed, "You hand over some molten glass.");
+    ~eblis_take_ingredient(bones, %fd_bones, 1, "You hand over some bones.");
+    ~eblis_take_ingredient(ashes, %fd_ash, 1, "You hand over some ashes.");
+    ~eblis_take_ingredient(charcoal, %fd_charcoal, 1, "You hand over some charcoal.");
+    ~eblis_take_ingredient(bloodrune, %fd_bloodrune, 1, "You hand over a blood rune.");
+    if (~eblis_ingredients_done = true) {
+        @eblis_all_ingredients;
+    }
+}
+@eblis_still_needed;
+
+[label,eblis_still_needed]
+def_string $runes = "blood runes";
+if (%fd_bloodrune = 0) {
+    $runes = "blood rune";
+}
+~chatnpc("<p,neutral>Before I can complete the spell I will still need the following items;");
+~chatnpc("<p,neutral><tostring(sub(^fd_magiclogs_needed, %fd_magiclog))> magic logs <tostring(sub(^fd_steelbars_needed, %fd_steelbar))> steel bars <tostring(sub(^fd_glass_needed, %fd_glass))> molten glass");
+~chatnpc("<p,neutral><tostring(sub(1, %fd_bones))> bones, <tostring(sub(1, %fd_ash))> ashes, <tostring(sub(1, %fd_charcoal))> charcoal and <tostring(sub(1, %fd_bloodrune))> <$runes>.");
+
+[label,eblis_all_ingredients]
+if (~deserttreasure_wearing_god_item = true) {
+    ~chatnpc("<p,angry>I have nothing to say to you, false prophet!");
+    return;
+}
+%deserttreasure = ^deserttreasure_ingredients_given;
+%fd_mirror_present = 1;
+~chatnpc("<p,happy>Excellent! Those are all the ingredients I need to create the scrying glasses.");
+~chatnpc("<p,neutral>I will find a suitable spot in the desert to the East of here, and set them up. When you are ready to begin your search, please come and find me there, I will show you how to utilise the");
+~chatnpc("<p,neutral>mirrors to find the diamonds.");
+
+[proc,eblis_has_any_ingredient]()(boolean)
+if (%fd_magiclog < ^fd_magiclogs_needed & ~eblis_ingredient_total(magic_logs) > 0) {
+    return(true);
+}
+if (%fd_steelbar < ^fd_steelbars_needed & ~eblis_ingredient_total(steel_bar) > 0) {
+    return(true);
+}
+if (%fd_glass < ^fd_glass_needed & ~eblis_ingredient_total(molten_glass) > 0) {
+    return(true);
+}
+if (%fd_bones < 1 & ~eblis_ingredient_total(bones) > 0) {
+    return(true);
+}
+if (%fd_ash < 1 & ~eblis_ingredient_total(ashes) > 0) {
+    return(true);
+}
+if (%fd_charcoal < 1 & ~eblis_ingredient_total(charcoal) > 0) {
+    return(true);
+}
+if (%fd_bloodrune < 1 & inv_total(inv, bloodrune) > 0) {
+    return(true);
+}
+return(false);
+
+[proc,eblis_ingredient_total](obj $obj)(int)
+def_obj $cert = oc_cert($obj);
+if ($cert ! $obj) {
+    return(add(inv_total(inv, $obj), inv_total(inv, $cert)));
+}
+return(inv_total(inv, $obj));
+
+[proc,eblis_ingredients_done]()(boolean)
+if (%fd_magiclog >= ^fd_magiclogs_needed & %fd_steelbar >= ^fd_steelbars_needed & %fd_glass >= ^fd_glass_needed & %fd_bones = 1 & %fd_ash = 1 & %fd_charcoal = 1 & %fd_bloodrune = 1) {
+    return(true);
+}
+return(false);
+
+[proc,eblis_take_ingredient](obj $obj, int $have, int $need, string $message)
+if ($have >= $need) {
+    return;
+}
+def_int $wanted = sub($need, $have);
+def_int $taken = min($wanted, inv_total(inv, $obj));
+if ($taken > 0) {
+    inv_del(inv, $obj, $taken);
+}
+def_obj $cert = oc_cert($obj);
+if ($cert ! $obj & $taken < $wanted) {
+    def_int $certs = min(sub($wanted, $taken), inv_total(inv, $cert));
+    if ($certs > 0) {
+        inv_del(inv, $cert, $certs);
+        $taken = add($taken, $certs);
+    }
+}
+if ($taken = 0) {
+    return;
+}
+mes($message);
+~eblis_add_ingredient($obj, $taken);
+
+[proc,eblis_add_ingredient](obj $obj, int $count)
+switch_obj ($obj) {
+    case magic_logs : %fd_magiclog = add(%fd_magiclog, $count);
+    case steel_bar : %fd_steelbar = add(%fd_steelbar, $count);
+    case molten_glass : %fd_glass = add(%fd_glass, $count);
+    case bones : %fd_bones = 1;
+    case ashes : %fd_ash = 1;
+    case charcoal : %fd_charcoal = 1;
+    case bloodrune : %fd_bloodrune = 1;
+}
+
+[opnpcu,fourdiamonds_elder]
+if (%deserttreasure ! ^deserttreasure_gathering_ingredients) {
+    ~displaymessage(^dm_default);
+    return;
+}
+def_obj $obj = last_useitem;
+if (oc_cert($obj) ! $obj & oc_uncert($obj) ! $obj) {
+    $obj = oc_uncert($obj);
+}
+switch_obj ($obj) {
+    case magic_logs : ~eblis_use_ingredient(last_useitem, %fd_magiclog, ^fd_magiclogs_needed, "You hand over a magic log.");
+    case steel_bar : ~eblis_use_ingredient(last_useitem, %fd_steelbar, ^fd_steelbars_needed, "You hand over a steel bar.");
+    case molten_glass : ~eblis_use_ingredient(last_useitem, %fd_glass, ^fd_glass_needed, "You hand over some molten glass.");
+    case ashes :
+        if (~eblis_use_ingredient(last_useitem, %fd_ash, 1, "You hand over some ashes.") = true) {
+            ~chatnpc("<p,happy>Thank you, that is enough ash for the spell.");
+        }
+    case bones :
+        if (~eblis_use_ingredient(last_useitem, %fd_bones, 1, "You hand over some bones.") = true) {
+            ~chatnpc("<p,happy>Thank you, those are enough bones for the spell.");
+        }
+    case charcoal :
+        if (~eblis_use_ingredient(last_useitem, %fd_charcoal, 1, "You hand over some charcoal.") = true) {
+            ~chatnpc("<p,happy>Thank you, that is enough charcoal for the spell.");
+        }
+    case bloodrune :
+        if (~eblis_use_ingredient(last_useitem, %fd_bloodrune, 1, "You hand over a blood rune.") = true) {
+            ~chatnpc("<p,happy>Thank you, that blood rune should be sufficient for the spell.");
+        }
+    case default :
+        ~displaymessage(^dm_default);
+        return;
+}
+if (~eblis_ingredients_done = true) {
+    @eblis_all_ingredients;
+}
+
+[proc,eblis_use_ingredient](obj $used, int $have, int $need, string $message)(boolean)
+if ($have >= $need) {
+    ~chatnpc("<p,neutral>I already have enough of those, thank you.");
+    return(false);
+}
+def_int $count = 1;
+if (oc_cert($used) = $used & oc_uncert($used) ! $used) {
+    $count = min(sub($need, $have), inv_total(inv, $used));
+}
+inv_del(inv, $used, $count);
+mes($message);
+~eblis_add_ingredient(oc_uncert($used), $count);
+return(true);
+
+[opnpc1,fourdiamonds_elder2]
+if (%deserttreasure = ^deserttreasure_complete) {
+    @eblis_post_quest;
+}
+if (%deserttreasure = ^deserttreasure_ingredients_given) {
+    ~chatnpc("<p,neutral>Ah, so you got here at last.");
+    ~chatnpc("<p,neutral>As you may noticed, I have made the mirrors for|the spell, and cast the enchantment upon them.");
+    ~chatnpc("<p,neutral>By simply looking into each mirror, you will be able to|see the area where the trace magics from the Diamonds|of Azzanadra are emanating from.");
+    ~chatnpc("<p,neutral>Unfortunately, I cannot narrow the search closer with|this kind of spell, but if you search the areas shown to|you, you may be able to find some clues leading you to|the evil warriors of Zamorak who stole the diamonds in");
+    ~chatnpc("<p,neutral>the first place.");
+    ~chatplayer("<p,quiz>So you can't be anymore specific about where to look|for these warriors and their diamonds?");
+    ~chatnpc("<p,neutral>I'm afraid not, other than the direction that the mirror|is facing will be approximately the direction you will|need to head in.");
+    ~chatnpc("<p,neutral>Make sure to come and speak to me when you have|retrieved all four diamonds.");
+    %deserttreasure = ^deserttreasure_seen_mirrors;
+    return;
+}
+if (%deserttreasure >= ^deserttreasure_pyramid_open) {
+    ~chatplayer("<p,neutral>I used the Four Diamonds on the pillars surrounding the pyramid...");
+    ~chatnpc("<p,quiz>Yes? And what happened?");
+    ~chatplayer("<p,neutral>Er... they changed colour.");
+    ~chatnpc("<p,neutral>Ah, that was the power being re-absorbed back into them. That should have been sufficient to break the magic seal preventing anyone exiting or entering the structure.");
+    ~chatnpc("<p,shock>Quickly, you must let Lord Azzanadra know that he is free again after these many years!");
+    ~chatnpc("<p,neutral>Please, when you have freed Azzanadra, let me know what words he has for his faithful followers...");
+    return;
+}
+def_int $count = ~deserttreasure_diamond_count;
+if ($count = 4) {
+    ~chatplayer("<p,quiz>So I have all four of these Diamonds of Azzanadra, now what?");
+    ~chatnpc("<p,neutral>Azzanadra was a Mahjarrat hero. He was unkillable, and the cowardly traitors who stole our lands did not know what to do with him, for his hatred for them was as strong as his magics.");
+    ~chatnpc("<p,neutral>In the end, they cast a spell upon him, to trap him in the stone structure to the South of here.");
+    ~chatnpc("<p,neutral>They stole his very life force, the essence of his power, and trapped it within four crystals - the very same Four Diamonds which you have now recovered from the brigands who stole from us.");
+    ~chatnpc("<p,neutral>The four pillars surrounding the structure are keeping the containment spell intact. By placing a diamond into each, you will breach the magical defences and begin to restore Azzanadra's");
+    ~chatnpc("<p,neutral>power, and be able to enter the structure.");
+    ~chatnpc("<p,happy>Go, place the diamonds, and free my lord Azzanadra!");
+    ~chatnpc("<p,neutral>The path will be hard, for his prison is full of traps and danger to prevent his rescue, but he will reward you beyond your wildest dreams when freed!");
+    ~chatnpc("<p,shock>Quickly... After all these centuries, Lord Azzanadra is nearly free! You must spare no time, place the Diamonds upon the pillars and enter the pyramid so that you may free him!");
+    return;
+}
+if ($count = 1) {
+    ~chatplayer("<p,happy>I have collected one Diamond so far!");
+    ~chatnpc("<p,neutral>That is a good start... but Azzanadra is still imprisoned!");
+} else if ($count > 1) {
+    ~chatplayer("<p,happy>I have collected <tostring($count)> Diamonds so far!");
+    ~chatnpc("<p,neutral>That is a good start... but Azzanadra is still imprisoned!");
+}
+~chatplayer("<p,quiz>So can you give me any help on where to find these warriors and their diamonds?");
+~chatnpc("<p,neutral>No, the magic used in this spell is powerful, but inaccurate. The direction the scrying glass faces is roughly the direction you will find the warrior, but I'm afraid I");
+~chatnpc("<p,neutral>can't be any more help than that.");
+~chatplayer("<p,confused>I don't understand why there are six mirrors when there are only four diamonds...");
+~chatnpc("<p,neutral>As I say, the enchantment is very inaccurate.");
+~chatnpc("<p,neutral>I can only focus upon the aura the diamonds have left behind them, so any place where the Diamonds were present for a significant period of time will still be shown - such as the Bandit Camp where I make my home.");
+~chatnpc("<p,sad>My apologies, but magic is an inaccurate art in many respects.");
+~chatnpc("<p,neutral>Don't forget to come back here when you have collected all four diamonds.");
+if (%deserttreasure = ^deserttreasure_ingredients_given) {
+    %deserttreasure = ^deserttreasure_seen_mirrors;
+}
+
+[label,eblis_post_quest]
+if (%fd_got_zaros_staff = 1) {
+    ~chatplayer("<p,neutral>Hello again.");
+    ~chatnpc("<p,neutral>Greetings. I await the return of my Lord Azzanadra and of our god. I do not know why, but I feel this spot has some significance...");
+    return;
+}
+~chatnpc("<p,quiz>So have you spoken to my Lord Azzanadra yet?");
+~chatplayer("<p,neutral>Yes I have.");
+~chatnpc("<p,quiz>And what words did he have for his followers?");
+~chatplayer("<p,neutral>Er.... He didn't really mention you at all, but he did teach me some cool new magic spells.");
+~chatnpc("<p,sad>It is understandable perhaps... His poor mind must be addled after all of those years of confinement, he would not willingly ignore his followers...");
+~chatnpc("<p,neutral>Anyway, if he has taught you our ancient magics, you may be interested in purchasing an ancient heirloom that was passed down to me. My ancestor fought in the ancient battles using the");
+~chatnpc("<p,neutral>magic of our god. This heirloom will help you with the speed of your spell-casting.");
+~chatnpc("<p,neutral>Normally I could not bear to part with such a priceless relic, but for your help in freeing my Lord Azzanadra, I will be prepared to sell it to you for a mere 80,000 gold.");
+~chatnpc("<p,quiz>Are you interested?");
+if (~p_choice2("Yes please", 1, "No thanks", 2) = 2) {
+    ~chatplayer("<p,neutral>No thanks.");
+    ~chatnpc("<p,neutral>As you wish. Bear my offer in mind should you ever change your decision, I will remain here.");
+    return;
+}
+~chatplayer("<p,happy>Yes please.");
+if (inv_total(inv, coins) < 80000) {
+    ~chatnpc("<p,angry>Stranger... Do not abuse my generosity... I cannot possibly sell it for less than 80,000 gold.");
+    ~chatnpc("<p,neutral>Come back and see me when you have the necessary funds to buy.");
+    return;
+}
+inv_del(inv, coins, 80000);
+~zogre_give_or_drop(staff_of_zaros, 1);
+%fd_got_zaros_staff = 1;
+~objbox(staff_of_zaros, "Eblis hands you an ancient staff.", 250, 0, divide(^objbox_height, 2));
+~chatnpc("<p,neutral>Take care of it, it is the only heirloom from those times I possess, although rumour has it many of our ancient warriors were buried with identical weapons so that they could continue to fight for my Lord in their deaths.");
+
+[oploc1,sword_mirror1] @fd_look_mirror(1);
+[oploc1,sword_mirror2] @fd_look_mirror(2);
+[oploc1,sword_mirror3] @fd_look_mirror(3);
+[oploc1,sword_mirror4] @fd_look_mirror(4);
+[oploc1,sword_mirror5] @fd_look_mirror(5);
+[oploc1,sword_mirror6] @fd_look_mirror(6);
+
+[label,fd_look_mirror](int $index)
+def_coord $view = ~fd_mirror_view($index);
+if ($view = null) {
+    return;
+}
+mes("You gaze into the mirror...");
+def_coord $return = coord;
+~fade_out;
+p_delay(3);
+p_transmogrify(desert_treasure_invisible_npc);
+p_telejump($view);
+cam_moveto($view, ~fd_mirror_cam_height($index), 0, 100);
+cam_lookat(~fd_mirror_focus($index), ~fd_mirror_focus_height($index), 0, 100);
+~fade_in;
+p_delay(6);
+~fade_out;
+p_delay(3);
+p_telejump($return);
+p_transmogrify(null);
+cam_reset;
+~fade_in;
+queue(fade_clear, 2, 0);
+
+[proc,fd_mirror_view](int $index)(coord)
+switch_int ($index) {
+    case 1 : return(0_50_45_33_41);
+    case 2 : return(0_49_46_40_39);
+    case 3 : return(0_39_53_56_40);
+    case 4 : return(0_44_58_5_27);
+    case 5 : return(0_54_54_47_31);
+    case 6 : return(0_51_46_36_20);
+}
+return(null);
+
+[proc,fd_mirror_focus](int $index)(coord)
+switch_int ($index) {
+    case 1 : return(0_50_45_33_39);
+    case 2 : return(0_49_46_10_39);
+    case 3 : return(0_39_53_56_35);
+    case 4 : return(0_44_58_6_27);
+    case 5 : return(0_54_54_43_31);
+    case 6 : return(0_51_46_44_20);
+}
+return(null);
+
+[proc,fd_mirror_cam_height](int $index)(int)
+switch_int ($index) {
+    case 2 : return(1200);
+    case 3 : return(1400);
+}
+return(1000);
+
+[proc,fd_mirror_focus_height](int $index)(int)
+switch_int ($index) {
+    case 1 : return(990);
+    case 2 : return(1200);
+}
+return(1000);

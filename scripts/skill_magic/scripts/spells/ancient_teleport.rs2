@@ -1,0 +1,45 @@
+[if_button,magic_zaros:paddewwa_teleport] @magic_ancient_teleport(^paddewwa_teleport);
+[if_button,magic_zaros:senntisten_teleport] @magic_ancient_teleport(^senntisten_teleport);
+[if_button,magic_zaros:kharyrll_teleport] @magic_ancient_teleport(^kharyrll_teleport);
+[if_button,magic_zaros:lassar_teleport] @magic_ancient_teleport(^lassar_teleport);
+[if_button,magic_zaros:dareeyak_teleport] @magic_ancient_teleport(^dareeyak_teleport);
+[if_button,magic_zaros:carrallangar_teleport] @magic_ancient_teleport(^carrallangar_teleport);
+[if_button,magic_zaros:annakarl_teleport] @magic_ancient_teleport(^annakarl_teleport);
+[if_button,magic_zaros:ghorrock_teleport] @magic_ancient_teleport(^ghorrock_teleport);
+
+[label,magic_ancient_teleport](int $spell)
+if_close;
+if (p_finduid(uid) = true) {
+    if (%zaros_spellbook ! 1) {
+        return;
+    }
+    def_dbrow $spell_data = ~get_spell_data($spell);
+    if (~check_spell_requirements($spell_data) = false) {
+        return;
+    }
+    if (~wilderness_level(coord) > 20) {
+        mes("A mysterious force blocks your teleport spell!");
+        mes("You can't use this teleport after level 20 wilderness.");
+        return;
+    }
+    if (~pre_tele_checks(coord) = false) {
+        return;
+    }
+    if (afk_event = ^true) {
+        ~macro_event_general_spawn(~macro_event_set_random);
+        return;
+    }
+    ~delete_spell_runes($spell_data);
+    ~give_spell_xp($spell_data);
+    ~player_teleport_ancient(map_findsquare(db_getfield($spell_data, magic_spell_table:tele_coord, 0), 0, 2, ^map_findsquare_lineofwalk));
+}
+
+[proc,player_teleport_ancient](coord $coord)
+if_close;
+p_stopaction;
+~tele_checks;
+sound_synth(block_teleport, 7, 0);
+anim(zaros_vertical_casting, 0);
+spotanim_pl(zaros_teleport, 0, 0);
+p_delay(2);
+~p_telejump_safe($coord);

@@ -149,3 +149,9 @@ if(%viking < ^viking_complete) {
     return;
 }
 @attempt_pick_pocket($npc);
+
+[opnpc3,fourdiamonds_sword_bandit_1]
+@attempt_pick_pocket(npc_type);
+
+[opnpc3,fourdiamonds_sword_bandit_free]
+@attempt_pick_pocket(npc_type);

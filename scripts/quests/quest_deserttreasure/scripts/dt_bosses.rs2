@@ -1,0 +1,88 @@
+[proc,fd_boss_max_dealt](int $maxhit, int $spell)(int)
+if ($spell > 0) {
+    if (npc_type = firediamond_firewarrior) {
+        switch_int ($spell) {
+            case ^water_strike, ^water_bolt, ^water_blast, ^water_wave : return($maxhit);
+        }
+        return(0);
+    }
+    if (npc_type = icediamond_icewarrior) {
+        switch_int ($spell) {
+            case ^fire_strike, ^fire_bolt, ^fire_blast, ^fire_wave : return($maxhit);
+        }
+        return(0);
+    }
+}
+return(min($maxhit, npc_param(max_dealt)));
+
+[proc,fd_holding_diamond]()(boolean)
+if (inv_total(inv, fd_blood_diamond) > 0 | inv_total(inv, fd_icediamond) > 0 | inv_total(inv, fd_diamond_fire) > 0 | inv_total(inv, fd_dark_diamond) > 0) {
+    return(true);
+}
+return(false);
+
+[proc,fd_stranger_start]
+if (%deserttreasure >= ^deserttreasure_pyramid_open | ~fd_holding_diamond = false) {
+    return;
+}
+if (gettimer(fd_stranger) = 0) {
+    settimer(fd_stranger, 50);
+}
+
+[timer,fd_stranger]
+if (%deserttreasure >= ^deserttreasure_pyramid_open | ~fd_holding_diamond = false) {
+    cleartimer(fd_stranger);
+    return;
+}
+if (random(4) ! 0 | stat(hitpoints) = 0) {
+    return;
+}
+if (map_multiway(coord) = false & add(%lastcombat, 8) > map_clock) {
+    return;
+}
+if (npc_find(coord, fourdiamonds_assasin, 10, 0) = true) {
+    return;
+}
+def_coord $spawn = map_findsquare(coord, 1, 2, ^map_findsquare_lineofwalk);
+if ($spawn = null) {
+    return;
+}
+npc_add($spawn, fourdiamonds_assasin, 200);
+%npc_aggressive_player = uid;
+%npc_start_coord = npc_coord;
+npc_say("You are not worthy of holding that Diamond of <~fd_stranger_diamond_name>!");
+npc_setmode(opplayer2);
+
+[proc,fd_stranger_diamond_name]()(string)
+if (inv_total(inv, fd_blood_diamond) > 0) {
+    return("Blood");
+}
+if (inv_total(inv, fd_dark_diamond) > 0) {
+    return("Shadow");
+}
+if (inv_total(inv, fd_diamond_fire) > 0) {
+    return("Smoke");
+}
+return("Ice");
+
+[ai_opplayer2,fourdiamonds_assasin]
+if (~fd_boss_target_valid = false) {
+    return;
+}
+gosub(npc_default_attack);
+
+[ai_applayer2,fourdiamonds_assasin]
+if (~fd_boss_target_valid = false) {
+    return;
+}
+gosub(npc_default_attack);
+
+[ai_queue3,fourdiamonds_assasin]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+queue(fd_stranger_killed, 0, 0);
+
+[queue,fd_stranger_killed]
+~chatplayer("<p,confused>I wonder what that was all about?");

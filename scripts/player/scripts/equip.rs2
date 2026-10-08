@@ -63,6 +63,7 @@ if (p_finduid(uid) = true) {
         sound_synth(oc_param($obj, transform_sound), 0, 0);
     }
 
+    ~fd_update_ring_visibility;
     ~update_all($previous);
 }
 
@@ -91,6 +92,9 @@ if (p_finduid(uid) = true) {
 }
 
 [proc,unequip_effect](obj $obj, int $update_all)
+if ($obj = fd_ring_visibility) {
+    %fd_ladder_present = 0;
+}
 if($obj = elemental_shield & inv_getobj(worn, ^wearpos_lhand) = null) {
     sound_synth(shield_appear, 1, 0);
 }
@@ -103,7 +107,7 @@ if(oc_category($obj) = mm_greegree) {
     p_animprotect(^false);
     spotanim_pl(windwave_impact, 124, 0);
     sound_synth(oc_param($obj, revert_sound), 0, 0);
-    if_settab(magic, ^tab_magic);
+    ~settab_magic;
 }
 if($obj = trollromance_toboggon_waxed) {
     %wearing_sled = ^false;

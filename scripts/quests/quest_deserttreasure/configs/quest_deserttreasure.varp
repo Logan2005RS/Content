@@ -1,0 +1,17 @@
+[deserttreasuremain]
+scope=perm
+
+[deserttreasurevarbit]
+scope=perm
+
+[deserttreasurevarbit2]
+scope=perm
+
+[alternate_spells]
+scope=perm
+
+[fd_bloodwarrior_quest]
+scope=perm
+
+[fd_step_coord]
+type=coord

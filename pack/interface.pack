@@ -3276,7 +3276,7 @@
 3275=roguesden_gears:com_25
 3276=music:com_68
 3277=music:com_69
-3278=questlist:com_37
+3278=questlist:tog
 3279=tog_sidepanel
 3280=tog_sidepanel:stone_bar
 3281=ship_journey
@@ -6159,8 +6159,8 @@
 6158=questscroll:com_10
 6159=zaros_staff_spells:com_4
 6160=zaros_staff_spells:com_5
-6161=zaros_staff_spells:com_6
-6162=zaros_staff_spells:com_7
+6161=zaros_staff_spells:cancelspell
+6162=zaros_staff_spells:zsb_ice_rush
 6163=zaros_staff_spells:com_8
 6164=zaros_staff_spells:com_9
 6165=zaros_staff_spells:com_10
@@ -12850,7 +12850,7 @@
 12849=music:com_63
 12850=music:com_64
 12851=music:com_65
-12852=questlist:com_35
+12852=questlist:deserttreasure
 12853=legends_mirror
 12854=legends_mirror:com_0
 12855=magic_zaros
@@ -12859,7 +12859,7 @@
 12858=magic_zaros:com_2
 12859=magic_zaros:com_3
 12860=magic_zaros:com_4
-12861=magic_zaros:com_5
+12861=magic_zaros:ice_rush
 12862=magic_zaros:com_6
 12863=magic_zaros:com_7
 12864=magic_zaros:com_8
@@ -12869,7 +12869,7 @@
 12868=magic_zaros:com_12
 12869=magic_zaros:com_13
 12870=magic_zaros:com_14
-12871=magic_zaros:com_15
+12871=magic_zaros:ice_blitz
 12872=magic_zaros:com_16
 12873=magic_zaros:com_17
 12874=magic_zaros:com_18
@@ -12879,7 +12879,7 @@
 12878=magic_zaros:com_22
 12879=magic_zaros:com_23
 12880=magic_zaros:com_24
-12881=magic_zaros:com_25
+12881=magic_zaros:ice_burst
 12882=magic_zaros:com_26
 12883=magic_zaros:com_27
 12884=magic_zaros:com_28
@@ -12889,7 +12889,7 @@
 12888=magic_zaros:com_32
 12889=magic_zaros:com_33
 12890=magic_zaros:com_34
-12891=magic_zaros:com_35
+12891=magic_zaros:ice_barrage
 12892=magic_zaros:com_36
 12893=magic_zaros:com_37
 12894=magic_zaros:com_38
@@ -12899,7 +12899,7 @@
 12898=magic_zaros:com_42
 12899=magic_zaros:com_43
 12900=magic_zaros:com_44
-12901=magic_zaros:com_45
+12901=magic_zaros:blood_rush
 12902=magic_zaros:com_46
 12903=magic_zaros:com_47
 12904=magic_zaros:com_48
@@ -12909,7 +12909,7 @@
 12908=magic_zaros:com_52
 12909=magic_zaros:com_53
 12910=magic_zaros:com_54
-12911=magic_zaros:com_55
+12911=magic_zaros:blood_blitz
 12912=magic_zaros:com_56
 12913=magic_zaros:com_57
 12914=magic_zaros:com_58
@@ -12917,7 +12917,7 @@
 12916=magic_zaros:com_60
 12917=magic_zaros:com_61
 12918=magic_zaros:com_62
-12919=magic_zaros:com_63
+12919=magic_zaros:blood_burst
 12920=magic_zaros:com_64
 12921=magic_zaros:com_65
 12922=magic_zaros:com_66
@@ -12927,7 +12927,7 @@
 12926=magic_zaros:com_70
 12927=magic_zaros:com_71
 12928=magic_zaros:com_72
-12929=magic_zaros:com_73
+12929=magic_zaros:blood_barrage
 12930=magic_zaros:com_74
 12931=magic_zaros:com_75
 12932=magic_zaros:com_76
@@ -12937,7 +12937,7 @@
 12936=magic_zaros:com_80
 12937=magic_zaros:com_81
 12938=magic_zaros:com_82
-12939=magic_zaros:com_83
+12939=magic_zaros:smoke_rush
 12940=magic_zaros:com_84
 12941=magic_zaros:com_85
 12942=magic_zaros:com_86
@@ -12949,7 +12949,7 @@
 12948=magic_zaros:com_92
 12949=magic_zaros:com_93
 12950=magic_zaros:com_94
-12951=magic_zaros:com_95
+12951=magic_zaros:smoke_blitz
 12952=magic_zaros:com_96
 12953=magic_zaros:com_97
 12954=magic_zaros:com_98
@@ -12961,7 +12961,7 @@
 12960=magic_zaros:com_104
 12961=magic_zaros:com_105
 12962=magic_zaros:com_106
-12963=magic_zaros:com_107
+12963=magic_zaros:smoke_burst
 12964=magic_zaros:com_108
 12965=magic_zaros:com_109
 12966=magic_zaros:com_110
@@ -12973,7 +12973,7 @@
 12972=magic_zaros:com_116
 12973=magic_zaros:com_117
 12974=magic_zaros:com_118
-12975=magic_zaros:com_119
+12975=magic_zaros:smoke_barrage
 12976=magic_zaros:com_120
 12977=magic_zaros:com_121
 12978=magic_zaros:com_122
@@ -12985,7 +12985,7 @@
 12984=magic_zaros:com_128
 12985=magic_zaros:com_129
 12986=magic_zaros:com_130
-12987=magic_zaros:com_131
+12987=magic_zaros:shadow_rush
 12988=magic_zaros:com_132
 12989=magic_zaros:com_133
 12990=magic_zaros:com_134
@@ -12997,7 +12997,7 @@
 12996=magic_zaros:com_140
 12997=magic_zaros:com_141
 12998=magic_zaros:com_142
-12999=magic_zaros:com_143
+12999=magic_zaros:shadow_blitz
 13000=magic_zaros:com_144
 13001=magic_zaros:com_145
 13002=magic_zaros:com_146
@@ -13009,7 +13009,7 @@
 13008=magic_zaros:com_152
 13009=magic_zaros:com_153
 13010=magic_zaros:com_154
-13011=magic_zaros:com_155
+13011=magic_zaros:shadow_burst
 13012=magic_zaros:com_156
 13013=magic_zaros:com_157
 13014=magic_zaros:com_158
@@ -13021,7 +13021,7 @@
 13020=magic_zaros:com_164
 13021=magic_zaros:com_165
 13022=magic_zaros:com_166
-13023=magic_zaros:com_167
+13023=magic_zaros:shadow_barrage
 13024=magic_zaros:com_168
 13025=magic_zaros:com_169
 13026=magic_zaros:com_170
@@ -13033,7 +13033,7 @@
 13032=magic_zaros:com_176
 13033=magic_zaros:com_177
 13034=magic_zaros:com_178
-13035=magic_zaros:com_179
+13035=magic_zaros:paddewwa_teleport
 13036=magic_zaros:com_180
 13037=magic_zaros:com_181
 13038=magic_zaros:com_182
@@ -13043,7 +13043,7 @@
 13042=magic_zaros:com_186
 13043=magic_zaros:com_187
 13044=magic_zaros:com_188
-13045=magic_zaros:com_189
+13045=magic_zaros:senntisten_teleport
 13046=magic_zaros:com_190
 13047=magic_zaros:com_191
 13048=magic_zaros:com_192
@@ -13051,7 +13051,7 @@
 13050=magic_zaros:com_194
 13051=magic_zaros:com_195
 13052=magic_zaros:com_196
-13053=magic_zaros:com_197
+13053=magic_zaros:kharyrll_teleport
 13054=magic_zaros:com_198
 13055=magic_zaros:com_199
 13056=magic_zaros:com_200
@@ -13059,7 +13059,7 @@
 13058=magic_zaros:com_202
 13059=magic_zaros:com_203
 13060=magic_zaros:com_204
-13061=magic_zaros:com_205
+13061=magic_zaros:lassar_teleport
 13062=magic_zaros:com_206
 13063=magic_zaros:com_207
 13064=magic_zaros:com_208
@@ -13067,7 +13067,7 @@
 13066=magic_zaros:com_210
 13067=magic_zaros:com_211
 13068=magic_zaros:com_212
-13069=magic_zaros:com_213
+13069=magic_zaros:dareeyak_teleport
 13070=magic_zaros:com_214
 13071=magic_zaros:com_215
 13072=magic_zaros:com_216
@@ -13077,7 +13077,7 @@
 13076=magic_zaros:com_220
 13077=magic_zaros:com_221
 13078=magic_zaros:com_222
-13079=magic_zaros:com_223
+13079=magic_zaros:carrallangar_teleport
 13080=magic_zaros:com_224
 13081=magic_zaros:com_225
 13082=magic_zaros:com_226
@@ -13085,7 +13085,7 @@
 13084=magic_zaros:com_228
 13085=magic_zaros:com_229
 13086=magic_zaros:com_230
-13087=magic_zaros:com_231
+13087=magic_zaros:annakarl_teleport
 13088=magic_zaros:com_232
 13089=magic_zaros:com_233
 13090=magic_zaros:com_234
@@ -13093,7 +13093,7 @@
 13092=magic_zaros:com_236
 13093=magic_zaros:com_237
 13094=magic_zaros:com_238
-13095=magic_zaros:com_239
+13095=magic_zaros:ghorrock_teleport
 13096=magic_zaros:com_240
 13097=magic_zaros:com_241
 13098=magic_zaros:com_242
@@ -13112,7 +13112,7 @@
 13111=zaros_staff_spells:com_15
 13112=zaros_staff_spells:com_16
 13113=zaros_staff_spells:com_17
-13114=zaros_staff_spells:com_18
+13114=zaros_staff_spells:zsb_ice_blitz
 13115=zaros_staff_spells:com_19
 13116=zaros_staff_spells:com_20
 13117=zaros_staff_spells:com_21
@@ -13123,7 +13123,7 @@
 13122=zaros_staff_spells:com_26
 13123=zaros_staff_spells:com_27
 13124=zaros_staff_spells:com_28
-13125=zaros_staff_spells:com_29
+13125=zaros_staff_spells:zsb_ice_burst
 13126=zaros_staff_spells:com_30
 13127=zaros_staff_spells:com_31
 13128=zaros_staff_spells:com_32
@@ -13134,7 +13134,7 @@
 13133=zaros_staff_spells:com_37
 13134=zaros_staff_spells:com_38
 13135=zaros_staff_spells:com_39
-13136=zaros_staff_spells:com_40
+13136=zaros_staff_spells:zsb_ice_barrage
 13137=zaros_staff_spells:com_41
 13138=zaros_staff_spells:com_42
 13139=zaros_staff_spells:com_43
@@ -13145,7 +13145,7 @@
 13144=zaros_staff_spells:com_48
 13145=zaros_staff_spells:com_49
 13146=zaros_staff_spells:com_50
-13147=zaros_staff_spells:com_51
+13147=zaros_staff_spells:zsb_blood_rush
 13148=zaros_staff_spells:com_52
 13149=zaros_staff_spells:com_53
 13150=zaros_staff_spells:com_54
@@ -13156,7 +13156,7 @@
 13155=zaros_staff_spells:com_59
 13156=zaros_staff_spells:com_60
 13157=zaros_staff_spells:com_61
-13158=zaros_staff_spells:com_62
+13158=zaros_staff_spells:zsb_blood_blitz
 13159=zaros_staff_spells:com_63
 13160=zaros_staff_spells:com_64
 13161=zaros_staff_spells:com_65
@@ -13165,7 +13165,7 @@
 13164=zaros_staff_spells:com_68
 13165=zaros_staff_spells:com_69
 13166=zaros_staff_spells:com_70
-13167=zaros_staff_spells:com_71
+13167=zaros_staff_spells:zsb_blood_burst
 13168=zaros_staff_spells:com_72
 13169=zaros_staff_spells:com_73
 13170=zaros_staff_spells:com_74
@@ -13176,7 +13176,7 @@
 13175=zaros_staff_spells:com_79
 13176=zaros_staff_spells:com_80
 13177=zaros_staff_spells:com_81
-13178=zaros_staff_spells:com_82
+13178=zaros_staff_spells:zsb_blood_barrage
 13179=zaros_staff_spells:com_83
 13180=zaros_staff_spells:com_84
 13181=zaros_staff_spells:com_85
@@ -13187,7 +13187,7 @@
 13186=zaros_staff_spells:com_90
 13187=zaros_staff_spells:com_91
 13188=zaros_staff_spells:com_92
-13189=zaros_staff_spells:com_93
+13189=zaros_staff_spells:zsb_smoke_rush
 13190=zaros_staff_spells:com_94
 13191=zaros_staff_spells:com_95
 13192=zaros_staff_spells:com_96
@@ -13200,7 +13200,7 @@
 13199=zaros_staff_spells:com_103
 13200=zaros_staff_spells:com_104
 13201=zaros_staff_spells:com_105
-13202=zaros_staff_spells:com_106
+13202=zaros_staff_spells:zsb_smoke_blitz
 13203=zaros_staff_spells:com_107
 13204=zaros_staff_spells:com_108
 13205=zaros_staff_spells:com_109
@@ -13213,7 +13213,7 @@
 13212=zaros_staff_spells:com_116
 13213=zaros_staff_spells:com_117
 13214=zaros_staff_spells:com_118
-13215=zaros_staff_spells:com_119
+13215=zaros_staff_spells:zsb_smoke_burst
 13216=zaros_staff_spells:com_120
 13217=zaros_staff_spells:com_121
 13218=zaros_staff_spells:com_122
@@ -13226,7 +13226,7 @@
 13225=zaros_staff_spells:com_129
 13226=zaros_staff_spells:com_130
 13227=zaros_staff_spells:com_131
-13228=zaros_staff_spells:com_132
+13228=zaros_staff_spells:zsb_smoke_barrage
 13229=zaros_staff_spells:com_133
 13230=zaros_staff_spells:com_134
 13231=zaros_staff_spells:com_135
@@ -13239,7 +13239,7 @@
 13238=zaros_staff_spells:com_142
 13239=zaros_staff_spells:com_143
 13240=zaros_staff_spells:com_144
-13241=zaros_staff_spells:com_145
+13241=zaros_staff_spells:zsb_shadow_rush
 13242=zaros_staff_spells:com_146
 13243=zaros_staff_spells:com_147
 13244=zaros_staff_spells:com_148
@@ -13252,7 +13252,7 @@
 13251=zaros_staff_spells:com_155
 13252=zaros_staff_spells:com_156
 13253=zaros_staff_spells:com_157
-13254=zaros_staff_spells:com_158
+13254=zaros_staff_spells:zsb_shadow_blitz
 13255=zaros_staff_spells:com_159
 13256=zaros_staff_spells:com_160
 13257=zaros_staff_spells:com_161
@@ -13265,7 +13265,7 @@
 13264=zaros_staff_spells:com_168
 13265=zaros_staff_spells:com_169
 13266=zaros_staff_spells:com_170
-13267=zaros_staff_spells:com_171
+13267=zaros_staff_spells:zsb_shadow_burst
 13268=zaros_staff_spells:com_172
 13269=zaros_staff_spells:com_173
 13270=zaros_staff_spells:com_174
@@ -13278,7 +13278,7 @@
 13277=zaros_staff_spells:com_181
 13278=zaros_staff_spells:com_182
 13279=zaros_staff_spells:com_183
-13280=zaros_staff_spells:com_184
+13280=zaros_staff_spells:zsb_shadow_barrage
 13281=zaros_staff_spells:com_185
 13282=zaros_staff_spells:com_186
 13283=zaros_staff_spells:com_187
@@ -13354,7 +13354,7 @@
 13353=music:com_71
 13354=music:com_72
 13355=music:com_73
-13356=questlist:com_38
+13356=questlist:zogre
 13357=smithing:com_140
 13358=smithing:com_141
 13359=music:com_74
@@ -13387,7 +13387,7 @@
 13386=controls:com_79
 13387=controls:com_80
 13388=controls:com_81
-13389=questlist:com_40
+13389=questlist:losttribe
 13390=cave_goblin_markers
 13391=cave_goblin_markers:com_0
 13392=cave_goblin_markers:com_1

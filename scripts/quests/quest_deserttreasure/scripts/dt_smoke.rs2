@@ -1,0 +1,298 @@
+[oploc1,sword_haunted_well]
+if (%fd_fw_warningspam = 0) {
+    %fd_fw_warningspam = 1;
+    ~chatplayer("<p,neutral>I can see a lot of foul looking smoke at the bottom of this well.");
+    ~chatplayer("<p,neutral>I don't think breathing it in directly would be very good for my health.");
+    return;
+}
+anim(human_climbing_down, 0);
+p_delay(1);
+~fd_reset_torches;
+p_telejump(0_50_146_5_34);
+
+[oploc1,sword_haunted_well_go_up]
+anim(human_climbing, 0);
+p_delay(1);
+~fd_reset_torches;
+p_telejump(0_51_46_46_17);
+
+[mapzone,0_50_146] ~fd_smoke_start; @music_playbyregion(coord);
+[mapzone,0_51_146] ~fd_smoke_start; @music_playbyregion(coord);
+
+[proc,fd_in_smoke_dungeon](coord $coord)(boolean)
+if (inzone(0_50_146_0_0, 0_51_146_63_63, $coord) = true) {
+    return(true);
+}
+return(false);
+
+[proc,fd_smoke_start]
+if (~fd_in_smoke_dungeon(coord) = false) {
+    return;
+}
+if_openoverlay(smokeoverlay);
+if (gettimer(fd_smoke) = 0) {
+    settimer(fd_smoke, 20);
+}
+
+[timer,fd_smoke]
+if (~fd_in_smoke_dungeon(coord) = false) {
+    cleartimer(fd_smoke);
+    if_openoverlay(null);
+    return;
+}
+if (~fd_wearing_smoke_mask = true) {
+    return;
+}
+def_int $hp = stat(hitpoints);
+if ($hp <= 1) {
+    return;
+}
+~damage_self(min(20, sub($hp, 1)));
+
+[proc,fd_wearing_smoke_mask]()(boolean)
+def_obj $hat = inv_getobj(worn, ^wearpos_hat);
+if ($hat = gasmask | $hat = slayer_facemask) {
+    return(true);
+}
+return(false);
+
+[proc,fd_reset_torches]
+%fd_torch_count1 = 0;
+%fd_torch_count2 = 0;
+%fd_torch_count3 = 0;
+%fd_torch_count4 = 0;
+cleartimer(fd_torch1);
+cleartimer(fd_torch2);
+cleartimer(fd_torch3);
+cleartimer(fd_torch4);
+
+[oplocu,4d_standing_torch1] ~fd_light_torch(1);
+[oplocu,4d_standing_torch2] ~fd_light_torch(2);
+[oplocu,4d_standing_torch3] ~fd_light_torch(3);
+[oplocu,4d_standing_torch4] ~fd_light_torch(4);
+
+[proc,fd_light_torch](int $torch)
+if (last_useitem ! tinderbox) {
+    ~displaymessage(^dm_default);
+    return;
+}
+if (~fd_torch_lit($torch) = true) {
+    mes("This torch is already lit.");
+    return;
+}
+if (stat(firemaking) < 50) {
+    mes("You need a firemaking level of 50 to light this torch.");
+    return;
+}
+anim(human_firecooking, 0);
+sound_synth(tinderbox_strike, 0, 0);
+p_delay(1);
+switch_int ($torch) {
+    case 1 :
+        %fd_torch_count1 = 1;
+        settimer(fd_torch1, 250);
+    case 2 :
+        %fd_torch_count2 = 1;
+        settimer(fd_torch2, 250);
+    case 3 :
+        %fd_torch_count3 = 1;
+        settimer(fd_torch3, 250);
+    case 4 :
+        %fd_torch_count4 = 1;
+        settimer(fd_torch4, 250);
+}
+mes("You light the torch.");
+if (~fd_all_torches_lit = true) {
+    mes("The path is lit, now claim the key...");
+}
+
+[proc,fd_torch_lit](int $torch)(boolean)
+switch_int ($torch) {
+    case 1 : if (%fd_torch_count1 = 1) return(true);
+    case 2 : if (%fd_torch_count2 = 1) return(true);
+    case 3 : if (%fd_torch_count3 = 1) return(true);
+    case 4 : if (%fd_torch_count4 = 1) return(true);
+}
+return(false);
+
+[proc,fd_all_torches_lit]()(boolean)
+if (%fd_torch_count1 = 1 & %fd_torch_count2 = 1 & %fd_torch_count3 = 1 & %fd_torch_count4 = 1) {
+    return(true);
+}
+return(false);
+
+[timer,fd_torch1]
+cleartimer(fd_torch1);
+%fd_torch_count1 = 0;
+mes("The North-east torch burns out...");
+
+[timer,fd_torch2]
+cleartimer(fd_torch2);
+%fd_torch_count2 = 0;
+mes("The South-east torch burns out...");
+
+[timer,fd_torch3]
+cleartimer(fd_torch3);
+%fd_torch_count3 = 0;
+mes("The South-west torch burns out...");
+
+[timer,fd_torch4]
+cleartimer(fd_torch4);
+%fd_torch_count4 = 0;
+mes("The North-west torch burns out...");
+
+[oploc1,fd_firedungeon_shutchest]
+if (%fd_firechest = 1) {
+    if (inv_total(inv, fd_firekey) > 0 | inv_total(bank, fd_firekey) > 0 | %fd_firewargate = 1) {
+        mes("The chest is empty.");
+        return;
+    }
+    anim(human_openchest, 0);
+loc_change(fd_firedungeon_openchest, 2);
+    ~zogre_give_or_drop(fd_firekey, 1);
+    mes("You open the chest and take a key.");
+    return;
+}
+if (~fd_all_torches_lit = false) {
+    ~mesbox("There seems to be no way to open this chest. Engraved where the keyhole should be is a message; 'Light the path, and find the key...'");
+    return;
+}
+anim(human_openchest, 0);
+loc_change(fd_firedungeon_openchest, 2);
+sound_synth(chest_open, 0, 0);
+%fd_firechest = 1;
+~zogre_give_or_drop(fd_firekey, 1);
+mes("You open the chest and take a key.");
+
+[oploc1,fd_fw_metalgateclosed_l] @fd_fareed_gate;
+[oploc1,fd_fw_metalgateclosed_r] @fd_fareed_gate;
+[oplocu,fd_fw_metalgateclosed_l] @fd_fareed_gate_key;
+[oplocu,fd_fw_metalgateclosed_r] @fd_fareed_gate_key;
+
+[label,fd_fareed_gate_key]
+if (last_useitem ! fd_firekey) {
+    ~displaymessage(^dm_default);
+    return;
+}
+@fd_fareed_gate;
+
+[label,fd_fareed_gate]
+if (coordx(coord) > coordx(loc_coord)) {
+    sound_synth(locked, 0, 0);
+    p_telejump(movecoord(coord, -2, 0, 0));
+    return;
+}
+if (%fd_firewargate = 0) {
+    if (inv_total(inv, fd_firekey) = 0) {
+        ~mesbox("This gate is locked.");
+        return;
+    }
+    inv_del(inv, fd_firekey, 1);
+    %fd_firewargate = 1;
+    mes("You unlock the gate and enter the room.");
+}
+sound_synth(locked, 0, 0);
+p_telejump(movecoord(loc_coord, 1, 0, 0));
+if (%fd_killed_firewarrior = 1) {
+    if (~obj_gettotal(fd_diamond_fire) = 0 & %deserttreasure < ^deserttreasure_pyramid_open & %fd_column_fire = 0) {
+        obj_add(0_51_146_51_32, fd_diamond_fire, 1, ^lootdrop_duration);
+        mes("The Diamond of Smoke seems to have mystically found its way back here...");
+    }
+    return;
+}
+if (npc_find(0_51_146_51_32, firediamond_firewarrior, 64, 0) = true) {
+    return;
+}
+npc_add(0_51_146_51_32, firediamond_firewarrior, 500);
+%npc_aggressive_player = uid;
+%npc_start_coord = npc_coord;
+npc_say("You dare trespass in my realm?");
+npc_setmode(opplayer2);
+
+[ai_opplayer2,firediamond_firewarrior] ~fd_fareed_attack;
+[ai_applayer2,firediamond_firewarrior] ~fd_fareed_attack;
+
+[proc,fd_fareed_attack]
+if (~fd_boss_target_valid = false) {
+    return;
+}
+if (%npc_action_delay > map_clock) {
+    return;
+}
+if (npc_range(coord) > 1) {
+    npc_setmode(opplayer2);
+    return;
+}
+if (inv_getobj(worn, ^wearpos_rhand) ! null & inv_getobj(worn, ^wearpos_hands) ! ice_gloves) {
+    queue(fd_fareed_disarm, 0, 0);
+}
+if (random(8) = 0) {
+    npc_anim(human_castwave, 0);
+    spotanim_pl(firewave_impact, 124, 30);
+    %npc_action_delay = add(map_clock, npc_param(attackrate));
+    ~npc_set_attack_vars;
+    if (randominc(~npc_magic_attack_roll) > randominc(~player_defence_roll_specific(^magic_style)) & ~check_protect_prayer(^magic_style) = false) {
+        queue(combat_damage_player, 0, randominc(20));
+    } else {
+        queue(combat_damage_player, 0, 0);
+    }
+    return;
+}
+gosub(npc_default_attack);
+
+[queue,fd_fareed_disarm]
+if (inv_getobj(worn, ^wearpos_rhand) = null | inv_getobj(worn, ^wearpos_hands) = ice_gloves) {
+    return;
+}
+def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
+def_int $count = inv_getnum(worn, ^wearpos_rhand);
+def_int $overflow = inv_itemspace2(inv, $weapon, $count, inv_size(inv));
+if ($overflow < $count) {
+    inv_moveitem(worn, inv, $weapon, sub($count, $overflow));
+}
+if ($overflow > 0) {
+    inv_dropitem(worn, coord, $weapon, $overflow, ^lootdrop_duration);
+}
+~unequip_effect($weapon, ^true);
+mes("The heat from the warrior causes you to drop your weapon.");
+
+[proc,fd_boss_target_valid]()(boolean)
+if (%death = ^true | distance(coord, npc_coord) > 64 | distance(npc_coord, %npc_start_coord) > ~fd_boss_leash) {
+    def_string $message = ~fd_boss_leash_message;
+    if ($message ! "") {
+        mes($message);
+    }
+    npc_del;
+    return(false);
+}
+return(true);
+
+[proc,fd_boss_leash]()(int)
+switch_npc (npc_type) {
+    case fd_damis_normal, fd_damis_tougher : return(30);
+    case icediamond_icewarrior : return(15);
+    case fourdiamonds_assasin : return(64);
+}
+return(10);
+
+[proc,fd_boss_leash_message]()(string)
+switch_npc (npc_type) {
+    case firediamond_firewarrior : return("Fareed has lost interest in you, and returned to his flames.");
+    case fd_damis_normal, fd_damis_tougher : return("Damis has vanished once more into the shadows...");
+    case icediamond_icewarrior : return("Kamil vanishes on an icy wind...");
+    case blooddiamond_vampirewarrior, blooddiamond_vampirewarrior_unkillable : return("Dessous returns to his grave, bored of toying with you.");
+}
+return("");
+
+[ai_queue3,firediamond_firewarrior]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+queue(fd_fareed_killed, 0, 0);
+
+[queue,fd_fareed_killed]
+%fd_killed_firewarrior = 1;
+~zogre_give_or_drop(fd_diamond_fire, 1);
+mes("You take the Diamond of Smoke from the ashes of the warrior.");
+~fd_stranger_start;
