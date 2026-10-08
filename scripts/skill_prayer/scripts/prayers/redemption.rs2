@@ -1,4 +1,4 @@
-[if_button,prayer:prayer_redemption]
+[if_button,prayer:com_1]
 if_close;
 if (p_finduid(uid) = true) {
     @activate_prayer_redemption;
