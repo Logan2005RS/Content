@@ -1,0 +1,113 @@
+[ai_queue1,_elemental_wizard] ~npc_default_retaliate_ap;
+[ai_opplayer2,_elemental_wizard] npc_setmode(applayer2);
+
+[ai_applayer2,_elemental_wizard]
+if (%npc_action_delay > map_clock) {
+    npc_setmode(applayer2);
+    return;
+}
+if (~npc_check_notcombat = false) {
+    npc_setmode(null);
+    return;
+}
+if (~npc_check_notcombat_self = false) {
+    return;
+}
+def_int $spell = %elemental_wizard_spell;
+if ($spell = 0) {
+    $spell = ~elemental_wizard_base_spell;
+}
+~npc_cast_spell($spell, 4);
+
+[ai_queue2,_elemental_wizard]
+~npc_default_damage(last_int);
+if (%elemental_wizard_switch = 1) {
+    %elemental_wizard_spell = 0;
+    %elemental_wizard_switch = 0;
+}
+if (random(6) > 4) {
+    if (random(2) = 0) {
+        %elemental_wizard_spell = ~elemental_wizard_base_spell;
+    } else {
+        %elemental_wizard_spell = ^weaken;
+    }
+    %elemental_wizard_switch = 1;
+}
+
+[proc,elemental_wizard_base_spell]()(int)
+switch_npc (npc_type) {
+    case fire_wizard : return(^fire_strike);
+    case water_wizard : return(^water_strike);
+    case earth_wizard : return(^earth_strike);
+}
+return(^wind_strike);
+
+[proc,elemental_wizard_max_dealt](int $maxhit, int $spell)(int)
+if (~elemental_wizard_own_element($spell) = false) {
+    return(min($maxhit, npc_param(max_dealt)));
+}
+npc_say("Gratias tibi ago");
+npc_statheal(hitpoints, npc_basestat(hitpoints), 0);
+return(0);
+
+[proc,elemental_wizard_own_element](int $spell)(boolean)
+switch_npc (npc_type) {
+    case fire_wizard :
+        switch_int ($spell) {
+            case ^fire_strike, ^fire_bolt, ^fire_blast, ^fire_wave : return(true);
+        }
+    case water_wizard :
+        switch_int ($spell) {
+            case ^water_strike, ^water_bolt, ^water_blast, ^water_wave : return(true);
+        }
+    case earth_wizard :
+        switch_int ($spell) {
+            case ^earth_strike, ^earth_bolt, ^earth_blast, ^earth_wave : return(true);
+        }
+    case air_wizard :
+        switch_int ($spell) {
+            case ^wind_strike, ^wind_bolt, ^wind_blast, ^wind_wave : return(true);
+        }
+}
+return(false);
+
+[opnpc1,elemental_wizard_boss]
+~chatnpc("<p,neutral>So, <displayname>, your curiosity leads you to speak to me?");
+def_int $choice = ~p_choice4("Who are you and what are you doing here?", 1, "Can you teach me something about magic?", 2, "Where can I get clothes like those?", 3, "Actually, I don't want to talk to you.", 4);
+if ($choice = 1) {
+    ~chatplayer("<p,quiz>Who are you and what are you doing here?");
+    ~chatnpc("<p,neutral>I am the great Malignius Mortifer, wielder of strange|and terrible powers. These lowly followers of mine are|dedicated students of the magical arts. Their business is|to follow me and learn all they can.");
+    ~chatplayer("<p,neutral>There don't look very tough.");
+    ~chatnpc("<p,neutral>You may believe that, but even if you strike one down,|another will rise up within minutes.");
+    ~chatplayer("<p,neutral>Yeah, right.");
+    ~chatnpc("<p,neutral>Each of my followers is a master of his chosen element.|His life becomes bound to that element in a way you|could not hope to understand.");
+    ~chatplayer("<p,quiz>And what do you do?");
+    ~chatnpc("<p,neutral>I am mastering a branch of magic that few dare to|attempt: Necromancy! THe fools in the Guild of|Wizards shun anyone who practices this art, but there|are a few across the lands who know the rudiments.");
+    ~chatnpc("<p,neutral>Grayzag and Invrigar... Even Melzar studied the|methods of necromancy, until an accident affected his|mind. Now his spells tend to result in...");
+    ~chatnpc("<p,neutral>... well, let us simply say that he does NOT raise|armies of undead minions.");
+    return;
+}
+if ($choice = 2) {
+    ~chatplayer("<p,quiz>Can you teach me something about magic?");
+    ~chatnpc("<p,neutral>Ah, you are an inquisitive young fellow. I shall speak of|the great Wizards' Tower, destroyed by fire many|years ago...");
+    ~chatnpc("<p,neutral>Many say it was the greatest building in the history of|RuneScape, a magnificent monument to human ingenuity.");
+    ~chatnpc("<p,neutral>Yet when humans are offered great power, they so|often buy it at the cost of their principles.");
+    ~chatnpc("<p,neutral>Wizards who claimed allegiance to Saradomin began to|insist that magic be restriced to the few they deemed|'worthy' of such powers.");
+    ~chatnpc("<p,neutral>Before long, those who did not share their fatuous|obsession with Saradomin were excluded from the|Tower comletely. This state of affairs could not|continue.");
+    return;
+}
+if ($choice = 3) {
+    ~chatplayer("<p,quiz>Where can I get clothes like those?");
+    ~chatnpc("<p,angry>Bah! Our garments are an outward sign of our|dominance of the magical arts. You cannot simply buy|them in a shop.");
+    ~chatplayer("<p,quiz>What happens if I kill you and take them?");
+    ~chatnpc("<p,angry>Try it and see!");
+    ~chatplayer("<p,quiz>How about if you teach me enough about magic so I|can wear those clothes too?");
+    ~chatnpc("<p,angry>How about if I turn you into a mushroom to make you|stop bothering me?");
+    ~chatplayer("<p,neutral>MMMmmph!");
+    npc_anim(human_casting, 0);
+    spotanim_pl(tzhaar_inferno, 0, 0);
+    p_delay(11);
+    return;
+}
+~chatplayer("<p,neutral>Actually, I don't want to talk to you.");
+~chatnpc("<p,angry>Bah! Then go away!");

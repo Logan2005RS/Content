@@ -1,0 +1,5 @@
+[elemental_wizard_spell]
+type=int
+
+[elemental_wizard_switch]
+type=int
