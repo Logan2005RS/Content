@@ -19,8 +19,8 @@
 [if_button,stats:runecrafting] @skill_guide(runecraft, 0);
 [if_button,stats:slayer] @skill_guide(slayer, 0);
 [if_button,stats:farming] @skill_guide(farming, 0);
-[if_button,stats:com_244] @skill_guide(slayer, 0);
-[if_button,stats:com_266] @skill_guide(farming, 0);
+[if_button,stats:com_225] @skill_guide(slayer, 0);
+[if_button,stats:com_247] @skill_guide(farming, 0);
 
 [label,skill_guide](stat $lookup, int $page)
 db_find(skill_guide_ops:lookup, $lookup);
@@ -97,9 +97,9 @@ if ($lookup ! %skill_guide_skill | %skill_guide_pages = 0) {
     if_sethide(skill_guide:guide8, true); // op8 vis
     if_sethide(skill_guide:guide9, true); // op9 vis
     if_sethide(skill_guide:guide10, true); // op10 vis
-    if_sethide(skill_guide:guide11, true); // op11 vis
-    if_sethide(skill_guide:guide12, true); // op12 vis
-    if_sethide(skill_guide:guide13, true); // op13 vis
+    if_sethide(skill_guide:com_44, true); // op11 vis
+    if_sethide(skill_guide:com_54, true); // op12 vis
+    if_sethide(skill_guide:com_57, true); // op13 vis
 
     if ($categories > 0) {
         ~skill_guide_set_op(0, $categories, db_getfield($guides, skill_guide_ops:op:0, 0));
@@ -208,14 +208,14 @@ switch_int ($op) {
         if_sethide(skill_guide:guide10, false);
         if_settext(skill_guide:op10, $text);
     case 10 :
-        if_sethide(skill_guide:guide11, false);
-        if_settext(skill_guide:op11, $text);
+        if_sethide(skill_guide:com_44, false);
+        if_settext(skill_guide:com_53, $text);
     case 11 :
-        if_sethide(skill_guide:guide12, false);
-        if_settext(skill_guide:op12, $text);
+        if_sethide(skill_guide:com_54, false);
+        if_settext(skill_guide:com_56, $text);
     case 12 :
-        if_sethide(skill_guide:guide13, false);
-        if_settext(skill_guide:op13, $text);
+        if_sethide(skill_guide:com_57, false);
+        if_settext(skill_guide:com_59, $text);
 }
 
 [proc,skill_guide_update_rows](dbrow $guide, int $base, int $members, int $off, int $len, int $limit)(int)
@@ -270,9 +270,9 @@ while ($i < $len) {
 [if_button,skill_guide:op8] @change_skill_guide(7);
 [if_button,skill_guide:op9] @change_skill_guide(8);
 [if_button,skill_guide:op10] @change_skill_guide(9);
-[if_button,skill_guide:op11] @change_skill_guide(10);
-[if_button,skill_guide:op12] @change_skill_guide(11);
-[if_button,skill_guide:op13] @change_skill_guide(12);
+[if_button,skill_guide:com_53] @change_skill_guide(10);
+[if_button,skill_guide:com_56] @change_skill_guide(11);
+[if_button,skill_guide:com_59] @change_skill_guide(12);
 
 [label,change_skill_guide](int $page)
 if (%skill_guide_pages < 7) {
