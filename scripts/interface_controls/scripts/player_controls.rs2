@@ -89,6 +89,18 @@ if(testbit(%emote_access, ^macro_mime_lean) = ^false) {
 
 [if_button,controls:com_45] @controls_emote(emote_blow_kiss);
 
+[if_button,controls:com_76]
+if (%lost_tribe_quest < ^lost_tribe_spoken_generals) {
+    @lockemote_mime_event;
+}
+@controls_emote(human_cave_goblin_bow);
+
+[if_button,controls:com_77]
+if (%lost_tribe_quest < ^lost_tribe_spoken_generals) {
+    @lockemote_mime_event;
+}
+@controls_emote(human_cave_goblin_dance);
+
 [label,controls_emote](seq $anim)
 if_close;
 if (p_finduid(uid) = false) {
@@ -103,6 +115,7 @@ p_stopaction;
 anim($anim, 20);
 // p_delay(~seqlength20ms($anim));
 ~misc_quest_handle_emote($anim); // For throne of miscellania quest
+~lost_tribe_handle_emote($anim);
 
 [label,lockemote_mime_event]
 if (p_finduid(uid) = true) {
