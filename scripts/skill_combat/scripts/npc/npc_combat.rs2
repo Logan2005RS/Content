@@ -111,6 +111,10 @@ return(false);
 
 // allows any npc with op2 defined to be attacked
 [proc,npc_is_attackable]()(boolean)
+if (npc_category = fd_boss & %npc_aggressive_player ! uid) {
+    mes("It's not after you...");
+    return(false);
+}
 // https://web.archive.org/web/20060828222012/http://www.trillionareguild.com/runescape/dragon.php at the very end of the guide
 // it says "You have no reason to do that.", so its prob this osrs message.
 // every guide says you have to kill wormbrain, and monster db's say he drops bones. so theres no
@@ -199,6 +203,10 @@ return (false);
 
 // this proc is used for magic
 [proc,npc_is_attackable_opt]()(boolean)
+if (npc_category = fd_boss & %npc_aggressive_player ! uid) {
+    mes("It's not after you...");
+    return(false);
+}
 if (npc_type = wormbrain & (~quest_dragon_getting_map_parts = false | inv_total(inv, mappart2) > 0 | %dragon_goblin ! ^quest_dragon_knows_about_goblin)) {
     mes("The goblin is already in prison. You have no reason to attack him.");
     return (false);
@@ -389,6 +397,12 @@ if (map_multiway(npc_coord) = false & nc_param(npc_type, npc_forcemulti) = ^fals
 return(true);
 
 [proc,npc_max_dealt](int $maxhit, int $spell)(int)
+if(npc_category = zogre) {
+    return(~zogre_max_dealt($maxhit, $spell));
+}
+if(npc_category = fd_boss) {
+    return(~fd_boss_max_dealt($maxhit, $spell));
+}
 if(npc_type = horror_dagganoth_air) {
     if($spell = ^wind_strike | $spell = ^wind_bolt | $spell = ^wind_blast | $spell = ^wind_wave) {
         return ($maxhit);

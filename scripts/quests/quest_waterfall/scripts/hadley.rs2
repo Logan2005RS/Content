@@ -1,5 +1,8 @@
 [opnpc1,hadley_waterfall_quest]
 ~chatplayer("<p,neutral>Hello there.");
+if (~fd_hadley = true) {
+    return;
+}
 // https://youtu.be/5YeeYCNzDH8?si=hloyr9VphBCV4WTe&t=153, https://youtu.be/VxPuLLiUHNk?si=nfmb-EdajnHIlGp9&t=217
 if(inv_total(inv, baxtorian_book_waterfall_quest) > 0) {
     ~chatnpc("<p,neutral>I hope you're enjoying your stay,|there should be lots of useful infomation in that book you've got.|Places to go, people to see.");
