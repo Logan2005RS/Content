@@ -13,6 +13,7 @@ tradeable=no
 param=mm_bones_type,1
 category=bones
 param=bone_exp,160
+param=bonemeal,pot_bonemeal_small_ninja_monkey
 
 [mm_medium_ninja_monkey_bones]
 name=Monkey bones
@@ -29,6 +30,7 @@ tradeable=no
 param=mm_bones_type,2
 category=bones
 param=bone_exp,180
+param=bonemeal,pot_bonemeal_medium_ninja_monkey
 
 [mm_normal_gorilla_monkey_bones]
 name=Monkey bones
@@ -44,6 +46,7 @@ tradeable=no
 param=mm_bones_type,3
 category=bones
 param=bone_exp,180
+param=bonemeal,pot_bonemeal_normal_gorilla_monkey
 
 [mm_bearded_gorilla_monkey_bones]
 name=Monkey bones
@@ -59,6 +62,7 @@ tradeable=no
 param=mm_bones_type,4
 category=bones
 param=bone_exp,200
+param=bonemeal,pot_bonemeal_bearded_gorilla_monkey
 
 [mm_normal_monkey_bones]
 name=Monkey bones
@@ -73,6 +77,7 @@ weight=500g
 category=bones
 param=bone_exp,50
 param=mm_bones_type,5
+param=bonemeal,pot_bonemeal_normal_monkey
 
 [mm_small_zombie_monkey_bones]
 name=Monkey bones
@@ -89,6 +94,7 @@ tradeable=no
 param=mm_bones_type,6
 category=bones
 param=bone_exp,50
+param=bonemeal,pot_bonemeal_small_zombie_monkey
 
 [mm_large_zombie_monkey_bones]
 name=Monkey bones
@@ -104,6 +110,7 @@ tradeable=no
 param=mm_bones_type,7
 category=bones
 param=bone_exp,50
+param=bonemeal,pot_bonemeal_large_zombie_monkey
 
 [mm_skeleton_bones]
 name=Bones
@@ -120,6 +127,7 @@ weight=500g
 tradeable=no
 category=bones
 param=bone_exp,30
+param=bonemeal,pot_bonemeal_skeleton
 
 [reinit]
 name=Reinit

@@ -6899,14 +6899,6 @@ model=plants_heather3
 blockwalk=no
 blockrange=no
 
-[nettles]
-name=Nettles
-desc=I'd better not get stung.
-model=nettles
-blockwalk=no
-blockrange=no
-op1=Pick
-
 [plantriddenwall]
 model=walldecor_plantridden
 

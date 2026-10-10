@@ -1,0 +1,13 @@
+[runedraw_runes]
+inputtype=int
+outputtype=namedobj
+val=0,airrune
+val=1,mindrune
+val=2,waterrune
+val=3,earthrune
+val=4,firerune
+val=5,bodyrune
+val=6,cosmicrune
+val=7,chaosrune
+val=8,naturerune
+val=9,deathrune

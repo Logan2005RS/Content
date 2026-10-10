@@ -10,6 +10,7 @@ iop1=Bury
 weight=500g
 category=bones
 param=bone_exp,45
+param=bonemeal,pot_bonemeal
 
 [bones_burnt]
 name=Burnt bones
@@ -25,6 +26,7 @@ iop1=Bury
 weight=500g
 category=bones
 param=bone_exp,45
+param=bonemeal,pot_bonemeal_burnt
 
 [bat_bones]
 name=Bat bones
@@ -41,6 +43,7 @@ members=yes
 param=bone_exp,45
 param=grindable_ingredient_refined,ground_bat_bones
 param=grindable_ingredient_message,You grind the bones to a powder.
+param=bonemeal,pot_bonemeal_bat
 
 [big_bones]
 name=Big bones
@@ -54,6 +57,7 @@ weight=800g
 category=bones
 respawnrate=50
 param=bone_exp,150
+param=bonemeal,pot_bonemeal_big
 
 [babydragon_bones]
 members=yes
@@ -67,6 +71,7 @@ iop1=Bury
 weight=800g
 category=bones
 param=bone_exp,300
+param=bonemeal,pot_bonemeal_babydragon
 
 [dragon_bones]
 name=Dragon bones
@@ -80,6 +85,7 @@ weight=1500g
 category=bones
 members=yes
 param=bone_exp,720
+param=bonemeal,pot_bonemeal_dragon
 
 [wolf_bones]
 name=Wolf bones
@@ -97,6 +103,7 @@ members=yes
 iop1=Bury
 category=bones
 param=bone_exp,45
+param=bonemeal,pot_bonemeal_wolf
 
 [tbwt_beast_bones]
 name=Shaikahan bones
@@ -110,6 +117,7 @@ iop1=Bury
 weight=800g
 category=bones
 param=bone_exp,250
+param=bonemeal,pot_bonemeal_beast
 
 [tbwt_jogre_bones]
 name=Jogre bones
@@ -123,6 +131,7 @@ iop1=Bury
 weight=800g
 category=bones
 param=bone_exp,150
+param=bonemeal,pot_bonemeal_jogre
 
 [tbwt_burnt_jogre_bones]
 name=Burnt jogre bones
@@ -139,6 +148,7 @@ weight=800g
 category=bones
 param=bone_exp,160
 tradeable=no
+param=bonemeal,pot_bonemeal_burnt_jogre
 
 [tbwt_burnt_jogre_bones_in_raw_karambwanji_paste]
 name=Pasty jogre bones

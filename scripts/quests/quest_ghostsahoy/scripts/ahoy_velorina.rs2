@@ -1,0 +1,155 @@
+[proc,ahoy_give](namedobj $obj)
+if (inv_itemspace(inv, $obj, 1, inv_size(inv)) = true) {
+    inv_add(inv, $obj, 1);
+    return;
+}
+obj_add(coord, $obj, 1, ^lootdrop_duration);
+
+[opnpc1,ahoy_velorina]
+if (~ahoy_ghostspeak = false) {
+    ~ahoy_ghost_wail;
+    return;
+}
+switch_int (%ahoy_questvar) {
+    case ^ahoy_not_started : @ahoy_velorina_start;
+    case ^ahoy_started :
+        ~chatnpc("<p,neutral>I sense that you have not yet spoken to Necrovarus.");
+        ~chatplayer("<p,neutral>No, I was just getting to that.");
+        ~chatnpc("<p,neutral>Well, I suppose we do have all the time in the world...");
+    case ^ahoy_necrovarus_refused :
+        ~chatplayer("<p,sad>I'm sorry, but Necrovarus will not let you go.");
+        ~chatnpc("<p,sad>I feared as much. His spirit is a thing of fire and wrath.");
+        ~chatplayer("<p,quiz>You spoke of another way.");
+        ~chatnpc("<p,neutral>It is only a small chance. During the building of the Ectofuntus one of Necrovarus's disciples spoke out against him. It is such a long time ago I cannot remember her name, although I knew her as a friend.");
+        ~chatnpc("<p,neutral>She fled before the Ectofuntus took control over us, but being a disciple of Necrovarus she would have been privy to many of his darkest secrets. She may know of a way to aid us without Necrovarus.");
+        %ahoy_questvar = ^ahoy_find_crone;
+        @ahoy_velorina_woman;
+    case ^ahoy_find_crone : @ahoy_velorina_woman;
+    case ^ahoy_gather_items : @ahoy_velorina_items;
+    case ^ahoy_amulet_enchanted :
+        if (inv_total(worn, amulet_of_ghostspeak_enchanted) = 0) {
+            @ahoy_velorina_items;
+        }
+        ~chatnpc("<p,quiz>How is it going?");
+        ~chatplayer("<p,happy>I have had the Amulet of Ghostspeak enchanted, which I shall use to command Necrovarus to set you free.");
+        ~chatnpc("<p,happy>Oh, kind adventurer - you are the answer to all our prayers!");
+    case ^ahoy_commanded_necrovarus :
+        ~chatnpc("<p,happy>You don't need to tell me <displayname()> - I sensed the removal of Necrovarus's psychic barrier!");
+        ~chatplayer("<p,happy>Only happy to help out.");
+        ~chatnpc("<p,happy>Here, take this as a thank you for the service that you have given us.");
+        ~objbox(ectophial, "Velorina gives you a vial of bright green ectoplasm.", 250, 0, 0);
+        ~chatnpc("<p,neutral>This is an Ectophial. If you ever want to come back to Port Phasmatys, empty this on the floor beneath your feet, and you will be instantly teleported to the temple - the source of its power.");
+        ~chatnpc("<p,neutral>Remember that once the Ectophial has been used you need to refill it from the Ectofuntus.");
+        queue(ahoy_quest_complete, 0, 0);
+    case ^ahoy_complete : @ahoy_velorina_complete;
+}
+
+[label,ahoy_velorina_start]
+~chatnpc("<p,sad>Take pity on me, please - eternity stretches out before me and I am helpless in its grasp.");
+switch_int (~p_choice2("Why, what is the matter?", 1, "Sorry, I'm scared of ghosts.", 2)) {
+    case 1 :
+        ~chatplayer("<p,quiz>Why, what is the matter?");
+        ~chatnpc("<p,sad>Oh, I'm sorry - I was just wailing out loud. I didn't mean to scare you.");
+        ~chatplayer("<p,neutral>No, that's okay - it takes more than a ghost to scare me. What is wrong?");
+        ~chatnpc("<p,quiz>Do you know the history of our town?");
+        switch_int (~p_choice2("Yes, I do. It is a very sad story.", 1, "No - could you tell me?", 2)) {
+            case 1 : ~chatplayer("<p,sad>Yes, I do. It is a very sad story.");
+            case 2 :
+                ~chatplayer("<p,quiz>No - could you tell me?");
+                @ahoy_velorina_history;
+        }
+        @ahoy_velorina_offer;
+    case 2 : ~chatplayer("<p,scared>Leave me alone - I'm scared of ghosts!!!");
+}
+
+[label,ahoy_velorina_history]
+~chatnpc("<p,neutral>Do you know why ghosts exist?");
+~chatplayer("<p,neutral>A ghost is a soul left in limbo, unable to pass over to the next world; they might have something left to do in this world that torments them, or they might just have died in a state of confusion.");
+~chatnpc("<p,neutral>Yes, that is normally the case. But here in Port Phasmatys, we of this town once chose freely to become ghosts!");
+~chatplayer("<p,shock>Why on earth would you do such a thing?");
+~chatnpc("<p,neutral>It is a long story. Many years ago, this was a thriving port, a trading centre to the eastern lands of RuneScape. We became rich on the profits made from the traders that came across the eastern seas.");
+~chatnpc("<p,sad>We were very happy... until Lord Drakan noticed us.");
+~chatnpc("<p,sad>He sent unholy creatures to demand that a blood-tithe be paid to the Lord Vampyre, as is required from all in the domain of Morytania. We had no choice but to agree to his demands.");
+~chatnpc("<p,sad>As the years went by, our numbers dwindled and many spoke of abandoning the town for safer lands. Then, Necrovarus came to us.");
+~chatnpc("<p,neutral>He came from the eastern lands, but of more than that, little is known. Some say he was once a mage, some say a priest. Either way, he was in possession of knowledge totally unknown to even the most learned among us.");
+~chatnpc("<p,neutral>Necrovarus told us that he had been brought by a vision he'd had of an underground source of power. He inspired us to delve beneath the town, promising us the power to repel the vampyres.");
+~chatnpc("<p,neutral>Deep underneath Phasmatys, we found a pool of green slime that Necrovarus called ectoplasm. He showed us how to build the Ectofuntus, which would turn the ectoplasm into the power he had promised us.");
+~chatnpc("<p,neutral>Indeed, this Ectopower did repel the vampyres; they would not enter Phasmatys once the Ectofuntus began working. But little did we know that we had exchanged one evil for yet another - Ectopower.");
+~chatnpc("<p,sad>Little by little, we began to lose any desire for food or water, and our desire for the Ectopower grew until it dominated our thoughts entirely. Our bodies shrivelled and, one by one, we died.");
+~chatnpc("<p,sad>The Ectofuntus and the power it emanates keeps us here as ghosts - some, like myself, content to remain in this world; some becoming tortured souls who we do not allow to pass our gates.");
+~chatnpc("<p,sad>We would be able to pass over into the next world but Necrovarus has used his power to create a psychic barrier, preventing us.");
+~chatnpc("<p,sad>We must remain here for all eternity, even unto the very end of the world.");
+~chatplayer("<p,sad>That's a very sad story.");
+
+[label,ahoy_velorina_offer]
+~chatnpc("<p,quiz>Would you help us obtain our release into the next world?");
+switch_int (~p_choice2_header("Yes.", 1, "No.", 2, "Start the Ghosts Ahoy quest?")) {
+    case 1 :
+        if (%priestperil < ^priestperil_complete) {
+            mes("You must complete Priest in Peril before you can accept this quest.");
+            return;
+        }
+        ~chatplayer("<p,happy>Yes, of course I will. Tell me what you want me to do.");
+        ~chatnpc("<p,happy>Oh, thank you!");
+        %ahoy_questvar = ^ahoy_started;
+        ~send_quest_progress(questlist:ghostsahoy, %ahoy_questvar, ^ahoy_complete);
+        ~chatnpc("<p,neutral>Necrovarus will not listen to those of us who are already dead. He might rethink his position if someone with a mortal soul pleaded our cause.");
+        ~chatnpc("<p,neutral>If he declines, there may yet be another way.");
+    case 2 :
+        ~chatplayer("<p,neutral>I'm sorry, but it isn't really my problem.");
+        ~chatnpc("<p,sad>No, you're right - it's our own fault. If you do change your mind though, please come back and help us. We will be here ... forever.");
+}
+
+[label,ahoy_velorina_woman]
+switch_int (~p_choice2("Do you know where this woman can be found?", 1, "If it was such a long time ago, won't she be dead already?", 2)) {
+    case 1 :
+        ~chatplayer("<p,quiz>Do you know where this woman can be found?");
+        ~chatnpc("<p,neutral>I have a vision of a small wooden shack, the land it was built on the unholy soil of Morytania. I sense the sea is very close, and that there looms castles to the west and the east.");
+    case 2 :
+        ~chatplayer("<p,quiz>If it was such a long time ago, won't she be dead already?");
+        ~chatnpc("<p,neutral>She was a friend of mine. Had she died, I would have felt her spirit pass over to the next world, though I may not follow.");
+}
+
+[label,ahoy_velorina_items]
+switch_int (~p_choice3("Do you know where I can find the Book of Haricanto?", 1, "Do you know where I can find the Robes of Necrovarus?", 2, "I need something to translate the Book of Haricanto.", 3)) {
+    case 1 :
+        ~chatplayer("<p,quiz>Do you know where I can find the Book of Haricanto?");
+        ~chatnpc("<p,sad>Nobody knows what has happened to the Book. It was stolen when our port was raided by pirates many years ago, and never seen since.");
+    case 2 :
+        ~chatplayer("<p,quiz>Do you know where I can find the Robes of Necrovarus?");
+        ~chatnpc("<p,neutral>I imagine they are still worn by his mortal body, which now lies in a coffin inside the Temple.");
+    case 3 :
+        ~chatplayer("<p,quiz>I need something to translate the Book of Haricanto.");
+        ~chatnpc("<p,neutral>I don't really know. You could try asking some of the traders from the East - they might be able to help you.");
+}
+
+[label,ahoy_velorina_complete]
+switch_int (~p_choice2("I thought you were going to pass over to the next world.", 1, "Can I have another Ectophial?", 2)) {
+    case 1 :
+        ~chatplayer("<p,quiz>I thought you were going to pass over to the next world.");
+        ~chatnpc("<p,happy>All in good time, <displayname()>. We stand forever in your debt, and will certainly put in a good word for you when we pass over.");
+    case 2 :
+        ~chatplayer("<p,quiz>Can I have another Ectophial?");
+        if (calc(~obj_gettotal(ectophial) + ~obj_gettotal(ectophial_empty)) > 0) {
+            ~chatnpc("<p,confused>Really? You've already got an Ectophial.");
+            switch_int (~p_choice2("I know, but can I have another one anyway?", 1, "Have I? Okay, forget it.", 2)) {
+                case 1 : ~chatplayer("<p,neutral>I know, but can I have another one anyway?");
+                case 2 :
+                    ~chatplayer("<p,confused>Have I? Okay, forget it.");
+                    return;
+            }
+        }
+        ~chatnpc("<p,happy>Of course you can, you have helped us more than we could ever have hoped.");
+        ~ahoy_give(ectophial);
+        ~objbox(ectophial, "Velorina gives you a vial of bright green ectoplasm.", 250, 0, 0);
+}
+
+[queue,ahoy_quest_complete]
+if (%ahoy_questvar ! ^ahoy_commanded_necrovarus) {
+    return;
+}
+~ahoy_give(ectophial);
+stat_advance(prayer, 24000);
+%ahoy_questvar = ^ahoy_complete;
+session_log(^log_adventure, "Quest complete: Ghosts Ahoy");
+~send_quest_complete(questlist:ghostsahoy, ectophial, 250, ^ahoy_questpoints, "You have completed the\\nGhosts Ahoy Quest!");

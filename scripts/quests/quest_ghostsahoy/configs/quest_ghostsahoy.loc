@@ -1,0 +1,124 @@
+[ahoy_chest_locked]
+name=Closed chest
+desc=I wonder what's inside.
+model=loc_5270
+op1=Open
+
+[ahoy_chest_locked_active]
+name=Open chest
+desc=I wonder what's inside.
+model=loc_5271
+
+[ahoy_chest_closed]
+name=Closed chest
+desc=I wonder what's inside.
+model=loc_5270
+op1=Open
+forceapproach=north
+
+[ahoy_chest_open]
+name=Open chest
+desc=Perhaps I should search it.
+model=loc_5271
+recol1s=10570
+recol1d=17921
+op1=Search
+op2=Close
+forceapproach=north
+
+[ahoy_mast]
+name=Mast
+desc=High above here is a tattered flag, blowing in the wind.
+model=ship_mast1
+recol1s=19912
+recol1d=8484
+recol2s=15685
+recol2d=6370
+recol3s=13741
+recol3d=11690
+op1=Search
+
+[ahoy_coffin]
+name=Coffin
+desc=The resting place of Necrovarus' mortal body.
+model=loc_5278
+width=2
+length=2
+op1=Open
+blockrange=no
+
+[ahoy_coffin_open]
+name=Coffin
+desc=The resting place of Necrovarus' mortal body.
+model=loc_5279
+width=2
+length=2
+op1=Search
+op2=Close
+blockrange=no
+
+[ahoy_gangplank_shipwreck_on]
+name=Gangplank
+desc=The tatty gangplank of a tatty ship.
+model=ship_gangplank_g_decor
+recol1s=15685
+recol1d=6370
+recol2s=19912
+recol2d=8484
+resizez=128
+resizex=128
+resizey=88
+active=yes
+forcedecor=yes
+hillskew=yes
+sharelight=yes
+op1=Cross
+
+[ahoy_gangplank_shipwreck_off]
+name=Gangplank
+desc=The tatty gangplank of a tatty ship.
+model=ship_gangplank_g_decor
+recol1s=15685
+recol1d=6370
+recol2s=19912
+recol2d=8484
+resizez=128
+resizex=128
+resizey=88
+active=yes
+forcedecor=yes
+hillskew=yes
+sharelight=yes
+op1=Cross
+
+[ahoy_rock_invisible]
+name=Rock
+model=quest_regicide_transparent_square1
+hillskew=yes
+op1=Jump-To
+blockwalk=no
+blockrange=no
+
+[ahoy_skull_captain]
+name=Pirate Captain
+desc=Seen better days.
+model=loc_5287
+model2=loc_5287i2
+model3=loc_5287i3
+recol1s=14724
+recol1d=15590
+recol2s=7328
+recol2d=12356
+recol3s=24075
+recol3d=2114
+recol4s=14724
+recol4d=18632
+recol5s=2340
+recol5d=22160
+recol6s=29562
+recol6d=22126
+op1=Talk-To
+
+[ahoy_x_start]
+model=loc_5487
+hillskew=yes

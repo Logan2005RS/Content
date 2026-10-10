@@ -1,3 +1,7 @@
 [bone_exp]
 type=int
 default=0
+
+[bonemeal]
+type=namedobj
+default=null

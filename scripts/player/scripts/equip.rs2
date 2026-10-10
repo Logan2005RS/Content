@@ -105,6 +105,9 @@ if(oc_category($obj) = mm_greegree) {
     sound_synth(oc_param($obj, revert_sound), 0, 0);
     if_settab(magic, ^tab_magic);
 }
+if ($obj = ahoy_bedsheet | $obj = ahoy_bedsheetgreen) {
+    p_transmogrify(null);
+}
 if($obj = trollromance_toboggon_waxed) {
     %wearing_sled = ^false;
 }

@@ -1,0 +1,216 @@
+[opnpc1,ahoy_crone]
+switch_int (%ahoy_questvar) {
+    case ^ahoy_find_crone : @ahoy_crone_tea;
+    case ^ahoy_gather_items : @ahoy_crone_options;
+    case ^ahoy_amulet_enchanted :
+        if (~obj_gettotal(amulet_of_ghostspeak_enchanted) = 0) {
+            if (inv_total(inv, amulet_of_ghostspeak) > 0 | inv_total(worn, amulet_of_ghostspeak) > 0) {
+                @ahoy_crone_enchant;
+            }
+            ~chatplayer("<p,sad>I seem to have lost my ghostspeak amulet.");
+            ~chatnpc("<p,sad>Oh dear, that's unfortunate. You'll have to go and find another one, then.");
+            return;
+        }
+        ~chatnpc("<p,quiz>Did it work?");
+        ~chatplayer("<p,neutral>Actually, I haven't tried it yet.");
+    case ^ahoy_commanded_necrovarus, ^ahoy_complete :
+        if (%ahoy_subquest_toyboat = ^ahoy_toyboat_found_son) {
+            @ahoy_crone_found_son;
+        }
+        ~chatplayer("<p,happy>Good news - the enchantment worked!");
+        ~chatnpc("<p,happy>So Necrovarus has let the ghosts go free.... You have achieved many wonderful things, my young friend.");
+    case default :
+        ~chatplayer("<p,neutral>Hello, old woman.");
+        switch_int (random(3)) {
+            case 0 : ~chatnpc("<p,neutral>I'm over 100 years old, you know.");
+            case 1 : ~chatnpc("<p,neutral>I lived here when this was all just fields, you know.");
+            case 2 : ~chatnpc("<p,neutral>When 100 years old you reach, look like a prune you will.");
+        }
+}
+
+[opnpcu,ahoy_crone]
+switch_obj (last_useitem) {
+    case bowl_nettletea, bowl_nettletea_milky, cup_of_nettletea, cup_of_nettletea_milky, chinacup_of_nettletea, chinacup_of_nettletea_milky :
+        if (%ahoy_questvar = ^ahoy_find_crone) {
+            @ahoy_crone_tea;
+        }
+    case ahoy_robes_of_necrovarus, ahoy_book_of_haricanto, ahoy_translation_manual, amulet_of_ghostspeak :
+        if (%ahoy_questvar = ^ahoy_gather_items) {
+            @ahoy_crone_hand_in;
+        }
+}
+~displaymessage(^dm_default);
+
+[label,ahoy_crone_tea]
+~chatplayer("<p,quiz>Were you once a disciple of Necrovarus in the Temple of Phasmatys, old woman?");
+~chatnpc("<p,confused>I don't remember; I am so old and my memory goes back only so far...");
+~chatplayer("<p,quiz>Is there anything that can help to refresh your memory?");
+~chatnpc("<p,happy>Yes, I would love a nice hot cup of nettle tea.");
+if (%ahoy_subquest_nettletea < ^ahoy_nettletea_asked) {
+    %ahoy_subquest_nettletea = ^ahoy_nettletea_asked;
+}
+if (inv_total(inv, chinacup_of_nettletea_milky) > 0) {
+    @ahoy_crone_drinks_tea;
+}
+if (inv_total(inv, chinacup_of_nettletea) > 0) {
+    ~chatplayer("<p,happy>Here's a lovely cup of tea for you, in your own special cup.");
+    ~chatnpc("<p,sad>Oh no, it hasn't got milk in it. I only drink tea with milk, I'm afraid.");
+    return;
+}
+if (inv_total(inv, bowl_nettletea) > 0 | inv_total(inv, bowl_nettletea_milky) > 0 | inv_total(inv, cup_of_nettletea) > 0 | inv_total(inv, cup_of_nettletea_milky) > 0) {
+    ~chatplayer("<p,happy>Here's some tea for you, like you asked.");
+    ~chatnpc("<p,angry>Yes, but it's not in my special cup! I only ever drink from my special cup!!");
+    ~chatplayer("<p,quiz>I see. Can I have this special cup, then?");
+    ~ahoy_give(chinacup_empty);
+    %ahoy_subquest_nettletea = ^ahoy_nettletea_given_cup;
+    ~objbox(chinacup_empty, "The old crone gives you her special cup.", 250, 0, 0);
+    return;
+}
+~chatplayer("<p,quiz>Do you know where I can find nettles around here?");
+~chatnpc("<p,neutral>I believe they grow wild in the Haunted Forest.");
+
+[label,ahoy_crone_drinks_tea]
+~chatplayer("<p,happy>Here's a lovely cup of milky tea for you, in your own special cup.");
+inv_del(inv, chinacup_of_nettletea_milky, 1);
+%ahoy_questvar = ^ahoy_gather_items;
+%ahoy_flag_top_actual = ~random_range(^ahoy_flag_red, ^ahoy_flag_green);
+%ahoy_flag_skull_actual = ~random_range(^ahoy_flag_red, ^ahoy_flag_green);
+%ahoy_flag_bottom_actual = ~random_range(^ahoy_flag_red, ^ahoy_flag_green);
+~mesbox("As the old woman drinks the cup of milky tea, enlightenment glows from within her eyes.");
+~chatnpc("<p,happy>Ah, that's better. Now, let me see... Yes, I was once a disciple of Necrovarus.");
+~chatplayer("<p,neutral>I have come from Velorina. She needs your help.");
+~chatnpc("<p,confused>Velorina? That name sounds familiar...");
+~chatnpc("<p,happy>Yes, Velorina was once a very good friend! It has been many years since we spoke last. How is she?");
+~chatplayer("<p,sad>She's a ghost, I'm afraid.");
+~chatnpc("<p,sad>They are all dead, then. Even Velorina. I should have done something to stop what was happening, instead of running away.");
+~chatplayer("<p,quiz>She and many others want to pass on into the next world, but Necrovarus will not let them. Do you know of any way to help them?");
+~chatnpc("<p,neutral>There might be one way...");
+~ahoy_crone_amulet;
+~ahoy_crone_requirements;
+@ahoy_crone_options;
+
+[proc,ahoy_crone_amulet]
+~chatnpc("<p,quiz>Do you have such a thing as a ghostspeak amulet?");
+if (inv_total(worn, amulet_of_ghostspeak) > 0) {
+    ~chatplayer("<p,happy>Yes, I'm wearing one right now.");
+    ~chatnpc("<p,happy>Well, that's a stroke of luck.");
+} else if (inv_total(inv, amulet_of_ghostspeak) > 0) {
+    ~chatplayer("<p,happy>Yes, I'm carrying one in my bag.");
+    ~chatnpc("<p,happy>Well, that's a stroke of luck.");
+} else {
+    ~chatplayer("<p,sad>No I don't, I'm afraid.");
+    ~chatnpc("<p,neutral>Well, you'll need to find one.");
+}
+~chatnpc("<p,neutral>There is an enchantment that I can perform on such an amulet that will give it the power of command over ghosts. It will work only once, but it will enable you to command Necrovarus to let the ghosts pass on.");
+~chatplayer("<p,quiz>What do you need to perform the enchantment?");
+
+[proc,ahoy_crone_requirements]
+~chatnpc("<p,neutral>Necrovarus had a magical robe for which he must have no more use. Only these robes hold the power needed to perform the enchantment.");
+~chatnpc("<p,neutral>All his rituals came from a book written by an ancient sorcerer from the East called Haricanto. Bring me this strange book.");
+~chatnpc("<p,neutral>I cannot read the strange letters of the eastern lands. I will need something to help me translate the book.");
+
+[proc,ahoy_crone_has_items]()(boolean)
+if (%ahoy_given_robes = ^false & inv_total(inv, ahoy_robes_of_necrovarus) > 0) return(true);
+if (%ahoy_given_book = ^false & inv_total(inv, ahoy_book_of_haricanto) > 0) return(true);
+if (%ahoy_given_manual = ^false & inv_total(inv, ahoy_translation_manual) > 0) return(true);
+return(false);
+
+[label,ahoy_crone_options]
+def_string $son_option = "You are doing so much for me - is there anything I can do for you?";
+if (%ahoy_subquest_toyboat = ^ahoy_toyboat_given) {
+    $son_option = "I am afraid I have not found your son yet.";
+} else if (%ahoy_subquest_toyboat >= ^ahoy_toyboat_found_son) {
+    $son_option = "Good news! I have found your son!";
+}
+def_int $choice;
+if (~ahoy_crone_has_items = true) {
+    $choice = ~p_choice5("I have something for you.", 5, $son_option, 1, "Remind me - what can I do about Necrovarus?", 2, "What did you want me to get for you?", 3, "I'll go and search for those items you asked for.", 4);
+} else {
+    $choice = ~p_choice4($son_option, 1, "Remind me - what can I do about Necrovarus?", 2, "What did you want me to get for you?", 3, "I'll go and search for those items you asked for.", 4);
+}
+switch_int ($choice) {
+    case 1 :
+        if (%ahoy_subquest_toyboat >= ^ahoy_toyboat_found_son) {
+            @ahoy_crone_found_son;
+        }
+        if (%ahoy_subquest_toyboat = ^ahoy_toyboat_given & calc(~obj_gettotal(ahoy_toy_boat) + ~obj_gettotal(ahoy_toy_boat_repaired)) > 0) {
+            ~chatplayer("<p,sad>I am afraid I have not found your son yet.");
+            ~chatnpc("<p,neutral>I never expected that you would find him - although if you do, please let me know.");
+            @ahoy_crone_options;
+        }
+        @ahoy_crone_son;
+    case 2 :
+        ~chatplayer("<p,quiz>Remind me - what can I do about Necrovarus?");
+        ~ahoy_crone_amulet;
+        ~ahoy_crone_requirements;
+        @ahoy_crone_options;
+    case 3 :
+        ~chatplayer("<p,quiz>What did you want me to get for you?");
+        ~ahoy_crone_requirements;
+        @ahoy_crone_options;
+    case 4 : ~chatplayer("<p,neutral>I'll go and search for those items you need.");
+    case 5 : @ahoy_crone_hand_in;
+}
+
+[label,ahoy_crone_son]
+~chatplayer("<p,quiz>You are doing so much for me - is there anything I can do for you?");
+~chatnpc("<p,sad>I have lived here on my own for many years, but not always. When I left Port Phasmatys, I took my son with me. He grew up to be a fine boy, always in love with the sea.");
+~chatnpc("<p,sad>He was about twelve years old when he ran away with some pirates to be a cabin boy. I never saw him again.");
+~chatplayer("<p,sad>That's the second saddest story I have heard today.");
+~chatnpc("<p,sad>If you ever see him, please give him this...and tell him that his mother still loves him.");
+~ahoy_give(ahoy_toy_boat);
+%ahoy_subquest_toyboat = ^ahoy_toyboat_given;
+~objbox(ahoy_toy_boat, "The old woman gives you a toy boat.", 250, 0, 0);
+~chatplayer("<p,quiz>Was this his boat?");
+~chatnpc("<p,sad>Yes, he made it himself. It is a model of the very ship in which he sailed away. The paint has peeled off and it has lost its flag, but I could never throw it away.");
+~chatplayer("<p,neutral>If I find him, I will pass it on.");
+
+[label,ahoy_crone_found_son]
+~chatplayer("<p,happy>Good news! I have found your son!");
+~chatnpc("<p,shock>Goodness! Where is he?");
+~chatplayer("<p,happy>He lives on a shipwreck to the east of here. He remembers you and wishes you well.");
+~chatnpc("<p,happy>Oh thank you!! I will travel to see him as soon as I am able!!");
+%ahoy_subquest_toyboat = ^ahoy_toyboat_told_mother;
+
+[label,ahoy_crone_hand_in]
+if (%ahoy_given_book = ^false & inv_total(inv, ahoy_book_of_haricanto) > 0) {
+    ~chatplayer("<p,happy>I have something for you.");
+    inv_del(inv, ahoy_book_of_haricanto, 1);
+    %ahoy_given_book = ^true;
+    ~chatnpc("<p,happy>The Book of Haricanto! I have no idea how you came by this, but well done!!");
+}
+if (%ahoy_given_manual = ^false & inv_total(inv, ahoy_translation_manual) > 0) {
+    ~chatplayer("<p,happy>I have something for you.");
+    inv_del(inv, ahoy_translation_manual, 1);
+    %ahoy_given_manual = ^true;
+    ~chatnpc("<p,happy>A translation manual - yes, this should do the job.");
+}
+if (%ahoy_given_robes = ^false & inv_total(inv, ahoy_robes_of_necrovarus) > 0) {
+    ~chatplayer("<p,happy>I have something for you.");
+    inv_del(inv, ahoy_robes_of_necrovarus, 1);
+    %ahoy_given_robes = ^true;
+    ~chatnpc("<p,happy>Good - the robes of Necrovarus.");
+}
+if (%ahoy_given_book = ^false | %ahoy_given_manual = ^false | %ahoy_given_robes = ^false) {
+    @ahoy_crone_options;
+}
+~chatnpc("<p,happy>Wonderful; that's everything I need.");
+if (inv_total(inv, amulet_of_ghostspeak) = 0 & inv_total(worn, amulet_of_ghostspeak) = 0) {
+    ~chatplayer("<p,sad>I seem to have lost my ghostspeak amulet.");
+    ~chatnpc("<p,sad>Oh dear, that's unfortunate. You'll have to go and find another one, then.");
+    return;
+}
+@ahoy_crone_enchant;
+
+[label,ahoy_crone_enchant]
+~chatnpc("<p,neutral>I will now perform the ritual of enchantment.");
+if (inv_total(worn, amulet_of_ghostspeak) > 0) {
+    inv_del(worn, amulet_of_ghostspeak, 1);
+    inv_setslot(worn, ^wearpos_front, amulet_of_ghostspeak_enchanted, 1);
+    buildappearance(worn);
+} else {
+    inv_del(inv, amulet_of_ghostspeak, 1);
+    inv_add(inv, amulet_of_ghostspeak_enchanted, 1);
+}
+%ahoy_questvar = ^ahoy_amulet_enchanted;
+~objbox(amulet_of_ghostspeak_enchanted, "The ghostspeak amulet emits a green glow from its gem.", 250, 0, 0);

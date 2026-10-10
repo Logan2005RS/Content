@@ -1,0 +1,8 @@
+[ahoy_varbits_1]
+scope=perm
+
+[ahoy_varbits_2]
+scope=perm
+
+[ahoy_last_signed]
+type=npc_uid

@@ -49,16 +49,6 @@ size=1
 [skill_guide_cooking_hotdrinks]
 size=1
 
-[ahoy_generalshop]
-size=40
-stock0=pot_empty,300
-stock1=bucket_empty,300
-stock2=shears,10
-stock3=jug_empty,10
-stock4=tinderbox,10
-stock5=chisel,10
-stock6=hammer,10
-
 [wildernesscapeshop1]
 size=5
 stock0=wilderness_cape_1,10
@@ -273,10 +263,6 @@ stock2=desert_robe,10
 stock3=silk,10
 stock4=thread,1000
 stock5=needle,10
-
-[ahoy_akharanu_shop]
-size=1
-stock0=barrows_karil_ammo,100
 
 [uglug_nar_shop]
 size=15

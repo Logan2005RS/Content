@@ -1,0 +1,478 @@
+[proc,ahoy_ghostspeak]()(boolean)
+if (inv_total(worn, amulet_of_ghostspeak) > 0 | inv_total(worn, amulet_of_ghostspeak_enchanted) > 0) {
+    return(true);
+}
+return(false);
+
+[proc,ahoy_ghost_wail]
+~chatnpc("<p,neutral>Woooo wooo wooooo woooo");
+~mesbox("You cannot understand the ghost.");
+
+[proc,ahoy_in_phasmatys](coord $coord)(boolean)
+return(inzone(0_57_54_5_2, 0_57_54_61_51, $coord));
+
+[proc,ahoy_wearing_bedsheet]()(boolean)
+if (inv_total(worn, ahoy_bedsheet) > 0 | inv_total(worn, ahoy_bedsheetgreen) > 0) {
+    return(true);
+}
+return(false);
+
+[oploc1,ahoy_town_barrier]
+def_coord $inside;
+def_coord $outside;
+def_boolean $leaving = false;
+if (loc_coord = 0_57_54_4_29) {
+    $inside = movecoord(loc_coord, 1, 0, 0);
+    $outside = movecoord(loc_coord, -1, 0, 0);
+    if (coordx(coord) > coordx(loc_coord)) {
+        $leaving = true;
+    }
+} else {
+    $inside = movecoord(loc_coord, 0, 0, -1);
+    $outside = movecoord(loc_coord, 0, 0, 1);
+    if (coordz(coord) < coordz(loc_coord)) {
+        $leaving = true;
+    }
+}
+if (~ahoy_wearing_bedsheet = true) {
+    ~mesbox("You can't pass the barriers of Port Phasmatys while wearing the bedsheet.");
+    return;
+}
+if ($leaving = true) {
+    ~ahoy_pass_barrier($outside);
+    return;
+}
+@ahoy_guard_toll($inside);
+
+[proc,ahoy_pass_barrier](coord $dest)
+p_arrivedelay;
+~forcemove($dest);
+
+[label,ahoy_guard_toll](coord $inside)
+if (~ahoy_ghostspeak = false) {
+    if (%ahoy_questvar = ^ahoy_complete) {
+        ~mesbox("The ghostly guards wail at you incomprehensibly, and though you cannot understand their exact words you understand their meaning - you may pass the barriers of Port Phasmatys without charge.");
+        ~ahoy_pass_barrier($inside);
+        return;
+    }
+    ~mesbox("The ghostly guards wail at you incomprehensibly, and though you cannot understand their exact words you understand their meaning - you may not pass the barriers of Port Phasmatys.");
+    return;
+}
+if (%ahoy_questvar = ^ahoy_complete) {
+    ~chatnpc_specific("Ghost guard", ahoy_ghost_guard, "<p,neutral>All visitors to Port Phasmatys must pay a toll charge of 2 Ectotokens. However, you have done the ghosts of our town a service that surpasses all value, so you may pass without charge.");
+    ~ahoy_pass_barrier($inside);
+    return;
+}
+~chatnpc_specific("Ghost guard", ahoy_ghost_guard, "<p,neutral>All visitors to Port Phasmatys must pay a toll charge of 2 Ectotokens.");
+switch_int (~p_choice3("I would like to enter Port Phasmatys - here's 2 Ectotokens.", 1, "I'm not paying you Ectotokens just to go through a gate.", 2, "Where can I get Ectotokens?", 3)) {
+    case 1 :
+        ~chatplayer("<p,neutral>I would like to enter Port Phasmatys - here's 2 Ectotokens.");
+        if (inv_total(inv, ectotoken) < ^ahoy_toll) {
+            mes("You do not have enough Ectotokens to pay the toll.");
+            return;
+        }
+        inv_del(inv, ectotoken, ^ahoy_toll);
+        ~ahoy_pass_barrier($inside);
+    case 2 :
+        ~chatplayer("<p,angry>I'm not paying you Ectotokens just to go through a gate.");
+        ~chatnpc_specific("Ghost guard", ahoy_ghost_guard, "<p,neutral>Sorry - it's Town Policy.");
+    case 3 :
+        ~chatplayer("<p,quiz>Where can I get Ectotokens?");
+        ~chatnpc_specific("Ghost guard", ahoy_ghost_guard, "<p,neutral>You need to go to the Temple and earn some. Talk to the disciples - they will tell you how.");
+}
+
+[opnpc1,ahoy_ghost_guard]
+def_coord $barrier = 0_57_54_11_52;
+if (distance(npc_coord, 0_57_54_4_29) < distance(npc_coord, 0_57_54_11_52)) {
+    $barrier = 0_57_54_4_29;
+}
+if (~ahoy_in_phasmatys(coord) = true) {
+    if (~ahoy_ghostspeak = false) {
+        ~ahoy_ghost_wail;
+        return;
+    }
+    ~chatnpc("<p,neutral>All visitors to Port Phasmatys must pay a toll charge of 2 Ectotokens.");
+    return;
+}
+if ($barrier = 0_57_54_4_29) {
+    @ahoy_guard_toll(movecoord($barrier, 1, 0, 0));
+}
+@ahoy_guard_toll(movecoord($barrier, 0, 0, -1));
+
+[oploc1,ahoy_harbour_door]
+if (loc_coord = 1_57_54_8_58) {
+    @ahoy_temple_door;
+}
+~open_door(500);
+
+[label,ahoy_temple_door]
+if (coordx(coord) >= coordx(loc_coord) | %ahoy_templedoor_unlocked = ^true) {
+    ~open_and_close_door(ahoy_harbour_door_open, ~check_axis(coord, loc_coord, loc_angle), false);
+    return;
+}
+if (~ahoy_ghostspeak = false) {
+    ~chatnpc_specific("Ghost disciple", ahoy_disciple, "<p,neutral>Woooo wooo wooooo woooo");
+    return;
+}
+~chatnpc_specific("Ghost disciple", ahoy_disciple, "<p,angry>What are you doing going in there?");
+~chatplayer("<p,shifty>Err, I was just curious...");
+~chatnpc_specific("Ghost disciple", ahoy_disciple, "<p,neutral>Inside that room is a coffin, inside which lie the mortal remains of our most glorious master, Necrovarus. None may enter.");
+
+[oplocu,ahoy_harbour_door]
+if (last_useitem ! ahoy_bone_key | loc_coord ! 1_57_54_8_58) {
+    ~displaymessage(^dm_default);
+    return;
+}
+if (%ahoy_templedoor_unlocked = ^true) {
+    mes("The door is already unlocked.");
+    return;
+}
+%ahoy_templedoor_unlocked = ^true;
+sound_synth(locked, 1, 0);
+mes("You unlock the door.");
+
+[oploc1,ahoy_trapdoor]
+anim(human_openchest, 0);
+mes("The trapdoor opens...");
+sound_synth(door_open, 1, 0);
+loc_change(ahoy_trapdoor_open, 500);
+
+[oploc1,ahoy_trapdoor_open]
+mes("You climb down through the trapdoor...");
+~climb_ladder(3_57_154_21_32, false);
+
+[oploc2,ahoy_trapdoor_open]
+anim(human_closechest, 0);
+mes("You close the trapdoor.");
+sound_synth(door_close, 1, 0);
+loc_change(ahoy_trapdoor, 500);
+
+[oploc1,ahoy_ladder_from_cellar] ~climb_ladder(0_57_54_6_63, true);
+
+[oploc1,ahoy_cavern_stairs]
+p_arrivedelay;
+switch_int (coordy(coord)) {
+    case 2 : p_telejump(3_57_154_44_32);
+    case 1 : p_telejump(2_57_154_23_32);
+    case 0 : p_telejump(1_57_154_39_32);
+}
+
+[oploc1,ahoy_cavern_stairs_top]
+p_arrivedelay;
+switch_int (coordy(coord)) {
+    case 3 : p_telejump(2_57_154_40_32);
+    case 2 : p_telejump(1_57_154_27_31);
+    case 1 : p_telejump(0_57_154_35_32);
+}
+
+[oploc1,ectopool_sc_wallclimb]
+if (stat(agility) < 58) {
+    mes("You need an agility level of at least 58 to climb up this wall.");
+    return;
+}
+~climb_ladder(3_57_154_22_32, true);
+
+[oploc1,ectopool_sc_raildown]
+if (stat(agility) < 58) {
+    mes("You need an agility level of at least 58 to climb down this wall.");
+    return;
+}
+~climb_ladder(2_57_154_23_32, false);
+
+[oploc1,ahoy_tower_stairs_lv1]
+p_arrivedelay;
+p_telejump(movecoord(loc_coord, calc(coordx(coord) - coordx(loc_coord)), 1, 5));
+
+[oploc1,ahoy_tower_stairs_lv1_top]
+p_arrivedelay;
+p_telejump(movecoord(loc_coord, calc(coordx(coord) - coordx(loc_coord)), -1, -4));
+
+[oploc1,ahoy_ghostshipladder_angled] ~climb_ladder(movecoord(coord, 0, 1, 0), true);
+[oploc1,ahoy_ghostshipladder_top_angled] ~climb_ladder(movecoord(coord, 0, -1, 0), false);
+
+[oploc1,phasmatys_brewery_trapdoor]
+anim(human_openchest, 0);
+mes("The trapdoor opens...");
+sound_synth(door_open, 1, 0);
+loc_change(phasmatys_brewery_trapdoor_open, 500);
+
+[oploc1,phasmatys_brewery_trapdoor_open]
+mes("You climb down through the trapdoor...");
+~climb_ladder(0_57_155_33_42, false);
+
+[oploc2,phasmatys_brewery_trapdoor_open]
+anim(human_closechest, 0);
+mes("You close the trapdoor.");
+sound_synth(door_close, 1, 0);
+loc_change(phasmatys_brewery_trapdoor, 500);
+
+[oploc1,phasmatys_brewery_ladder] ~climb_ladder(0_57_54_33_41, true);
+
+[oploc1,ahoy_boxes_1] mes("There is nothing interesting in these boxes.");
+
+[oploc1,ahoy_bankbooth]
+if (npc_find(loc_coord, ahoy_ghost_banker, 2, 0) = true) {
+    if (~ahoy_ghostspeak = false) {
+        ~ahoy_ghost_wail;
+        return;
+    }
+    @talk_to_ghost_banker;
+}
+@openbank;
+
+[oploc2,ahoy_bankbooth]
+if (~ahoy_ghostspeak = false) {
+    ~mesbox("The ghost banker wails incomprehensibly at you, but seems to understand that you wish to access your bank account. You can still quick-bank, but will have to communicate via a series of hand gestures.");
+}
+@openbank;
+
+[apnpc1,ahoy_ghost_banker]
+if (npc_range(coord) > 2) {
+    p_aprange(2);
+    return;
+}
+if (~ahoy_ghostspeak = false) {
+    ~ahoy_ghost_wail;
+    return;
+}
+@talk_to_ghost_banker;
+
+[apnpc3,ahoy_ghost_banker]
+if (npc_range(coord) > 2) {
+    p_aprange(2);
+    return;
+}
+@openbank;
+
+[label,talk_to_ghost_banker]
+~chatnpcrange("<p,neutral>Good day, how may I help you?");
+switch_int (~p_choice2("I'd like to access my bank account, please.", 1, "What is this place?", 2)) {
+    case 1 :
+        ~chatplayer("<p,quiz>I'd like to access my bank account, please.");
+        @openbank;
+    case 2 :
+        ~chatplayer("<p,quiz>What is this place?");
+        ~chatnpcrange("<p,neutral>This is a branch of the Bank of RuneScape. We have branches in many towns.");
+        ~chatplayer("<p,quiz>And what do you do?");
+        ~chatnpcrange("<p,neutral>We will look after your items and money for you. Leave your valuables with us if you want to keep them safe.");
+}
+
+[opnpc1,ahoy_ghost_shopkeeper]
+if (~ahoy_ghostspeak = false) {
+    ~ahoy_ghost_wail;
+    return;
+}
+~chatnpc("<p,neutral>Can I help you at all?");
+switch_int (~p_choice2("Yes please. What are you selling?", 1, "No thanks.", 2)) {
+    case 1 :
+        ~chatplayer("<p,quiz>Yes please. What are you selling?");
+        ~openshop_activenpc;
+    case 2 : ~chatplayer("<p,neutral>No thanks.");
+}
+
+[opnpc1,ahoy_ghost_sailor]
+if (~ahoy_ghostspeak = false) {
+    ~ahoy_ghost_wail;
+    return;
+}
+~chatplayer("<p,quiz>Hi there. Why do you still bother having ships here? I mean - you're dead, what use are they to you?");
+~chatnpc("<p,neutral>We keep ships because we still need trade in Phasmatys. Every trader that comes to Phasmatys is made to worship the Ectofuntus, so that the Ectopower doesn't run out.");
+~chatplayer("<p,quiz>So, without traders to worship in the Temple you're history, right?");
+~chatnpc("<p,neutral>Aye, matey.");
+
+[opnpc1,ahoy_ghost_villager]
+if (~ahoy_ghostspeak = false) {
+    ~ahoy_ghost_wail;
+    return;
+}
+if (inv_total(inv, ahoy_petition) > 0 & %ahoy_questvar = ^ahoy_gather_items) {
+    @ahoy_petition_villager;
+}
+switch_int (random(5)) {
+    case 0 : ~chatnpc("<p,neutral>What do you want, mortal?");
+    case 1 : ~chatnpc("<p,neutral>We do not talk to the warm-bloods.");
+    case 2 : ~chatnpc("<p,neutral>Why did we have to listen to that maniacal priest?");
+    case 3 : ~chatnpc("<p,neutral>This cold wind blows right through you, doesn't it?");
+    case 4 : ~chatnpc("<p,neutral>Worship the Ectofuntus all you want, but don't bother us, human.");
+}
+
+[opnpc1,ahoy_ghost_innkeeper]
+if (~ahoy_ghostspeak = false) {
+    ~ahoy_ghost_wail;
+    return;
+}
+~chatplayer("<p,happy>Hello there!");
+~chatnpc("<p,neutral>Greetings, traveller. Welcome to 'The Green Ghost' Tavern. What can I do you for?");
+switch_int (~p_choice5("Can I buy a beer?", 1, "Can I hear some gossip?", 2, "What happened to the folk of this town?", 3, "Do you have any jobs I can do?", 4, "Nothing, thanks.", 5)) {
+    case 1 :
+        ~chatplayer("<p,quiz>Can I buy a beer?");
+        ~chatnpc("<p,sad>Sorry, but our pumps dried up over half a century ago. We of this village do not have much of a thirst these days.");
+    case 2 :
+        ~chatplayer("<p,quiz>Can I hear some gossip?");
+        ~chatnpc("<p,shifty>I suppose, as long as you keep it to yourself...");
+        ~chatnpc("<p,neutral>You see Gravingas out there in the marketplace? He speaks for the silent majority of Port Phasmatys, for those of us who would prefer to pass over into the next world.");
+        ~chatnpc("<p,neutral>But old Gravingas is far too obvious in his methods. Now Velorina, she's a ghost of a different colour altogether. If you feel like helping our cause at all, go speak to Velorina.");
+    case 3 :
+        ~chatplayer("<p,quiz>What happened to the folk of this town?");
+        ~chatnpc("<p,neutral>That's a long story, my friend, but you look like you have the time...");
+        @ahoy_phasmatys_history;
+    case 4 :
+        ~chatplayer("<p,quiz>Do you have any jobs I can do?");
+        if (inv_total(inv, ahoy_bedsheet) > 0) {
+            ~chatnpc("<p,neutral>Well, you could take that bedsheet through to Robin like I asked.");
+            return;
+        }
+        ~chatnpc("<p,neutral>Yes, actually, I do. We have a very famous Master Bowman named Robin staying with us at the moment. Could you take him some clean bed linen for me?");
+        switch_int (~p_choice2("Yes, I'd be delighted.", 1, "No, I didn't mean a job like that.", 2)) {
+            case 1 :
+                ~chatplayer("<p,happy>Yes, I'd be delighted.");
+                ~chatnpc("<p,happy>Oh, thank you. Be careful with that Robin, though - he's far too full of himself, that one.");
+                inv_add(inv, ahoy_bedsheet, 1);
+            case 2 : ~chatplayer("<p,neutral>No, I didn't mean a job like that.");
+        }
+    case 5 : ~chatplayer("<p,neutral>Nothing, thanks.");
+}
+
+[label,ahoy_phasmatys_history]
+~chatnpc("<p,neutral>Do you know why ghosts exist?");
+~chatplayer("<p,neutral>A ghost is a soul left in limbo, unable to pass over to the next world; they might have something left to do in this world that torments them, or they might just have died in a state of confusion.");
+~chatnpc("<p,neutral>Yes, that is normally the case. But here in Port Phasmatys, we of this town once chose freely to become ghosts!");
+~chatplayer("<p,shock>Why on earth would you do such a thing?");
+~chatnpc("<p,neutral>It is a long story. Many years ago, this was a thriving port, a trading centre to the eastern lands of RuneScape. We became rich on the profits made from the traders that came across the eastern seas.");
+~chatnpc("<p,sad>We were very happy... until Lord Drakan noticed us.");
+~chatnpc("<p,sad>He sent unholy creatures to demand that a blood-tithe be paid to the Lord Vampyre, as is required from all in the domain of Morytania. We had no choice but to agree to his demands.");
+~chatnpc("<p,sad>As the years went by, our numbers dwindled and many spoke of abandoning the town for safer lands. Then, Necrovarus came to us.");
+~chatnpc("<p,neutral>He came from the eastern lands, but of more than that, little is known. Some say he was once a mage, some say a priest. Either way, he was in possession of knowledge totally unknown to even the most learned among us.");
+~chatnpc("<p,neutral>Necrovarus told us that he had been brought by a vision he'd had of an underground source of power. He inspired us to delve beneath the town, promising us the power to repel the vampyres.");
+~chatnpc("<p,neutral>Deep underneath Phasmatys, we found a pool of green slime that Necrovarus called ectoplasm. He showed us how to build the Ectofuntus, which would turn the ectoplasm into the power he had promised us.");
+~chatnpc("<p,neutral>Indeed, this Ectopower did repel the vampyres; they would not enter Phasmatys once the Ectofuntus began working. But little did we know that we had exchanged one evil for yet another - Ectopower.");
+~chatnpc("<p,sad>Little by little, we began to lose any desire for food or water, and our desire for the Ectopower grew until it dominated our thoughts entirely. Our bodies shrivelled and, one by one, we died.");
+~chatnpc("<p,sad>The Ectofuntus and the power it emanates keeps us here as ghosts - some, like myself, content to remain in this world; some becoming tortured souls who we do not allow to pass our gates.");
+~chatnpc("<p,sad>We would be able to pass over into the next world but Necrovarus has used his power to create a psychic barrier, preventing us.");
+~chatnpc("<p,sad>We must remain here for all eternity, even unto the very end of the world.");
+
+[opnpc1,ahoy_disciple]
+if (~ahoy_ghostspeak = false) {
+    ~ahoy_ghost_wail;
+    return;
+}
+if (%ahoy_ectotokens_to_collect > 0) {
+    def_int $tokens = multiply(%ahoy_ectotokens_to_collect, 5);
+    ~chatplayer("<p,quiz>Can I have the tokens I have earned?");
+    if (inv_freespace(inv) = 0 & inv_total(inv, ectotoken) = 0) {
+        ~chatnpc("<p,neutral>I have <tostring($tokens)> ectotokens waiting for you mortal, but you do not have room in your inventory for them.");
+        return;
+    }
+    %ahoy_ectotokens_to_collect = 0;
+    inv_add(inv, ectotoken, $tokens);
+    ~chatnpc("<p,neutral>Certainly, mortal. Here's <tostring($tokens)> ectotokens.");
+    return;
+}
+~chatplayer("<p,quiz>What is this strange fountain?");
+~chatnpc("<p,neutral>This is the Ectofuntus, the most marvellous creation of Necrovarus, our glorious leader.");
+@ahoy_disciple_options;
+
+[label,ahoy_disciple_options]
+switch_int (~p_choice5("What is the Ectofuntus for?", 1, "Where do I get ectoplasm from?", 2, "How do I grind bones?", 3, "How do I receive Ectotokens?", 4, "Thanks for your time.", 5)) {
+    case 1 :
+        ~chatplayer("<p,quiz>What is the Ectofuntus for?");
+        ~chatnpc("<p,neutral>It provides the power to keep us ghosts from passing over into the next plane of existence.");
+        ~chatplayer("<p,quiz>And how does it work?");
+        ~chatnpc("<p,neutral>You have to pour a bucket of ectoplasm into the fountain, a pot of ground bones, and then worship at the Ectofuntus. A unit of unholy power will then be created.");
+        ~chatplayer("<p,quiz>Can you do it yourself?");
+        ~chatnpc("<p,neutral>No, we must rely upon the living, as the worship of the undead no longer holds any inherent power.");
+        ~chatplayer("<p,quiz>Why would people waste their time helping you out?");
+        ~chatnpc("<p,neutral>For every unit of power produced we will give you five Ectotokens. These tokens can be used in Port Phasmatys to purchase various services, not least of which includes access through the main toll gates.");
+        @ahoy_disciple_options;
+    case 2 :
+        ~chatplayer("<p,quiz>Where do I get ectoplasm from?");
+        ~chatnpc("<p,neutral>Necrovarus sensed the power bubbling beneath our feet, and we delved long and deep beneath Port Phasmatys, until we found a pool of natural ectoplasm. You may find it by using the trapdoor over there.");
+        @ahoy_disciple_options;
+    case 3 :
+        ~chatplayer("<p,quiz>How do I grind bones?");
+        ~chatnpc("<p,neutral>There is a bone grinding machine upstairs. Put bones of any type into the machine's hopper, and then turn the handle to grind them. You will need a pot to empty the machine of ground up bones.");
+        @ahoy_disciple_options;
+    case 4 :
+        ~chatplayer("<p,quiz>How do I receive Ectotokens?");
+        ~chatnpc("<p,neutral>We disciples keep track of how many units of power have been produced. Just talk to us once you have generated some and we will reimburse you with the correct amount of Ectotokens.");
+        ~chatplayer("<p,quiz>How do I generate units of power?");
+        ~chatnpc("<p,neutral>You have to pour a bucket of ectoplasm into the fountain and then worship at the Ectofuntus with a pot of ground bones. This will create a unit of unholy power.");
+        @ahoy_disciple_options;
+    case 5 : ~chatplayer("<p,neutral>Thanks for your time.");
+}
+
+[opnpc1,ahoy_ghost_captain_1]
+if (inzone(0_59_55_0_0, 0_59_55_63_63, npc_coord) = true) {
+    @ahoy_captain_dragontooth;
+}
+if (~ahoy_ghostspeak = false) {
+    ~ahoy_ghost_wail;
+    return;
+}
+if (%ahoy_questvar = ^ahoy_complete) {
+    ~chatnpc("<p,neutral>Would you like to visit Dragontooth Island? It is a most pleasant island in the sea between Morytania and the lands of the east.");
+    switch_int (~p_choice2("Yes please.", 1, "No thanks.", 2)) {
+        case 1 :
+            ~chatplayer("<p,happy>Yes please.");
+            ~ahoy_row_boat(0_59_55_15_40, "After a long boat trip you arrive at Dragontooth Island.");
+        case 2 : ~chatplayer("<p,neutral>No thanks.");
+    }
+    return;
+}
+~chatnpc("<p,neutral>Would you like to visit Dragontooth Island? It is a most pleasant island in the sea between Morytania and the lands of the east. It'll cost you 25 ectotokens for the return trip.");
+switch_int (~p_choice2("Okay, here's 25 ectotokens. Let's go.", 1, "Not now, thanks.", 2)) {
+    case 1 :
+        ~chatplayer("<p,neutral>Okay, here's 25 ectotokens. Let's go.");
+        if (inv_total(inv, ectotoken) < ^ahoy_dragontooth_fare) {
+            ~chatnpc("<p,neutral>A return trip to Dragontooth Island costs 25 ectotokens.");
+            return;
+        }
+        inv_del(inv, ectotoken, ^ahoy_dragontooth_fare);
+        ~ahoy_row_boat(0_59_55_15_40, "After a long boat trip you arrive at Dragontooth Island.");
+    case 2 : ~chatplayer("<p,neutral>Not now, thanks.");
+}
+
+[label,ahoy_captain_dragontooth]
+switch_int (~p_choice3("Can you take me back to Phasmatys, now?", 1, "There isn't much on this island, is there?", 2, "Actually, I don't want anything.", 3)) {
+    case 1 :
+        ~chatplayer("<p,quiz>Can you take me back to Phasmatys, now?");
+        if (~ahoy_ghostspeak = false) {
+            ~mesbox("The ghost sailor wails at you incomprehensibly, and points at the boat, nodding his ghostly head.");
+        } else {
+            ~chatnpc("<p,neutral>Yes, climb in.");
+        }
+        ~ahoy_row_boat(0_57_54_54_31, "After a long boat trip you arrive at Port Phasmatys.");
+    case 2 :
+        ~chatplayer("<p,quiz>There isn't much on this island, is there?");
+        if (~ahoy_ghostspeak = false) {
+            ~chatnpc("<p,neutral>Woooo wooo wooooo woooo");
+            return;
+        }
+        ~chatnpc("<p,happy>Beautiful isn't it?");
+        ~chatplayer("<p,angry>But it cost me a lot of ectotokens to get here!");
+        ~chatnpc("<p,happy>Worth every token, if you ask me.");
+    case 3 :
+        ~chatplayer("<p,neutral>Actually, I don't want anything.");
+        if (~ahoy_ghostspeak = false) {
+            ~chatnpc("<p,neutral>Woooo wooo wooooo woooo");
+        }
+}
+
+[proc,ahoy_row_boat](coord $dest, string $message)
+if_close;
+p_stopaction;
+if_openmain(ahoy_blackout);
+if_settext(ahoy_blackout:ahoy_blackout_message, "");
+p_delay(2);
+p_telejump($dest);
+p_delay(0);
+if_close;
+mes($message);
+
+[ai_queue3,ahoy_tortured_soul]
+switch_int (random(3)) {
+    case 0 : npc_say("You cannot kill the undead, mortal!");
+    case 1 : npc_say("Your soul will be forfeit for this, mortal!");
+    case 2 : npc_say("I will return, mortal!");
+}
+gosub(npc_default_death);

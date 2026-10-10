@@ -1,0 +1,67 @@
+[nettles]
+name=Nettles
+desc=I'd better not get stung.
+model=nettles
+blockwalk=no
+blockrange=no
+op1=Pick
+category=nettles
+
+[nettles1]
+name=Nettles
+desc=I wish I could sting other people.
+model=loc_5253
+blockwalk=no
+blockrange=no
+op1=Pick
+category=nettles
+
+[nettles2]
+name=Nettles
+desc=Probably feels like a mild bee sting.
+model=loc_5254
+blockwalk=no
+blockrange=no
+op1=Pick
+category=nettles
+
+[nettles3]
+name=Nettles
+desc=I wouldn't like to get stung.
+model=loc_5253
+model2=nettles
+blockwalk=no
+blockrange=no
+op1=Pick
+category=nettles
+
+[nettles4]
+name=Nettles
+desc=Dock leaves at the ready.
+model=loc_5254
+model2=nettles
+blockwalk=no
+blockrange=no
+op1=Pick
+category=nettles
+
+[nettles5]
+name=Nettles
+desc=Nettles sting my leggies.
+model=loc_5254
+model2=loc_5253
+blockwalk=no
+blockrange=no
+op1=Pick
+category=nettles
+
+[nettles6]
+name=Nettles
+desc=These may hurt.
+model=loc_5254
+model2=loc_5253
+model3=nettles
+blockwalk=no
+blockrange=no
+op1=Pick
+category=nettles

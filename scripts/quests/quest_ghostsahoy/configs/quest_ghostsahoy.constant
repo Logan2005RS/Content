@@ -1,0 +1,40 @@
+^ahoy_not_started = 0
+^ahoy_started = 1
+^ahoy_necrovarus_refused = 2
+^ahoy_find_crone = 3
+^ahoy_gather_items = 4
+^ahoy_amulet_enchanted = 5
+^ahoy_commanded_necrovarus = 6
+^ahoy_complete = 8
+
+^ahoy_agility_level = 25
+^ahoy_cooking_level = 20
+
+^ahoy_nettletea_asked = 1
+^ahoy_nettletea_given_cup = 2
+
+^ahoy_toyboat_given = 1
+^ahoy_toyboat_found_son = 2
+^ahoy_toyboat_told_mother = 3
+
+^ahoy_bow_spoken_akharanu = 1
+^ahoy_bow_owed_100 = 5
+^ahoy_bow_signed = 6
+^ahoy_bow_given = 7
+
+^ahoy_grinder_empty = 0
+^ahoy_grinder_loaded = 1
+^ahoy_grinder_ground = 2
+
+^ahoy_flag_white = 0
+^ahoy_flag_red = 1
+^ahoy_flag_yellow = 2
+^ahoy_flag_blue = 3
+^ahoy_flag_orange = 4
+^ahoy_flag_purple = 5
+^ahoy_flag_green = 6
+
+^ahoy_signatures_needed = 10
+^ahoy_toll = 2
+^ahoy_dragontooth_fare = 25
+^ahoy_runedraw_stake = 25

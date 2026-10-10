@@ -1153,36 +1153,6 @@ active=no
 model=loc_5243
 sharelight=yes
 
-[ahoy_harbour_door]
-name=Door
-desc=Looks a bit tatty...
-model=zanarisdoor
-recol1s=8387
-recol1d=6370
-recol2s=19912
-recol2d=6370
-recol3s=16741
-recol3d=8484
-recol4s=7330
-recol4d=4256
-active=yes
-op1=Open
-
-[ahoy_harbour_door_open]
-name=Door
-desc=Looks a bit tatty...
-model=zanarisdoor
-recol1s=8387
-recol1d=6370
-recol2s=19912
-recol2d=6370
-recol3s=16741
-recol3d=8484
-recol4s=7330
-recol4d=4256
-active=yes
-op1=Close
-
 [normal_bed]
 name=Bed
 desc=A well slept in bed.
@@ -1235,73 +1205,6 @@ model=loc_5252
 anim=fire
 op1=Search
 
-[nettles1]
-name=Nettles
-desc=I wish I could sting other people.
-model=loc_5253
-blockwalk=no
-blockrange=no
-op1=Pick
-
-[nettles2]
-name=Nettles
-desc=Probably feels like a mild bee sting.
-model=loc_5254
-blockwalk=no
-blockrange=no
-op1=Pick
-
-[nettles3]
-name=Nettles
-desc=I wouldn't like to get stung.
-model=loc_5253
-model2=nettles
-blockwalk=no
-blockrange=no
-op1=Pick
-
-[nettles4]
-name=Nettles
-desc=Dock leaves at the ready.
-model=loc_5254
-model2=nettles
-blockwalk=no
-blockrange=no
-op1=Pick
-
-[nettles5]
-name=Nettles
-desc=Nettles sting my leggies.
-model=loc_5254
-model2=loc_5253
-blockwalk=no
-blockrange=no
-op1=Pick
-
-[nettles6]
-name=Nettles
-desc=These may hurt.
-model=loc_5254
-model2=loc_5253
-model3=nettles
-blockwalk=no
-blockrange=no
-op1=Pick
-
-[ahoy_town_barrier]
-name=Energy Barrier
-desc=A ghostly barrier.
-model=loc_5259
-recol1s=15855
-recol1d=11914
-length=2
-active=yes
-raiseobject=no
-anim=castlewars_portalglow
-ambient=100
-contrast=100
-op1=Pass
-
 [ahoy_town_walldoor_left_open]
 model=loc_5260
 ambient=70
@@ -1312,140 +1215,6 @@ model=loc_5260
 mirror=yes
 ambient=70
 contrast=30
-
-[ahoy_cavern_stairs]
-name=Stairs
-desc=These stairs were carved out of the rock of the cavern.
-model=loc_5262
-recol1s=15817
-recol1d=2145
-recol2s=24273
-recol2d=4259
-hillskew=yes
-width=3
-length=3
-op1=Climb-up
-
-[ahoy_cavern_stairs_top]
-name=Stairs
-desc=These stairs were carved out of the rock of the cavern.
-model=loc_5263
-recol1s=15817
-recol1d=2145
-recol2s=24273
-recol2d=4259
-hillskew=yes
-sharelight=yes
-width=3
-length=3
-op1=Climb-down
-
-[ahoy_ladder_from_cellar]
-name=Ladder
-desc=I can climb this.
-model=loc_5130
-recol1s=12514
-recol1d=8418
-recol2s=11457
-recol2d=8418
-recol3s=15685
-recol3d=8418
-active=yes
-op1=Climb-up
-mapscene=7
-forceapproach=south
-
-[ahoy_ghostship_ladder]
-name=Ship's ladder
-desc=I can climb up here.
-model=ship_ladder_8
-op1=Climb-up
-forceapproach=south
-mapscene=7
-
-[ahoy_ghostship_laddertop]
-name=Ship's ladder
-desc=I can go below decks with this ladder.
-model=ship_laddertop
-op1=Climb-down
-forceapproach=north
-
-[ahoy_trapdoor]
-name=Trapdoor
-desc=I wonder what's under it.
-model=furniture_trapdoor
-recol1s=8320
-recol1d=3235
-recol2s=8456
-recol2d=5349
-active=yes
-op1=Open
-raiseobject=no
-
-[ahoy_trapdoor_open]
-name=Trapdoor
-desc=I wonder what's down there.
-model=furniture_trapdoor_open
-recol1s=8320
-recol1d=3235
-recol2s=8456
-recol2d=5349
-recol3s=11491
-recol3d=6370
-recol4s=15617
-recol4d=5313
-active=yes
-op1=Climb-down
-op2=Close
-raiseobject=no
-
-[ahoy_rock_invisible]
-name=Rock
-model=quest_regicide_transparent_square1
-hillskew=yes
-op1=Jump-To
-blockwalk=no
-blockrange=no
-
-[ahoy_chest_locked]
-name=Closed chest
-desc=I wonder what's inside.
-model=loc_5270
-op1=Open
-
-[ahoy_chest_locked_active]
-name=Open chest
-desc=I wonder what's inside.
-model=loc_5271
-
-[ahoy_chest_closed]
-name=Closed chest
-desc=I wonder what's inside.
-model=loc_5270
-op1=Open
-forceapproach=north
-
-[ahoy_chest_open]
-name=Open chest
-desc=Perhaps I should search it.
-model=loc_5271
-recol1s=10570
-recol1d=17921
-op1=Search
-op2=Close
-forceapproach=north
-
-[ahoy_mast]
-name=Mast
-desc=High above here is a tattered flag, blowing in the wind.
-model=ship_mast1
-recol1s=19912
-recol1d=8484
-recol2s=15685
-recol2d=6370
-recol3s=13741
-recol3d=11690
-op1=Search
 
 [ahoy_range]
 name=Cooking range
@@ -1460,92 +1229,11 @@ recol3d=10496
 length=2
 forceapproach=east
 
-[ahoy_bankbooth]
-name=Bank booth
-desc=The bank teller will serve you from here.
-model=loc_5276
-op1=Use
-op2=Use-quickly
-blockrange=no
-
 [ahoy_bankboothclosed]
 name=Closed bank booth
 desc=This booth is closed.
 model=loc_5277
 blockrange=no
-
-[ahoy_coffin]
-name=Coffin
-desc=The resting place of Necrovarus' mortal body.
-model=loc_5278
-width=2
-length=2
-op1=Open
-blockrange=no
-
-[ahoy_coffin_open]
-name=Coffin
-desc=The resting place of Necrovarus' mortal body.
-model=loc_5279
-width=2
-length=2
-op1=Search
-op2=Close
-blockrange=no
-
-[ahoy_tower_stairs_lv1]
-name=Staircase
-desc=I can climb these stairs.
-model=loc_4493
-recol1s=3203
-recol1d=2145
-recol2s=5317
-recol2d=4259
-width=2
-length=4
-op1=Climb-up
-forceapproach=south
-sharelight=yes
-mapscene=7
-
-[ahoy_tower_stairs_lv1_top]
-name=Staircase
-desc=They go down.
-model=skill_slayer_stairs_tall_top_new
-recol1s=3203
-recol1d=2145
-recol2s=5317
-recol2d=4259
-width=2
-length=2
-op1=Climb-down
-forceapproach=north
-sharelight=yes
-mapscene=7
-
-[ahoy_ectofunctus]
-name=Ectofuntus
-desc=A ghastly fountain filled with slime and bones, the source of Necrovarus' power.
-model=loc_5282
-model2=loc_5282i2
-recol1s=992
-recol1d=11914
-recol2s=18922
-recol2d=10631
-recol3s=16805
-recol3d=9574
-recol4s=15714
-recol4d=8517
-recol5s=14660
-recol5d=7460
-recol6s=13600
-recol6d=6403
-anim=ahoy_ectofuntus_glow
-length=4
-width=4
-ambient=70
-contrast=30
-op1=Worship
 
 [ahoy_ectofuntus_small]
 name=Ectofuntus
@@ -1570,71 +1258,6 @@ resizey=48
 resizez=48
 ambient=70
 contrast=30
-
-[ahoy_grinder]
-name=Bone grinder
-desc=A big grinding thing.
-model=loc_5284
-length=3
-width=2
-op1=Wind
-op2=Empty
-op3=Status
-forceapproach=east
-
-[ahoy_gangplank_shipwreck_on]
-name=Gangplank
-desc=The tatty gangplank of a tatty ship.
-model=ship_gangplank_g_decor
-recol1s=15685
-recol1d=6370
-recol2s=19912
-recol2d=8484
-resizez=128
-resizex=128
-resizey=88
-active=yes
-forcedecor=yes
-hillskew=yes
-sharelight=yes
-op1=Cross
-
-[ahoy_gangplank_shipwreck_off]
-name=Gangplank
-desc=The tatty gangplank of a tatty ship.
-model=ship_gangplank_g_decor
-recol1s=15685
-recol1d=6370
-recol2s=19912
-recol2d=8484
-resizez=128
-resizex=128
-resizey=88
-active=yes
-forcedecor=yes
-hillskew=yes
-sharelight=yes
-op1=Cross
-
-[ahoy_skull_captain]
-name=Pirate Captain
-desc=Seen better days.
-model=loc_5287
-model2=loc_5287i2
-model3=loc_5287i3
-recol1s=14724
-recol1d=15590
-recol2s=7328
-recol2d=12356
-recol3s=24075
-recol3d=2114
-recol4s=14724
-recol4d=18632
-recol5s=2340
-recol5d=22160
-recol6s=29562
-recol6d=22126
-op1=Talk-To
 
 [poor_roof_a]
 model=loc_5288
@@ -2059,25 +1682,6 @@ recol3s=14594
 recol3d=6340
 hillskew=yes
 active=no
-
-[ahoy_boxes_1]
-name=Boxes
-desc=A pile of boxes for storage.
-model=loc_5330
-recol1s=13639
-recol1d=5313
-recol2s=10468
-recol2d=8484
-recol3s=9411
-recol3d=7427
-recol4s=8354
-recol4d=6370
-recol5s=12582
-recol5d=4256
-recol6s=11525
-recol6d=4256
-blockrange=no
-op1=Search
 
 [ahoy_plant_1]
 name=Plant
@@ -2988,23 +2592,6 @@ model=loc_5414
 width=8
 active=no
 
-[ahoy_ghostshipladder_angled]
-name=Ship's ladder
-desc=Allows access to other parts of the ship.
-model=shipladder_angled
-sharelight=yes
-op1=Climb-up
-forceapproach=south
-
-[ahoy_ghostshipladder_top_angled]
-name=Ship's ladder
-desc=Allows access to other parts of the ship.
-model=shipladder_top_angled
-sharelight=yes
-op1=Climb-down
-forceapproach=south
-offsety=-60
-
 [ahoy_ghostshipladder_bridge_ledge]
 model=loc_5417
 active=no
@@ -3439,162 +3026,6 @@ sharelight=yes
 forcedecor=yes
 mapscene=46
 
-[ahoy_wood_skewsteps]
-model=quest_viking_skewsteps
-recol1s=18854
-recol1d=6370
-recol2s=14628
-recol2d=8484
-recol3s=12514
-recol3d=4256
-recol4s=7331
-recol4d=4256
-forcedecor=yes
-hillskew=yes
-active=no
-
-[green_gloop]
-name=Pool of Slime
-desc=A subterranean pool of ectoplasm.
-model=loc_5461
-anim=green_gloop
-hillskew=yes
-ambient=90
-contrast=50
-blockwalk=no
-
-[green_gloop2]
-name=Pool of Slime
-desc=A subterranean pool of ectoplasm.
-model=loc_5461
-anim=green_gloop2
-hillskew=yes
-ambient=90
-contrast=50
-blockwalk=no
-
-[green_gloop3]
-name=Pool of Slime
-desc=A subterranean pool of ectoplasm.
-model=loc_5463
-anim=green_gloop3
-hillskew=yes
-ambient=90
-contrast=50
-blockwalk=no
-length=2
-width=2
-
-[green_gloop_flat]
-name=Pool of Slime
-desc=A subterranean pool of ectoplasm.
-model=loc_5464
-hillskew=yes
-forcedecor=yes
-ambient=90
-contrast=50
-blockwalk=no
-
-[green_gloop_two]
-name=Pool of Slime
-desc=A subterranean pool of ectoplasm.
-model=loc_5465
-hillskew=yes
-forcedecor=yes
-ambient=90
-contrast=50
-blockwalk=no
-
-[green_gloop_three]
-name=Pool of Slime
-desc=A subterranean pool of ectoplasm.
-model=loc_5466
-hillskew=yes
-forcedecor=yes
-ambient=90
-contrast=50
-blockwalk=no
-
-[green_gloop_four]
-name=Pool of Slime
-desc=A subterranean pool of ectoplasm.
-model=loc_5467
-hillskew=yes
-forcedecor=yes
-ambient=90
-contrast=50
-blockwalk=no
-
-[green_gloop_five]
-name=Pool of Slime
-desc=A subterranean pool of ectoplasm.
-model=loc_5468
-hillskew=yes
-forcedecor=yes
-ambient=90
-contrast=50
-blockwalk=no
-
-[green_gloop_six]
-name=Pool of Slime
-desc=A subterranean pool of ectoplasm.
-model=loc_5469
-hillskew=yes
-forcedecor=yes
-ambient=90
-contrast=50
-blockwalk=no
-
-[green_gloop_q]
-name=Pool of Slime
-desc=A subterranean pool of ectoplasm.
-model=loc_5470
-hillskew=yes
-forcedecor=yes
-ambient=90
-contrast=50
-blockwalk=no
-
-[green_gloop_w]
-name=Pool of Slime
-desc=A subterranean pool of ectoplasm.
-model=loc_5471
-hillskew=yes
-forcedecor=yes
-ambient=90
-contrast=50
-blockwalk=no
-
-[green_gloop_e]
-name=Pool of Slime
-desc=A subterranean pool of ectoplasm.
-model=loc_5472
-hillskew=yes
-forcedecor=yes
-ambient=90
-contrast=50
-blockwalk=no
-
-[green_gloop_r]
-name=Pool of Slime
-desc=A subterranean pool of ectoplasm.
-model=loc_5473
-hillskew=yes
-forcedecor=yes
-ambient=90
-contrast=50
-blockwalk=no
-
-[green_gloop_t]
-name=Pool of Slime
-desc=A subterranean pool of ectoplasm.
-model=loc_5474
-hillskew=yes
-forcedecor=yes
-ambient=90
-contrast=50
-blockwalk=no
-
 [ahoy_tomb_wall]
 model=loc_5475
 recol1s=14726
@@ -3784,10 +3215,6 @@ recol5d=6306
 recol6s=16741
 recol6d=15714
 resizey=120
-
-[ahoy_x_start]
-model=loc_5487
-hillskew=yes
 
 [zanarisladderout2]
 name=Ladder
@@ -22326,54 +21753,6 @@ multiloc=212,barrel_cider_mature
 multiloc=213,barrel_cider_mature
 multiloc=214,barrel_cider_mature
 multiloc=215,barrel_cider_mature
-
-[phasmatys_brewery_ladder]
-name=ladder
-model=loc_5130
-recol1s=12514
-recol1d=8418
-recol2s=11457
-recol2d=8418
-recol3s=15685
-recol3d=8418
-sharelight=yes
-op1=Climb-up
-forceapproach=north
-
-[phasmatys_brewery_trapdoor]
-name=Trapdoor
-desc=I wonder what's under it?
-model=furniture_trapdoor
-recol1s=15617
-recol1d=8418
-recol2s=8320
-recol2d=4226
-recol3s=11491
-recol3d=6304
-recol4s=8456
-recol4d=8453
-active=yes
-op1=Open
-raiseobject=no
-forceapproach=east
-
-[phasmatys_brewery_trapdoor_open]
-name=Trapdoor
-desc=I wonder what's down there?
-model=furniture_trapdoor_open
-recol1s=15617
-recol1d=8418
-recol2s=8320
-recol2d=4226
-recol3s=11491
-recol3d=6304
-recol4s=8456
-recol4d=8453
-active=yes
-op1=Climb-down
-op2=Close
-raiseobject=no
-forceapproach=east
 
 [phasmatys_barrel]
 name=Barrel
@@ -54898,40 +54277,6 @@ hillskew=yes
 op1=Climb
 ambient=20
 blockrange=no
-
-[ectopool_sc_wallclimb]
-name=Weathered wall
-desc=A well weathered wall.
-model=loc_9307
-recol1s=14726
-recol1d=2145
-recol2s=18954
-recol2d=6373
-recol3s=17897
-recol3d=5316
-recol4s=15817
-recol4d=4259
-recol5s=14760
-recol5d=3202
-sharelight=yes
-hillskew=yes
-op1=Jump-up
-active=yes
-
-[ectopool_sc_raildown]
-name=Weathered wall
-desc=A well weathered wall.
-model=loc_9308
-recol1s=9409
-recol1d=8484
-recol2s=11523
-recol2d=6370
-recol3s=8353
-recol3d=8484
-sharelight=yes
-hillskew=yes
-op1=Jump-down
-active=yes
 
 [falador_sc_castlewall_south]
 name=Underwall tunnel

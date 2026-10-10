@@ -1,0 +1,169 @@
+[label,runedraw_start]
+if (inv_total(inv, coins) < ^ahoy_runedraw_stake) {
+    ~chatplayer("<p,sad>I don't have enough money on me for a game of Runedraw at the moment.");
+    return;
+}
+inv_del(inv, coins, ^ahoy_runedraw_stake);
+%runedraw_varp_1 = 0;
+%runedraw_varp_2 = 0;
+%runedraw_runes_remaining = 10;
+def_int $i = 0;
+while ($i < 10) {
+    if_sethide(~runedraw_slot(false, $i), true);
+    if_sethide(~runedraw_slot(true, $i), true);
+    $i = calc($i + 1);
+}
+if_settext(ahoy_runedraw:runedraw_score_l, "%1");
+if_settext(ahoy_runedraw:runedraw_score_r, "%1");
+if_settext(ahoy_runedraw:runedraw_totalscore_l, "");
+if_settext(ahoy_runedraw:runedraw_totalscore_r, "");
+~runedraw_buttons(true);
+if_openmain(ahoy_runedraw);
+
+[proc,runedraw_buttons](boolean $show)
+def_boolean $hide = true;
+if ($show = true) {
+    $hide = false;
+}
+if_sethide(ahoy_runedraw:runedraw_layer_draw, $hide);
+if_sethide(ahoy_runedraw:runedraw_layer_hold, $hide);
+
+[proc,runedraw_slot](boolean $right, int $index)(component)
+if ($right = true) {
+    $index = calc($index + 10);
+}
+switch_int ($index) {
+    case 0 : return(ahoy_runedraw:runedraw_slot_1);
+    case 1 : return(ahoy_runedraw:runedraw_slot_2);
+    case 2 : return(ahoy_runedraw:runedraw_slot_3);
+    case 3 : return(ahoy_runedraw:runedraw_slot_4);
+    case 4 : return(ahoy_runedraw:runedraw_slot_5);
+    case 5 : return(ahoy_runedraw:runedraw_slot_6);
+    case 6 : return(ahoy_runedraw:runedraw_slot_7);
+    case 7 : return(ahoy_runedraw:runedraw_slot_8);
+    case 8 : return(ahoy_runedraw:runedraw_slot_9);
+    case 9 : return(ahoy_runedraw:runedraw_slot_10);
+    case 10 : return(ahoy_runedraw:runedraw_slot_11);
+    case 11 : return(ahoy_runedraw:runedraw_slot_12);
+    case 12 : return(ahoy_runedraw:runedraw_slot_13);
+    case 13 : return(ahoy_runedraw:runedraw_slot_14);
+    case 14 : return(ahoy_runedraw:runedraw_slot_15);
+    case 15 : return(ahoy_runedraw:runedraw_slot_16);
+    case 16 : return(ahoy_runedraw:runedraw_slot_17);
+    case 17 : return(ahoy_runedraw:runedraw_slot_18);
+    case 18 : return(ahoy_runedraw:runedraw_slot_19);
+    case default : return(ahoy_runedraw:runedraw_slot_20);
+}
+
+[proc,runedraw_draw](boolean $right)(boolean)
+def_int $pick = random(%runedraw_runes_remaining);
+def_int $rune = 0;
+def_int $i = 0;
+while ($i < 10) {
+    if (testbit(%runedraw_runes_picked, $i) = ^false) {
+        if ($pick = 0) {
+            $rune = $i;
+            $i = 10;
+        } else {
+            $pick = calc($pick - 1);
+        }
+    }
+    $i = calc($i + 1);
+}
+%runedraw_runes_picked = setbit(%runedraw_runes_picked, $rune);
+%runedraw_runes_remaining = calc(%runedraw_runes_remaining - 1);
+def_component $slot;
+if ($right = true) {
+    $slot = ~runedraw_slot(true, %runedraw_next_slot_right);
+    %runedraw_next_slot_right = calc(%runedraw_next_slot_right + 1);
+} else {
+    $slot = ~runedraw_slot(false, %runedraw_next_slot_left);
+    %runedraw_next_slot_left = calc(%runedraw_next_slot_left + 1);
+}
+if_setobject($slot, enum(int, namedobj, runedraw_runes, $rune), 1027);
+if_sethide($slot, false);
+if ($rune = 9) {
+    if ($right = true) {
+        if_settext(ahoy_runedraw:runedraw_score_r, "DEATH");
+    } else {
+        if_settext(ahoy_runedraw:runedraw_score_l, "DEATH");
+    }
+    return(true);
+}
+if ($right = true) {
+    %runedraw_score_right = calc(%runedraw_score_right + $rune + 1);
+} else {
+    %runedraw_score_left = calc(%runedraw_score_left + $rune + 1);
+}
+return(false);
+
+[if_button,ahoy_runedraw:runedraw_btn_draw]
+if (%runedraw_gameover = ^true) {
+    return;
+}
+~runedraw_buttons(false);
+if (~runedraw_draw(false) = true) {
+    ~runedraw_end(false);
+    return;
+}
+if (%runedraw_held_right = ^true) {
+    ~runedraw_buttons(true);
+    return;
+}
+if_settext(ahoy_runedraw:runedraw_totalscore_r, "Thinking...");
+settimer(runedraw_opponent, 2);
+
+[if_button,ahoy_runedraw:runedraw_btn_hold]
+if (%runedraw_gameover = ^true) {
+    return;
+}
+~runedraw_buttons(false);
+%runedraw_held_left = ^true;
+if (%runedraw_score_right > %runedraw_score_left) {
+    ~runedraw_end(false);
+    return;
+}
+if_settext(ahoy_runedraw:runedraw_totalscore_r, "Thinking...");
+settimer(runedraw_opponent, 2);
+
+[timer,runedraw_opponent]
+if (%runedraw_gameover = ^true) {
+    cleartimer(runedraw_opponent);
+    return;
+}
+if_settext(ahoy_runedraw:runedraw_totalscore_r, "");
+if (~runedraw_draw(true) = true) {
+    cleartimer(runedraw_opponent);
+    ~runedraw_end(true);
+    return;
+}
+if (%runedraw_held_left = ^true) {
+    if (%runedraw_score_right > %runedraw_score_left) {
+        cleartimer(runedraw_opponent);
+        ~runedraw_end(false);
+        return;
+    }
+    if_settext(ahoy_runedraw:runedraw_totalscore_r, "Thinking...");
+    return;
+}
+cleartimer(runedraw_opponent);
+~runedraw_buttons(true);
+
+[if_close,ahoy_runedraw]
+cleartimer(runedraw_opponent);
+
+[proc,runedraw_end](boolean $won)
+%runedraw_gameover = ^true;
+~runedraw_buttons(false);
+if ($won = true) {
+    %runedraw_won_last_game = ^true;
+    if_settext(ahoy_runedraw:runedraw_totalscore_l, "You Win!");
+    mes("You've won the game of Runedraw!");
+    if (%ahoy_subquest_bow >= ^ahoy_bow_spoken_akharanu & %ahoy_subquest_bow < ^ahoy_bow_owed_100) {
+        %ahoy_subquest_bow = calc(%ahoy_subquest_bow + 1);
+    }
+    return;
+}
+%runedraw_won_last_game = ^false;
+if_settext(ahoy_runedraw:runedraw_totalscore_r, "Opponent Wins!");
+mes("You've lost the game of Runedraw.");

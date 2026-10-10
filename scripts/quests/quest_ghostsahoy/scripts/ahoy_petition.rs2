@@ -1,0 +1,206 @@
+[ai_timer,ahoy_ghost_protestor]
+switch_int (random(8)) {
+    case 0 : npc_say("Down with Necrovarus!!");
+    case 1 : npc_say("Rise up my fellow ghosts, and we shall be victorious!!");
+    case 2 : npc_say("Power to the Ghosts!!");
+    case 3 : npc_say("Rise together, Ghosts without a cause!!");
+    case 4 : npc_say("United we conquer - divided we fall!!");
+    case 5 : npc_say("We shall overcome!!");
+    case 6 : npc_say("Let Necrovarus know we want out!!");
+    case 7 : npc_say("Don't stay silent - victory in numbers!!");
+}
+
+[opnpc1,ahoy_ghost_protestor]
+if (~ahoy_ghostspeak = false) {
+    ~ahoy_ghost_wail;
+    return;
+}
+if (%ahoy_questvar = ^ahoy_complete) {
+    ~chatplayer("<p,quiz>Why are you still protesting? I have commanded Necrovarus to let you and your friends do as you like! There's no need for this anymore!");
+    ~chatnpc("<p,neutral>There's always a need for a healthy interest in politics.");
+    ~chatplayer("<p,neutral>Okay, suit yourself then.");
+    return;
+}
+if (%ahoy_questvar < ^ahoy_gather_items) {
+    ~chatnpc("<p,angry>Will you join with me and protest against the evil ban of Necrovarus and his disciples?");
+    ~chatplayer("<p,neutral>I'm sorry, I don't really think I should get involved.");
+    ~chatnpc("<p,sad>Ah, the youth of today - so apathetic to politics.");
+    return;
+}
+if (%ahoy_signaturecounter > ^ahoy_signatures_needed) {
+    ~chatnpc("<p,quiz>So have you presented the petition to Necrovarus?");
+    ~chatplayer("<p,neutral>Yes. He burned it.");
+    ~chatnpc("<p,neutral>That's exactly what I thought he would do.");
+    ~chatplayer("<p,angry>Well, if you knew that he would do that, why have I been wasting my time running around after ghosts for signatures?");
+    ~chatnpc("<p,neutral>It never hurts to get involved in politics.");
+    return;
+}
+if (inv_total(inv, ahoy_petition) > 0) {
+    def_int $needed = calc(^ahoy_signatures_needed - %ahoy_signaturecounter);
+    switch_int (%ahoy_signaturecounter) {
+        case 0 : ~chatnpc("<p,neutral>Come on - you haven't even started yet! You need 10 more signatures.");
+        case 1, 2, 3 : ~chatnpc("<p,neutral>Well, that's a start I suppose. You need <tostring($needed)> more signatures.");
+        case 4, 5, 6 : ~chatnpc("<p,happy>Not doing bad I see! You need <tostring($needed)> more signatures.");
+        case 7, 8 : ~chatnpc("<p,happy>Are you sure you haven't done this type of thing before? You need <tostring($needed)> more signatures.");
+        case 9 : ~chatnpc("<p,happy>Very nearly there!! Only 1 more signature to go.");
+        case default : ~chatnpc("<p,happy>You've got them all! Now go and present it to Necrovarus!!");
+    }
+    return;
+}
+if (%ahoy_signaturecounter > 0) {
+    ~chatplayer("<p,sad>I'm sorry, I seem to have lost my petition form.");
+    if (inv_freespace(inv) = 0) {
+        ~chatnpc("<p,neutral>Blown away in the sea breeze, hey? Oh well, can't be helped. I'd give you another one, but you look like you're carrying too much already.");
+        return;
+    }
+    ~chatnpc("<p,neutral>Blown away in the sea breeze, hey? Oh well, can't be helped. Here's another one, but you'll have to start from scratch again.");
+    %ahoy_signaturecounter = 0;
+    inv_add(inv, ahoy_petition, 1);
+    return;
+}
+~chatnpc("<p,angry>Will you join with me and protest against the evil desires of Necrovarus and his disciples?");
+switch_int (~p_choice2("After hearing Velorina's story I will be happy to help out.", 1, "I'm sorry, I don't really think I should get involved.", 2)) {
+    case 1 :
+        ~chatplayer("<p,happy>After hearing Velorina's story I will be happy to help out.");
+        if (inv_freespace(inv) = 0) {
+            ~chatnpc("<p,neutral>I'd give you a petition form, but you look like you're carrying too much already.");
+            return;
+        }
+        ~chatnpc("<p,happy>Excellent, excellent!! Here - take this petition form, and try and get 10 signatures from the townsfolk.");
+        inv_add(inv, ahoy_petition, 1);
+    case 2 : ~chatplayer("<p,neutral>I'm sorry, I don't really think I should get involved.");
+}
+
+[label,ahoy_petition_villager]
+if (%ahoy_signaturecounter >= ^ahoy_signatures_needed) {
+    ~chatplayer("<p,happy>Thank you for your kind support.");
+    return;
+}
+~chatplayer("<p,quiz>Would you sign this petition form, please?");
+if (inv_total(worn, ahoy_bedsheetgreen) > 0) {
+    if (%ahoy_last_signed = npc_uid) {
+        ~chatnpc("<p,angry>You only just asked me the same thing! Leave me alone - I've had my say!");
+        return;
+    }
+    %ahoy_last_signed = npc_uid;
+    def_int $response = random(9);
+    if ($response < 4) {
+        switch_int ($response) {
+            case 0 : ~chatnpc("<p,happy>Most certainly, I will.");
+            case 1 : ~chatnpc("<p,happy>I'll do anything that annoys Necrovarus.");
+            case 2 : ~chatnpc("<p,happy>Yes! It's about time somebody did something about Necrovarus.");
+            case 3 : ~chatnpc("<p,happy>Yes, of course.");
+        }
+        ~ahoy_sign_petition;
+        return;
+    }
+    if ($response = 4) {
+        switch_int (random(3)) {
+            case 0 : ~chatnpc("<p,shifty>It'll cost you...");
+            case 1 : ~chatnpc("<p,shifty>I will if you make it worth my while...");
+            case 2 : ~chatnpc("<p,shifty>You scratch my back and I'll scratch yours...");
+        }
+        def_int $cost = ~random_range(1, 3);
+        ~chatplayer("<p,quiz>How much?");
+        if ($cost = 1) {
+            ~chatnpc("<p,shifty>Oh, it'll cost you 1 ecto-token.");
+        } else {
+            ~chatnpc("<p,shifty>Oh, it'll cost you <tostring($cost)> ecto-tokens.");
+        }
+        if (inv_total(inv, ectotoken) < $cost) {
+            ~chatplayer("<p,sad>I don't have that many on me.");
+            ~chatnpc("<p,neutral>No tokens, no signature.");
+            return;
+        }
+        switch_int (~p_choice2("Okay, if you insist.", 1, "There's no way I'm giving in to corruption.", 2)) {
+            case 1 :
+                ~chatplayer("<p,neutral>Okay, if you insist.");
+                inv_del(inv, ectotoken, $cost);
+                ~ahoy_sign_petition;
+            case 2 :
+                ~chatplayer("<p,angry>There's no way I'm giving in to corruption.");
+                ~chatnpc("<p,neutral>Suit yourself.");
+        }
+        return;
+    }
+    switch_int ($response) {
+        case 5 : ~chatnpc("<p,angry>I will have you know that I am a fervent supporter of Necrovarus.");
+        case 6 : ~chatnpc("<p,angry>How dare you accost me in the street?");
+        case 7 : ~chatnpc("<p,angry>Get lost.");
+        case 8 : ~chatnpc("<p,angry>I don't have time for this nonsense.");
+    }
+    return;
+}
+if (inv_total(worn, ahoy_bedsheet) > 0) {
+    ~chatnpc("<p,laugh>Why are you wearing that bedsheet? If you're trying to pretend to be one of us, you're not fooling anybody - you're not even green!!");
+    return;
+}
+~chatnpc("<p,neutral>I'm sorry, but it's hard to believe that a mortal could be interested in helping us.");
+
+[proc,ahoy_sign_petition]
+%ahoy_signaturecounter = calc(%ahoy_signaturecounter + 1);
+if (%ahoy_signaturecounter = 1) {
+    ~objbox(ahoy_petition, "The ghost signs your petition. You have obtained 1 signature so far.", 250, 0, 0);
+} else {
+    ~objbox(ahoy_petition, "The ghost signs your petition. You have obtained <tostring(%ahoy_signaturecounter)> signatures so far.", 250, 0, 0);
+}
+if (%ahoy_signaturecounter >= ^ahoy_signatures_needed) {
+    ~objbox(ahoy_petition, "You have succeeded in obtaining 10 signatures on the petition form!", 250, 0, 0);
+}
+
+[opheld1,ahoy_petition]
+def_int $signatures = min(%ahoy_signaturecounter, ^ahoy_signatures_needed);
+if ($signatures = 1) {
+    ~objbox(ahoy_petition, "You have obtained 1 signature so far.", 250, 0, 0);
+    return;
+}
+~objbox(ahoy_petition, "You have obtained <tostring($signatures)> signatures so far.", 250, 0, 0);
+
+[opheld5,ahoy_petition]
+inv_delslot(inv, last_slot);
+mes("You drop the petition form; it blows away in the wind.");
+
+[opheld2,ahoy_bedsheet] @ahoy_wear_bedsheet;
+[opheld2,ahoy_bedsheetgreen] @ahoy_wear_bedsheet;
+
+[label,ahoy_wear_bedsheet]
+if (~ahoy_in_phasmatys(coord) = false) {
+    mes("I'll only wear the bedsheet inside Port Phasmatys!");
+    return;
+}
+~equip(last_slot);
+
+[proc,ahoy_bedsheet_transmogrify]
+if (inv_total(worn, ahoy_bedsheetgreen) > 0) {
+    p_transmogrify(ahoy_ghost_disguise_green);
+} else if (inv_total(worn, ahoy_bedsheet) > 0) {
+    p_transmogrify(ahoy_ghost_disguise);
+}
+
+[opheldu,ahoy_bedsheet]
+if (last_useitem ! bucket_ectoplasm) {
+    ~displaymessage(^dm_default);
+    return;
+}
+inv_setslot(inv, last_useslot, bucket_empty, 1);
+inv_setslot(inv, last_slot, ahoy_bedsheetgreen, 1);
+mes("You dip the bedsheet in the bucket of ectoplasm.");
+
+[oploc1,ahoy_coffin]
+anim(human_openchest, 0);
+sound_synth(chest_open, 1, 0);
+mes("The coffin creaks open...");
+loc_change(ahoy_coffin_open, 100);
+
+[oploc2,ahoy_coffin_open]
+anim(human_closechest, 0);
+sound_synth(chest_close, 1, 0);
+loc_change(ahoy_coffin, 100);
+
+[oploc1,ahoy_coffin_open]
+if (%ahoy_questvar ! ^ahoy_gather_items | %ahoy_given_robes = ^true | ~obj_gettotal(ahoy_robes_of_necrovarus) > 0) {
+    ~mesbox("It's just the mortal remains of Necrovarus. You probably don't want to touch that.");
+    return;
+}
+~ahoy_give(ahoy_robes_of_necrovarus);
+~objbox(ahoy_robes_of_necrovarus, "You take the Robes of Necrovarus from the remains of his mortal body.", 250, 0, 0);

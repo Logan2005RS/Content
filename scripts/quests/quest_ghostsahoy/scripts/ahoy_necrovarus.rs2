@@ -1,0 +1,118 @@
+[opnpc1,ahoy_necrovarus]
+if (~ahoy_ghostspeak = false) {
+    ~ahoy_ghost_wail;
+    return;
+}
+switch_int (%ahoy_questvar) {
+    case ^ahoy_not_started :
+        switch_int (~p_choice3("What is this place?", 1, "What happened to everyone here?", 2, "How do I get into the town?", 3)) {
+            case 1 : ~chatplayer("<p,quiz>What is this place?");
+            case 2 : ~chatplayer("<p,quiz>What happened to everyone here?");
+            case 3 : ~chatplayer("<p,quiz>How do I get into the town?");
+        }
+        switch_int (random(5)) {
+            case 0 : ~chatnpc("<p,angry>Speak to me again and I will rend the soul from your flesh.");
+            case 1 : ~chatnpc("<p,angry>Nobody speaks to me unless I speak to them!!!");
+            case 2 : ~chatnpc("<p,angry>I do not answer questions, mortal fool!!");
+            case 3 : ~chatnpc("<p,angry>I will answer questions when you are dead!!");
+            case 4 : ~chatnpc("<p,angry>You dare to speak to me??? Have you lost your wits????");
+        }
+    case ^ahoy_started :
+        ~chatplayer("<p,neutral>I must speak with you on behalf of Velorina.");
+        ~chatnpc("<p,angry>You dare to speak that name in this place?????");
+        ~chatplayer("<p,neutral>She wants to pass-");
+        ~chatnpc("<p,angry>Silence!! Or I will incinerate the flesh from your bones!!!");
+        ~chatplayer("<p,neutral>But she-");
+        ~chatnpc("<p,angry>Get out of my sight!! Or I promise you that you will regret your insolence for the rest of eternity!!!");
+        %ahoy_questvar = ^ahoy_necrovarus_refused;
+    case ^ahoy_necrovarus_refused, ^ahoy_find_crone :
+        ~chatplayer("<p,neutral>Please, listen to me-");
+        ~chatnpc("<p,angry>No - listen to me. Go from this place and do not return, or I will remove your head.");
+    case ^ahoy_gather_items : @ahoy_necrovarus_gather;
+    case ^ahoy_amulet_enchanted :
+        if (inv_total(worn, amulet_of_ghostspeak_enchanted) > 0) {
+            @ahoy_necrovarus_command;
+        }
+        @ahoy_necrovarus_wheels;
+    case default :
+        ~chatplayer("<p,neutral>Told you I'd defeat you, Necrovarus. My advice to you is to pass over to the next world yourself with everybody else.");
+        ~chatnpc("<p,angry>I should fry you for what you have done...");
+        ~chatplayer("<p,angry>Quiet, evil priest!! If you try anything I will command you again, but this time it will be to throw yourself into the Endless Void for the rest of eternity.");
+        ~chatnpc("<p,scared>Please no! I will do whatever you say!!");
+}
+
+[label,ahoy_necrovarus_wheels]
+~chatplayer("<p,neutral>It matters not that you ignore your citizens' wishes, Necrovarus. Wheels have been set in motion, wheels that will set them free.");
+~chatnpc("<p,angry>I have almost completely lost patience with you, mortal. Another word, and every threat I have uttered will be made real for you.");
+
+[label,ahoy_necrovarus_gather]
+if (inv_total(inv, ahoy_petition) > 0) {
+    if (%ahoy_signaturecounter >= ^ahoy_signatures_needed) {
+        @ahoy_necrovarus_petition;
+    }
+    ~chatplayer("<p,neutral>I must let you know, Necrovarus, that I am collecting signatures from the citizens of Port Phasmatys.");
+    ~chatnpc("<p,neutral>Oh, I do admire an activist. Do let me know when you're finished, and I'll give it my fullest consideration.");
+    return;
+}
+if (%ahoy_signaturecounter > ^ahoy_signatures_needed & ~obj_gettotal(ahoy_bone_key) = 0) {
+    ~chatplayer("<p,quiz>So, have you changed your mind yet?");
+    ~chatnpc("<p,angry>NEVER!!!!!");
+    ~chatnpc("<p,angry>WHICH IS A VERY LONG TIME!!!!!!");
+    if (%ahoy_templedoor_unlocked = ^false) {
+        ~mesbox("In his rage, Necrovarus drops a key on the floor.");
+        obj_add(npc_coord, ahoy_bone_key, 1, ^lootdrop_duration);
+    }
+    return;
+}
+@ahoy_necrovarus_wheels;
+
+[label,ahoy_necrovarus_petition]
+~chatplayer("<p,neutral>Necrovarus, I am presenting you with a petition form that has been signed by 10 citizens of Port Phasmatys.");
+~chatnpc("<p,neutral>A petition you say? Continue, mortal.");
+~chatplayer("<p,neutral>It says that the citizens of Port Phasmatys should have the right to choose whether they pass over into the next world or not, and not have this decided by the powers that be on their behalf.");
+~chatnpc("<p,neutral>I see.");
+~chatplayer("<p,quiz>So you will let them pass over if they wish?");
+~chatnpc("<p,happy>Oh yes.");
+~chatplayer("<p,shock>Really?");
+~chatnpc("<p,angry>NO!!!!! Get out of my sight before I burn every ounce of flesh from your bones!!!!!");
+inv_del(inv, ahoy_petition, 1);
+inv_add(inv, ashes, 1);
+%ahoy_signaturecounter = calc(^ahoy_signatures_needed + 1);
+~mesbox("The petition form turns to ashes in your hand.");
+~mesbox("In his rage, Necrovarus drops a key on the floor.");
+obj_add(npc_coord, ahoy_bone_key, 1, ^lootdrop_duration);
+
+[label,ahoy_necrovarus_command]
+~chatnpc("<p,angry>You dare to face me again - you must be truly insane!!!!");
+~chatplayer("<p,angry>No, Necrovarus, I am not insane. With this enchanted amulet of ghostspeak I have the power to command you to do my will!");
+switch_int (~p_choice3_header("Let any ghost who so wishes pass on into the next world.", 1, "Tell me a joke.", 2, "Do a chicken impression.", 3, "What do you want to command Necrovarus to do?")) {
+    case 1 :
+        ~chatplayer("<p,angry>Let any ghost who so wishes pass on into the next world.");
+        ~objbox(amulet_of_ghostspeak_enchanted, "A beam of intense green light radiates out from the amulet of ghostspeak, enveloping Necrovarus in its power. His eyes become softer, and appear to stare into nothingness.", 250, 0, 0);
+        ~chatnpc("<p,neutral>I - will - let ...");
+        ~chatplayer("<p,neutral>Carry on...");
+        ~chatnpc("<p,neutral>... any ...");
+        ~chatplayer("<p,neutral>Yes?");
+        ~chatnpc("<p,neutral>... ghost who so wishes ...");
+        ~chatplayer("<p,neutral>I think we're almost getting there...");
+        ~chatnpc("<p,neutral>... pass into the next world.");
+        inv_del(worn, amulet_of_ghostspeak_enchanted, 1);
+        inv_setslot(worn, ^wearpos_front, amulet_of_ghostspeak, 1);
+        buildappearance(worn);
+        %ahoy_questvar = ^ahoy_commanded_necrovarus;
+    case 2 :
+        ~chatplayer("<p,neutral>Tell me a joke.");
+        ~objbox(amulet_of_ghostspeak_enchanted, "A beam of intense green light radiates out from the amulet of ghostspeak, enveloping Necrovarus in its power. His eyes become softer, and appear to stare into nothingness.", 250, 0, 0);
+        ~chatnpc("<p,neutral>Knock knock.");
+        ~chatplayer("<p,quiz>Who's there?");
+        ~chatnpc("<p,neutral>Egbert.");
+        ~chatplayer("<p,quiz>Egbert who?");
+        ~chatnpc("<p,neutral>Egbert no bacon.");
+        ~objbox(amulet_of_ghostspeak_enchanted, "Luckily the amulet of ghostspeak does not seem to have fully discharged.", 250, 0, 0);
+    case 3 :
+        ~chatplayer("<p,neutral>Do a chicken impression.");
+        ~objbox(amulet_of_ghostspeak_enchanted, "A beam of intense green light radiates out from the amulet of ghostspeak, enveloping Necrovarus in its power. His eyes become softer, and appear to stare into nothingness.", 250, 0, 0);
+        ~chatnpc("<p,neutral>Cluck cluck squuuaaaakkkk cluck cluck");
+        ~chatnpc("<p,neutral>I think I've laid an egg...");
+        ~objbox(amulet_of_ghostspeak_enchanted, "Luckily the amulet of ghostspeak does not seem to have fully discharged.", 250, 0, 0);
+}

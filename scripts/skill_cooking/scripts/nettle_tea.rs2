@@ -1,0 +1,74 @@
+[oploc1,_nettles]
+p_arrivedelay;
+if (inv_getobj(worn, ^wearpos_hands) = null) {
+    anim(human_pickupfloor, 0);
+    mes("You have been stung by the nettles!");
+    ~damage_self(~random_range(1, 2));
+    return;
+}
+if (inv_freespace(inv) = 0) {
+    mes("You don't have room for these nettles.");
+    return;
+}
+~pickup_loc_floor(loc_coord, nettles_picked, 33, false);
+mes("You pick a handful of nettles.");
+
+[label,make_nettlewater](int $nettle_slot)
+inv_delslot(inv, $nettle_slot);
+inv_setslot(inv, last_slot, bowl_nettlewater, 1);
+mes("You place the nettles into the bowl of water.");
+
+[label,add_milk_to_nettletea](int $tea_slot)
+def_obj $tea = inv_getobj(inv, $tea_slot);
+def_namedobj $milky;
+switch_obj ($tea) {
+    case bowl_nettletea : $milky = bowl_nettletea_milky;
+    case cup_of_nettletea : $milky = cup_of_nettletea_milky;
+    case chinacup_of_nettletea : $milky = chinacup_of_nettletea_milky;
+    case default :
+        ~displaymessage(^dm_default);
+        return;
+}
+inv_setslot(inv, $tea_slot, $milky, 1);
+inv_setslot(inv, last_slot, bucket_empty, 1);
+
+[opheldu,bowl_nettletea]
+switch_obj (last_useitem) {
+    case cup_empty : @pour_nettletea(cup_of_nettletea, last_useslot);
+    case chinacup_empty : @pour_nettletea(chinacup_of_nettletea, last_useslot);
+    case bucket_milk :
+        inv_setslot(inv, last_slot, bowl_nettletea_milky, 1);
+        inv_setslot(inv, last_useslot, bucket_empty, 1);
+    case default : ~displaymessage(^dm_default);
+}
+
+[opheldu,bowl_nettletea_milky]
+switch_obj (last_useitem) {
+    case cup_empty : @pour_nettletea(cup_of_nettletea_milky, last_useslot);
+    case chinacup_empty : @pour_nettletea(chinacup_of_nettletea_milky, last_useslot);
+    case default : ~displaymessage(^dm_default);
+}
+
+[label,pour_nettletea](namedobj $product, int $cup_slot)
+if (stat(cooking) < ^ahoy_cooking_level) {
+    ~mesbox("You need a cooking level of 20 to make tea.");
+    return;
+}
+inv_setslot(inv, $cup_slot, $product, 1);
+inv_setslot(inv, last_slot, bowl_empty, 1);
+
+[opheld2,bowl_nettlewater] @player_consume_item(consume_effect_stat, 2, 3);
+[opheld2,bowl_nettletea] @player_consume_item(consume_effect_stat, 2, 3);
+[opheld2,bowl_nettletea_milky] @player_consume_item(consume_effect_stat, 2, 3);
+[opheld2,cup_of_nettletea] @player_consume_item(consume_effect_stat, 2, 3);
+[opheld2,cup_of_nettletea_milky] @player_consume_item(consume_effect_stat, 2, 3);
+[opheld2,chinacup_of_nettletea] @player_consume_item(consume_effect_stat, 2, 3);
+[opheld2,chinacup_of_nettletea_milky] @player_consume_item(consume_effect_stat, 2, 3);
+
+[opheld3,bowl_nettlewater] @player_empty_item;
+[opheld3,bowl_nettletea] @player_empty_item;
+[opheld3,bowl_nettletea_milky] @player_empty_item;
+[opheld3,cup_of_nettletea] @player_empty_item;
+[opheld3,cup_of_nettletea_milky] @player_empty_item;
+[opheld3,chinacup_of_nettletea] @player_empty_item;
+[opheld3,chinacup_of_nettletea_milky] @player_empty_item;

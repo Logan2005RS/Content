@@ -1,0 +1,377 @@
+[proc,ahoy_flag_colour_name](int $colour)(string)
+switch_int ($colour) {
+    case ^ahoy_flag_red : return("red");
+    case ^ahoy_flag_yellow : return("yellow");
+    case ^ahoy_flag_blue : return("blue");
+    case ^ahoy_flag_orange : return("orange");
+    case ^ahoy_flag_purple : return("purple");
+    case ^ahoy_flag_green : return("green");
+    case default : return("white");
+}
+
+[proc,ahoy_dye_colour](obj $dye)(int)
+switch_obj ($dye) {
+    case reddye : return(^ahoy_flag_red);
+    case yellowdye : return(^ahoy_flag_yellow);
+    case bluedye : return(^ahoy_flag_blue);
+    case orangedye : return(^ahoy_flag_orange);
+    case purpledye : return(^ahoy_flag_purple);
+    case default : return(^ahoy_flag_green);
+}
+
+[proc,ahoy_has_map_piece](namedobj $scrap)(boolean)
+if (%ahoy_given_book = ^true | ~obj_gettotal($scrap) > 0 | ~obj_gettotal(ahoy_map_complete) > 0 | ~obj_gettotal(ahoy_book_of_haricanto) > 0) {
+    return(true);
+}
+return(false);
+
+[opheld1,ahoy_toy_boat] @ahoy_repair_toy_boat;
+
+[opheldu,ahoy_toy_boat]
+switch_obj (last_useitem) {
+    case silk, needle, thread, knife : @ahoy_repair_toy_boat;
+    case default : ~displaymessage(^dm_default);
+}
+
+[label,ahoy_repair_toy_boat]
+if (inv_total(inv, silk) = 0 | inv_total(inv, needle) = 0 | inv_total(inv, thread) = 0 | inv_total(inv, knife) = 0) {
+    ~objbox(ahoy_toy_boat, "You need some silk to replace the flag, something to sew it to the boat, and something to cut the flag to the right size.", 250, 0, 0);
+    return;
+}
+inv_del(inv, silk, 1);
+inv_del(inv, thread, 1);
+inv_del(inv, ahoy_toy_boat, 1);
+inv_add(inv, ahoy_toy_boat_repaired, 1);
+%ahoy_flag_top = ^ahoy_flag_white;
+%ahoy_flag_skull = ^ahoy_flag_white;
+%ahoy_flag_bottom = ^ahoy_flag_white;
+~objbox(ahoy_toy_boat_repaired, "You replace the toy boat's missing flag.", 250, 0, 0);
+
+[opheld1,ahoy_toy_boat_repaired]
+~objbox(ahoy_toy_boat_repaired, "The top of the flag is <~ahoy_flag_colour_name(%ahoy_flag_top)>. The skull emblem is <~ahoy_flag_colour_name(%ahoy_flag_skull)>. The bottom of the flag is <~ahoy_flag_colour_name(%ahoy_flag_bottom)>.", 250, 0, 0);
+
+[opheldu,ahoy_toy_boat_repaired]
+switch_obj (last_useitem) {
+    case reddye, yellowdye, bluedye, orangedye, purpledye, greendye : @ahoy_dye_flag(last_useitem);
+    case default : ~displaymessage(^dm_default);
+}
+
+[label,ahoy_dye_flag](obj $dye)
+def_int $colour = ~ahoy_dye_colour($dye);
+def_string $name = ~ahoy_flag_colour_name($colour);
+switch_int (~p_choice3_header("Top half", 1, "Bottom half", 2, "Skull emblem", 3, "Which part of the flag do you want to dye?")) {
+    case 1 :
+        inv_del(inv, $dye, 1);
+        %ahoy_flag_top = $colour;
+        ~objbox(ahoy_toy_boat_repaired, "You dye the top of the flag <$name>.", 250, 0, 0);
+    case 2 :
+        inv_del(inv, $dye, 1);
+        %ahoy_flag_bottom = $colour;
+        ~objbox(ahoy_toy_boat_repaired, "You dye the bottom of the flag <$name>.", 250, 0, 0);
+    case 3 :
+        inv_del(inv, $dye, 1);
+        %ahoy_flag_skull = $colour;
+        ~objbox(ahoy_toy_boat_repaired, "You dye the skull emblem <$name>.", 250, 0, 0);
+}
+
+[opnpc1,ahoy_oldman]
+if (%ahoy_questvar = ^ahoy_complete | %ahoy_subquest_toyboat >= ^ahoy_toyboat_found_son) {
+    if (%ahoy_questvar = ^ahoy_gather_items & ~obj_gettotal(ahoy_chest_key) = 0 & ~ahoy_has_map_piece(ahoy_map_scrap_1) = false) {
+        ~chatplayer("<p,sad>I've lost my key to the chest - do you have another one?");
+        ~chatnpc("<p,angry>What? But the chest is only just over there! How on RuneScape did you lose it in that short distance?");
+        ~chatplayer("<p,sad>Sorry, I won't do it again...");
+        ~ahoy_give(ahoy_chest_key);
+        ~objbox(ahoy_chest_key, "The old man grudgingly gives you another chest key.", 250, 0, 0);
+        return;
+    }
+    ~chatplayer("<p,quiz>How is it going?");
+    ~chatnpc("<p,happy>Wonderful, wonderful! Mother's coming to get me!");
+    return;
+}
+if (%ahoy_questvar ! ^ahoy_gather_items) {
+    ~chatplayer("<p,quiz>What are you doing on this shipwreck?");
+    ~chatnpc("<p,confused>Shipwreck?!? Not shipwreck, surely not! Just in port, that's all!");
+    ~chatplayer("<p,neutral>Don't be silly - half the ship's missing!");
+    ~chatnpc("<p,neutral>No no no - the captain's just waiting for the wind to change, then we're off!");
+    ~chatplayer("<p,quiz>You mean this skeleton sitting here in this chair?");
+    ~chatnpc("<p,angry>You must show more respect to the Captain.");
+    return;
+}
+def_int $choice;
+if (inv_total(inv, ahoy_toy_boat) > 0 | inv_total(inv, ahoy_toy_boat_repaired) > 0) {
+    $choice = ~p_choice3("What is your name?", 1, "Can I have the key to the chest?", 2, "Is this your toy boat?", 3);
+} else {
+    $choice = ~p_choice2("What is your name?", 1, "Can I have the key to the chest?", 2);
+}
+switch_int ($choice) {
+    case 1 :
+        ~chatplayer("<p,quiz>What is your name?");
+        ~chatnpc("<p,confused>I don't remember. Everyone around here just calls me 'boy'.");
+        ~chatplayer("<p,shock>You're the cabin boy?!?");
+        ~chatnpc("<p,happy>Yes, and proud of it.");
+    case 2 :
+        ~chatplayer("<p,quiz>Can I have the key to the chest?");
+        ~chatnpc("<p,neutral>Hang on, let me ask the Captain ...");
+        ~mesbox("The old man cocks an ear towards the Pirate Captain's skeleton.");
+        ~chatnpc("<p,neutral>The Captain says no.");
+    case 3 :
+        ~chatplayer("<p,quiz>Is this your toy boat?");
+        if (inv_total(inv, ahoy_toy_boat_repaired) = 0) {
+            ~objbox(ahoy_toy_boat, "The old man inspects the toy boat.", 250, 0, 0);
+            ~chatnpc("<p,neutral>No - I made a toy boat a long while ago, but that one had a flag.");
+            return;
+        }
+        ~objbox(ahoy_toy_boat_repaired, "The old man inspects the toy boat.", 250, 0, 0);
+        if (%ahoy_flag_top ! %ahoy_flag_top_actual | %ahoy_flag_skull ! %ahoy_flag_skull_actual | %ahoy_flag_bottom ! %ahoy_flag_bottom_actual) {
+            ~chatnpc("<p,neutral>No - I made a toy boat a long while ago, but the colours on the flag were different.");
+            return;
+        }
+        ~chatnpc("<p,shock>My word - so it is!!! I never thought I would see it again!! Where did you get it from?");
+        ~chatplayer("<p,happy>Your mother gave it to me to pass on to you.");
+        ~chatnpc("<p,shock>My mother? She still lives?");
+        ~chatplayer("<p,happy>Yes, in a shack to the west of here.");
+        ~chatnpc("<p,sad>After all these years ...");
+        ~chatplayer("<p,quiz>Can I have the key to the chest, then?");
+        ~chatnpc("<p,neutral>Hang on, let me ask the Captain ...");
+        ~mesbox("The old man cocks an ear towards the skeleton of the Pirate Captain.");
+        ~chatnpc("<p,happy>The Captain says yes.");
+        inv_del(inv, ahoy_toy_boat_repaired, 1);
+        ~ahoy_give(ahoy_chest_key);
+        %ahoy_subquest_toyboat = ^ahoy_toyboat_found_son;
+        ~objbox(ahoy_chest_key, "The old man gives you the chest key.", 250, 0, 0);
+}
+
+[oploc1,ahoy_skull_captain] ~mesbox("The pirate captain ignores you and continues to stare lifelessly at nothing, as he has clearly been dead for some time.");
+
+[oploc1,ahoy_chest_locked]
+if (coordx(loc_coord) = 3619 & coordz(loc_coord) = 3545 & coordy(loc_coord) = 1) {
+    if (inv_total(inv, ahoy_chest_key) > 0) {
+        @ahoy_captain_chest;
+    }
+}
+if (coordx(loc_coord) = 3615 & coordz(loc_coord) = 3544 & coordy(loc_coord) = 0) {
+    @ahoy_lobster_chest;
+}
+mes("The chest is locked.");
+
+[oplocu,ahoy_chest_locked]
+if (last_useitem = ahoy_chest_key & coordx(loc_coord) = 3619 & coordz(loc_coord) = 3545 & coordy(loc_coord) = 1) {
+    @ahoy_captain_chest;
+}
+~displaymessage(^dm_default);
+
+[label,ahoy_captain_chest]
+inv_del(inv, ahoy_chest_key, 1);
+anim(human_openchest, 0);
+sound_synth(chest_open, 1, 0);
+~objbox(ahoy_chest_key, "You unlock the chest.", 250, 0, 0);
+loc_change(ahoy_chest_locked_active, 100);
+if (%ahoy_questvar ! ^ahoy_gather_items | ~ahoy_has_map_piece(ahoy_map_scrap_1) = true) {
+    mes("You search the chest but find nothing.");
+    return;
+}
+~ahoy_give(ahoy_map_scrap_1);
+~objbox(ahoy_map_scrap_1, "You find a piece of a map inside the chest.", 250, 0, 0);
+
+[label,ahoy_lobster_chest]
+if (%ahoy_questvar ! ^ahoy_gather_items | ~ahoy_has_map_piece(ahoy_map_scrap_3) = true) {
+    mes("The chest is locked.");
+    return;
+}
+anim(human_openchest, 0);
+sound_synth(chest_open, 1, 0);
+if (%ahoy_killed_lobster = ^false) {
+    if (npc_find(loc_coord, giant_lobster, 8, 0) = true) {
+        return;
+    }
+    mes("You are attacked by a giant lobster!");
+    npc_add(0_56_55_27_23, giant_lobster, 500);
+    %aggressive_npc = npc_uid;
+    %npc_aggressive_player = uid;
+    npc_setmode(opplayer2);
+    return;
+}
+loc_change(ahoy_chest_locked_active, 100);
+~ahoy_give(ahoy_map_scrap_3);
+~objbox(ahoy_map_scrap_3, "You find a piece of a map inside the chest.", 250, 0, 0);
+
+[ai_queue3,_giant_lobster]
+if (npc_findhero = ^true) {
+    queue(ahoy_killed_lobster, 0, 0);
+}
+gosub(npc_death);
+
+[queue,ahoy_killed_lobster]
+%ahoy_killed_lobster = ^true;
+
+[oploc1,ahoy_chest_closed]
+anim(human_openchest, 0);
+sound_synth(chest_open, 1, 0);
+loc_change(ahoy_chest_open, 100);
+
+[oploc2,ahoy_chest_open]
+anim(human_closechest, 0);
+sound_synth(chest_close, 1, 0);
+loc_change(ahoy_chest_closed, 100);
+
+[oploc1,ahoy_chest_open]
+if (coordx(loc_coord) = 3606 & coordz(loc_coord) = 3564 & %ahoy_questvar = ^ahoy_gather_items & ~ahoy_has_map_piece(ahoy_map_scrap_2) = false) {
+    ~ahoy_give(ahoy_map_scrap_2);
+    ~objbox(ahoy_map_scrap_2, "You find a piece of a map inside the chest.", 250, 0, 0);
+    return;
+}
+mes("You search the chest but find nothing.");
+
+[oploc1,ahoy_ghostship_ladder]
+~climb_ladder(movecoord(coord, 0, 1, 0), true);
+if (inzone(1_56_55_30_20, 1_56_55_32_26, loc_coord) = true) {
+    if_openoverlay(ahoy_windspeed);
+    ~ahoy_update_windspeed;
+    settimer(ahoy_windspeed, 3);
+}
+
+[oploc1,ahoy_ghostship_laddertop]
+if (inzone(2_56_55_30_20, 2_56_55_32_26, loc_coord) = true) {
+    cleartimer(ahoy_windspeed);
+    if_openoverlay(null);
+}
+~climb_ladder(movecoord(coord, 0, -1, 0), false);
+
+[timer,ahoy_windspeed]
+if (inzone(2_56_55_0_0, 2_56_55_63_63, coord) = false) {
+    cleartimer(ahoy_windspeed);
+    if_openoverlay(null);
+    return;
+}
+~ahoy_update_windspeed;
+
+[proc,ahoy_update_windspeed]
+if (%ahoy_questvar = ^ahoy_gather_items) {
+    %ahoy_windspeed = random(2);
+} else {
+    %ahoy_windspeed = ^true;
+}
+if (%ahoy_windspeed = ^true) {
+    if_settext(ahoy_windspeed:com_2, "high");
+} else {
+    if_settext(ahoy_windspeed:com_2, "low");
+}
+
+[oploc1,ahoy_mast]
+if (%ahoy_questvar ! ^ahoy_gather_items | %ahoy_windspeed = ^true) {
+    ~mesbox("You can see a tattered flag blowing in the wind. The wind is blowing too hard to make out any details.");
+    return;
+}
+switch_int (random(3)) {
+    case 0 : ~mesbox("You can see a tattered flag blowing in the wind. The top half is coloured <~ahoy_flag_colour_name(%ahoy_flag_top_actual)>.");
+    case 1 : ~mesbox("You can see a tattered flag blowing in the wind. The skull emblem is coloured <~ahoy_flag_colour_name(%ahoy_flag_skull_actual)>.");
+    case 2 : ~mesbox("You can see a tattered flag blowing in the wind. The bottom half is coloured <~ahoy_flag_colour_name(%ahoy_flag_bottom_actual)>.");
+}
+
+[oploc1,ahoy_gangplank_shipwreck_on] @ahoy_cross_gangplank(0_56_55_21_28);
+[oploc1,ahoy_gangplank_shipwreck_off] @ahoy_cross_gangplank(1_56_55_21_25);
+
+[label,ahoy_cross_gangplank](coord $dest)
+if (stat(agility) < ^ahoy_agility_level) {
+    ~mesbox("You do not have the required agility level to walk the plank.");
+    return;
+}
+p_arrivedelay;
+mes("You cross the gangplank.");
+p_delay(1);
+p_telejump($dest);
+
+[oploc1,ahoy_rock_invisible]
+def_int $x = calc(coordx(loc_coord) - 3584);
+def_int $z = calc(coordz(loc_coord) - 3520);
+def_int $dx = 0;
+def_int $dz = 0;
+if ($z = 30) {
+    $dx = 2;
+    if ($x = 20) {
+        $dx = -2;
+    }
+} else if ($z = 32) {
+    $dx = 2;
+    if ($x = 15) {
+        $dx = -2;
+    }
+} else if ($z = 34 | $z = 39) {
+    $dz = 2;
+} else if ($z = 36 | $z = 41) {
+    $dz = -2;
+} else {
+    $dx = -2;
+    if ($x = 15) {
+        $dx = 2;
+    }
+}
+def_coord $dest = movecoord(loc_coord, $dx, 0, $dz);
+p_arrivedelay;
+if (coord ! loc_coord) {
+    p_teleport(loc_coord);
+    p_delay(0);
+}
+def_int $dir = ^exact_north;
+if (coordx($dest) > coordx(loc_coord)) {
+    $dir = ^exact_east;
+} else if (coordx($dest) < coordx(loc_coord)) {
+    $dir = ^exact_west;
+} else if (coordz($dest) < coordz(loc_coord)) {
+    $dir = ^exact_south;
+}
+~agility_exactmove(human_steppingstonejump, 19, 1, loc_coord, $dest, 47, 59, $dir, false);
+sound_synth(jump_no_land, 1, 0);
+if (stat_random(agility, 192, 256) = false) {
+    ~damage_self(~random_range(1, 3));
+    return;
+}
+stat_advance(agility, 100);
+
+[opheldu,ahoy_map_scrap_1] @ahoy_combine_map;
+[opheldu,ahoy_map_scrap_2] @ahoy_combine_map;
+[opheldu,ahoy_map_scrap_3] @ahoy_combine_map;
+
+[label,ahoy_combine_map]
+if (last_useitem ! ahoy_map_scrap_1 & last_useitem ! ahoy_map_scrap_2 & last_useitem ! ahoy_map_scrap_3) {
+    ~displaymessage(^dm_default);
+    return;
+}
+if (inv_total(inv, ahoy_map_scrap_1) = 0 | inv_total(inv, ahoy_map_scrap_2) = 0 | inv_total(inv, ahoy_map_scrap_3) = 0) {
+    ~mesbox("You don't have all the pieces of the map yet.");
+    return;
+}
+inv_del(inv, ahoy_map_scrap_1, 1);
+inv_del(inv, ahoy_map_scrap_2, 1);
+inv_del(inv, ahoy_map_scrap_3, 1);
+inv_add(inv, ahoy_map_complete, 1);
+~objbox(ahoy_map_complete, "You piece the three map scraps together to form a complete map.", 250, 0, 0);
+
+[opheld1,ahoy_map_complete] if_openmain(ahoy_islandmap);
+
+[opheld2,ahoy_map_complete]
+if (inzone(0_59_55_0_0, 0_59_55_63_63, coord) = false) {
+    ~mesbox("This map is for use elsewhere.");
+    return;
+}
+def_int $dx = 0;
+def_int $dz = 0;
+switch_int (~p_choice4_header("North", 1, "East", 2, "South", 3, "West", 4, "Which direction do you wish to walk?")) {
+    case 1 : $dz = 1;
+    case 2 : $dx = 1;
+    case 3 : $dz = -1;
+    case 4 : $dx = -1;
+}
+def_int $paces = ~p_choice4_header("1 pace", 1, "2 paces", 2, "4 paces", 4, "10 paces", 10, "How far do you wish to walk?");
+p_walk(movecoord(coord, multiply($dx, $paces), 0, multiply($dz, $paces)));
+
+[proc,ahoy_dig_haricanto]()(boolean)
+if (coord ! 0_59_55_27_10 | %ahoy_questvar ! ^ahoy_gather_items) {
+    return(false);
+}
+if (%ahoy_given_book = ^true | ~obj_gettotal(ahoy_book_of_haricanto) > 0) {
+    return(false);
+}
+~ahoy_give(ahoy_book_of_haricanto);
+~objbox(ahoy_book_of_haricanto, "You unearth the Book of Haricanto.", 250, 0, 0);
+return(true);

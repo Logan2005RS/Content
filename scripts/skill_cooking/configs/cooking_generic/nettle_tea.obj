@@ -1,0 +1,133 @@
+[nettles_picked]
+name=Nettles
+cost=3
+desc=A handful of nettles.
+model=obj_4241
+2dxof=-5
+2dyof=-27
+2dzoom=1430
+2dyan=1708
+2dxan=236
+members=yes
+
+[bowl_nettlewater]
+name=Nettle-water
+recol1s=21119
+recol1d=17170
+desc=It's a bowl of water, with some nettles in it.
+cost=4
+model=inv_bowl-full
+2dzoom=910
+2dyan=1856
+2dxan=204
+iop2=Drink
+iop3=Empty
+members=yes
+param=next_obj_stage,bowl_empty
+
+[bowl_nettletea]
+name=Nettle tea
+recol1s=21119
+recol1d=6470
+desc=It's a bowl of nettle tea.
+cost=4
+model=inv_bowl-full
+2dzoom=910
+2dyan=1856
+2dxan=204
+iop2=Drink
+iop3=Empty
+members=yes
+param=next_obj_stage,bowl_empty
+
+[bowl_nettletea_milky]
+name=Nettle tea
+recol1s=21119
+recol1d=11657
+desc=It's a bowl of milky nettle tea.
+cost=4
+model=inv_bowl-full
+2dzoom=910
+2dyan=1856
+2dxan=204
+iop2=Drink
+iop3=Empty
+members=yes
+param=next_obj_stage,bowl_empty
+
+[cup_of_nettletea]
+name=Cup of tea
+recol1s=17793
+recol1d=6470
+desc=A nice cup of nettle tea.
+cost=10
+iop2=Drink
+iop3=Empty
+model=inv_teacup_full
+2dxof=-1
+2dyof=-2
+2dzoom=500
+2dyan=1980
+2dxan=156
+members=yes
+param=next_obj_stage,cup_empty
+
+[cup_of_nettletea_milky]
+name=Cup of tea
+recol1s=17793
+recol1d=11657
+desc=A milky cup of nettle tea.
+cost=10
+iop2=Drink
+iop3=Empty
+model=inv_teacup_full
+2dxof=-1
+2dyof=-2
+2dzoom=500
+2dyan=1980
+2dxan=156
+members=yes
+param=next_obj_stage,cup_empty
+
+[chinacup_empty]
+name=Porcelain cup
+desc=A porcelain cup.
+cost=2
+model=obj_4244
+members=yes
+2dyof=2
+2dzoom=620
+2dyan=84
+2dxan=156
+
+[chinacup_of_nettletea]
+name=Cup of tea
+recol1s=15855
+recol1d=6470
+desc=Some nettle tea in a porcelain cup.
+cost=10
+iop2=Drink
+iop3=Empty
+model=obj_4245
+2dyof=2
+2dzoom=620
+2dyan=84
+2dxan=156
+members=yes
+param=next_obj_stage,chinacup_empty
+
+[chinacup_of_nettletea_milky]
+name=Cup of tea
+recol1s=15855
+recol1d=11657
+desc=Some milky nettle tea in a porcelain cup.
+cost=10
+iop2=Drink
+iop3=Empty
+model=obj_4245
+2dyof=2
+2dzoom=620
+2dyan=84
+2dxan=156
+members=yes
+param=next_obj_stage,chinacup_empty

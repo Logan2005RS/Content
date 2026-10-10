@@ -17,6 +17,10 @@ p_arrivedelay;
 p_stopaction;
 anim(human_dig, 0);
 
+if (~ahoy_dig_haricanto = true) {
+    return;
+}
+
 // itexam - digsite area, workmen get angry if you dig around the whole mapsquare
 if (inzone(0_52_53_0_0, 0_52_53_63_63, coord) = true) {
     @digworkman1_intervene;

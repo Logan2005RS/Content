@@ -1,0 +1,79 @@
+[proc,ahoy_req_colour](int $value, int $required)(string)
+if ($value >= $required) {
+    return("@str@");
+}
+return("@dre@");
+
+[if_button,questlist:ghostsahoy]
+def_string $text;
+if (%ahoy_questvar = ^ahoy_not_started) {
+    $text = append($text, "@dbl@I can start this quest by speaking to @dre@Velorina@dbl@ in @dre@Port|@dre@Phasmatys@dbl@.|");
+    $text = append($text, "@dbl@To start this quest I need:|");
+    $text = append($text, "<~ahoy_req_colour(%priestperil, ^priestperil_complete)>Priest in Peril|");
+    $text = append($text, "<~ahoy_req_colour(%prieststart, ^priest_complete)>The Restless Ghost|");
+    $text = append($text, "<~ahoy_req_colour(stat(agility), ^ahoy_agility_level)>Level 25 Agility|");
+    $text = append($text, "<~ahoy_req_colour(stat(cooking), ^ahoy_cooking_level)>Level 20 Cooking|");
+    $text = append($text, "@dbl@I must be able to defeat a level 32 enemy.");
+    ~quest_journal("Ghosts Ahoy", $text);
+    return;
+}
+if (%ahoy_questvar = ^ahoy_complete) {
+    $text = append($text, "@str@Velorina asked me to help the ghosts of Port Phasmatys pass|@str@on into the next world. Necrovarus refused to listen to me, so|@str@an old woman who was once his disciple enchanted my amulet|@str@of ghostspeak with the Robes of Necrovarus, the Book of|@str@Haricanto and a translation manual. With it I commanded|@str@Necrovarus to let the ghosts pass on, and Velorina gave me|@str@an Ectophial as thanks.||");
+    $text = append($text, "@red@QUEST COMPLETE!");
+    ~quest_journal("Ghosts Ahoy", $text);
+    return;
+}
+$text = append($text, "@str@Velorina told me the sad history of Port Phasmatys and asked|@str@me to plead with Necrovarus to let the ghosts pass on.|");
+if (%ahoy_questvar = ^ahoy_started) {
+    $text = append($text, "@dbl@I should speak to @dre@Necrovarus@dbl@ in the @dre@Temple@dbl@.");
+    ~quest_journal("Ghosts Ahoy", $text);
+    return;
+}
+$text = append($text, "@str@Necrovarus refused to let the ghosts go.|");
+if (%ahoy_questvar = ^ahoy_necrovarus_refused) {
+    $text = append($text, "@dbl@I should tell @dre@Velorina@dbl@ what Necrovarus said.");
+    ~quest_journal("Ghosts Ahoy", $text);
+    return;
+}
+$text = append($text, "@str@Velorina told me of a disciple of Necrovarus who fled the|@str@town before the Ectofuntus took control.|");
+if (%ahoy_questvar = ^ahoy_find_crone) {
+    if (%ahoy_subquest_nettletea = ^ahoy_nettletea_asked) {
+        $text = append($text, "@dbl@The @dre@old woman@dbl@ in the shack west of Port Phasmatys would like a|@dbl@nice hot cup of @dre@nettle tea@dbl@. Nettles grow in the @dre@Haunted Forest@dbl@.");
+    } else if (%ahoy_subquest_nettletea = ^ahoy_nettletea_given_cup) {
+        $text = append($text, "@dbl@The @dre@old woman@dbl@ only drinks @dre@milky nettle tea@dbl@ from her own|@dre@porcelain cup@dbl@.");
+    } else {
+        $text = append($text, "@dbl@I should look for her in a @dre@small wooden shack@dbl@ near the sea, with|@dbl@castles to the west and the east.");
+    }
+    ~quest_journal("Ghosts Ahoy", $text);
+    return;
+}
+$text = append($text, "@str@The old woman drank her tea and remembered Necrovarus.|");
+if (%ahoy_questvar = ^ahoy_gather_items) {
+    $text = append($text, "@dbl@She can enchant my @dre@amulet of ghostspeak@dbl@ if I bring her:|");
+    if (%ahoy_given_robes = ^true) {
+        $text = append($text, "@str@The Robes of Necrovarus|");
+    } else {
+        $text = append($text, "@dre@The Robes of Necrovarus|");
+    }
+    if (%ahoy_given_book = ^true) {
+        $text = append($text, "@str@The Book of Haricanto|");
+    } else {
+        $text = append($text, "@dre@The Book of Haricanto|");
+    }
+    if (%ahoy_given_manual = ^true) {
+        $text = append($text, "@str@Something to translate the Book of Haricanto|");
+    } else {
+        $text = append($text, "@dre@Something to translate the Book of Haricanto|");
+    }
+    ~quest_journal("Ghosts Ahoy", $text);
+    return;
+}
+$text = append($text, "@str@She enchanted my amulet of ghostspeak.|");
+if (%ahoy_questvar = ^ahoy_amulet_enchanted) {
+    $text = append($text, "@dbl@I should use the @dre@enchanted amulet@dbl@ to command @dre@Necrovarus@dbl@ to|@dbl@let the ghosts pass on.");
+    ~quest_journal("Ghosts Ahoy", $text);
+    return;
+}
+$text = append($text, "@str@I commanded Necrovarus to let the ghosts pass on.|");
+$text = append($text, "@dbl@I should tell @dre@Velorina@dbl@ the good news.");
+~quest_journal("Ghosts Ahoy", $text);

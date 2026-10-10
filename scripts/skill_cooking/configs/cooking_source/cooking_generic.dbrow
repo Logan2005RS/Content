@@ -686,3 +686,13 @@ data=experience,0
 data=successchance,1,1
 data=cookmessage_fire,null
 data=successmessage,You dry the troll thistle over the fire.
+
+[cooking_generic_nettletea]
+table=cooking_generic
+data=uncooked,bowl_nettlewater
+data=cooked,bowl_nettletea
+data=burnt,bowl_empty
+data=levelrequired,1
+data=experience,520
+data=successchance,128,512
+data=successmessage,You boil the water and make nettle tea.

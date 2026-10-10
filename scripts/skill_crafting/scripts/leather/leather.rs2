@@ -31,6 +31,7 @@
 [opheldu,needle]
 switch_obj (last_useitem)
 {
+    case ahoy_toy_boat : @ahoy_repair_toy_boat;
     case thread : ~chatplayer("<p,happy>Perhaps I should use a needle with a piece of leather instead.");
     case leather : @craft_leather_interface;
     case hard_leather : @craft_leather(hardleather_body, 1);
@@ -65,6 +66,7 @@ if (last_useitem = needle) @craft_dhide_interface(last_slot);
 ~displaymessage(^dm_default);
 
 [opheldu,thread]
+if (last_useitem = ahoy_toy_boat) @ahoy_repair_toy_boat;
 if (last_useitem = needle) {
     ~chatplayer("<p,happy>Perhaps I should use a needle with a piece of leather instead.");
     return;

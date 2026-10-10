@@ -1,0 +1,160 @@
+[oplocu,_ahoy_slime_pool]
+if (last_useitem ! bucket_empty) {
+    ~displaymessage(^dm_default);
+    return;
+}
+while (inv_total(inv, bucket_empty) > 0) {
+    anim(human_fillbucket_sandpit, 0);
+    sound_synth(fill_ectoplasm, 1, 0);
+    inv_del(inv, bucket_empty, 1);
+    inv_add(inv, bucket_ectoplasm, 1);
+    mes("You fill the bucket with ectoplasm.");
+    p_delay(2);
+}
+
+[oplocu,ahoy_grinder]
+if (oc_param(last_useitem, bonemeal) = null) {
+    if (oc_category(last_useitem) = bones) {
+        ~mesbox("These bones could break the bone grinder. Perhaps I should find some different bones.");
+        return;
+    }
+    ~displaymessage(^dm_default);
+    return;
+}
+if (%ahoy_grinder_status = ^ahoy_grinder_loaded) {
+    mes("You already have some bones in the hopper.");
+    return;
+}
+if (%ahoy_grinder_status = ^ahoy_grinder_ground) {
+    mes("You already have some bonemeal that needs to be collected.");
+    return;
+}
+def_obj $bone = last_useitem;
+anim(ahoy_bone_dump, 0);
+sound_synth(fill_grinder, 1, 0);
+p_delay(1);
+inv_del(inv, $bone, 1);
+%ahoy_grinder_bone = oc_param($bone, bonemeal);
+%ahoy_grinder_status = ^ahoy_grinder_loaded;
+mes("You fill the hopper with bones.");
+
+[oploc1,ahoy_grinder]
+if (%ahoy_grinder_status = ^ahoy_grinder_empty) {
+    mes("You have no bones loaded to grind.");
+    return;
+}
+if (%ahoy_grinder_status = ^ahoy_grinder_ground) {
+    mes("You already have some bonemeal which you need to collect.");
+    return;
+}
+anim(ahoy_bone_grind, 0);
+sound_synth(grinder_grinding, 1, 0);
+mes("You wind the handle.");
+p_delay(2);
+%ahoy_grinder_status = ^ahoy_grinder_ground;
+mes("The bonemeal falls into the bin.");
+
+[oploc2,ahoy_grinder]
+if (%ahoy_grinder_status ! ^ahoy_grinder_ground) {
+    if (%ahoy_grinder_status = ^ahoy_grinder_loaded) {
+        mes("You need to wind the wheel to grind the bones.");
+        return;
+    }
+    mes("You need to load some bones in the hopper first.");
+    return;
+}
+if (inv_total(inv, pot_empty) = 0) {
+    mes("You don't have any pots to take the bonemeal with.");
+    return;
+}
+anim(ahoy_fillbucket_bonedust, 0);
+sound_synth(grinder_empty, 1, 0);
+p_delay(1);
+inv_del(inv, pot_empty, 1);
+inv_add(inv, %ahoy_grinder_bone, 1);
+%ahoy_grinder_bone = null;
+%ahoy_grinder_status = ^ahoy_grinder_empty;
+
+[oploc3,ahoy_grinder]
+if (%ahoy_grinder_status = ^ahoy_grinder_loaded) {
+    mes("There are bones waiting in the hopper.");
+    return;
+}
+if (%ahoy_grinder_status = ^ahoy_grinder_ground) {
+    mes("There is bonemeal waiting in the bin to be collected.");
+    return;
+}
+mes("There is nothing loaded into the machine.");
+
+[oploc1,ahoy_ectofunctus]
+def_boolean $has_slime = false;
+if (inv_total(inv, bucket_ectoplasm) > 0) {
+    $has_slime = true;
+}
+if (inv_totalcat(inv, ahoy_bonemeal) = 0) {
+    if ($has_slime = false) {
+        ~mesbox("You don't have any ectoplasm or crushed bones to put into the Ectofuntus.");
+        return;
+    }
+    ~mesbox("You need a pot of crushed bones to put into the Ectofuntus.");
+    return;
+}
+if ($has_slime = false) {
+    ~mesbox("You need ectoplasm to put into the Ectofuntus.");
+    return;
+}
+def_obj $bonemeal = null;
+def_int $slot = 0;
+while ($slot < inv_size(inv) & $bonemeal = null) {
+    if (oc_category(inv_getobj(inv, $slot)) = ahoy_bonemeal) {
+        $bonemeal = inv_getobj(inv, $slot);
+    }
+    $slot = calc($slot + 1);
+}
+anim(ahoy_prayer, 0);
+sound_synth(prayer_boost, 1, 0);
+inv_del(inv, $bonemeal, 1);
+inv_del(inv, bucket_ectoplasm, 1);
+inv_add(inv, pot_empty, 1);
+inv_add(inv, bucket_empty, 1);
+stat_advance(prayer, multiply(oc_param($bonemeal, bone_exp), 4));
+mes("You put some ectoplasm and bonemeal into the Ectofuntus, and worship it.");
+if (%ahoy_ectotokens_to_collect < 63) {
+    %ahoy_ectotokens_to_collect = calc(%ahoy_ectotokens_to_collect + 1);
+}
+
+[oplocu,ahoy_ectofunctus]
+if (last_useitem = ectophial) {
+    mes("Your ectophial is already full.");
+    return;
+}
+if (last_useitem ! ectophial_empty) {
+    ~displaymessage(^dm_default);
+    return;
+}
+anim(human_pickuptable, 0);
+sound_synth(fill_ectoplasm, 1, 0);
+inv_setslot(inv, last_useslot, ectophial, 1);
+mes("You refill the ectophial from the Ectofuntus.");
+
+[opheld1,ectophial]
+def_int $slot = last_slot;
+if (%ahoy_questvar ! ^ahoy_complete) {
+    mes("You need to have completed Ghosts Ahoy to use the ectophial.");
+    return;
+}
+if (~wilderness_level(coord) > 20) {
+    mes("A mysterious force blocks your teleport!");
+    mes("You can't use this teleport after level 20 wilderness.");
+    return;
+}
+if (~pre_tele_checks(coord) = false) {
+    return;
+}
+inv_setslot(inv, $slot, ectophial_empty, 1);
+anim(human_pickupfloor, 0);
+sound_synth(liquid, 1, 0);
+mes("You empty the ectoplasm onto the ground around your feet...");
+p_delay(1);
+~player_teleport_normal(map_findsquare(0_57_55_11_2, 0, 2, ^map_findsquare_lineofwalk));
+mes("...and the world changes around you.");

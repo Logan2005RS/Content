@@ -790,3 +790,22 @@ data=consumable,viking_tankard_full
 data=consume_message1,You quaff the beer. You feel reinvigorated...
 data=consume_message2,...but very dizzy too.
 data=restore_message2,0
+
+[nettle_tea_bowl_consume_messages]
+table=consume_messages_table
+data=consumable,bowl_nettletea
+data=consumable,bowl_nettletea_milky
+data=consume_message1,You drink the nettle tea.
+
+[nettle_tea_cup_consume_messages]
+table=consume_messages_table
+data=consumable,cup_of_nettletea
+data=consumable,cup_of_nettletea_milky
+data=consumable,chinacup_of_nettletea
+data=consumable,chinacup_of_nettletea_milky
+data=consume_message1,You drink the cup of nettle tea.
+
+[nettle_water_consume_messages]
+table=consume_messages_table
+data=consumable,bowl_nettlewater
+data=consume_message1,You drink the nettle-water.
