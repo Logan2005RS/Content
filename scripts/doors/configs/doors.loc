@@ -140,3 +140,23 @@ raiseobject=no
 category=door_opened
 param=next_loc_stage,loc_1539
 param=close_sound,grate_close
+
+[farmdoor]
+name=Door
+desc=The door is closed.
+model=loc_8695
+active=yes
+op1=Open
+raiseobject=no
+category=door_closed
+param=next_loc_stage,farmdooropen
+
+[farmdooropen]
+name=Door
+desc=The door is open.
+model=loc_8695
+active=yes
+op1=Close
+raiseobject=no
+category=door_opened
+param=next_loc_stage,farmdoor

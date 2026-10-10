@@ -4926,21 +4926,6 @@ ambient=30
 [axeshopsign_lumbridge]
 model=axeshopsign
 
-[drawers4]
-name=Drawers
-desc=These open and close!
-model=loc_5618
-op1=Open
-forceapproach=east
-
-[drawers4open]
-name=Drawers
-desc=This may be worth searching.
-model=loc_5619
-op2=Search
-op3=Shut
-forceapproach=east
-
 [string_of_garlic]
 model=loc_5620
 ambient=50
@@ -48926,22 +48911,6 @@ active=no
 model=loc_8694
 active=no
 
-[farmdoor]
-name=Door
-desc=The door is closed.
-model=loc_8695
-active=yes
-op1=Open
-raiseobject=no
-
-[farmdooropen]
-name=Door
-desc=The door is open.
-model=loc_8695
-active=yes
-op1=Close
-raiseobject=no
-
 [farm_cookingshelf]
 model=walldecor_cookingshelf
 recol1s=6240
@@ -57168,13 +57137,6 @@ model=loc_9522
 blockrange=no
 ambient=25
 
-[sarim_bookcase2]
-name=Bookcase
-desc=A case. With books.
-model=loc_9523
-op1=Search
-forceapproach=east
-
 [sarim_ship_chain]
 name=Chain
 desc=A mooring chain.
@@ -57244,84 +57206,6 @@ width=2
 length=2
 blockrange=no
 ambient=35
-
-[sarim_crate]
-name=Crate
-desc=A wooden crate.
-model=loc_6177
-recol1s=13639
-recol1d=8320
-recol2s=12582
-recol2d=9377
-recol3s=11525
-recol3d=10434
-recol4s=10468
-recol4d=12548
-recol5s=9411
-recol5d=13605
-recol6s=8354
-recol6d=11491
-blockrange=no
-ambient=35
-op1=Search
-
-[sarim_crate2]
-name=Crate
-desc=A wooden crate.
-model=loc_7347
-recol1s=14695
-recol1d=13605
-recol2s=12615
-recol2d=12548
-recol3s=12581
-recol3d=11491
-recol4s=11524
-recol4d=10434
-recol5s=10467
-recol5d=9377
-recol6s=9410
-recol6d=8320
-blockrange=no
-ambient=35
-op1=Search
-
-[sarim_crate3]
-name=Crates
-desc=Some wooden crates.
-model=loc_7348
-recol1s=14695
-recol1d=13605
-recol2s=12615
-recol2d=12548
-recol3s=12581
-recol3d=11491
-recol4s=11524
-recol4d=10434
-recol5s=10467
-recol5d=9377
-recol6s=9410
-recol6d=8320
-ambient=35
-op1=Search
-
-[sarim_boxes]
-name=Boxes
-desc=Some wooden boxes.
-model=loc_5330
-recol1s=13639
-recol1d=8320
-recol2s=12582
-recol2d=9377
-recol3s=11525
-recol3d=10434
-recol4s=10468
-recol4d=12548
-recol5s=9411
-recol5d=13605
-recol6s=8354
-recol6d=11491
-ambient=35
-op1=Search
 
 [serim_fishingcrane_noscript]
 name=Crane
@@ -58035,49 +57919,11 @@ resizex=64
 resizey=64
 resizez=64
 
-[sarim_bookcase2_offset]
-name=Bookcase
-desc=A case. With books.
-model=loc_9523
-op1=Search
-forceapproach=east
-offsetx=0
-offsety=0
-offsetz=-16
-
-[sarim_bookcase2_offset_northfacing]
-name=Bookcase
-desc=A case. With books.
-model=loc_9523
-op1=Search
-forceapproach=east
-offsetx=0
-offsety=0
-offsetz=16
-
-[sarim_bookcase2_offset_westfacing]
-name=Bookcase
-desc=A case. With books.
-model=loc_9523
-op1=Search
-forceapproach=east
-offsetx=-16
-offsety=0
-offsetz=0
-
 [rimmington_artist_easil]
 name=Easel
 desc=An artist's easel.
 model=loc_9610
 ambient=20
-
-[bookcase_polybooks]
-name=Bookcase
-desc=A good source of books!
-model=loc_9611
-length=2
-op1=Search
-forceapproach=east
 
 [rimmington_makeovermage_bed]
 name=Bed

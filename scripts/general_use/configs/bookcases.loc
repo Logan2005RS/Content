@@ -1,0 +1,49 @@
+[sarim_bookcase2]
+name=Bookcase
+desc=A case. With books.
+model=loc_9523
+op1=Search
+forceapproach=east
+category=bookcase
+
+[sarim_bookcase2_offset]
+name=Bookcase
+desc=A case. With books.
+model=loc_9523
+op1=Search
+forceapproach=east
+offsetx=0
+offsety=0
+offsetz=-16
+category=bookcase
+
+[sarim_bookcase2_offset_northfacing]
+name=Bookcase
+desc=A case. With books.
+model=loc_9523
+op1=Search
+forceapproach=east
+offsetx=0
+offsety=0
+offsetz=16
+category=bookcase
+
+[sarim_bookcase2_offset_westfacing]
+name=Bookcase
+desc=A case. With books.
+model=loc_9523
+op1=Search
+forceapproach=east
+offsetx=-16
+offsety=0
+offsetz=0
+category=bookcase
+
+[bookcase_polybooks]
+name=Bookcase
+desc=A good source of books!
+model=loc_9611
+length=2
+op1=Search
+forceapproach=east
+category=bookcase

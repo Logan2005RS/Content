@@ -97,3 +97,22 @@ recol3s=7299
 recol3d=17969
 category=empty_drawer
 param=drawer_other,arena_hospital_drawers2
+
+[drawers4]
+name=Drawers
+desc=These open and close!
+model=loc_5618
+op1=Open
+forceapproach=east
+category=drawer
+param=drawer_other,drawers4open
+
+[drawers4open]
+name=Drawers
+desc=This may be worth searching.
+model=loc_5619
+op2=Search
+op3=Shut
+forceapproach=east
+category=empty_drawer
+param=drawer_other,drawers4

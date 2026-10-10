@@ -11,7 +11,12 @@ if(inv_freespace(inv) = 0) {
 }
 
 // Pickable Wheat
-[oploc2,wheat]
+[oploc2,wheat] @pick_wheat;
+[oploc2,wheat_small] @pick_wheat;
+[oploc2,wheat_smallest] @pick_wheat;
+[oploc2,wheat_tall] @pick_wheat;
+
+[label,pick_wheat]
 p_arrivedelay;
 if(inv_freespace(inv) = 0) {
     mes("You can't carry any more grain.");

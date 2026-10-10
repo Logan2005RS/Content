@@ -1,4 +1,7 @@
-[oploc1,spookywardrobe]
+[oploc1,spookywardrobe] @open_spooky_wardrobe;
+[oploc1,draynor_wardrobe] @open_spooky_wardrobe;
+
+[label,open_spooky_wardrobe]
 p_arrivedelay;
 anim(human_openbigcupboard, 0);
 p_delay(0);

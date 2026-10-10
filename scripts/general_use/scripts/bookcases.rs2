@@ -26,3 +26,30 @@ if($rand = 0) {
 } else {
     mes("It's full of books, but none of them look very interesting.");
 }
+
+[oploc1,bookshelf_old_tall_movedin] @search_wom_bookshelf(wom_book_1, "Strange Book");
+[oploc1,bookshelf_old_tall2_movedin] @search_wom_bookshelf(wom_book_2, "Book of folklore");
+[oploc1,bookshelf_old_short_movedin] @search_wom_bookshelf(null, "");
+[oploc1,bookshelf_old_tall_double] @search_wom_bookshelf(null, "");
+[oploc1,bookshelf_old_tall_movedin2] @search_wom_bookshelf(null, "");
+[oploc1,bookshelf_old_tall2_movedin2] @search_wom_bookshelf(null, "");
+[oploc1,bookshelf_old_tall3_movedin2] @search_wom_bookshelf(null, "");
+[oploc1,bookshelf_old_short_movedin2] @search_wom_bookshelf(null, "");
+[oploc1,bookshelf_old_short3_movedin2] @search_wom_bookshelf(null, "");
+[oploc1,bookshelf_old_tall_movedin3] @search_wom_bookshelf(null, "");
+[oploc1,bookshelf_old_tall2_movedin3] @search_wom_bookshelf(null, "");
+[oploc1,bookshelf_old_tall3_movedin3] @search_wom_bookshelf(null, "");
+[oploc1,bookshelf_old_short2_movedin3] @search_wom_bookshelf(null, "");
+[oploc1,bookshelf_old_short3_movedin3] @search_wom_bookshelf(null, "");
+[oploc1,bookshelf_old_short_withsphinx] @search_wom_bookshelf(null, "");
+[oploc1,wom_bookshelf_old_tall_double] @search_wom_bookshelf(null, "");
+[oploc1,wom_bookshelf_old_tall_double2] @search_wom_bookshelf(null, "");
+
+[label,search_wom_bookshelf](namedobj $book, string $title)
+p_arrivedelay;
+if ($book = null | inv_total(inv, $book) > 0) {
+    mes("You search the bookcase and find nothing of interest.");
+    return;
+}
+mes("You search the bookcase and find a book named '<$title>'.");
+inv_add(inv, $book, 1);

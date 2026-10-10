@@ -586,3 +586,45 @@ switch_coord (loc_coord) {
         }
     case default : @unhandled_stairs(loc_coord);
 }
+
+[oploc1,sarim_spiralstairs]
+p_arrivedelay;
+switch_coord (loc_coord) {
+    case 0_45_51_51_18 : p_telejump(1_45_51_53_18);
+    case 0_47_50_15_61 : p_telejump(1_47_50_17_60);
+    case 0_47_50_18_48 : p_telejump(1_47_50_20_48);
+    case default : @unhandled_stairs(loc_coord);
+}
+
+[oploc1,sarim_spiralstairstop]
+p_arrivedelay;
+switch_coord (loc_coord) {
+    case 1_45_51_52_18 : p_telejump(0_45_51_53_18);
+    case 1_47_50_16_61 : p_telejump(0_47_50_17_60);
+    case 1_47_50_18_48 : p_telejump(0_47_50_20_48);
+    case default : @unhandled_stairs(loc_coord);
+}
+
+[oploc1,poor_stairs]
+switch_coord (loc_coord) {
+    case 0_46_50_21_15 : p_telejump(1_46_50_24_15);
+    case default : @unhandled_stairs(loc_coord);
+}
+
+[oploc1,poor_stairstop]
+switch_coord (loc_coord) {
+    case 1_46_50_22_15 : p_telejump(0_46_50_20_15);
+    case default : @unhandled_stairs(loc_coord);
+}
+
+[oploc1,narrowstairs_wooden_bottom]
+switch_coord (loc_coord) {
+    case 0_48_50_18_51 : p_telejump(1_48_50_21_51);
+    case default : @unhandled_stairs(loc_coord);
+}
+
+[oploc1,narrowstairs_wooden_top]
+switch_coord (loc_coord) {
+    case 1_48_50_19_51 : p_telejump(0_48_50_17_51);
+    case default : @unhandled_stairs(loc_coord);
+}
