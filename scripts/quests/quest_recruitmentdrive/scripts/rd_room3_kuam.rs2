@@ -1,0 +1,41 @@
+[label,rd_kuam_intro]
+if (npc_find(coord, rd_observer_room_3, 15, 0) = false) {
+    return;
+}
+~chatnpc("<p,neutral>Ah, <displayname()>, you're finally here. Your task for this room is to defeat Sir Leye. He has been blessed by Saradomin to be undefeatable by any man, so it should be quite the challenge for you.");
+~chatnpc("<p,neutral>If you are having problems, remember; A true warrior uses his wits as much as his brawn. Fight smarter, not harder.");
+if (npc_find(0_38_77_28_35, rd_combat_npc_room_3, 15, 0) = true) {
+    return;
+}
+npc_add(0_38_77_28_35, rd_combat_npc_room_3, 400);
+npc_say("No man may defeat me!");
+
+[opnpc1,rd_observer_room_3]
+if (%rd_room3_complete = ^true) {
+    ~rd_observer_pass;
+    return;
+}
+@rd_kuam_intro;
+
+[opnpc1,rd_combat_npc_room_3]
+~chatnpc("<p,laugh>AH-HA HA HA! You can NEVER defeat ME! I am blessed by Saradomin himself! NO MAN MAY DEFEAT ME!");
+
+[ai_queue2,rd_combat_npc_room_3]
+if (npc_findhero = ^true) {
+    if (gender() = ^gender_male & last_int >= npc_stat(hitpoints)) {
+        npc_statheal(hitpoints, npc_basestat(hitpoints), 0);
+    }
+}
+~npc_default_damage(last_int);
+
+[ai_queue3,rd_combat_npc_room_3]
+if (npc_findhero = ^true) {
+    queue(rd_leye_defeated, 0, 0);
+}
+gosub(npc_death);
+
+[queue,rd_leye_defeated]
+%rd_room3_complete = ^true;
+if (npc_find(coord, rd_observer_room_3, 15, 0) = true) {
+    ~rd_observer_pass;
+}

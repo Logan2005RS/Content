@@ -1,0 +1,66 @@
+[label,rd_hynn_intro]
+if (npc_find(coord, rd_observer_room_7, 15, 0) = false) {
+    return;
+}
+@rd_hynn_riddle;
+
+[opnpc1,rd_observer_room_7]
+if (%rd_room7_complete = ^true) {
+    ~chatnpc("<p,happy>You certainly have the wits to be a Temple Knight.|Pass on through the portal to find your next challenge.");
+    return;
+}
+@rd_hynn_riddle;
+
+[label,rd_hynn_riddle]
+if (%rd_templock_1 = 0) {
+    %rd_templock_1 = ~random_range(1, 5);
+}
+~chatnpc("<p,neutral>Greetings, <displayname()>. I am here to test your wits with a simple riddle.");
+def_boolean $correct = false;
+switch_int (%rd_templock_1) {
+    case 1 :
+        ~chatnpc("<p,quiz>Here is my riddle: I estimate there to be 1 million inhabitants in the world of RuneScape, creatures and people both.");
+        ~chatnpc("<p,quiz>What would be the number you would get if you multiply the number of fingers on everythings left hand, to the nearest million?");
+        p_countdialog;
+        if (last_int = 0) {
+            $correct = true;
+        }
+    case 2 :
+        ~chatnpc("<p,quiz>Here is my riddle: I have both a husband and daughter.");
+        ~chatnpc("<p,quiz>My husband is four times older than my daughter. In twenty years time, he will be twice as old as my daughter.");
+        ~chatnpc("<p,quiz>How old is my daughter now?");
+        p_countdialog;
+        if (last_int = 10) {
+            $correct = true;
+        }
+    case 3 :
+        ~chatnpc("<p,quiz>Here is my riddle: Which of the following statements is true?");
+        if (~p_choice4_header("The number of false statements here is one", 1, "The number of false statements here is two", 2, "The number of false statements here is three.", 3, "The number of false statements here is four.", 4, "Which of the following is true?") = 3) {
+            $correct = true;
+        }
+    case 4 :
+        ~chatnpc("<p,quiz>Here is my riddle: Imagine that you have been captured by an enemy. You are to be killed, but in a moment of mercy, the enemy has allowed you to pick your own demise.");
+        ~chatnpc("<p,quiz>Your first choice is to be drowned in a lake of acid.");
+        ~chatnpc("<p,quiz>Your second choice is to be burned on a fire.");
+        ~chatnpc("<p,quiz>Your third choice is to be thrown to a pack of wolves that have not been fed in over a month.");
+        ~chatnpc("<p,quiz>Your final choice of fate is to be thrown from the walls of a castle, many hundreds of feet high.");
+        ~chatnpc("<p,quiz>Which fate would you be wise to choose?");
+        if (~p_choice4_header("The lake of acid.", 1, "The large fire.", 2, "The wolves.", 3, "The castle walls.", 4, "Select your fate") = 3) {
+            $correct = true;
+        }
+    case default :
+        ~chatnpc("<p,quiz>Here is my riddle: I dropped four identical stones, into four identical buckets, each containing an identical amount of water.");
+        ~chatnpc("<p,quiz>The first bucket's water was at 32 degrees Fahrenheit, the second was at 33 degrees, the third at 34 and the fourth was at 35 degrees.");
+        ~chatnpc("<p,quiz>Which bucket's stone dropped to the bottom of the bucket last?");
+        if (~p_choice4_header("Bucket A (32 degrees)", 1, "Bucket B (33 degrees)", 2, "Bucket C (34 degrees)", 3, "Bucket D (35 degrees)", 4, "Which bucket's stone dropped last?") = 1) {
+            $correct = true;
+        }
+}
+if (npc_find(coord, rd_observer_room_7, 15, 0) = false) {
+    return;
+}
+if ($correct = false) {
+    @rd_observer_fail;
+}
+%rd_room7_complete = ^true;
+~rd_observer_pass;

@@ -1,0 +1,157 @@
+[label,rd_spishyus_intro]
+if (npc_find(coord, rd_observer_room_1, 15, 0) = false) {
+    return;
+}
+%rd_room1_initiated = ^true;
+~chatnpc("<p,happy>Ah, welcome <displayname()>.");
+~chatplayer("<p,quiz>Hello there. What am I supposed to be doing in this room?");
+~chatnpc("<p,neutral>Well, your task is to take this fox, this chicken and this bag of grain across that bridge there to the other side of the room.");
+~chatnpc("<p,neutral>When you have done that, your task is complete.");
+~chatplayer("<p,quiz>Is that it?");
+~chatnpc("<p,neutral>Well, it is not quite as simple as that may sound.");
+~chatnpc("<p,neutral>Firstly, you may only carry one of the objects across the room at a time, for the bridge is old and fragile.");
+~chatnpc("<p,neutral>Secondly, the fox wants to eat the chicken, and the chicken wants to eat the grain. Should you ever leave the fox unattended with the chicken, or the grain unattended with the chicken, then");
+~chatnpc("<p,neutral>one of them will be eaten, and you will be unable to complete the test.");
+~chatplayer("<p,neutral>Okay, I'll see what I can do.");
+
+[proc,rd_spishyus_eaten]()(boolean)
+if (%rd_foxleft = 2 | %rd_foxright = 3 | %rd_grainleft = 2 | %rd_grainright = 3) {
+    return(true);
+}
+return(false);
+
+[opnpc1,rd_observer_room_1]
+if (%rd_room1_complete = ^true) {
+    ~rd_observer_pass;
+    return;
+}
+if (~rd_spishyus_eaten = true) {
+    @rd_observer_fail;
+}
+if (%rd_room1_intro_chat = ^false) {
+    %rd_room1_intro_chat = ^true;
+    ~chatplayer("<p,angry>Listen, this is really annoying me. Can't you just stop the fox eating the chicken or the chicken eating the grain for me, while I carry the other stuff across the bridge?");
+    ~chatnpc("<p,neutral>I am afraid not, <displayname()>. My task is solely to observe your progress, we have explicit instructions not to assist you in any way..");
+    return;
+}
+~chatplayer("<p,sad>No, but seriously, please? Think of the poor chicken and grain! Being eaten!");
+~chatnpc("<p,sad>I am truly sorry, but my hands are tied. I suggest you think carefully before taking any items across the bridge with you, to ensure nothing gets eaten while you are not paying attention.");
+~chatnpc("<p,neutral>This is the only help I may give you...");
+~chatplayer("<p,neutral>Well, thanks I guess...");
+
+[proc,rd_spishyus_east]()(boolean)
+if (coordx(coord) >= 2479) {
+    return(true);
+}
+return(false);
+
+[proc,rd_spishyus_carry](namedobj $obj, int $wearpos)
+inv_setslot(worn, $wearpos, $obj, 1);
+buildappearance(worn);
+
+[oploc1,rd_room2_fox_multi]
+if (%rd_foxleft ! 0) {
+    return;
+}
+%rd_foxleft = 1;
+~rd_spishyus_carry(rd_fox, ^wearpos_rhand);
+
+[oploc1,rd_room2_fox_multi_right]
+if (%rd_foxright ! 1) {
+    return;
+}
+%rd_foxright = 0;
+~rd_spishyus_carry(rd_fox, ^wearpos_rhand);
+
+[oploc1,rd_room2_chicken_multi]
+if (%rd_chickleft ! 0) {
+    return;
+}
+%rd_chickleft = 1;
+~rd_spishyus_carry(rd_chicken, ^wearpos_lhand);
+
+[oploc1,rd_room2_chicken_multi_right]
+if (%rd_chickright ! 1) {
+    return;
+}
+%rd_chickright = 0;
+~rd_spishyus_carry(rd_chicken, ^wearpos_lhand);
+
+[oploc1,rd_room2_grain_multi]
+if (%rd_grainleft ! 0) {
+    return;
+}
+%rd_grainleft = 1;
+~rd_spishyus_carry(rd_sack, ^wearpos_back);
+
+[oploc1,rd_room2_grain_multi_right]
+if (%rd_grainright ! 1) {
+    return;
+}
+%rd_grainright = 0;
+~rd_spishyus_carry(rd_sack, ^wearpos_back);
+
+[proc,rd_spishyus_drop](obj $obj)
+inv_del(inv, $obj, 1);
+def_boolean $east = ~rd_spishyus_east;
+switch_obj ($obj) {
+    case rd_fox :
+        if ($east = true) {
+            %rd_foxleft = 0;
+        } else {
+            %rd_foxright = 1;
+        }
+    case rd_chicken :
+        if ($east = true) {
+            %rd_chickleft = 0;
+        } else {
+            %rd_chickright = 1;
+        }
+    case rd_sack :
+        if ($east = true) {
+            %rd_grainleft = 0;
+        } else {
+            %rd_grainright = 1;
+        }
+}
+if (%rd_foxright = 1 & %rd_chickright = 1 & %rd_grainright = 1 & %rd_room1_complete = ^false) {
+    mes("Congratulations! You have solved this room's puzzle!");
+    %rd_room1_complete = ^true;
+}
+
+[oploc1,rd_bridge_left] @rd_spishyus_cross(0_38_77_44_44);
+[oploc1,rd_bridge_right] @rd_spishyus_cross(0_38_77_52_44);
+
+[label,rd_spishyus_cross](coord $dest)
+def_int $carried = 0;
+if (inv_total(worn, rd_fox) > 0) {
+    $carried = calc($carried + 1);
+}
+if (inv_total(worn, rd_chicken) > 0) {
+    $carried = calc($carried + 1);
+}
+if (inv_total(worn, rd_sack) > 0) {
+    $carried = calc($carried + 1);
+}
+if ($carried > 1) {
+    ~chatplayer("<p,neutral>I really don't think I should be carrying more than 5 Kg across that rickety bridge...");
+    return;
+}
+if (~rd_spishyus_east = true) {
+    if (%rd_foxleft = 0 & %rd_chickleft = 0) {
+        %rd_foxleft = 2;
+        %rd_chickleft = 1;
+    } else if (%rd_chickleft = 0 & %rd_grainleft = 0) {
+        %rd_grainleft = 2;
+    }
+} else {
+    if (%rd_foxright = 1 & %rd_chickright = 1) {
+        %rd_foxright = 3;
+        %rd_chickright = 0;
+    } else if (%rd_chickright = 1 & %rd_grainright = 1) {
+        %rd_grainright = 3;
+    }
+}
+p_arrivedelay;
+mes("You carefully walk across the rickety bridge...");
+~forcemove($dest);

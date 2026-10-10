@@ -180,6 +180,9 @@ if (p_finduid(uid) = true) {
                     ~send_quest_complete(questlist:horror, horror_casket, 225, ^horror_questpoints, "You have survived the\\nHorror From The Deep!");
                 case 63 : queue(trollromance_quest_complete, 0, 0);
                 case 64 : queue(misc_quest_complete, 0, 0);
+                case 70 :
+                    %rd_main = ^rd_started;
+                    queue(rd_quest_complete, 0, 0);
                 case default : mes("Quest not found.");
             }
         } else if ($choice3 = 1) {
@@ -330,6 +333,10 @@ if (p_finduid(uid) = true) {
                     %misc_varbit_1 = null;
                     %misc_varbit_2 = null;
                     %misc_varbit_3 = null;
+                case 70 :
+                    %recruitmentdrive = 0;
+                    %rd_rooms_tempvar = 0;
+                    %rd_rooms_tempvar2 = 0;
                 case default : mes("Quest not found.");
             }
             ~update_questlist;

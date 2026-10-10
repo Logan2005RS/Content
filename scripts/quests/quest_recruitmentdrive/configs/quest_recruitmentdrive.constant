@@ -1,0 +1,14 @@
+^rd_not_started = 0
+^rd_started = 1
+^rd_complete = 2
+
+^rd_rooms_required = 5
+^rd_room_spishyus = 1
+^rd_room_table = 2
+^rd_room_kuam = 3
+^rd_room_tinley = 4
+^rd_room_itchood = 5
+^rd_room_cheevers = 6
+^rd_room_hynn = 7
+
+^rd_falador_park = 0_46_52_52_47

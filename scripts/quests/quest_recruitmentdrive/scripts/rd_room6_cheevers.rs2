@@ -1,0 +1,364 @@
+[label,rd_cheevers_intro]
+if (npc_find(coord, rd_observer_room_6, 15, 0) = false) {
+    return;
+}
+~chatnpc("<p,happy>Greetings, <displayname()>. Welcome to my challenge.");
+~chatnpc("<p,neutral>All you need to do is leave from the opposite door to where you came in by.");
+~chatnpc("<p,neutral>I will warn you that this is more complicated than it may at first appear.");
+~chatnpc("<p,neutral>I should also warn you that there are limited supplies of the items in this room, so think carefully before using them, or you may find yourself stuck, and have to leave to start again!");
+~chatnpc("<p,happy>Best of luck!");
+
+[opnpc1,rd_observer_room_6]
+if (%rd_room6_complete = ^true) {
+    ~rd_observer_pass;
+    return;
+}
+if (%rd_room6_hint1 = ^false) {
+    %rd_room6_hint1 = ^true;
+    ~chatplayer("<p,quiz>Can you give me any help?");
+    ~chatnpc("<p,neutral>No, I am sorry, but that is forbidden by our rules.");
+    ~chatnpc("<p,neutral>If you are having a particularly tough time of it, I suggest you leave and come back later when you are in a more receptive frame of mind.");
+    ~chatnpc("<p,neutral>Sometimes a break from concentration will yield fresh insight. Our aim is to test you, but not to the point of frustration!");
+    ~chatplayer("<p,happy>Okay, thanks!");
+    return;
+}
+~chatplayer("<p,sad>Please... I am REALLY stuck... Isn't there ANYTHING you can do to help me...?");
+~chatnpc("<p,shifty>Well... Look, I really shouldn't say anything about this room, but...");
+~chatnpc("<p,neutral>When I was attempting to join the Temple Knights I myself had to do this puzzle myself.");
+~chatnpc("<p,neutral>It was slightly different, but the idea behind it was the same, and I left the notes I had made while doing it hidden in one of the bookcases.");
+~chatnpc("<p,neutral>If you look carefully you may find them, and they may be of some use to you.");
+~chatnpc("<p,sad>I really can't be any more help than that I'm afraid, it is more than my job's worth to have given you the help I already have.");
+~chatplayer("<p,happy>Okay, thanks a lot, you've been very helpful!");
+~chatnpc("<p,happy>Best of luck with the test <displayname()>, I hope your application is successful.");
+
+[proc,rd_give](namedobj $obj)
+if (inv_itemspace(inv, $obj, 1, inv_size(inv)) = true) {
+    inv_add(inv, $obj, 1);
+    return;
+}
+obj_add(coord, $obj, 1, ^lootdrop_duration);
+
+[label,rd_cheevers_search](string $searching, namedobj $obj, string $found)
+mes($searching);
+p_delay(1);
+if ($obj = null | inv_total(inv, $obj) > 0) {
+    mes("You don't find anything interesting.");
+    return;
+}
+~rd_give($obj);
+mes($found);
+
+[oploc1,rd_bookshelf_old_tall] @rd_cheevers_search("You search the bookshelves...", rd_magnet, "Hidden amongst the books you find a magnet.");
+[oploc1,rd_bookshelf_old_tall2] @rd_cheevers_search("You search the bookshelves...", rd_chem_book, "You find a book that looks like it might be helpful.");
+[oploc1,rd_bookshelf_old_tall3] @rd_cheevers_search("You search the bookshelves...", rd_knife, "Hidden amongst the books you find a knife.");
+[oploc1,rd_bookshelf_old_tall4] @rd_cheevers_search("You search the bookshelves...", null, "");
+
+[oploc1,rd_large_crate]
+if (loc_coord = 0_38_77_44_15) {
+    @rd_cheevers_search("You search the crate...", rd_tin, "Inside the crate you find a tin.");
+}
+@rd_cheevers_search("You search the crate...", null, "");
+
+[oploc1,rd_large_crates]
+if (loc_coord = 0_38_77_44_9) {
+    @rd_cheevers_search("You search the crate...", rd_chisel, "Inside the crate you find a chisel.");
+}
+@rd_cheevers_search("You search the crate...", null, "");
+
+[oploc1,rd_small_crates]
+if (loc_coord = 0_38_77_43_15) {
+    @rd_cheevers_search("You search the crate...", rd_wire, "Inside the crate you find some wire.");
+}
+@rd_cheevers_search("You search the crate...", null, "");
+
+[oploc1,rd_chest_closed]
+anim(human_openchest, 0);
+sound_synth(chest_open, 1, 0);
+loc_change(rd_chest_open, 100);
+
+[oploc1,rd_chest_open] @rd_cheevers_search("You search the chest...", rd_shears, "Inside the chest you find some shears.");
+
+[oploc2,rd_chest_open]
+anim(human_closechest, 0);
+sound_synth(chest_close, 1, 0);
+loc_change(rd_chest_closed, 100);
+
+[oploc1,rd_shelves_chemicals_1]
+if (%rd_got_vinegar = ^false & %rd_got_water = ^false) {
+    ~mesbox("There are two vials on this shelf.");
+    switch_int (~p_choice3_header("Take the first vial.", 1, "Take the second vial.", 2, "Take both vials.", 3, "Take the vials?")) {
+        case 1 :
+            %rd_got_vinegar = ^true;
+            ~rd_give(rd_acetic_acid);
+        case 2 :
+            %rd_got_water = ^true;
+            ~rd_give(rd_dihydrogen_monoxide);
+        case 3 :
+            %rd_got_vinegar = ^true;
+            %rd_got_water = ^true;
+            ~rd_give(rd_acetic_acid);
+            ~rd_give(rd_dihydrogen_monoxide);
+    }
+    return;
+}
+if (%rd_got_vinegar = ^false) {
+    @rd_cheevers_shelf_single(rd_acetic_acid);
+}
+if (%rd_got_water = ^false) {
+    @rd_cheevers_shelf_single(rd_dihydrogen_monoxide);
+}
+~mesbox("There is nothing of interest on these shelves.");
+
+[oploc1,rd_shelves_chemicals_2]
+if (%rd_got_copsulph = ^false) {
+    @rd_cheevers_shelf_single(rd_cupric_sulphate);
+}
+~mesbox("There is nothing of interest on these shelves.");
+
+[oploc1,rd_shelves_chemicals_3]
+if (%rd_got_gypsum = ^false) {
+    @rd_cheevers_shelf_single(rd_gypsum);
+}
+~mesbox("There is nothing of interest on these shelves.");
+
+[oploc1,rd_shelves_chemicals_4]
+if (%rd_got_salt = ^false) {
+    @rd_cheevers_shelf_single(rd_sodium_chloride);
+}
+~mesbox("There is nothing of interest on these shelves.");
+
+[oploc1,rd_shelves_chemicals_5]
+if (%rd_got_n2o = ^false) {
+    @rd_cheevers_shelf_single(rd_nitorus_oxide);
+}
+~mesbox("There is nothing of interest on these shelves.");
+
+[oploc1,rd_shelves_chemicals_6]
+if (%rd_got_tin = ^false) {
+    @rd_cheevers_shelf_single(rd_tin_ore_powder);
+}
+~mesbox("There is nothing of interest on these shelves.");
+
+[oploc1,rd_shelves_chemicals_7]
+if (%rd_got_copore = ^false) {
+    @rd_cheevers_shelf_single(rd_copper_ore_powder);
+}
+~mesbox("There is nothing of interest on these shelves.");
+
+[oploc1,rd_shelves_chemicals_8]
+def_int $left = calc(3 - %rd_spare_water);
+if ($left <= 0) {
+    ~mesbox("There is nothing of interest on these shelves.");
+    return;
+}
+if ($left = 1) {
+    @rd_cheevers_shelf_single(rd_dihydrogen_monoxide);
+}
+def_int $take;
+if ($left = 2) {
+    ~mesbox("There are two vials on this shelf.");
+    $take = ~p_choice3_header("Take one vial.", 1, "Take both vials.", 2, "Don't take a vial.", 0, "Take the vials?");
+} else {
+    ~mesbox("There are three vials on this shelf.");
+    $take = ~p_choice4_header("Take one vial.", 1, "Take two vials.", 2, "Take all three vials.", 3, "Don't take a vial.", 0, "Take the vials?");
+}
+%rd_spare_water = calc(%rd_spare_water + $take);
+while ($take > 0) {
+    ~rd_give(rd_dihydrogen_monoxide);
+    $take = calc($take - 1);
+}
+
+[label,rd_cheevers_shelf_single](namedobj $vial)
+~mesbox("There is a vial on this shelf.");
+if (~p_choice2_header("YES", 1, "NO", 2, "Take the vial?") ! 1) {
+    return;
+}
+switch_obj ($vial) {
+    case rd_acetic_acid : %rd_got_vinegar = ^true;
+    case rd_cupric_sulphate : %rd_got_copsulph = ^true;
+    case rd_gypsum : %rd_got_gypsum = ^true;
+    case rd_sodium_chloride : %rd_got_salt = ^true;
+    case rd_nitorus_oxide : %rd_got_n2o = ^true;
+    case rd_tin_ore_powder : %rd_got_tin = ^true;
+    case rd_copper_ore_powder : %rd_got_copore = ^true;
+    case rd_dihydrogen_monoxide :
+        if (loc_type = rd_shelves_chemicals_8) {
+            %rd_spare_water = calc(%rd_spare_water + 1);
+        } else {
+            %rd_got_water = ^true;
+        }
+}
+~rd_give($vial);
+
+[opheld1,rd_nitorus_oxide]
+inv_setslot(inv, last_slot, vial_empty, 1);
+mes("You open the vial and the gas escapes.");
+
+[proc,rd_is_chemical](obj $obj)(boolean)
+switch_obj ($obj) {
+    case rd_cupric_sulphate, rd_acetic_acid, rd_gypsum, rd_sodium_chloride, rd_nitorus_oxide, rd_dihydrogen_monoxide, rd_tin_ore_powder, rd_copper_ore_powder : return(true);
+    case default : return(false);
+}
+
+[opheldu,rd_tin]
+if (~rd_is_chemical(last_useitem) = false) {
+    ~displaymessage(^dm_default);
+    return;
+}
+inv_setslot(inv, last_useslot, vial_empty, 1);
+mes("You empty the vial into the tin.");
+switch_obj (last_useitem) {
+    case rd_gypsum :
+        %rd_gypsum_in_tin = ^true;
+        inv_setslot(inv, last_slot, rd_tin_of_crap_empty, 1);
+    case rd_dihydrogen_monoxide :
+        %rd_water_in_tin = ^true;
+        inv_setslot(inv, last_slot, rd_tin_of_crap_empty, 1);
+    case default : inv_setslot(inv, last_slot, rd_tin_of_crap, 1);
+}
+
+[opheldu,rd_tin_of_crap_empty]
+if (~rd_is_chemical(last_useitem) = false) {
+    ~displaymessage(^dm_default);
+    return;
+}
+inv_setslot(inv, last_useslot, vial_empty, 1);
+mes("You empty the vial into the tin.");
+if ((last_useitem = rd_dihydrogen_monoxide & %rd_gypsum_in_tin = ^true & %rd_water_in_tin = ^false) | (last_useitem = rd_gypsum & %rd_water_in_tin = ^true & %rd_gypsum_in_tin = ^false)) {
+    %rd_gypsum_in_tin = ^true;
+    %rd_water_in_tin = ^true;
+    inv_setslot(inv, last_slot, rd_tinfull, 1);
+    mes("You notice the tin gets quite warm as you do this.");
+    mes("A lumpy white mixture is made, that seems to be hardening.");
+    return;
+}
+inv_setslot(inv, last_slot, rd_tin_of_crap, 1);
+
+[oplocu,rd_key_chained]
+if (last_useitem ! rd_tinfull) {
+    ~displaymessage(^dm_default);
+    return;
+}
+inv_setslot(inv, last_useslot, rd_keymould, 1);
+mes("You make an impression of the key as the white mixture hardens.");
+
+[opheldu,rd_keymould]
+switch_obj (last_useitem) {
+    case rd_tin_ore_powder : @rd_cheevers_fill_mould(rd_full_keymould_tin);
+    case rd_copper_ore_powder : @rd_cheevers_fill_mould(rd_full_keymould_copper);
+    case default : ~displaymessage(^dm_default);
+}
+
+[opheldu,rd_full_keymould_tin]
+if (last_useitem ! rd_copper_ore_powder) {
+    ~displaymessage(^dm_default);
+    return;
+}
+@rd_cheevers_fill_mould(rd_full_keymould_unheated);
+
+[opheldu,rd_full_keymould_copper]
+if (last_useitem ! rd_tin_ore_powder) {
+    ~displaymessage(^dm_default);
+    return;
+}
+@rd_cheevers_fill_mould(rd_full_keymould_unheated);
+
+[label,rd_cheevers_fill_mould](namedobj $mould)
+inv_setslot(inv, last_useslot, vial_empty, 1);
+inv_setslot(inv, last_slot, $mould, 1);
+mes("You pour the vial into the impression of the key.");
+
+[oplocu,rd_wooden_table_bunsen_burner]
+switch_obj (last_useitem) {
+    case rd_full_keymould_unheated :
+        inv_setslot(inv, last_useslot, rd_full_keymould_complete, 1);
+        mes("You heat the two powdered ores together in the tin.");
+        mes("You make a duplicate of the key in bronze.");
+    case rd_metal_spade :
+        inv_setslot(inv, last_useslot, rd_metal_spade_no_handle, 1);
+        ~rd_give(ashes);
+        mes("You burn the wooden handle away from the spade...");
+        mes("...and are left with a metal spade with no handle.");
+    case default : ~displaymessage(^dm_default);
+}
+
+[opheldu,rd_full_keymould_complete]
+switch_obj (last_useitem) {
+    case rd_knife, rd_chisel, rd_wire :
+        inv_setslot(inv, last_slot, rd_keymould, 1);
+        ~rd_give(rd_puzzleroom_key);
+        mes("You prise the duplicate key out of the tin.");
+    case default : ~displaymessage(^dm_default);
+}
+
+[oploc1,rd_stone_door]
+switch_int (%rd_room6_stone_door) {
+    case 0 :
+        ~mesbox("There is a stone slab here obstructing the door.|There is a small hole in the slab that looks like it might be for a handle.");
+    case 1, 2 :
+        mes("You pull on the spade...");
+        if (%rd_room6_stone_door = 2) {
+            mes("It works as a handle, and you swing the stone door open.");
+            %rd_room6_stone_door = 3;
+            return;
+        }
+        mes("It comes loose, and slides out of the hole in the stone.");
+        %rd_room6_stone_door = 0;
+        %rd_react_on_spade = ^false;
+        ~rd_give(rd_metal_spade_no_handle);
+    case 3 :
+        p_arrivedelay;
+        if (coordx(coord) <= 2477) {
+            ~forcemove(0_38_77_46_12);
+        } else {
+            ~forcemove(0_38_77_44_12);
+        }
+}
+
+[oplocu,rd_stone_door]
+if (%rd_room6_stone_door = 0) {
+    if (last_useitem ! rd_metal_spade_no_handle) {
+        ~displaymessage(^dm_default);
+        return;
+    }
+    inv_delslot(inv, last_useslot);
+    %rd_room6_stone_door = 1;
+    mes("You slide the spade into the hole in the stone...");
+    mes("It's nearly a perfect fit!");
+    return;
+}
+if (%rd_room6_stone_door ! 1 | ~rd_is_chemical(last_useitem) = false) {
+    ~displaymessage(^dm_default);
+    return;
+}
+inv_setslot(inv, last_useslot, vial_empty, 1);
+mes("You pour the vial onto the flat part of the spade.");
+if (last_useitem = rd_cupric_sulphate) {
+    %rd_react_on_spade = ^true;
+    return;
+}
+if (last_useitem = rd_dihydrogen_monoxide & %rd_react_on_spade = ^true) {
+    mes("Something caused a reaction when mixed!");
+    mes("The spade gets hotter, and expands slightly.");
+    %rd_room6_stone_door = 2;
+}
+
+[opheld1,rd_chem_book]
+%book_page = 0;
+%open_book = rd_chem_book;
+@book_flip_page(0, 0, 10, rd_chem_book_pages);
+
+[proc,rd_chem_book_pages]
+switch_int (%book_page) {
+    case 0 : ~book("Alchemical Reactions Study", "Acetic acid and Cupric|Sulphate:|Endothermic.|The Cupric is in|insufficient quantities to|cause any noticeable|reaction.||||||Acetic acid and Gypsum:|Endothermic.|Made a particularly bad|smell, but little else that|was productive.");
+    case 1 : ~book("Alchemical Reactions Study", "Acetic acid and Sodium|Chloride:|Endothermic.|Very tasty when|combined with fried|potatoes at room|temperature.||||||Acetic acid and|Dihydrogen Monoxide:|Endothermic.|The Dihydrogen|Monoxide served only to|dilute the Acetic acid at|room temperature.");
+    case 2 : ~book("Alchemical Reactions Study", "Acetic acid and Cupric|Ore Powder:|Endothermic.|The powdered form of|Cupric Ore allowed a|lower than usual melting|temperature, but the end|product was non-usable.|||||Acetic acid and Tin Ore|powder:|Endothermic.|Similar results to those|made using Cupric Ore.");
+    case 3 : ~book("Alchemical Reactions Study", "Cupric Sulphate and|Dihyrdogen Monoxide:|Exothermic.|A blue compound was|produced, along with heat.|||||||Cupric Sulphate and|Gypsum:|Endothermic.|At room temperature, no|useful product was|created.");
+    case 4 : ~book("Alchemical Reactions Study", "Cupric Sulphate and|Sodium Chloride:|Endothermic.|A pungent odour was|released when combined.|||||||Cupric Sulphate and|Cupric Ore powder:|Endothermic.|The Cupric did not react|with each other at room|temperature.");
+    case 5 : ~book("Alchemical Reactions Study", "Cupric Sulphate and Tin|Ore powder:|Endothermic.|Similar results to those|shown with Cupric Ore,|despite the increased|solubility involved with|the powdered form.|||||Gypsum and Dihydrogen|Monoxide:|Exothermic.|A white liquid compound|was formed, that quickly|cooled at room|temperature to a white|heat resistant solid very|similar to plaster.|Heat was also produced,|although not in the same");
+    case 6 : ~book("Alchemical Reactions Study", "quantity as Cupric|Sulphate with Dihydrogen|Monoxide||||||||||Gypsum and Sodium|Chloride:|Endothermic.|The two did not seem to|noticably mix together at|room temperature.");
+    case 7 : ~book("Alchemical Reactions Study", "Gypsum and Culpric Ore:|Endothermic.|The gypsum seems quite|resistant to most|compounds at normal|room temperature.||||||Gypsum and Tin Ore:|Endothermic.|Again, very similar results|as those shown with|Cupric Ore.");
+    case 8 : ~book("Alchemical Reactions Study", "Sodium Chloride and|Dihydrogen Monoxide:|Endothermic.|At room temperature, the|Sodium Chloride dissolves|quite easily. Dissolution is|faster at higher|temperatures.|||||Sodium Chloride and|Cupric Ore:|Endothermic.|No visible combination at|room temperature.");
+    case 9 : ~book("Alchemical Reactions Study", "Sodium Chloride and Tin|Ore:|Endothermic.|Another very similar|result as with Cupric Ore.|||||||Cupric Ore Powder and|Tin Ore Powder:|Endothermic.|When both ores are in|particulate form, a much|lower than usual bonding|temperature can be|obtained.|When combined at a|moderate heat, (my|laboratory heating");
+    case 10 : ~book("Alchemical Reactions Study", "apparatus) I was able to|form liquid Bronze quite|easily, which cooled to|form a standard Bronze|Bar at a temperature far|lower than that required|to produce in mass at a|furnace.||||Nitrous Monoxide:|Was not able to perform|an experimentation using|this substance, as the|gaseous form would|always escape when the|vial was opened.");
+}

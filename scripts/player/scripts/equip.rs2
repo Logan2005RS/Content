@@ -91,6 +91,9 @@ if (p_finduid(uid) = true) {
 }
 
 [proc,unequip_effect](obj $obj, int $update_all)
+if ($obj = rd_fox | $obj = rd_chicken | $obj = rd_sack) {
+    ~rd_spishyus_drop($obj);
+}
 if($obj = elemental_shield & inv_getobj(worn, ^wearpos_lhand) = null) {
     sound_synth(shield_appear, 1, 0);
 }

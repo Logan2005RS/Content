@@ -1,0 +1,53 @@
+[label,rd_tinley_intro]
+if (npc_find(coord, rd_observer_room_4, 15, 0) = false) {
+    return;
+}
+~chatnpc("<p,neutral>Ah, <displayname()>, you have arrived. Speak to me to begin your task.");
+
+[opnpc1,rd_observer_room_4]
+if (%rd_room4_complete = ^true) {
+    ~rd_observer_pass;
+    return;
+}
+if (%rd_templock_1 > 0) {
+    cleartimer(rd_tinley_wait);
+    @rd_observer_fail;
+}
+~chatnpc("<p,neutral>Ah, welcome <displayname()>. I have but one clue for you to pass this room's puzzle: 'Patience'.");
+%rd_templock_1 = 1;
+%rd_templock_2 = calc((coordx(coord) - 2432) * 64 + coordz(coord) - 4928);
+settimer(rd_tinley_wait, 1);
+
+[timer,rd_tinley_wait]
+if (%rd_templock_1 = 0 | inzone(0_38_77_0_0, 0_38_77_63_63, coord) = false) {
+    cleartimer(rd_tinley_wait);
+    return;
+}
+if (calc((coordx(coord) - 2432) * 64 + coordz(coord) - 4928) ! %rd_templock_2) {
+    cleartimer(rd_tinley_wait);
+    queue(rd_tinley_failed, 0, 0);
+    return;
+}
+%rd_templock_1 = calc(%rd_templock_1 + 1);
+if (%rd_templock_1 > 15) {
+    cleartimer(rd_tinley_wait);
+    %rd_templock_1 = 0;
+    %rd_room4_complete = ^true;
+    queue(rd_tinley_passed, 0, 0);
+}
+
+[queue,rd_tinley_passed]
+if (npc_find(coord, rd_observer_room_4, 15, 0) = true) {
+    ~rd_observer_pass;
+}
+
+[queue,rd_tinley_failed]
+@rd_tinley_fail;
+
+[label,rd_tinley_fail]
+cleartimer(rd_tinley_wait);
+%rd_templock_1 = 0;
+if (npc_find(coord, rd_observer_room_4, 15, 0) = true) {
+    @rd_observer_fail;
+}
+@rd_fail;

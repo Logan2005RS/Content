@@ -76,3 +76,4 @@ if (%spy = 1) {
 [label,black_knights_fortress_sir_amik_postquest]
 ~chatplayer("<p,happy>Hello Sir Amik.");
 ~chatnpc("<p,happy>Hello, friend!");
+@rd_sir_amik;

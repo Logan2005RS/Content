@@ -1,0 +1,79 @@
+[label,rd_table_intro]
+if (npc_find(coord, rd_observer_room_2, 15, 0) = false) {
+    return;
+}
+%rd_templock_1 = ~random_range(1, 12);
+%rd_templock_2 = 0;
+%rd_room_order = %rd_templock_1;
+~chatnpc("<p,neutral>Welcome, <displayname()>. This room will test your observation skills.");
+~chatnpc("<p,neutral>Study the statues closely. There is one missing statue in this room.");
+~chatnpc("<p,happy>We will also mix the order up a little to make things interesting for you!");
+~chatnpc("<p,neutral>You have 10 seconds to memorise the statues... starting NOW!");
+p_delay(16);
+~fade_out;
+p_delay(2);
+%rd_room_order = 0;
+%rd_templock_2 = 1;
+~fade_in;
+p_delay(1);
+if_openoverlay(null);
+~chatnpc_specific("Lady Table", rd_observer_room_2, "<p,neutral>We will now dim the lights and bring the missing statue back in.");
+~chatnpc_specific("Lady Table", rd_observer_room_2, "<p,neutral>Please touch the statue you think has been added.");
+
+[proc,rd_table_answer](int $order)(int)
+switch_int ($order) {
+    case 1 : return(6);
+    case 2 : return(5);
+    case 3 : return(4);
+    case 4 : return(3);
+    case 5 : return(2);
+    case 6 : return(1);
+    case 7 : return(10);
+    case 8 : return(11);
+    case 9 : return(12);
+    case 10 : return(9);
+    case 11 : return(8);
+    case default : return(7);
+}
+
+[opnpc1,rd_observer_room_2]
+if (%rd_room2_complete = ^true) {
+    ~rd_observer_pass;
+    return;
+}
+if (%rd_templock_2 = 0) {
+    return;
+}
+~chatplayer("<p,quiz>What am I supposed to be doing again?");
+~chatnpc("<p,neutral>Touch the statue that was brought in after you entered.");
+~chatnpc("<p,neutral>If you touch the wrong one, you will fail this task, and will be escorted back to Falador.");
+
+[oploc1,rd_statue_multi_1] @rd_table_touch(1);
+[oploc1,rd_statue_multi_2] @rd_table_touch(2);
+[oploc1,rd_statue_multi_3] @rd_table_touch(3);
+[oploc1,rd_statue_multi_4] @rd_table_touch(4);
+[oploc1,rd_statue_multi_5] @rd_table_touch(5);
+[oploc1,rd_statue_multi_6] @rd_table_touch(6);
+[oploc1,rd_statue_multi_7] @rd_table_touch(7);
+[oploc1,rd_statue_multi_8] @rd_table_touch(8);
+[oploc1,rd_statue_multi_9] @rd_table_touch(9);
+[oploc1,rd_statue_multi_10] @rd_table_touch(10);
+[oploc1,rd_statue_multi_11] @rd_table_touch(11);
+[oploc1,rd_statue_multi_12] @rd_table_touch(12);
+
+[label,rd_table_touch](int $statue)
+if (%rd_templock_2 = 0) {
+    return;
+}
+if (npc_find(coord, rd_observer_room_2, 15, 0) = false) {
+    return;
+}
+if (%rd_room2_complete = ^true) {
+    ~chatnpc("<p,neutral>Please step through the portal to meet your next challenge.");
+    return;
+}
+if ($statue ! ~rd_table_answer(%rd_templock_1)) {
+    @rd_observer_fail;
+}
+%rd_room2_complete = ^true;
+~rd_observer_pass;

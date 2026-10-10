@@ -1,0 +1,425 @@
+[label,rd_sir_amik]
+if (%rd_main = ^rd_complete) {
+    return;
+}
+~chatplayer("<p,quiz>Do you have any other quests for me to do?");
+if (%rd_main = ^rd_started) {
+    ~chatnpc("<p,neutral>No, I am afraid not. I suggest you go meet Sir Tiffy in Falador Park, he will be expecting you.");
+    return;
+}
+if (%druidquest < ^druid_complete) {
+    ~chatnpc("<p,neutral>Nothing I can think of at the moment...");
+    ~mesbox("You do not meet all of the requirements to start the Recruitment Drive quest.");
+    return;
+}
+~chatnpc("<p,neutral>Quests, eh? Well, I don't have anything on the go at the moment, but there is an organisation that is always looking for capable adventurers to assist them.");
+~chatnpc("<p,happy>Your excellent work sorting out those Black Knights means I will happily write you a letter of recommendation.");
+~chatnpc("<p,quiz>Would you like me to put your name forwards to them?");
+switch_int (~p_choice2_header("Yes.", 1, "No.", 2, "Start the Recruitment Drive quest?")) {
+    case 1 :
+        ~chatplayer("<p,happy>Sure thing Sir Amik, sign me up!");
+        ~chatnpc("<p,shifty>Erm, well, this is a little embarrassing, I already HAVE put you forward as a potential member.");
+        ~chatnpc("<p,neutral>They are called the Temple Knights, and you are to meet Sir Tiffy Cashien in Falador park for testing immediately.");
+        ~chatplayer("<p,happy>Okey dokey, I'll go do that then.");
+        %rd_main = ^rd_started;
+        if (gender() = ^gender_male) {
+            %rd_male_at_start = ^true;
+        }
+        ~send_quest_progress(questlist:no_jewelry_text, %rd_main, ^rd_complete);
+    case 2 :
+        ~chatplayer("<p,neutral>No thanks, that doesn't sound like the kind of thing that would interest me...");
+        ~chatnpc("<p,neutral>As you wish adventurer, let's say no more about it.");
+}
+
+[proc,rd_greeting]()(string)
+if (gender() = ^gender_female) {
+    return("What ho, milady.");
+}
+return("What ho, sir.");
+
+[opnpc1,rd_teleporter_guy]
+if (%rd_main = ^rd_complete) {
+    ~chatnpc("<p,happy><~rd_greeting> Jolly good show on the old training grounds thingy, what?");
+    return;
+}
+if (%rd_main = ^rd_not_started) {
+    ~chatplayer("<p,neutral>Hello.");
+    ~chatnpc("<p,happy><~rd_greeting> Spiffing day for a walk in the park, what?");
+    ~chatplayer("<p,confused>...spiffing?");
+    ~chatnpc("<p,happy>Absolutely, top-hole! Well, can't stay and chat all day, dontchaknow! Ta-ta for now!");
+    ~chatplayer("<p,confused>Erm... goodbye.");
+    return;
+}
+if (%rd_spoke_to_tiffy = ^true) {
+    ~chatnpc("<p,happy>Ah, what ho! Back for another go at the old testing, what?");
+    switch_int (~p_choice2("Yes, let's go!", 1, "No, I've changed my mind.", 2)) {
+        case 1 : @rd_tiffy_go;
+        case 2 : @rd_tiffy_decline;
+    }
+    return;
+}
+~chatplayer("<p,neutral>Sir Amik Varze sent me to meet you here for some sort of testing...?");
+~chatnpc("<p,happy>Ah, <displayname()>! Amik told me all about you, dontchaknow! Spiffing job you did with the old Black Knights there, absolutely first class.");
+~chatplayer("<p,shifty>...thanks, I think.");
+if (gender() = ^gender_female) {
+    ~chatnpc("<p,happy>Well, a top-notch filly like yourself is just the right sort we've been seeking for our organisation.");
+} else {
+    ~chatnpc("<p,happy>Well, a top-notch fellow like yourself is just the right sort we've been seeking for our organisation.");
+}
+%rd_spoke_to_tiffy = ^true;
+@rd_tiffy_options;
+
+[label,rd_tiffy_options]
+switch_int (~p_choice4("Testing...?", 1, "Organisation...?", 2, "Yes, let's go!", 3, "No, I've changed my mind.", 4)) {
+    case 1 :
+        ~chatplayer("<p,quiz>...testing? What exactly do you mean by testing?");
+        ~chatnpc("<p,shock>Jolly bad show! Varze was supposed to have informed you about all this before sending you here!");
+        ~chatnpc("<p,neutral>Well, not your fault I suppose, what? Anywho, our organisation is looking for a certain specific type of person to join.");
+        ~chatplayer("<p,quiz>So... You want me to go kill some monster or something for you?");
+        ~chatnpc("<p,neutral>Not at all, old bean. There's plenty of warriors around should we require dumb muscle.");
+        ~chatnpc("<p,neutral>That's really not the kind of thing our organisation is after, what?");
+        ~chatplayer("<p,quiz>So you want me to go and fetch you some kind of common item, and then take it for delivery somewhere on the other side of the country?");
+        ~chatplayer("<p,angry>Because I really hate doing that!");
+        ~chatnpc("<p,laugh>Haw haw haw What a dull thing to ask of someone, what?");
+        ~chatnpc("<p,happy>I know what you mean though, I did my fair share of running errands when I was a young adventurer, myself!");
+        ~chatplayer("<p,quiz>So what exactly will this test consist of?");
+        ~chatnpc("<p,neutral>Can't let just any old riff-raff in, what? The mindless thugs and bully boys are best left in the White Knights or the Guards, we look for the top-shelf brains to join us.");
+        ~chatplayer("<p,quiz>So you want to test my brains? Will it hurt?");
+        ~chatnpc("<p,laugh>Haw Haw Haw That's a good one!");
+        ~chatnpc("<p,neutral>Not in the slightest... Well, maybe a bit, but we all have to make sacrifices occasionally, what?");
+        ~chatplayer("<p,quiz>What do you want me to do then?");
+        ~chatnpc("<p,neutral>It's a test of wits, what? I'll take you to our secret training grounds, and you will have to pass through a series of five separate intelligence tests to prove you're our sort of adventurer.");
+        ~chatnpc("<p,neutral>Standard puzzle room rules will apply.");
+        ~chatplayer("<p,confused>Erm... what are 'standard puzzle room rules' exactly?");
+        ~chatnpc("<p,happy>Never done this sort of thing before, what?");
+        ~chatnpc("<p,neutral>The simple rules are: No items or equipment to be brought with you. Each room is a self contained puzzle. You may quit at any time.");
+        ~chatnpc("<p,neutral>Of course, if you quit a room, then all your progress up to that point will be cleared, and you'll have to start again from scratch.");
+        ~chatnpc("<p,quiz>Our organisation manages to filter all the top-notch adventurers this way. So, are you ready to go?");
+        @rd_tiffy_options;
+    case 2 :
+        ~chatplayer("<p,quiz>This organisation you keep mentioning... Perhaps you could tell me a little about it?");
+        ~chatnpc("<p,shock>Oh, that Amik! Jolly bad form, did he not tell you anything that he was supposed to?");
+        ~chatplayer("<p,neutral>No... He didn't really tell me anything except to come here and meet you...");
+        ~chatnpc("<p,happy>Well now old sport, let me give you the heads up and the low down, what?");
+        ~chatnpc("<p,neutral>I represent the Temple Knights. We are the premier order of Knights in Asgarnia, if not the world. Saradomin himself personally founded our order centuries ago, and we answer only to him.");
+        ~chatnpc("<p,neutral>Only the very best of the best are permitted to join, and the powers we command are formidable indeed.");
+        ~chatnpc("<p,happy>You might say that we are the front line of defence for the entire kingdom!");
+        ~chatplayer("<p,quiz>So what's the difference between you and the White Knights?");
+        ~chatnpc("<p,neutral>Well, in simple terms, we're better! Any fool with a sword can manage to get into the White Knights, which is mostly the reason they are so very, very incompetent, what?");
+        ~chatnpc("<p,neutral>The Temple Knights on the other hand have to be smarter, stronger, better than all others. We are the elite. No man controls us for our orders come directly from Saradomin himself!");
+        ~chatplayer("<p,shock>Cool, you mean I get to meet Saradomin?");
+        ~chatnpc("<p,shifty>Well, uh, not exactly... Sir Vey Lance, our head of operations, is the only one of our order who has ever personally met Saradomin, but everything he tells us to do is done with Saradomin's implicit permission.");
+        ~chatnpc("<p,neutral>It's not every job where you have more authority than the king, now is it?");
+        ~chatplayer("<p,shock>Wait... You can order the King around?!?!");
+        ~chatnpc("<p,neutral>Well, not me personally, I'm only in the recruitment side of things dontchaknow, but the higher ranking members of the organisation have almost absolute power over this kingdom.");
+        ~chatnpc("<p,shifty>Plus a few others, so I hear....");
+        ~chatnpc("<p,quiz>Anyway, this is why we keep our organisation shrouded in secrecy, and why we demand such rigorous testing for all potential recruits. Speaking of which, are you ready to begin your testing?");
+        @rd_tiffy_options;
+    case 3 : @rd_tiffy_go;
+    case 4 : @rd_tiffy_decline;
+}
+
+[label,rd_tiffy_decline]
+~chatplayer("<p,neutral>Well... I don't know... This doesn't really sound like my kind of thing...");
+~chatplayer("<p,neutral>To be honest, I'd rather go kill stuff for loot than use my mind to work things out...");
+~chatnpc("<p,neutral>Well, it takes all sorts to make the world spin, what? Maybe you'll find a nice job with the Guards sometime.");
+~chatnpc("<p,sad>Sad though, your intelligence file seemed quite promising. Should you change your mind, you come back and let me know, what?");
+
+[label,rd_tiffy_go]
+~chatplayer("<p,happy>Yeah, this sounds right up my street. Let's go!");
+if (inv_freespace(inv) < inv_size(inv) | inv_freespace(worn) < inv_size(worn)) {
+    if (gender() = ^gender_female) {
+        ~chatnpc("<p,neutral>Well, bad luck old gal, you'll need to have a completely empty inventory and you can't be wearing any equipment before we can accurately test you.");
+    } else {
+        ~chatnpc("<p,neutral>Well, bad luck old boy, you'll need to have a completely empty inventory and you can't be wearing any equipment before we can accurately test you.");
+    }
+    ~chatnpc("<p,happy>Don't want people cheating by smuggling stuff in, what?");
+    ~chatnpc("<p,happy>Come and see me again after you've been to the old bank to drop your stuff off, what?");
+    return;
+}
+~chatnpc("<p,happy>Jolly good show! Now, the training grounds location is a secret so...");
+~rd_reset_rooms;
+~fade_out;
+p_delay(2);
+~chatnpc_specific("Sir Tiffy Cashien", rd_teleporter_guy, "<p,happy>Here we go! Mind your head!");
+~chatnpc_specific("Sir Tiffy Cashien", rd_teleporter_guy, "<p,happy>Oops, ignore the smell! Nearly there!");
+~chatnpc_specific("Sir Tiffy Cashien", rd_teleporter_guy, "<p,happy>And... Here we are! Best of luck!");
+@rd_enter_room(~rd_next_room);
+
+[proc,rd_reset_rooms]
+%rd_room1_complete = ^false;
+%rd_room2_complete = ^false;
+%rd_room3_complete = ^false;
+%rd_room4_complete = ^false;
+%rd_room5_complete = ^false;
+%rd_room6_complete = ^false;
+%rd_room7_complete = ^false;
+~rd_reset_room_state;
+
+[proc,rd_reset_room_state]
+%rd_room_order = 0;
+%rd_room1_initiated = ^false;
+%rd_got_vinegar = ^false;
+%rd_got_water = ^false;
+%rd_got_copsulph = ^false;
+%rd_got_gypsum = ^false;
+%rd_got_salt = ^false;
+%rd_got_n2o = ^false;
+%rd_got_tin = ^false;
+%rd_rooms_tempvar = 0;
+def_int $tiffy = %rd_spoke_to_tiffy;
+%rd_rooms_tempvar2 = 0;
+%rd_spoke_to_tiffy = $tiffy;
+%rd_combolock_letters = 0;
+inv_clear(inv);
+inv_clear(worn);
+buildappearance(worn);
+
+[proc,rd_room_complete](int $room)(int)
+switch_int ($room) {
+    case 1 : return(%rd_room1_complete);
+    case 2 : return(%rd_room2_complete);
+    case 3 : return(%rd_room3_complete);
+    case 4 : return(%rd_room4_complete);
+    case 5 : return(%rd_room5_complete);
+    case 6 : return(%rd_room6_complete);
+    case default : return(%rd_room7_complete);
+}
+
+[proc,rd_set_room_complete](int $room)
+switch_int ($room) {
+    case 1 : %rd_room1_complete = ^true;
+    case 2 : %rd_room2_complete = ^true;
+    case 3 : %rd_room3_complete = ^true;
+    case 4 : %rd_room4_complete = ^true;
+    case 5 : %rd_room5_complete = ^true;
+    case 6 : %rd_room6_complete = ^true;
+    case default : %rd_room7_complete = ^true;
+}
+
+[proc,rd_rooms_completed]()(int)
+def_int $count = 0;
+def_int $room = 1;
+while ($room <= 7) {
+    if (~rd_room_complete($room) = ^true) {
+        $count = calc($count + 1);
+    }
+    $room = calc($room + 1);
+}
+return($count);
+
+[proc,rd_next_room]()(int)
+if (~rd_rooms_completed = calc(^rd_rooms_required - 1) & %rd_room3_complete = ^false) {
+    return(^rd_room_kuam);
+}
+def_int $room = ~random_range(1, 7);
+while (~rd_room_complete($room) = ^true) {
+    $room = ~random_range(1, 7);
+}
+return($room);
+
+[proc,rd_room_start](int $room)(coord)
+switch_int ($room) {
+    case 1 : return(0_38_77_58_44);
+    case 2 : return(0_38_77_28_51);
+    case 3 : return(0_38_77_23_36);
+    case 4 : return(0_38_77_39_28);
+    case 5 : return(0_38_77_7_28);
+    case 6 : return(0_38_77_35_12);
+    case default : return(0_38_77_19_7);
+}
+
+[proc,rd_room_walk](int $room)(coord)
+switch_int ($room) {
+    case 1 : return(0_38_77_57_44);
+    case 2 : return(0_38_77_27_51);
+    case 3 : return(0_38_77_24_36);
+    case 4 : return(0_38_77_40_28);
+    case 5 : return(0_38_77_8_28);
+    case 6 : return(0_38_77_36_12);
+    case default : return(0_38_77_19_8);
+}
+
+[proc,rd_room_exit](int $room)(coord)
+switch_int ($room) {
+    case 1 : return(0_38_77_39_44);
+    case 2 : return(0_38_77_14_51);
+    case 3 : return(0_38_77_32_35);
+    case 4 : return(0_38_77_49_28);
+    case 5 : return(0_38_77_15_28);
+    case 6 : return(0_38_77_47_12);
+    case default : return(0_38_77_20_16);
+}
+
+[label,rd_enter_room](int $room)
+if_close;
+~rd_reset_room_state;
+p_telejump(~rd_room_start($room));
+~fade_in;
+p_delay(1);
+if_openoverlay(null);
+p_walk(~rd_room_walk($room));
+p_delay(1);
+switch_int ($room) {
+    case ^rd_room_spishyus : @rd_spishyus_intro;
+    case ^rd_room_table : @rd_table_intro;
+    case ^rd_room_kuam : @rd_kuam_intro;
+    case ^rd_room_tinley : @rd_tinley_intro;
+    case ^rd_room_itchood : @rd_itchood_intro;
+    case ^rd_room_cheevers : @rd_cheevers_intro;
+    case ^rd_room_hynn : @rd_hynn_intro;
+}
+
+[proc,rd_observer_pass]
+switch_int (~rd_rooms_completed) {
+    case 4 :
+        ~chatnpc("<p,happy>Well done, that was your fourth test, you only have one more to go.");
+        ~chatnpc("<p,happy>Please step through the portal to your final test... ...and good luck, <displayname()>.");
+    case 5 : ~chatnpc("<p,happy>Excellent work! You have passed all five of the required tests! Please accept my congratulations!");
+    case default : ~chatnpc("<p,happy>Excellent work, <displayname()>. Please step through the portal to meet your next challenge.");
+}
+
+[label,rd_observer_fail]
+~chatnpc("<p,sad>No... I am very sorry. Apparently you are not up to the challenge. I will return you where you came from, better luck in the future.");
+@rd_fail;
+
+[label,rd_fail]
+if_close;
+~fade_out;
+p_delay(2);
+~rd_reset_rooms;
+p_telejump(^rd_falador_park);
+~fade_in;
+p_delay(1);
+if_openoverlay(null);
+~chatnpc_specific("Sir Tiffy Cashien", rd_teleporter_guy, "<p,sad>Oh, jolly bad luck, what? Not quite the brainbox you thought you were, eh?");
+~chatnpc_specific("Sir Tiffy Cashien", rd_teleporter_guy, "<p,happy>Well, never mind! You have an open invitation to join our organisation, so when you're feeling a little smarter, come back and talk to me again!");
+
+[oploc1,rd_portal_room1_entrance] @rd_fail;
+[oploc1,rd_portal_room2_entrance] @rd_fail;
+[oploc1,rd_portal_room3_entrance] @rd_fail;
+[oploc1,rd_portal_room4_entrance] @rd_fail;
+[oploc1,rd_portal_room5_entrance] @rd_fail;
+[oploc1,rd_portal_room6_entrance] @rd_fail;
+[oploc1,rd_portal_room7_entrance] @rd_fail;
+
+[oploc1,rd_room1_exitdoor] @rd_exit_door(1);
+[oploc1,rd_room2_exitdoor] @rd_exit_door(2);
+[oploc1,rd_room3_exitdoor] @rd_exit_door(3);
+[oploc1,rd_room4_exitdoor]
+if (%rd_templock_1 > 0 & %rd_room4_complete = ^false) {
+    @rd_tinley_fail;
+}
+@rd_exit_door(4);
+[oploc1,rd_room5_exitdoor]
+if (%rd_room5_complete = ^false) {
+    @rd_combolock_open;
+}
+@rd_exit_door(5);
+[oploc1,rd_room6_exitdoor]
+if (%rd_room6_complete = ^false & inv_total(inv, rd_puzzleroom_key) > 0) {
+    mes("You use the duplicate key you made to unlock the door.");
+    ~rd_set_room_complete(^rd_room_cheevers);
+}
+@rd_exit_door(6);
+[oploc1,rd_room7_exitdoor] @rd_exit_door(7);
+
+[label,rd_exit_door](int $room)
+if (~rd_room_complete($room) = ^false) {
+    mes("You have not completed this room's puzzle yet.");
+    return;
+}
+p_arrivedelay;
+sound_synth(door_open, 1, 0);
+p_telejump(~rd_room_exit($room));
+
+[oploc1,rd_portal_room1_exit] @rd_exit_portal(1);
+[oploc1,rd_portal_room2_exit] @rd_exit_portal(2);
+[oploc1,rd_portal_room3_exit] @rd_exit_portal(3);
+[oploc1,rd_portal_room4_exit] @rd_exit_portal(4);
+[oploc1,rd_portal_room5_exit] @rd_exit_portal(5);
+[oploc1,rd_portal_room6_exit] @rd_exit_portal(6);
+[oploc1,rd_portal_room7_exit] @rd_exit_portal(7);
+
+[label,rd_exit_portal](int $room)
+if (~rd_room_complete($room) = ^false) {
+    mes("You have not completed this room's puzzle yet.");
+    return;
+}
+if (~rd_rooms_completed >= ^rd_rooms_required) {
+    @rd_finish;
+}
+if_close;
+~fade_out;
+p_delay(2);
+@rd_enter_room(~rd_next_room);
+
+[label,rd_finish]
+if_close;
+~fade_out;
+p_delay(2);
+~rd_reset_rooms;
+p_telejump(^rd_falador_park);
+~fade_in;
+p_delay(1);
+if_openoverlay(null);
+~chatplayer("<p,happy>I believe I've managed to pass the tests!");
+~chatnpc_specific("Sir Tiffy Cashien", rd_teleporter_guy, "<p,happy>Oh, jolly well done! Your performance will need to be evaluated by Sir Vey personally, but I don't think it's going too far ahead of myself to welcome you to the team!");
+queue(rd_quest_complete, 0, 0);
+
+[queue,rd_quest_complete]
+if (%rd_main ! ^rd_started) {
+    return;
+}
+if (%rd_male_at_start = ^true & gender() = ^gender_female) {
+    inv_add(inv, rd_makeover_ticket, 1);
+    inv_add(inv, coins, 3000);
+}
+inv_add(inv, basic_tk_helm, 1);
+stat_advance(prayer, 10000);
+stat_advance(herblore, 10000);
+stat_advance(agility, 10000);
+%rd_main = ^rd_complete;
+session_log(^log_adventure, "Quest complete: Recruitment Drive");
+~send_quest_complete(questlist:no_jewelry_text, basic_tk_helm, 250, ^rd_questpoints, "You have passed the\\nRecruitment Drive!");
+
+[proc,rd_login]
+if (inzone(0_38_77_0_0, 3_38_77_63_63, coord) = true) {
+    ~rd_reset_rooms;
+    p_teleport(^rd_falador_park);
+}
+
+[if_button,questlist:no_jewelry_text]
+def_string $text;
+if (%rd_main = ^rd_not_started) {
+    $text = append($text, "@dbl@I can start this quest by speaking to @dre@Sir Amik Varze@dbl@, upstairs in|@dre@Falador Castle@dbl@,|");
+    if (%druidquest >= ^druid_complete) {
+        $text = append($text, "@str@with the Druidic Ritual Quest completed,|");
+    } else {
+        $text = append($text, "@dbl@with the @dre@Druidic Ritual Quest@dbl@ completed,|");
+    }
+    if (%spy >= ^blackknight_complete) {
+        $text = append($text, "@str@and since I have completed the Black Knights' Fortress|@str@Quest.");
+    } else {
+        $text = append($text, "@dbl@and after I have completed the @dre@Black Knights' Fortress|@dre@Quest@dbl@.");
+    }
+    ~quest_journal("Recruitment Drive", $text);
+    return;
+}
+$text = append($text, "@str@Sir Amik Varze told me that he had put my name forward as|@str@a potential member of some mysterious organisation.|");
+if (%rd_main = ^rd_complete) {
+    $text = append($text, "@str@I went to Falador Park, and met a strange old man named|@str@Tiffy.|");
+    $text = append($text, "@str@He sent me to a secret training ground, where my wits|@str@were thoroughly tested.|");
+    $text = append($text, "@str@Luckily, I was too smart to fall for any of their little tricks,|@str@and passed the test with flying colours.|");
+    $text = append($text, "@str@I am now an official member of the Temple Knights,|@str@although I have to wait for the paperwork to go through|@str@before I can commence working for them.||");
+    $text = append($text, "@red@QUEST COMPLETE!");
+    ~quest_journal("Recruitment Drive", $text);
+    return;
+}
+if (inzone(0_38_77_0_0, 3_38_77_63_63, coord) = true) {
+    $text = append($text, "@dbl@A man named @dre@Tiffy@dbl@ brought me @dre@here, to the secret training|@dre@grounds@dbl@ so that I could be tested for the job.||");
+    $text = append($text, "@dbl@I should @dre@work out@dbl@ what I am supposed to do to complete|@dbl@these rooms...");
+} else {
+    $text = append($text, "@dbl@I should head to @dre@Falador Park@dbl@ to meet my @dre@Contact@dbl@ so that I|@dbl@can begin my @dre@testing for the job@dbl@.");
+}
+~quest_journal("Recruitment Drive", $text);
