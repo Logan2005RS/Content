@@ -215,3 +215,76 @@ data=loot,garlic,1,1,3,a garlic
 data=loot_total,30
 data=stall,vegtable stall
 data=stall,some vegetables
+
+[stealing_keldagrim_bakery_stall]
+table=stealing
+data=loc,dwarf_market_bakery
+data=replacement,dwarf_market_empty_stall
+data=owner,dwarf_city_shop_bakery
+data=guard,dwarf_city_black_guard1
+data=guard,dwarf_city_black_guard2
+data=guard,dwarf_city_black_guard3
+data=guard,dwarf_city_black_guard4
+data=level,5
+data=experience,160
+data=respawn_ticks,8
+data=loot,cake,1,1,13,a cake
+data=loot,bread,1,1,5,some bread
+data=loot,chocolate_slice,1,1,2,a chocolate slice
+data=loot_total,20
+data=stall,bakery stall
+
+[stealing_keldagrim_crafting_stall]
+table=stealing
+data=loc,dwarf_market_crafting
+data=replacement,dwarf_market_empty_stall
+data=owner,dwarf_city_shop_craft
+data=guard,dwarf_city_black_guard1
+data=guard,dwarf_city_black_guard2
+data=guard,dwarf_city_black_guard3
+data=guard,dwarf_city_black_guard4
+data=level,5
+data=experience,160
+data=respawn_ticks,24
+data=loot,ring_mould,1,1,1,a ring mould
+data=loot,necklace_mould,1,1,1,a necklace mould
+data=loot,chisel,1,1,1,a chisel
+data=loot_total,3
+data=stall,crafting stall
+
+[stealing_keldagrim_silver_stall]
+table=stealing
+data=loc,dwarf_market_silver
+data=replacement,dwarf_market_empty_stall
+data=owner,dwarf_city_shop_silver
+data=guard,dwarf_city_black_guard1
+data=guard,dwarf_city_black_guard2
+data=guard,dwarf_city_black_guard3
+data=guard,dwarf_city_black_guard4
+data=level,50
+data=experience,540
+data=respawn_ticks,100
+data=loot,silver_ore,1,1,128,some silver
+data=loot_total,128
+data=stall,silver stall
+data=stall,some silver
+
+[stealing_keldagrim_gem_stall]
+table=stealing
+data=loc,dwarf_market_gems
+data=replacement,dwarf_market_empty_stall
+data=owner,dwarf_city_shop_gems
+data=guard,dwarf_city_black_guard1
+data=guard,dwarf_city_black_guard2
+data=guard,dwarf_city_black_guard3
+data=guard,dwarf_city_black_guard4
+data=level,75
+data=experience,160
+data=respawn_ticks,600
+data=loot,uncut_sapphire,1,1,105,an Uncut sapphire
+data=loot,uncut_emerald,1,1,17,an Uncut emerald
+data=loot,uncut_ruby,1,1,5,an Uncut ruby
+data=loot,uncut_diamond,1,1,1,an Uncut diamond
+data=loot_total,128
+data=stall,gem stall
+data=stall,a gem

@@ -1,0 +1,440 @@
+[opnpc1,dwarf_city_black_guard1] @keldagrim_black_guard;
+[opnpc1,dwarf_city_black_guard2] @keldagrim_black_guard;
+[opnpc1,dwarf_city_black_guard3] @keldagrim_black_guard;
+[opnpc1,dwarf_city_black_guard4] @keldagrim_black_guard;
+[opnpc1,dwarf_city_berserker1] @keldagrim_black_guard;
+[opnpc1,dwarf_city_berserker2] @keldagrim_black_guard;
+[opnpc1,dwarf_city_berserker3] @keldagrim_black_guard;
+
+[label,keldagrim_black_guard]
+switch_int (random(5)) {
+    case 0 : ~chatnpc("<p,angry>Obey the law!");
+    case 1 : ~chatnpc("<p,angry>Stay out of trouble!");
+    case 2 : ~chatnpc("<p,angry>Out of the way, human!");
+    case 3 : ~chatnpc("<p,angry>I'm keeping an eye on you!");
+    case 4 : ~mesbox("The guard ignores you.");
+}
+
+[opnpc1,dwarf_city_dwarf_man1]
+~chatnpc("<p,angry>Can you leave me alone please? I'm trying to get a bit of rest.");
+
+[opnpc1,dwarf_city_dwarf_man2]
+~chatnpc("<p,angry>Do you mind? You're in my home.");
+~chatplayer("<p,neutral>I'm sorry, should I have knocked?");
+~chatnpc("<p,angry>Very funny, human.");
+~chatnpc("<p,angry>We can't all live in plush houses, you know. But that doesn't mean us mining dwarves don't work hard.");
+~chatplayer("<p,quiz>Where do you do your mining?");
+~chatnpc("<p,bored>Normally the coal mine to the north. We need a lot of coal to keep our steam engines going, you know.");
+~chatplayer("<p,quiz>Can I do a bit of mining there as well?");
+~chatnpc("<p,bored>I'm not sure, but as long as no one notices I don't think anyone is going to care.");
+
+[opnpc1,dwarf_city_dwarf_man4]
+~chatnpc("<p,neutral>Welcome to my home. Is there anything you wanted?");
+~chatplayer("<p,quiz>Nothing in particular. Got any sightseeing tips?");
+~chatnpc("<p,neutral>No, I'm just a factory worker. Don't do tours.");
+~chatplayer("<p,confused>This doesn't look like a factory.");
+~chatnpc("<p,neutral>This is my home. I'm off-duty.");
+
+[opnpc1,dwarf_city_dwarf_man6]
+~chatnpc("<p,happy>I say, I say, a toast to this fine human!");
+~chatplayer("<p,confused>What? I mean, err... why?");
+~chatnpc("<p,happy>Why not!");
+if (inv_total(inv, beer) > 0 | inv_total(inv, dwarven_stout) > 0) {
+    ~chatplayer("<p,happy>Why not indeed! Cheers!");
+    ~chatnpc("<p,happy>Cheers!");
+    if (inv_total(inv, beer) > 0) {
+        inv_del(inv, beer, 1);
+    } else {
+        inv_del(inv, dwarven_stout, 1);
+    }
+    inv_add(inv, beer_glass, 1);
+    return;
+}
+if (inv_total(inv, jug_wine) > 0) {
+    ~chatplayer("<p,neutral>Well, I have this jug of wine...");
+    ~chatnpc("<p,neutral>No no, get a pint of beer, jugs of wine aren't good to toast with! Wine stains are terribly hard to wash out of a beard.");
+    return;
+}
+~chatplayer("<p,neutral>I don't have anything suitable to toast with.");
+~chatnpc("<p,happy>Then go get something from the bar!");
+
+[opnpc1,dwarf_city_dwarf_man8]
+~chatnpc("<p,happy>Kebabs! Get your kebabs here! One gold each!");
+def_int $option = ~p_choice3("Sure, one kebab please.", 1, "I'm looking for a drunken dwarf.", 2, "Do you have any quests?", 3);
+switch_int ($option) {
+    case 1 :
+        ~chatplayer("<p,happy>Sure, one kebab please.");
+        if (inv_total(inv, coins) < 1) {
+            ~chatnpc("<p,angry>Yes? Are you going to give me that one gold coin then?");
+            ~chatplayer("<p,sad>Sorry, I don't seem to have any money on me.");
+            ~chatnpc("<p,neutral>The bank is Keldagrim-West. Hurry back!");
+            return;
+        }
+        inv_del(inv, coins, 1);
+        inv_add(inv, kebab, 1);
+    case 2 :
+        ~chatplayer("<p,quiz>I'm looking for a drunken dwarf.");
+        ~chatnpc("<p,neutral>Just go out in the streets, they can't be hard to find!");
+        ~chatplayer("<p,neutral>No, a specific drunken dwarf, he keeps harassing me.");
+        ~chatnpc("<p,neutral>That's still not very helpful. But let me see. There is one particularly drunken dwarf just to the northeast of here.");
+        ~chatnpc("<p,neutral>He's scaring away my customers, he says there's something wrong with my kebabs. Quite annoying fellow.");
+        ~chatplayer("<p,neutral>I don't think that's who I mean.");
+        ~chatnpc("<p,neutral>Well, he does have a relative who wanders all over Gielinor. Comes back from time to time to buy more kebabs. Don't see him very often though.");
+        ~chatplayer("<p,quiz>Do you think I'll have any chance of catching him here?");
+        ~chatnpc("<p,neutral>I think he was back here quite recently, so I doubt he'll be back any time soon.");
+    case 3 :
+        ~chatplayer("<p,quiz>Do you have any quests?");
+        ~chatnpc("<p,happy>Not really! I have a steady supply of meat coming in through the carts and I don't really need anything else!");
+}
+
+[opnpc1,dwarf_city_dwarf_man9]
+~chatplayer("<p,quiz>Say, aren't you a bit tall for a dwarf?");
+~chatnpc("<p,neutral>Was there anything in particular you wanted?");
+def_int $option = ~p_choice2("I'd like a quest please.", 1, "No, I just like talking to strangers.", 2);
+if ($option = 1) {
+    ~chatplayer("<p,happy>I'd like a quest please.");
+    ~chatnpc("<p,neutral>I have nothing to do for you, I'm afraid. Ask around town, though, there are always people who need some work done around here.");
+    return;
+}
+~chatplayer("<p,happy>No, I just like talking to strangers.");
+~chatnpc("<p,angry>Well I don't.");
+
+[opnpc1,dwarf_city_dwarf_man10]
+~chatnpc("<p,confused>What to buy? What to buy?");
+~chatnpc("<p,neutral>Oh, hello human.");
+~chatplayer("<p,quiz>Anything I can help you with?");
+~chatnpc("<p,neutral>Only if you can help me make a suggestion on what to buy.");
+~chatplayer("<p,happy>I smell a quest!");
+~chatnpc("<p,neutral>No, not really. I just need some advice on what to buy, that's all.");
+def_int $option = ~p_choice5("New clothes.", 1, "A warhammer.", 2, "A piece of rope.", 3, "An oversized hat.", 4, "Nothing.", 5);
+switch_int ($option) {
+    case 1 :
+        ~chatplayer("<p,neutral>You should buy some new clothes. You can't go around town wearing what you're wearing.");
+        ~chatnpc("<p,neutral>You're right, this is a little drab. I shouldn't really go around Keldagrim-West wearing this, should I?");
+        ~chatnpc("<p,confused>Of course I still don't know what colour I should get. I don't want to accidentally offend the wrong company of course.");
+        ~chatplayer("<p,neutral>Never mind.");
+    case 2 :
+        ~chatplayer("<p,happy>You should get yourself a big mighty warhammer.");
+        ~chatnpc("<p,neutral>I don't think so. The warhammer shop is run by the Red Axe. I'd rather stay out of there.");
+        ~chatplayer("<p,quiz>You don't like the Red Axe?");
+        ~chatnpc("<p,angry>They're all a lot of bullies if you ask me.");
+    case 3 :
+        ~chatplayer("<p,neutral>Get yourself a long piece of rope.");
+        ~chatnpc("<p,confused>What would I do with a rope?");
+        ~chatplayer("<p,neutral>I don't know. I generally find a rope useful while adventuring.");
+        ~chatnpc("<p,neutral>I don't do a lot of adventuring to be honest.");
+    case 4 :
+        ~chatplayer("<p,happy>An oversized hat. In a ridiculous colour.");
+        ~chatnpc("<p,angry>No one is selling hats here, that's not a very helpful suggestion at all.");
+    case 5 :
+        ~chatplayer("<p,neutral>Nothing. You should buy absolutely nothing.");
+        ~chatnpc("<p,happy>Now that's the best idea I've heard all day.");
+        ~chatplayer("<p,happy>I thought so! Now why don't you give me some of the money I saved you?");
+        ~chatnpc("<p,neutral>No, I don't think so. I think I'd rather buy something with my money after all.");
+}
+
+[opnpc1,dwarf_city_dwarf_man11]
+~chatnpc("<p,angry>Oh, don't bother me human.");
+~chatplayer("<p,quiz>Why not? What's wrong?");
+~chatnpc("<p,angry>You are wrong, human. Your attire is outrageous. Your presence is obnoxious.");
+~chatplayer("<p,confused>What? What are you saying?");
+~chatnpc("<p,angry>I'm saying you're in my way.");
+
+[opnpc1,dwarf_city_old_dwarf1]
+~chatplayer("<p,quiz>Hello, can I ask you a question?");
+~chatnpc("<p,neutral>Oh yes, young fellow? Yes, what do you want?");
+~chatnpc_specific("Haera", dwarf_city_old_dwarf2, "<p,quiz>Who's that you're talking to Hegir?");
+~chatnpc("<p,neutral>Let me see, he appears to be a human of some sort.");
+~chatnpc("<p,quiz>What was your name again, human?");
+~chatplayer("<p,neutral><displayname()>.");
+~chatnpc("<p,neutral>It's <displayname()>!");
+~chatnpc_specific("Haera", dwarf_city_old_dwarf2, "<p,angry>Well ask him what he wants then!");
+~chatnpc("<p,quiz>What do you want, human?");
+~chatplayer("<p,confused>Errr... I don't know... A quest, maybe?");
+~chatnpc("<p,neutral>He says he's looking for his quest!");
+~chatnpc_specific("Haera", dwarf_city_old_dwarf2, "<p,confused>What makes him think he lost his quest in here?");
+~chatnpc("<p,quiz>What makes you think you lost your quest in here?");
+~chatplayer("<p,neutral>No no, I mean, do you have a task of some sort for me?");
+~chatnpc("<p,neutral>Now he says he wants a task!");
+~chatnpc_specific("Haera", dwarf_city_old_dwarf2, "<p,angry>Stop talking to that human and get back in here before I have a task for you!");
+~chatnpc("<p,sad>No need to talk to me like that, Haera.");
+~chatnpc_specific("Haera", dwarf_city_old_dwarf2, "<p,angry>I'll talk to you in whatever way I like!");
+~chatplayer("<p,shifty>I think I hear someone calling my name in the distance...");
+
+[opnpc1,dwarf_city_old_dwarf2]
+~chatnpc("<p,angry>What are you doing in our home?");
+~chatplayer("<p,neutral>I just came to ask you a question.");
+~chatnpc("<p,angry>Hegir, why did you let this human into our home?");
+~chatnpc_specific("Hegir", dwarf_city_old_dwarf1, "<p,neutral>I didn't let him in, he let himself in!");
+~chatnpc("<p,angry>Now what do you want, human? Speak up, speak up!");
+~chatplayer("<p,neutral>I ehm, just wanted some information.");
+~chatnpc("<p,angry>Well go ask someone else instead of barging into people's homes!");
+~chatnpc_specific("Hegir", dwarf_city_old_dwarf1, "<p,neutral>There's no need to be rude to the human, Haera dear.");
+~chatnpc("<p,angry>Now don't you dear me. I'll do whatever I please.");
+~chatplayer("<p,shifty>I think this is my cue to leave...");
+
+[opnpc1,dwarf_city_old_dwarf3]
+~chatnpc("<p,sad>Oh, leave an old dwarf in peace will you?");
+~chatplayer("<p,quiz>Why, what's wrong?");
+~chatnpc("<p,sad>Ninenty years down in the mines, and this is all I got out of it. All my life wasted away.");
+~chatplayer("<p,neutral>You've still got a nice house, don't you?");
+~chatnpc("<p,sad>A crummy old house in East, that's all my life amounts to.");
+~chatplayer("<p,neutral>I'll leave you alone then.");
+
+[opnpc1,dwarf_city_rowdy_dwarf]
+~chatnpc("<p,drunk>Get OUT of my WAY!");
+
+[opnpc1,dwarf_city_excentric_dwarf]
+~chatnpc("<p,angry>Get out of my house!");
+~chatplayer("<p,neutral>Alright, alright, I was just leaving!");
+
+[opnpc1,dwarf_city_factory_guard]
+~chatnpc("<p,angry>Don't bother me, can't you see I'm busy?");
+~chatplayer("<p,quiz>No, I can't... can I go into the factory?");
+~chatnpc("<p,neutral>You can go in. The Consortium, in their infinite wisdom, has decided to open up the factory to all and sundry.");
+~chatplayer("<p,quiz>How come?");
+~chatnpc("<p,neutral>We've built a new blast furnace and always have a shortage of people to work on it.");
+~chatplayer("<p,happy>I'll have a look, thanks.");
+~chatnpc("<p,angry>Just don't go causing any trouble, I still run this factory!");
+
+[opnpc1,dwarf_city_factory_worker1]
+~chatplayer("<p,quiz>I'm sorry, I'm looking for the blast furnace?");
+~chatnpc("<p,angry>Do I look like a guide to you?");
+~chatplayer("<p,neutral>No, you look like a hard-working dwarf, but can you please tell me where the blast furnace is?");
+~chatnpc("<p,neutral>Alright, just head down the stairs, it's easy to find.");
+~chatplayer("<p,happy>Thanks.");
+
+[opnpc1,dwarf_city_factory_worker2]
+~chatplayer("<p,quiz>Are you okay?");
+~chatnpc("<p,angry>Don't I look okay?");
+~chatplayer("<p,neutral>If you were any shorter you wouldn't exist.");
+~chatnpc("<p,angry>Very funny, human.");
+
+[opnpc1,dwarf_city_factory_worker3]
+~chatplayer("<p,quiz>What are you dwarves doing in this factory?");
+~chatnpc("<p,angry>Working of course, can't you see that?");
+~chatplayer("<p,quiz>But working on what?");
+~chatnpc("<p,neutral>Refining the ore that is being brought into the factory, of course.");
+~chatplayer("<p,quiz>And what does that mean?");
+~chatnpc("<p,angry>It means you should stop asking so many questions and get back to work!");
+
+[opnpc1,dwarf_city_factory_worker4]
+~chatplayer("<p,quiz>Who owns this factory?");
+~chatnpc("<p,neutral>The Consortium does and that's all you need to know.");
+~chatplayer("<p,quiz>But what company? I thought there were all these different companies?");
+~chatnpc("<p,neutral>Oh yes, all the major companies own this plant. It's too vital to be in the hands of one company alone.");
+~chatplayer("<p,quiz>And what exactly are you doing here?");
+~chatnpc("<p,angry>I tire of these questions. Let me get back to work!");
+
+[opnpc1,dwarf_city_inn_keeper_rich]
+~chatplayer("<p,happy>Hello.");
+~chatnpc("<p,happy>Welcome to the King's Axe inn! What can I help you with?");
+~chatplayer("<p,quiz>Can I have some beer please?");
+~chatnpc("<p,neutral>Go to the bar downstairs. I only deal with residents.");
+~chatplayer("<p,confused>Residents? People live here?");
+~chatnpc("<p,laugh>No, just guests that stay the night.");
+
+[opnpc1,dwarf_city_barmaid_poor]
+~chatnpc("<p,happy>Welcome to the Laughing Miner pub, human traveller.");
+def_int $option = ~p_choice3("Who is that man walking around outside?", 1, "I'd like a beer please.", 2, "I'd like some food please.", 3);
+switch_int ($option) {
+    case 1 :
+        ~chatplayer("<p,quiz>Who is that man walking around outside?");
+        ~chatnpc("<p,confused>What man?");
+        ~chatplayer("<p,neutral>I mean the dwarf, the one with the sign.");
+        ~chatnpc("<p,neutral>Oh, him. Yes, we employ him to advertise our pub, he's the cheapest labour we could find. We don't have a lot of money to spare you know, we pay him in beer.");
+        ~chatplayer("<p,quiz>But what's wrong with him?");
+        ~chatnpc("<p,neutral>Well, he's drunk isn't he?");
+        ~chatnpc("<p,neutral>I told you, he's cheap. He couldn't get any other work since the Red Axe fired him. Been drinking ever since.");
+        ~chatplayer("<p,quiz>How did that happen?");
+        ~chatnpc("<p,neutral>I'm not quite sure, I think he kept wearing the wrong coloured cap all the time. They don't much like it if you don't wear your red uniform into work.");
+        ~chatplayer("<p,shock>They fired him for that??");
+        ~chatnpc("<p,neutral>The Red Axe will fire you for just about anything if they want to.");
+    case 2 :
+        ~chatplayer("<p,happy>I'd like a beer please.");
+        ~chatnpc("<p,neutral>That'll be 2 gold coins.");
+        @keldagrim_barmaid_buy(beer, 2);
+    case 3 :
+        ~chatplayer("<p,happy>I'd like some food please.");
+        ~chatnpc("<p,neutral>I can make you a stew for 20 gold coins.");
+        @keldagrim_barmaid_buy(stew, 20);
+}
+
+[label,keldagrim_barmaid_buy](namedobj $obj, int $cost)
+def_int $option = ~p_choice2("Pay.", 1, "Don't pay.", 2);
+if ($option = 2) {
+    ~chatplayer("<p,neutral>Sorry, I changed my mind.");
+    return;
+}
+if (inv_total(inv, coins) < $cost) {
+    ~chatplayer("<p,sad>Sorry, I don't have <tostring($cost)> coins on me.");
+    return;
+}
+inv_del(inv, coins, $cost);
+inv_add(inv, $obj, 1);
+~chatnpc("<p,happy>Thanks for your custom.");
+
+[opnpc1,dwarf_city_librarian]
+~chatnpc("<p,happy>Welcome to the Keldagrim library, human traveller!");
+~chatplayer("<p,quiz>Can you tell me more about the library?");
+~chatnpc("<p,happy>Why, certainly, it is one of my favourite subjects!");
+~chatnpc("<p,neutral>I am Hugi, you see, I am the chief librarian here. Hugi, my parents named me that, it means 'personification of thought' in the ancient dwarvish tongue.");
+~chatnpc("<p,happy>Quite like the name myself.");
+~chatnpc("<p,neutral>The books in this library have been collected for many centuries now, through various generous donations.");
+~chatnpc("<p,neutral>You'll find books dating from many different eras as well, such as the Era of Kings, the Rise of the Consortium and the Era of Prosperity, our current era.");
+~chatplayer("<p,quiz>How do these eras correspond with the Ages of the world?");
+~chatnpc("<p,neutral>Oh, they are quite different, and most of them take place in the Fourth Age.");
+~chatnpc("<p,neutral>Since we dwarves hid underground for a long time to sit out the wars that raged above the ground our history books differ slightly from those written by humans.");
+~chatplayer("<p,happy>Thanks for the information!");
+
+[opnpc1,dwarf_city_gardener_dwarf]
+~chatnpc("<p,quiz>Come to visit my garden then, have you, human?");
+def_int $option = ~p_choice2("This is your garden?", 1, "Not really, no.", 2);
+if ($option = 2) {
+    ~chatplayer("<p,neutral>Not really, no.");
+    ~chatnpc("<p,neutral>Oh, alright then.");
+    return;
+}
+~chatplayer("<p,quiz>This is your garden?");
+~chatnpc("<p,neutral>No no, not quite. But I do look after it. It's the palace garden, you see. I keep it tidy, keep it living.");
+~chatnpc("<p,neutral>It's hard to grow much on these hard rocks deep beneath these mountains, you know.");
+~chatplayer("<p,quiz>I can imagine. Where do you get all your food from? Or even the soil for this garden?");
+~chatnpc("<p,neutral>We can grow a little food underground, but most of it comes from the extensive steamcart network that runs beneath the earth.");
+~chatnpc("<p,neutral>In the Era of Kings, many centuries ago, it was harder of course. Our steam technology was not developed as far yet and getting fresh supplies of food was always a problem.");
+~chatnpc("<p,quiz>Oh, I'm not boring you, am I?");
+$option = ~p_choice2("Not at all!", 1, "A little, yes.", 2);
+if ($option = 2) {
+    ~chatplayer("<p,neutral>A little, yes. I don't really know what all this has to do with anything.");
+    ~chatnpc("<p,sad>I suppose it doesn't, really, it's just the mumblings of an old dwarf.");
+    return;
+}
+~chatplayer("<p,happy>Not at all! Please, go on!");
+~chatnpc("<p,neutral>Oh yes, as I was saying, it was difficult to make a decent living here. I'm afraid this garden was rather neglected during that time.");
+~chatplayer("<p,quiz>Why did you dwarves stay so deep under ground, then? Why not simply go above ground?");
+~chatnpc("<p,shock>What, with the wars raging up there?");
+~chatnpc("<p,neutral>We dwarves went underground a long time ago, see. For a while the city of Keldagrim was completely cut off from the rest of Gielinor simply waiting out the wars of the humans and the gods.");
+~chatnpc("<p,neutral>This made it hard, though, to determine when the wars above the ground were over. Perhaps Keldagrim had remained hidden for far too long.");
+~chatnpc("<p,neutral>Only when King Alvis heroically defended the city against an invasion of trolls did we dare to venture out and see how much the world had changed.");
+~chatnpc("<p,sad>Of course, after that...");
+~chatnpc("<p,neutral>Ah well, enough history lessons I should say. I must really get back to my gardening.");
+~chatplayer("<p,happy>Thanks for the info!");
+
+[opnpc1,dwarf_city_trader_referee]
+switch_int (random(5)) {
+    case 0 : ~chatnpc("<p,angry>Talk to the secretaries, not to me!");
+    case 1 : ~chatnpc("<p,angry>Clear out!");
+    case 2 : ~chatnpc("<p,angry>Stay out of the octagon center!");
+    case 3 : ~chatnpc("<p,angry>I can't help you!");
+    case 4 : ~chatnpc("<p,angry>Can't talk to you, too busy!");
+}
+
+[opnpc1,dwarfrock_engineer1]
+~chatnpc("<p,sad>I wish you'd just leave me alone.");
+~chatplayer("<p,quiz>Why, what's wrong?");
+~chatnpc("<p,sad>I was a great engineer once. Still am actually.");
+~chatnpc("<p,sad>They just don't let me do the work I do best anymore.");
+~chatplayer("<p,quiz>What do you do then?");
+~chatnpc("<p,sad>I'm an assistant in this shop. I get all the lousy jobs too.");
+~chatplayer("<p,neutral>Well, I'm sorry to hear that.");
+
+[opnpc1,blandebir]
+~chatplayer("<p,quiz>Hello, I wonder if you could help me on this whole brewing thing...");
+~chatnpc("<p,neutral>I might be able to - what do you need to know?");
+@keldagrim_blandebir_menu;
+
+[label,keldagrim_blandebir_menu]
+def_int $option = ~p_choice5("How do I brew ales?", 1, "How do I brew cider?", 2, "What do I do once my ale has matured?", 3, "Do you have any spare ale yeast?", 4, "That's all I need to know, thanks.", 5);
+switch_int ($option) {
+    case 1 :
+        ~chatplayer("<p,quiz>How do I brew ales?");
+        ~chatnpc("<p,neutral>Well first off you need to fill the vat with water - two bucketfuls should do the trick. Then you'll need to put in two handfuls of barley malt - that's roasted barley by the way.");
+        ~chatnpc("<p,neutral>After that you'll be putting your main ingredient in - this will decide which ale it is you're brewing. There should be some good guides around with recipes in.");
+        ~chatnpc("<p,neutral>Lastly you pour a pot full of ale yeast in, which'll start it off fermenting. Then all you have to do is wait for the good stuff.");
+        @keldagrim_blandebir_menu;
+    case 2 :
+        ~chatplayer("<p,quiz>How do I brew cider?");
+        ~chatnpc("<p,neutral>First you'll need some apples. You'll need to crush them using this cider-press - four apples should make a full bucket of apple-mush. Take four buckets of mush and fill up the vat.");
+        ~chatnpc("<p,neutral>After that you pour a pot full of ale yeast in, which'll start it off fermenting. Then all you have to do is wait for the good stuff.");
+        @keldagrim_blandebir_menu;
+    case 3 :
+        ~chatplayer("<p,quiz>What do I do once my ale has matured?");
+        ~chatnpc("<p,neutral>Well, once you've got a full vat of the good stuff, just turn the valve and your barrel will fill up with eight pints of whatever your chosen tipple is. Mind it's an empty barrel, though.");
+        @keldagrim_blandebir_menu;
+    case 4 :
+        ~chatplayer("<p,quiz>Do you have any spare ale yeast?");
+        ~chatnpc("<p,neutral>Well, as a matter of fact I do, although I wouldn't describe it as spare. This ale yeast I've got is the best money can buy, but if you've got a pot I'll fill it for you for 25GP - very cheap as it happens.");
+        if (inv_total(inv, pot_empty) < 1 & inv_total(inv, coins) < 25) {
+            ~chatplayer("<p,sad>I don't have an empty pot, or enough money I'm afraid.");
+            @keldagrim_blandebir_menu;
+        }
+        if (inv_total(inv, pot_empty) < 1) {
+            ~chatplayer("<p,sad>I don't have an empty pot I'm afraid.");
+            @keldagrim_blandebir_menu;
+        }
+        if (inv_total(inv, coins) < 25) {
+            ~chatplayer("<p,sad>I don't have enough money I'm afraid.");
+            @keldagrim_blandebir_menu;
+        }
+        def_int $buy = ~p_choice2("That's a good deal - please fill my pot with ale yeast for 25GP.", 1, "No, that's too much I'm afraid.", 2);
+        if ($buy = 1) {
+            ~chatplayer("<p,happy>That's a good deal - please fill my pot with ale yeast for 25GP.");
+            inv_del(inv, coins, 25);
+            inv_del(inv, pot_empty, 1);
+            inv_add(inv, ale_yeast, 1);
+        } else {
+            ~chatplayer("<p,neutral>No, that's too much I'm afraid.");
+        }
+        @keldagrim_blandebir_menu;
+    case 5 :
+        ~chatplayer("<p,neutral>That's all I need to know, thanks.");
+}
+
+[oploc2,dwarf_keldagrim_furnace]
+if (npc_find(coord, dwarf_city_shop_warhammer, 10, 0) = true) {
+    ~chatnpc("<p,angry>That furnace is the property of the Red Axe! Hands off!");
+    return;
+}
+~displaymessage(^dm_default);
+
+[oplocu,dwarf_keldagrim_furnace]
+if (npc_find(coord, dwarf_city_shop_warhammer, 10, 0) = true) {
+    ~chatnpc("<p,angry>Who do you think are, coming in here and using the property of the Red Axe!");
+    return;
+}
+~displaymessage(^dm_default);
+
+[ai_timer,dwarf_city_old_dwarf1]
+npc_settimer(calc(15 + random(20)));
+switch_int (random(6)) {
+    case 0 : npc_say("No need to shout!");
+    case 1 : npc_say("Calm down dear.");
+    case 2 : npc_say("I don't see why.");
+    case 3 : npc_say("Yes you did!");
+    case 4 : npc_say("I did not!");
+    case 5 : npc_say("What did you do that for?");
+}
+
+[ai_timer,dwarf_city_old_dwarf2]
+npc_settimer(calc(15 + random(20)));
+switch_int (random(6)) {
+    case 0 : npc_say("That's the last straw!");
+    case 1 : npc_say("Do your chores!");
+    case 2 : npc_say("Useless... completely useless.");
+    case 3 : npc_say("Don't talk to me like that!");
+    case 4 : npc_say("You're no good!");
+    case 5 : npc_say("I'm warning you, Hegir!");
+}
+
+[ai_timer,dwarf_city_trader_referee]
+npc_settimer(calc(15 + random(20)));
+switch_int (random(9)) {
+    case 0 : npc_say("Stay inside your triangle!");
+    case 1 : npc_say("Who's next?");
+    case 2 : npc_say("Next bid please!");
+    case 3 : npc_say("Need an offer, now!");
+    case 4 : npc_say("Keep the goods flowing!");
+    case 5 : npc_say("Keep it civil!");
+    case 6 : npc_say("Come on, come on!");
+    case 7 : npc_say("Go again please.");
+    case 8 : npc_say("Hold on there!");
+}

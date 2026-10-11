@@ -1,0 +1,5 @@
+[blast_furnace_ore]
+column=ore,obj,INDEXED,REQUIRED
+column=bar,namedobj,REQUIRED
+column=coal,int
+column=npc,npc,REQUIRED

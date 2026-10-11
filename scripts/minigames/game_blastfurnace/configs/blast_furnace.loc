@@ -1,0 +1,7 @@
+[blast_furnace_sink]
+name=Sink
+desc=Used for getting water.
+model=loc_6151
+length=2
+op1=Fill-bucket
+category=watersource

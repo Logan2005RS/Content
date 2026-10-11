@@ -1,0 +1,161 @@
+[blast_furnace_instructor]
+name=Blast Furnace Foreman
+desc=Looks after the blast furnace.
+walkanim=dwarf_walk
+readyanim=dwarf_ready
+vislevel=hide
+op1=Talk-to
+model1=model_2970_npc
+model2=npc_2109
+model3=npc_2095
+model4=model_2978_npc
+model5=npc_2099i2
+model6=model_2985_npc
+head1=dwarf_chat_model0
+head2=npc_2109_head
+recol1s=7266
+recol1d=12615
+recol2s=15855
+recol2d=17900
+recol3s=9475
+recol3d=9410
+timer=1
+wanderrange=0
+
+[blast_furnace_copper_ore]
+name=Copper ore
+desc=Some ore going into the furnace.
+vislevel=hide
+size=3
+model1=npc_2554
+recol1s=11488
+recol1d=29095
+timer=2
+wanderrange=0
+moverestrict=nomove
+category=blast_furnace_ore
+
+[blast_furnace_tin_ore]
+name=Tin ore
+desc=Some ore going into the furnace.
+vislevel=hide
+size=3
+model1=npc_2554
+recol1s=11488
+recol1d=14798
+timer=2
+wanderrange=0
+moverestrict=nomove
+category=blast_furnace_ore
+
+[blast_furnace_iron_ore]
+name=Iron ore
+desc=Some ore going into the furnace.
+vislevel=hide
+size=3
+model1=npc_2554
+recol1s=11488
+recol1d=6242
+recol2s=11627
+recol2d=6242
+timer=2
+wanderrange=0
+moverestrict=nomove
+category=blast_furnace_ore
+
+[blast_furnace_mithril_ore]
+name=Mithril ore
+desc=Some ore going into the furnace.
+vislevel=hide
+size=3
+model1=npc_2554
+recol1s=11488
+recol1d=6346
+timer=2
+wanderrange=0
+moverestrict=nomove
+category=blast_furnace_ore
+
+[blast_furnace_adamantite_ore]
+name=Adamantite ore
+desc=Some ore going into the furnace.
+vislevel=hide
+size=3
+model1=npc_2554
+recol1s=11488
+recol1d=6438
+timer=2
+wanderrange=0
+moverestrict=nomove
+category=blast_furnace_ore
+
+[blast_furnace_runite_ore]
+name=Runite ore
+desc=Some ore going into the furnace.
+vislevel=hide
+size=3
+model1=npc_2554
+recol1s=11488
+recol1d=6476
+timer=2
+wanderrange=0
+moverestrict=nomove
+category=blast_furnace_ore
+
+[blast_furnace_silver_ore]
+name=Silver ore
+desc=Some ore going into the furnace.
+vislevel=hide
+size=3
+model1=npc_2554
+recol1s=11488
+recol1d=22198
+recol2s=11627
+recol2d=22198
+timer=2
+wanderrange=0
+moverestrict=nomove
+category=blast_furnace_ore
+
+[blast_furnace_gold_ore]
+name=Gold ore
+desc=Some ore going into the furnace.
+vislevel=hide
+size=3
+model1=npc_2554
+recol1s=11488
+recol1d=31393
+recol2s=11627
+recol2d=31393
+timer=2
+wanderrange=0
+moverestrict=nomove
+category=blast_furnace_ore
+
+[blast_furnace_perfect_gold_ore]
+name=Perfect gold ore
+desc=Some ore going into the furnace.
+vislevel=hide
+size=3
+model1=npc_2554
+recol1s=11488
+recol1d=31393
+recol2s=11627
+recol2d=31393
+timer=2
+wanderrange=0
+moverestrict=nomove
+category=blast_furnace_ore
+
+[blast_furnace_coal]
+name=Coal
+desc=Some ore going into the furnace.
+vislevel=hide
+size=3
+model1=npc_2554
+recol1s=11488
+recol1d=4226
+timer=2
+wanderrange=0
+moverestrict=nomove
+category=blast_furnace_ore

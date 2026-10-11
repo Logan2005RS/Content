@@ -1,0 +1,118 @@
+[opnpc1,blast_furnace_instructor]
+~chatnpc("<p,angry>You! Get to work!");
+def_int $option = ~p_choice2("What?", 1, "Okay.", 2);
+if ($option = 2) {
+    ~chatplayer("<p,neutral>Okay.");
+    return;
+}
+~chatplayer("<p,confused>What?");
+~chatnpc("<p,neutral>You are here to help work the blast furnace, aren't you?");
+@multi4("What's the blast furnace?", blast_furnace_foreman_what, "How can I help work the blast furnace?", blast_furnace_foreman_how, "Can I use the furnace to smelt ore?", blast_furnace_foreman_smelt, "Maybe some other time.", blast_furnace_foreman_later);
+
+[label,blast_furnace_foreman_what]
+~chatplayer("<p,quiz>What's the blast furnace?");
+~chatnpc("<p,happy>The blast furnace is the pinnacle of dwarven metal- processing! Ore goes in the top and comes out as metal bars almost at once! And it's so efficient it only takes half as much coal to purify it as a regular furnace.");
+~chatnpc("<p,neutral>But we've got a bit of a labour shortage at the moment, which is why I have to rely on immigrant workers to keep the furnace going. So, are you here to start work?");
+@multi3("How can I help work the blast furnace?", blast_furnace_foreman_how, "Can I use the furnace to smelt ore?", blast_furnace_foreman_smelt, "Maybe some other time.", blast_furnace_foreman_later);
+
+[label,blast_furnace_foreman_how]
+~chatplayer("<p,quiz>How can I help work the blast furnace?");
+~chatnpc("<p,neutral>The blast furnace will only work if there is a group of people keeping it going. Let me explain...");
+if_openoverlay(blast_furnace_plan_scroll);
+walktrigger(blast_furnace_plan_close);
+~blast_furnace_plan_flash(blast_furnace_plan_scroll:com_1);
+~chatnpc("<p,neutral>Firstly, the stove needs to be kept filled with coal. If this runs out the furnace will not work.");
+~blast_furnace_plan_flash(blast_furnace_plan_scroll:x_3);
+~chatnpc("<p,neutral>Secondly, someone needs to operate the pump that keeps the hot air blast circulating through the furnace.");
+~blast_furnace_plan_flash(blast_furnace_plan_scroll:x_4);
+~chatnpc("<p,neutral>Thirdly, someone needs to keep an eye on the temperature gauge. They should tell the pumper to start or stop so that the temperature stays in the right range.");
+~blast_furnace_plan_flash(blast_furnace_plan_scroll:x_1);
+~chatnpc("<p,neutral>Lastly, someone needs to be on the pedals to power the conveyor belt that puts ore into the furnace.");
+~chatnpc("<p,neutral>Someone will also need to be on standby with a hammer in case the machine breaks!");
+~chatnpc("<p,neutral>While that's going, anyone else can put their ore on the conveyor belt to have it smelted.");
+if_openoverlay(null);
+@multi3("So what do I get out of it?", blast_furnace_foreman_reward, "Okay, I'll get to work.", blast_furnace_foreman_work, "Maybe some other time.", blast_furnace_foreman_later);
+
+[walktrigger,blast_furnace_plan_close]
+if_openoverlay(null);
+
+[proc,blast_furnace_plan_flash](component $flash)
+if_setanim(blast_furnace_plan_scroll:com_1, flashing_x_off);
+if_setanim(blast_furnace_plan_scroll:x_1, flashing_x_off);
+if_setanim(blast_furnace_plan_scroll:x_3, flashing_x_off);
+if_setanim(blast_furnace_plan_scroll:x_4, flashing_x_off);
+if_setanim($flash, flashing_x);
+
+[label,blast_furnace_foreman_reward]
+~chatplayer("<p,quiz>So what do I get out of it?");
+~chatnpc("<p,happy>Keeping the furnace going is valuable experience in itself!");
+~chatnpc("<p,neutral>Keeping the stove alight will train your Firemaking, working the pump will train your Strength, pedalling the conveyor belt will train your Agility and repairing the furnace will train Crafting.");
+~chatnpc("<p,neutral>Plus, everyone working the furnace will get a bit of experience in Smithing whenever anyone smelts ore in it.");
+@multi3("So I don't actually get paid then?", blast_furnace_foreman_paid, "Okay, I'll get to work.", blast_furnace_foreman_work, "Maybe some other time.", blast_furnace_foreman_later);
+
+[label,blast_furnace_foreman_paid]
+~chatplayer("<p,quiz>So I don't actually get paid then?");
+~chatnpc("<p,angry>I offer you the privilege of working on the greatest example of dwarven engineering and you want to be PAID?");
+~chatnpc("<p,angry>If you co-operate with a group of people you can all get your smelting done pretty quickly. Or perhaps some humans who need to do some smelting will pay you, since you humans are all so obsessed with money.");
+@multi3("Okay, I'll get to work.", blast_furnace_foreman_work, "Maybe some other time.", blast_furnace_foreman_later, "No wonder you have a labour shortage if you don't pay your workers!", blast_furnace_foreman_labour);
+
+[label,blast_furnace_foreman_labour]
+~chatplayer("<p,angry>No wonder you have a labour shortage if you don't pay your workers!");
+~chatnpc("<p,neutral>What would be the point of making money if I gave it all away to menial workers?");
+~chatnpc("<p,shifty>I mean... Money isn't important! What about the greater glory of dwarven engineering? What about the satisfaction of helping others? What about the XP?");
+@multi2("Okay, I'll get to work.", blast_furnace_foreman_work, "Maybe some other time.", blast_furnace_foreman_later);
+
+[label,blast_furnace_foreman_work]
+~chatplayer("<p,neutral>Okay, I'll get to work.");
+~chatnpc("<p,happy>Splendid!");
+
+[label,blast_furnace_foreman_later]
+~chatplayer("<p,neutral>Maybe some other time.");
+~chatnpc("<p,angry>Well if you're not here to work, go hang around somewhere else!");
+
+[label,blast_furnace_foreman_smelt]
+~chatplayer("<p,quiz>Can I use the furnace to smelt ore?");
+~chatnpc("<p,neutral>You can, although you'll need to find some people to work it for you as well. But the furnace is very delicate so I charge a fee for anyone who doesn't have level 60 smithing.");
+def_int $option = ~p_choice2("I have level 60!", 1, "I don't have level 60.", 2);
+if ($option = 1 & stat_base(smithing) >= ^blast_furnace_smithing_level) {
+    ~chatplayer("<p,happy>I have level 60!");
+    ~chatnpc("<p,shock>A human has level 60 smithing? How extraordinary!");
+    ~chatnpc("<p,neutral>Feel free to use the furnace. Remember, you only need half as much coal as with a regular furnace.");
+    return;
+}
+if ($option = 1) {
+    ~chatplayer("<p,happy>I have level 60!");
+} else {
+    ~chatplayer("<p,sad>I don't have level 60.");
+}
+~chatnpc("<p,neutral>Hmm, well, I'll let you use the furnace if you want, but you must pay a fee of 2,500 coins.");
+if (inv_total(worn, ring_of_charos_unlocked) > 0) {
+    @multi3("Okay.", blast_furnace_foreman_pay, "Maybe some other time.", blast_furnace_foreman_later, "[Charm] How about I give you 1250 coins and I work extra hard?", blast_furnace_foreman_charm);
+}
+@multi2("Okay.", blast_furnace_foreman_pay, "Maybe some other time.", blast_furnace_foreman_later);
+
+[label,blast_furnace_foreman_pay]
+~chatplayer("<p,neutral>Okay, here you are.");
+if (inv_total(inv, coins) < ^blast_furnace_fee) {
+    ~chatnpc("<p,confused>Where?");
+    ~chatplayer("<p,sad>Actually I don't have enough money on me.");
+    ~chatnpc("<p,neutral>Well go get it then.");
+    return;
+}
+inv_del(inv, coins, ^blast_furnace_fee);
+longqueue(blast_furnace_fee, ^blast_furnace_fee_duration, 0, ^discard);
+~chatnpc("<p,neutral>Okay, you can use the furnace for ten minutes. Remember, you only need half as much coal as with a regular furnace.");
+
+[label,blast_furnace_foreman_charm]
+~chatplayer("<p,happy>How about I give you 1250 coins and I work extra hard?");
+~chatnpc("<p,neutral>You'll have to work hard enough for two humans if I agree...");
+~chatplayer("<p,happy>Oh, three humans, easily!");
+~chatnpc("<p,neutral>Well, okay then - 1250GP it is.");
+if (inv_total(inv, coins) < ^blast_furnace_fee_charos) {
+    ~chatplayer("<p,sad>Actually I don't have enough money on me.");
+    ~chatnpc("<p,angry>Well why did you try and haggle with me then? You'd better go and get some - you're not using the blast furnace for free.");
+    return;
+}
+inv_del(inv, coins, ^blast_furnace_fee_charos);
+longqueue(blast_furnace_fee, ^blast_furnace_fee_duration, 0, ^discard);
+~chatnpc("<p,neutral>Okay, you can use the furnace for ten minutes. Remember, you only need half as much coal as with a regular furnace. And I want to see you doing the work of four humans!");

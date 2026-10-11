@@ -108,6 +108,18 @@ switch_loc (loc_type) {
     case etc_veg_market :
         longqueue(stolen_from_stall_etcveg, ^etcveg_stall_timer, 0, ^discard);
         %marketthief_etcveg = 1;
+    case dwarf_market_bakery :
+        longqueue(stolen_from_stall_keldabread, ^keldabread_stall_timer, 0, ^discard);
+        %marketthief_keldabread = 1;
+    case dwarf_market_crafting :
+        longqueue(stolen_from_stall_keldacraft, ^keldacraft_stall_timer, 0, ^discard);
+        %marketthief_keldacraft = 1;
+    case dwarf_market_silver :
+        longqueue(stolen_from_stall_keldasilver, ^keldasilver_stall_timer, 0, ^discard);
+        %marketthief_keldasilver = 1;
+    case dwarf_market_gems :
+        longqueue(stolen_from_stall_keldagem, ^keldagem_stall_timer, 0, ^discard);
+        %marketthief_keldagem = 1;
 }
 
 ~stealing_check_for_reward($data);

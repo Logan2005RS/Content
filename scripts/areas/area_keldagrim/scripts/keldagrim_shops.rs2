@@ -1,0 +1,198 @@
+[oploc1,dwarf_keldagrim_bankbooth]
+if (npc_findcat(loc_coord, bank_teller, 2, 0) = true) {
+    @talk_to_banker;
+}
+@openbank;
+
+[oploc2,dwarf_keldagrim_bankbooth] @openbank;
+
+[opnpc1,dwarf_city_shop_warhammer]
+~chatnpc("<p,angry>What do you want, human?");
+~chatplayer("<p,quiz>Ehm, anything on offer?");
+~chatnpc("<p,angry>Can you wield a warhammer? If not, then go away.");
+def_int $option = ~p_choice2("Of course I can.", 1, "I can, but I won't.", 2);
+if ($option = 1) {
+    ~chatplayer("<p,happy>Of course I can.");
+    ~openshop_activenpc;
+    return;
+}
+~chatplayer("<p,neutral>I can, but I won't.");
+~chatnpc("<p,angry>Yeah, right.");
+
+[opnpc1,dwarf_city_shop_weapons]
+~chatnpc("<p,happy>Welcome, human, to the Quality Weapons Shop! Can I interest you in a purchase?");
+def_int $option = ~p_choice2("Yes, I'm looking for some weapons.", 1, "No thanks.", 2);
+if ($option = 1) {
+    ~chatplayer("<p,neutral>Yes, I'm looking for some weapons.");
+    ~openshop_activenpc;
+    return;
+}
+~chatplayer("<p,neutral>No thanks.");
+
+[opnpc1,dwarf_city_shop_armour]
+~chatnpc("<p,happy>Welcome to my store, human! Are you interested in buying anything?");
+def_int $option = ~p_choice2("Yes, I'm looking for some armour.", 1, "No thanks.", 2);
+if ($option = 1) {
+    ~chatplayer("<p,neutral>Yes, I'm looking for some armour.");
+    ~openshop_activenpc;
+    return;
+}
+~chatplayer("<p,neutral>No thanks.");
+
+[opnpc1,dwarf_city_shop_general_store]
+~chatnpc("<p,happy>What can I interest you in? We have something of everything here!");
+def_int $option = ~p_choice2("Oh good!", 1, "Nothing, thanks.", 2);
+if ($option = 1) {
+    ~chatplayer("<p,happy>Oh good!");
+    ~openshop_activenpc;
+    return;
+}
+~chatplayer("<p,neutral>Nothing, thanks.");
+
+[opnpc1,dwarf_city_shop_bakery]
+if (getqueue(stolen_from_stall_keldabread) > 0) {
+    @stall_owner_alert_guards;
+}
+~chatnpc("<p,happy>Welcome to my stall! Come and buy some tasty bread, freshly baked just 2 months ago!");
+def_int $option = ~p_choice2("Sounds delicious!", 1, "I think I'll pass.", 2);
+if ($option = 1) {
+    ~chatplayer("<p,happy>Sounds delicious!");
+    ~openshop_activenpc;
+    return;
+}
+~chatplayer("<p,neutral>I think I'll pass.");
+
+[opnpc3,dwarf_city_shop_bakery]
+if (getqueue(stolen_from_stall_keldabread) > 0) {
+    @stall_owner_alert_guards;
+}
+~openshop_activenpc;
+
+[opnpc1,dwarf_city_shop_gems]
+if (getqueue(stolen_from_stall_keldagem) > 0) {
+    @stall_owner_alert_guards;
+}
+~chatnpc("<p,neutral>Greetings, human... can I interest you in some fine gems?");
+def_int $option = ~p_choice2("Show me the wares!", 1, "No thanks.", 2);
+if ($option = 1) {
+    ~chatplayer("<p,happy>Show me the wares!");
+    ~openshop_activenpc;
+    return;
+}
+~chatplayer("<p,neutral>No thanks.");
+
+[opnpc3,dwarf_city_shop_gems]
+if (getqueue(stolen_from_stall_keldagem) > 0) {
+    @stall_owner_alert_guards;
+}
+~openshop_activenpc;
+
+[opnpc1,dwarf_city_shop_craft]
+if (getqueue(stolen_from_stall_keldacraft) > 0) {
+    @stall_owner_alert_guards;
+}
+~chatnpc("<p,happy>I have a wide variety of crafting tools on offer, care to take a look?");
+def_int $option = ~p_choice2("Yes please!", 1, "No thanks.", 2);
+if ($option = 1) {
+    ~chatplayer("<p,happy>Yes please!");
+    ~openshop_activenpc;
+    return;
+}
+~chatplayer("<p,neutral>No thanks.");
+
+[opnpc3,dwarf_city_shop_craft]
+if (getqueue(stolen_from_stall_keldacraft) > 0) {
+    @stall_owner_alert_guards;
+}
+~openshop_activenpc;
+
+[opnpc1,dwarf_city_shop_silver]
+if (getqueue(stolen_from_stall_keldasilver) > 0) {
+    @stall_owner_alert_guards;
+}
+~chatnpc("<p,happy>Finest silver in all of Keldagrim, come and see!");
+def_int $option = ~p_choice2("Right, what do you have?", 1, "Not interested, thanks.", 2);
+if ($option = 1) {
+    ~chatplayer("<p,quiz>Right, what do you have?");
+    ~chatnpc("<p,happy>Silver, what else!");
+    ~openshop_activenpc;
+    return;
+}
+~chatplayer("<p,neutral>No thanks.");
+
+[opnpc3,dwarf_city_shop_silver]
+if (getqueue(stolen_from_stall_keldasilver) > 0) {
+    @stall_owner_alert_guards;
+}
+~openshop_activenpc;
+
+[opnpc1,dwarf_city_shop_pickaxe]
+~chatnpc("<p,angry>What'you want?");
+def_int $option = ~p_choice3("Do you have any pickaxes?", 1, "Do you have any quests?", 2, "Nothing really.", 3);
+switch_int ($option) {
+    case 1 :
+        ~chatplayer("<p,quiz>Do you-");
+        ~chatnpc("<p,angry>What? Speak up, I can't hear you!");
+        ~chatplayer("<p,neutral>Uhm... I'm just looking for some pickaxes! Do you have any?");
+        ~chatnpc("<p,angry>Do I have any pickaxes? Do I? Of course I do, this is a pickaxe shop, isn't it!");
+        ~openshop_activenpc;
+    case 2 :
+        ~chatplayer("<p,quiz>Do you-");
+        ~chatnpc("<p,angry>What? Stop mumbling!");
+        ~chatplayer("<p,neutral>I want a quest!");
+        ~chatnpc("<p,angry>I don't have any lousy quests... I've got someone who's helping me already!");
+        ~chatnpc("<p,angry>Well, I say helping... he takes his merry time to do his chores, my son does.");
+        ~chatplayer("<p,neutral>Then perhaps I can help in some way?");
+        ~chatnpc("<p,angry>Pfft, I doubt it... maybe when my son fouls up again, but not now.");
+    case 3 :
+        ~chatplayer("<p,neutral>Nothing really.");
+        ~chatnpc("<p,angry>Then clear off!");
+}
+
+[opnpc1,dwarf_city_shop_cloth]
+~chatnpc("<p,bored>Oh no, not another human... what do you want then?");
+~chatplayer("<p,quiz>Oh, do you get humans here often?");
+~chatnpc("<p,neutral>Not that often, no, but sometimes.");
+~chatnpc("<p,neutral>Of course, since you people are too big for dwarven clothes, they typically don't stay very long.");
+~chatplayer("<p,shifty>Why don't you make bigger clothes then?");
+~chatnpc("<p,bored>What'd be the point? Besides, I don't make these clothes myself.");
+def_int $option = ~p_choice3("Who makes these clothes then?", 1, "I still want to buy your clothes.", 2, "So do you have any quests for me?", 3);
+switch_int ($option) {
+    case 1 :
+        ~chatplayer("<p,quiz>Who makes these clothes then?");
+        ~chatnpc("<p,neutral>Oh, my sister, she lives in Keldagrim-East. Has a little stall on the other side of the Kelda.");
+        ~chatnpc("<p,neutral>If she only worked a little harder, like me, she wouldn't have to live in the sewers of the city. Shame really.");
+        ~chatplayer("<p,shock>The sewers? Your sister lives in the sewers?");
+        ~chatnpc("<p,sad>Keldagrim-East, such a ghastly place. Not civil, polite and clean like we are in the West.");
+        ~chatplayer("<p,shifty>Uh-huh.");
+    case 2 :
+        ~openshop_activenpc;
+    case 3 :
+        ~chatplayer("<p,quiz>So do you have any quests for me?");
+        ~chatnpc("<p,bored>Quests? Why would I have any quests?");
+        ~chatplayer("<p,neutral>Oh, just anything to do would be fine.");
+        ~chatnpc("<p,bored>No, not right now... maybe I'll have something for you to do later, but nothing at the moment.");
+}
+
+[opnpc1,dwarf_city_shop_cloth_poor]
+~chatnpc("<p,happy>Welcome to my clothes stall, can I help you with anything?");
+def_int $option = ~p_choice2("Yes, what clothes do you have in stock?", 1, "No, I'm just browsing.", 2);
+if ($option = 1) {
+    ~chatplayer("<p,quiz>Yes, what clothes do you have in stock?");
+    ~chatnpc("<p,sad>Not a lot, I'm afraid, most of what I produce goes to my sister. Her shop is in Keldagrim-West.");
+    ~chatplayer("<p,neutral>Well, show me what you do have then.");
+    ~openshop_activenpc;
+    return;
+}
+~chatplayer("<p,neutral>No, I'm just browsing.");
+
+[opnpc1,dwarf_city_shop_ship_mechanic]
+~chatnpc("<p,happy>What can I interest you in? Need any pipes? I make very sturdy pipes.");
+~chatplayer("<p,quiz>No, not really... what kind of shop is this anyway?");
+~chatnpc("<p,happy>Why, it's Wemund's Wrench Warehouse. Wemund, that's me.");
+~chatnpc("<p,neutral>I don't really sell just wrenches, you know, I sell anything related to the maintenance of dwarven steam machines.");
+~chatnpc("<p,neutral>Sometimes I do repair work as well. Or I send my assistant.");
+~chatplayer("<p,quiz>Who's he then?");
+~chatnpc("<p,neutral>Oh, he's right over there... used to work in the mines to the south, poor lad. Made a bit of a mess of things I believe.");
+~chatnpc("<p,quiz>So what'll it be then? Got any ship engines to repair?");
+~chatplayer("<p,neutral>Thanks, but I don't think your services are required.");

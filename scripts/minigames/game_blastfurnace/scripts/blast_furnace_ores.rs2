@@ -1,0 +1,193 @@
+[proc,blast_furnace_ore_count](obj $ore)(int)
+switch_obj ($ore) {
+    case copper_ore : return(%blast_furnace_copper_ore);
+    case tin_ore : return(%blast_furnace_tin_ore);
+    case iron_ore : return(%blast_furnace_iron_ore);
+    case mithril_ore : return(%blast_furnace_mithril_ore);
+    case adamantite_ore : return(%blast_furnace_adamantite_ore);
+    case runite_ore : return(%blast_furnace_runite_ore);
+    case silver_ore : return(%blast_furnace_silver_ore);
+    case gold_ore : return(%blast_furnace_gold_ore);
+    case perfect_gold_ore : return(%blast_furnace_perfect_gold_ore);
+    case coal : return(%blast_furnace_coal);
+}
+return(0);
+
+[proc,blast_furnace_set_ore](obj $ore, int $count)
+switch_obj ($ore) {
+    case copper_ore : %blast_furnace_copper_ore = $count;
+    case tin_ore : %blast_furnace_tin_ore = $count;
+    case iron_ore : %blast_furnace_iron_ore = $count;
+    case mithril_ore : %blast_furnace_mithril_ore = $count;
+    case adamantite_ore : %blast_furnace_adamantite_ore = $count;
+    case runite_ore : %blast_furnace_runite_ore = $count;
+    case silver_ore : %blast_furnace_silver_ore = $count;
+    case gold_ore : %blast_furnace_gold_ore = $count;
+    case perfect_gold_ore : %blast_furnace_perfect_gold_ore = $count;
+    case coal : %blast_furnace_coal = $count;
+}
+
+[proc,blast_furnace_bar_count](obj $bar)(int)
+switch_obj ($bar) {
+    case bronze_bar : return(%blast_furnace_bronze_bars);
+    case iron_bar : return(%blast_furnace_iron_bars);
+    case steel_bar : return(%blast_furnace_steel_bars);
+    case mithril_bar : return(%blast_furnace_mithril_bars);
+    case adamantite_bar : return(%blast_furnace_adamantite_bars);
+    case runite_bar : return(%blast_furnace_runite_bars);
+    case silver_bar : return(%blast_furnace_silver_bars);
+    case gold_bar : return(%blast_furnace_gold_bars);
+    case perfect_gold_bar : return(%blast_furnace_perfect_gold_bars);
+}
+return(0);
+
+[proc,blast_furnace_set_bars](obj $bar, int $count)
+switch_obj ($bar) {
+    case bronze_bar : %blast_furnace_bronze_bars = $count;
+    case iron_bar : %blast_furnace_iron_bars = $count;
+    case steel_bar : %blast_furnace_steel_bars = $count;
+    case mithril_bar : %blast_furnace_mithril_bars = $count;
+    case adamantite_bar : %blast_furnace_adamantite_bars = $count;
+    case runite_bar : %blast_furnace_runite_bars = $count;
+    case silver_bar : %blast_furnace_silver_bars = $count;
+    case gold_bar : %blast_furnace_gold_bars = $count;
+    case perfect_gold_bar : %blast_furnace_perfect_gold_bars = $count;
+}
+
+[proc,blast_furnace_bar_level](namedobj $bar)(int)
+return(struct_param(oc_param($bar, smelting_struct), levelrequired));
+
+[proc,blast_furnace_bar_exp](namedobj $bar)(int)
+return(struct_param(oc_param($bar, smelting_struct), productexp));
+
+[proc,blast_furnace_has_ore]()(boolean)
+if (calc(%blast_furnace_copper_ore + %blast_furnace_tin_ore + %blast_furnace_iron_ore + %blast_furnace_mithril_ore + %blast_furnace_adamantite_ore + %blast_furnace_runite_ore + %blast_furnace_silver_ore + %blast_furnace_gold_ore + %blast_furnace_perfect_gold_ore) > 0) {
+    return(true);
+}
+return(false);
+
+[proc,blast_furnace_update_coal_required]
+def_int $needed = calc(%blast_furnace_mithril_ore * 2 + %blast_furnace_adamantite_ore * 3 + %blast_furnace_runite_ore * 4);
+if (%blast_furnace_coal > 0 & stat(smithing) >= ~blast_furnace_bar_level(steel_bar)) {
+    $needed = add($needed, %blast_furnace_iron_ore);
+}
+%blast_furnace_coal_required = max(0, sub($needed, %blast_furnace_coal));
+
+[proc,blast_furnace_belt_space](obj $ore, namedobj $bar)(int)
+if ($ore = coal) {
+    return(max(0, calc(^blast_furnace_coal_limit - %blast_furnace_coal - inv_total(blast_furnace_inv, coal))));
+}
+return(max(0, calc(^blast_furnace_ore_limit - ~blast_furnace_ore_count($ore) - inv_total(blast_furnace_inv, $ore) - ~blast_furnace_bar_count($bar))));
+
+[proc,blast_furnace_place_ore](obj $ore, obj $only)(int)
+if ($only ! null & $only ! $ore) {
+    return(0);
+}
+def_int $have = inv_total(inv, $ore);
+if ($have < 1) {
+    return(0);
+}
+db_find(blast_furnace_ore:ore, $ore);
+def_dbrow $data = db_findnext;
+if ($data = null) {
+    return(0);
+}
+def_namedobj $bar = db_getfield($data, blast_furnace_ore:bar, 0);
+if ($ore ! coal & stat(smithing) < ~blast_furnace_bar_level($bar)) {
+    return(0);
+}
+def_int $count = min($have, ~blast_furnace_belt_space($ore, $bar));
+if ($count < 1) {
+    return(0);
+}
+inv_moveitem(inv, blast_furnace_inv, $ore, $count);
+npc_add(^blast_furnace_ore_start_coord, db_getfield($data, blast_furnace_ore:npc, 0), 500);
+return($count);
+
+[proc,blast_furnace_place_all](obj $only)(int)
+def_int $placed = 0;
+$placed = add($placed, ~blast_furnace_place_ore(copper_ore, $only));
+$placed = add($placed, ~blast_furnace_place_ore(tin_ore, $only));
+$placed = add($placed, ~blast_furnace_place_ore(iron_ore, $only));
+$placed = add($placed, ~blast_furnace_place_ore(mithril_ore, $only));
+$placed = add($placed, ~blast_furnace_place_ore(adamantite_ore, $only));
+$placed = add($placed, ~blast_furnace_place_ore(runite_ore, $only));
+$placed = add($placed, ~blast_furnace_place_ore(silver_ore, $only));
+$placed = add($placed, ~blast_furnace_place_ore(gold_ore, $only));
+$placed = add($placed, ~blast_furnace_place_ore(perfect_gold_ore, $only));
+$placed = add($placed, ~blast_furnace_place_ore(coal, $only));
+if ($placed > 0) {
+    %blast_furnace_ore_on_conveyor = ^blast_furnace_belt_steps;
+}
+return($placed);
+
+[proc,blast_furnace_belt_deposit]
+def_int $slot = 0;
+while ($slot < inv_size(blast_furnace_inv)) {
+    def_obj $ore = inv_getobj(blast_furnace_inv, $slot);
+    if ($ore ! null) {
+        def_int $limit = ^blast_furnace_ore_limit;
+        if ($ore = coal) {
+            $limit = ^blast_furnace_coal_limit;
+        }
+        ~blast_furnace_set_ore($ore, min($limit, add(~blast_furnace_ore_count($ore), inv_getnum(blast_furnace_inv, $slot))));
+    }
+    $slot = add($slot, 1);
+}
+inv_clear(blast_furnace_inv);
+%blast_furnace_ore_on_conveyor = 0;
+~blast_furnace_update_coal_required;
+
+[proc,blast_furnace_smelt_bars](obj $ore, namedobj $bar, int $coal_each)(int)
+if (stat(smithing) < ~blast_furnace_bar_level($bar)) {
+    return(0);
+}
+def_int $count = min(~blast_furnace_ore_count($ore), sub(^blast_furnace_bar_limit, ~blast_furnace_bar_count($bar)));
+if ($coal_each > 0) {
+    $count = min($count, divide(%blast_furnace_coal, $coal_each));
+}
+if ($count < 1) {
+    return(0);
+}
+~blast_furnace_set_ore($ore, sub(~blast_furnace_ore_count($ore), $count));
+%blast_furnace_coal = sub(%blast_furnace_coal, multiply($count, $coal_each));
+~blast_furnace_set_bars($bar, add(~blast_furnace_bar_count($bar), $count));
+stat_advance(smithing, multiply($count, ~blast_furnace_bar_exp($bar)));
+return($count);
+
+[proc,blast_furnace_smelt_bronze]()(int)
+if (stat(smithing) < ~blast_furnace_bar_level(bronze_bar)) {
+    return(0);
+}
+def_int $count = min(min(%blast_furnace_copper_ore, %blast_furnace_tin_ore), sub(^blast_furnace_bar_limit, %blast_furnace_bronze_bars));
+if ($count < 1) {
+    return(0);
+}
+%blast_furnace_copper_ore = sub(%blast_furnace_copper_ore, $count);
+%blast_furnace_tin_ore = sub(%blast_furnace_tin_ore, $count);
+%blast_furnace_bronze_bars = add(%blast_furnace_bronze_bars, $count);
+stat_advance(smithing, multiply($count, ~blast_furnace_bar_exp(bronze_bar)));
+return($count);
+
+[proc,blast_furnace_smelt]()(int)
+def_int $made = ~blast_furnace_smelt_bronze;
+$made = add($made, ~blast_furnace_smelt_bars(iron_ore, steel_bar, 1));
+if (%blast_furnace_coal = 0 | stat(smithing) < ~blast_furnace_bar_level(steel_bar)) {
+    $made = add($made, ~blast_furnace_smelt_bars(iron_ore, iron_bar, 0));
+}
+$made = add($made, ~blast_furnace_smelt_bars(mithril_ore, mithril_bar, 2));
+$made = add($made, ~blast_furnace_smelt_bars(adamantite_ore, adamantite_bar, 3));
+$made = add($made, ~blast_furnace_smelt_bars(runite_ore, runite_bar, 4));
+$made = add($made, ~blast_furnace_smelt_bars(silver_ore, silver_bar, 0));
+$made = add($made, ~blast_furnace_smelt_bars(gold_ore, gold_bar, 0));
+$made = add($made, ~blast_furnace_smelt_bars(perfect_gold_ore, perfect_gold_bar, 0));
+~blast_furnace_update_coal_required;
+return($made);
+
+[proc,blast_furnace_can_use]()(boolean)
+if (stat_base(smithing) >= ^blast_furnace_smithing_level | getqueue(blast_furnace_fee) > 0) {
+    return(true);
+}
+return(false);
+
+[queue,blast_furnace_fee]

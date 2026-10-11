@@ -1,0 +1,85 @@
+[ai_queue3,dwarf_city_black_guard1] @black_guard_drop_table;
+[ai_queue3,dwarf_city_black_guard2] @black_guard_drop_table;
+[ai_queue3,dwarf_city_black_guard3] @black_guard_drop_table;
+[ai_queue3,dwarf_city_black_guard4] @black_guard_drop_table;
+[ai_queue3,dwarf_city_berserker1] @black_guard_berserker_drop_table;
+[ai_queue3,dwarf_city_berserker2] @black_guard_berserker_drop_table;
+[ai_queue3,dwarf_city_berserker3] @black_guard_berserker_drop_table;
+
+[label,black_guard_drop_table]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+
+def_int $random = random(611);
+if ($random < 25) {
+    obj_add(npc_coord, chaosrune, 2, ^lootdrop_duration);
+} else if ($random < 50) {
+    obj_add(npc_coord, naturerune, 2, ^lootdrop_duration);
+} else if ($random < 100) {
+    obj_add(npc_coord, bronze_med_helm, 1, ^lootdrop_duration);
+} else if ($random < 125) {
+    obj_add(npc_coord, bronze_battleaxe, 1, ^lootdrop_duration);
+} else if ($random < 150) {
+    obj_add(npc_coord, bolt, 6, ^lootdrop_duration);
+} else if ($random < 175) {
+    obj_add(npc_coord, bronze_warhammer, 1, ^lootdrop_duration);
+} else if ($random < 200) {
+    obj_add(npc_coord, bronze_pickaxe, 1, ^lootdrop_duration);
+} else if ($random < 225) {
+    obj_add(npc_coord, iron_battleaxe, 1, ^lootdrop_duration);
+} else if ($random < 250) {
+    obj_add(npc_coord, black_warhammer, 1, ^lootdrop_duration);
+} else if ($random < 300) {
+    obj_add(npc_coord, coins, ~random_range(4, 42), ^lootdrop_duration);
+} else if ($random < 325) {
+    obj_add(npc_coord, copper_ore, 1, ^lootdrop_duration);
+} else if ($random < 350) {
+    obj_add(npc_coord, bronze_bar, 1, ^lootdrop_duration);
+} else if ($random < 375) {
+    obj_add(npc_coord, iron_bar, 1, ^lootdrop_duration);
+} else if ($random < 400) {
+    obj_add(npc_coord, hammer, 1, ^lootdrop_duration);
+} else if ($random < 425) {
+    obj_add(npc_coord, coal, 1, ^lootdrop_duration);
+} else if ($random < 450) {
+    obj_add(npc_coord, keg_of_beer, 1, ^lootdrop_duration);
+} else if ($random < 475) {
+    obj_add(npc_coord, bucket_water, 1, ^lootdrop_duration);
+} else if ($random < 500) {
+    obj_add(npc_coord, ring_mould, 1, ^lootdrop_duration);
+}
+
+[label,black_guard_berserker_drop_table]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+
+def_int $random = random(310);
+if ($random < 25) {
+    obj_add(npc_coord, bronze_warhammer, 1, ^lootdrop_duration);
+} else if ($random < 50) {
+    obj_add(npc_coord, iron_warhammer, 1, ^lootdrop_duration);
+} else if ($random < 75) {
+    obj_add(npc_coord, steel_warhammer, 1, ^lootdrop_duration);
+} else if ($random < 100) {
+    obj_add(npc_coord, black_warhammer, 1, ^lootdrop_duration);
+} else if ($random < 150) {
+    obj_add(npc_coord, coins, ~random_range(35, 57), ^lootdrop_duration);
+} else if ($random < 175) {
+    obj_add(npc_coord, iron_ore, 1, ^lootdrop_duration);
+} else if ($random < 200) {
+    obj_add(npc_coord, tin_ore, 1, ^lootdrop_duration);
+} else if ($random < 225) {
+    obj_add(npc_coord, beer, 1, ^lootdrop_duration);
+} else if ($random < 250) {
+    obj_add(npc_coord, keg_of_beer, 1, ^lootdrop_duration);
+} else if ($random < 275) {
+    obj_add(npc_coord, ring_mould, 1, ^lootdrop_duration);
+} else if ($random < 300) {
+    obj_add(npc_coord, bucket_water, 1, ^lootdrop_duration);
+}

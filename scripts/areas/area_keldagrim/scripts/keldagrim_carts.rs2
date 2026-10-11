@@ -1,0 +1,250 @@
+[opnpc1,dwarf_city_train_conductor1]
+~chatnpc("<p,neutral>Yes <text_gender("sir", "m'am")>? Can I help you at all?");
+@keldagrim_conductor_menu;
+
+[opnpc1,dwarf_city_train_conductor2]
+~chatnpc("<p,neutral>Anything I can help you with?");
+@keldagrim_conductor_menu;
+
+[opnpc1,dwarf_city_train_conductor4]
+~chatnpc("<p,happy>Tickets, tickets, get your tickets here!");
+@keldagrim_conductor_menu;
+
+[opnpc1,dwarf_city_train_conductor8] @keldagrim_conductor_menu;
+
+[label,keldagrim_conductor_menu]
+@multi4("What is this place?", keldagrim_conductor_place, "Where can you take me?", keldagrim_conductor_where, "I'd like to buy a ticket.", keldagrim_conductor_buy, "I have to go.", keldagrim_conductor_bye);
+
+[label,keldagrim_conductor_place]
+~chatplayer("<p,quiz>What is this place?");
+if (npc_type = dwarf_city_train_conductor1) {
+    ~chatnpc("<p,neutral>You're in the main waiting area of Keldagrim Carts- station.");
+} else {
+    ~chatnpc("<p,neutral>This is the Keldagrim Carts-station, human.");
+}
+~chatplayer("<p,quiz>Cart-station? What goes on here then?");
+~chatnpc("<p,neutral>Keldagrim is the hub of all the traffic of the dwarven realm. Almost every dwarven outpost has railtracks leading to Keldagrim, connecting them all for easy travel and transportation of goods.");
+~chatplayer("<p,happy>Amazing! And what powers the carts? Magic?");
+~chatnpc("<p,neutral>Oh, no no, we dwarves don't use magic. No, all of this is powered by steam engines, developed during the past few centuries after the Consortium came to power.");
+~chatplayer("<p,happy>Thanks for the info.");
+@keldagrim_conductor_menu;
+
+[label,keldagrim_conductor_where]
+~chatplayer("<p,quiz>Where can you take me?");
+~chatnpc("<p,neutral>Let's see, we could let you travel to Ice Mountain.");
+if (%fishingcompo = ^fishingcompo_complete) {
+    ~chatnpc("<p,neutral>I could also let you go to White Wolf Mountain, since you've befriended our brothers there.");
+}
+@keldagrim_conductor_menu;
+
+[label,keldagrim_conductor_buy]
+~chatplayer("<p,neutral>I'd like to buy a ticket.");
+~chatnpc("<p,quiz>And where would you like to go?");
+if (%fishingcompo = ^fishingcompo_complete) {
+    @multi3("To Ice Mountain.", keldagrim_conductor_icemountain, "To White Wolf Mountain.", keldagrim_conductor_whitewolf, "Nowhere.", keldagrim_conductor_nowhere);
+}
+@multi2("To Ice Mountain.", keldagrim_conductor_icemountain, "Nowhere.", keldagrim_conductor_nowhere);
+
+[label,keldagrim_conductor_nowhere]
+~chatplayer("<p,neutral>Nowhere.");
+
+[label,keldagrim_conductor_icemountain]
+~chatplayer("<p,neutral>I'd like to buy a ticket to Ice Mountain.");
+~chatnpc("<p,neutral>That'll be 150 gold coins please.");
+def_int $option = ~keldagrim_ticket_choice;
+if ($option = 2) {
+    ~chatplayer("<p,neutral>No thanks, I changed my mind.");
+    @keldagrim_conductor_menu;
+}
+def_int $cost = ^keldagrim_ticket_icemountain;
+if ($option = 3) {
+    $cost = ^keldagrim_ticket_icemountain_charos;
+}
+if (~keldagrim_buy_ticket(dwarf_minecart_ticket_kelda_ice, $cost) = false) {
+    @keldagrim_conductor_menu;
+}
+if ($option = 3) {
+    ~chatnpc("<p,neutral>You're alright, I suppose... I can let you go for 75 coins. And remember, carts to Ice Mountain depart from track 1.");
+    return;
+}
+~chatnpc("<p,happy>Thanks, carts to Ice Mountain depart from track 1.");
+
+[label,keldagrim_conductor_whitewolf]
+~chatplayer("<p,neutral>I'd like to buy a ticket to White Wolf Mountain.");
+~chatnpc("<p,neutral>That'll be 100 gold coins please.");
+def_int $option = ~keldagrim_ticket_choice;
+if ($option = 2) {
+    ~chatplayer("<p,neutral>No thanks, I changed my mind.");
+    @keldagrim_conductor_menu;
+}
+def_int $cost = ^keldagrim_ticket_whitewolf;
+if ($option = 3) {
+    $cost = ^keldagrim_ticket_whitewolf_charos;
+}
+if (~keldagrim_buy_ticket(dwarf_minecart_ticket_kelda_whitewolf, $cost) = false) {
+    @keldagrim_conductor_menu;
+}
+if ($option = 3) {
+    ~chatnpc("<p,neutral>You're a decent human, I suppose... I can let you go for 50 coins. Go to track 4 for the carts heading to White Wolf Mountain.");
+    return;
+}
+~chatnpc("<p,happy>Thanks. Go to track 4 for carts heading to White Wolf Mountain.");
+
+[label,keldagrim_conductor_bye]
+~chatplayer("<p,neutral>I have to go.");
+~chatnpc("<p,neutral>Just remember, wherever you go, you go there faster through Keldagrim Carts.");
+
+[proc,keldagrim_ticket_choice]()(int)
+if (inv_total(worn, ring_of_charos_unlocked) > 0) {
+    return(~p_choice3("Buy.", 1, "Don't buy.", 2, "[Charm] Only pay half.", 3));
+}
+return(~p_choice2("Buy.", 1, "Don't buy.", 2));
+
+[proc,keldagrim_buy_ticket](namedobj $ticket, int $cost)(boolean)
+if (inv_total(inv, coins) < $cost) {
+    ~chatplayer("<p,sad>I'm sorry, I've run out of money.");
+    return(false);
+}
+if (inv_freespace(inv) < 1 & inv_total(inv, coins) ! $cost) {
+    ~chatnpc("<p,neutral>I'm sorry, <text_gender("sir", "madam")>, but I don't believe you can hold the ticket.");
+    return(false);
+}
+inv_del(inv, coins, $cost);
+inv_add(inv, $ticket, 1);
+return(true);
+
+[opnpc1,dwarf_city_train_conductor3]
+~chatnpc("<p,angry>Out of the way human!");
+~chatplayer("<p,quiz>Why, what's happening?");
+~chatnpc("<p,angry>There's important traffic coming through here and I don't want any stray humans distracting me.");
+
+[opnpc1,dwarf_city_train_conductor5]
+~chatnpc("<p,angry>Wot you want?");
+def_int $option = ~p_choice4("What is this place?", 1, "Where can you take me?", 2, "I'd like to buy a ticket.", 3, "I have to go.", 4);
+switch_int ($option) {
+    case 1 : ~chatplayer("<p,quiz>What is this place?");
+    case 2 : ~chatplayer("<p,quiz>Where can you take me?");
+    case 3 : ~chatplayer("<p,neutral>I'd like to buy a ticket.");
+    case 4 :
+        ~chatplayer("<p,neutral>I have to go.");
+        ~chatnpc("<p,angry>Then why did ya waste my time?");
+        return;
+}
+~chatnpc("<p,angry>Can't you see I'm 'aving a lil' break?");
+~chatplayer("<p,neutral>Now that you mention it, yes.");
+
+[opnpc1,dwarf_city_train_conductor6] @keldagrim_whitewolf_conductor_menu;
+
+[label,keldagrim_whitewolf_conductor_menu]
+def_int $option = ~p_choice4("Who are you?", 1, "Where can you take me?", 2, "I'd like to buy a ticket.", 3, "I have to go.", 4);
+switch_int ($option) {
+    case 1 :
+        ~chatplayer("<p,quiz>Who are you?");
+        ~chatnpc("<p,drunk>Whooooo? Meeeee? Oh, I make sure *hic* the cart traffic proceedsh *hic* in an orderly fishion. Fashion. Yes.");
+        @keldagrim_whitewolf_conductor_menu;
+    case 2 :
+        ~chatplayer("<p,quiz>Where can you take me?");
+        ~chatnpc("<p,drunk>North, north, north *hic* north to Keldagrim!");
+        @keldagrim_whitewolf_conductor_menu;
+    case 3 :
+        ~chatplayer("<p,neutral>I'd like to buy a ticket.");
+        ~chatnpc("<p,drunk>One ticket to ehm... *hic* Keldagrim. That's 2... 3.... *hic* 100 glittering gold coins!");
+        def_int $choice = ~keldagrim_ticket_choice;
+        if ($choice = 2) {
+            ~chatplayer("<p,neutral>No thanks, I changed my mind.");
+            @keldagrim_whitewolf_conductor_menu;
+        }
+        if ($choice = 3) {
+            if (~keldagrim_buy_ticket(dwarf_minecart_ticket_whitewolf_kelda, ^keldagrim_ticket_whitewolf_charos) = false) {
+                @keldagrim_whitewolf_conductor_menu;
+            }
+            ~chatnpc("<p,drunk>Waith a shecond... that'sh only 50 coinsh!");
+            ~chatplayer("<p,neutral>No it's not, you're seeing double from all that drinking, remember? So it's actually 100 coins.");
+            ~chatnpc("<p,drunk>Errr... yesh, I shuppose you're right.");
+            return;
+        }
+        if (~keldagrim_buy_ticket(dwarf_minecart_ticket_whitewolf_kelda, ^keldagrim_ticket_whitewolf) = false) {
+            @keldagrim_whitewolf_conductor_menu;
+        }
+        ~chatnpc("<p,drunk>Thanksh a lot human! Remember to come back for more shtout whenever you want! *hic*");
+    case 4 :
+        ~chatplayer("<p,neutral>I have to go.");
+        ~chatnpc("<p,drunk>Just remember, wherever you go... ehm... *hic* oh, forget it.");
+}
+
+[opnpc1,dwarf_city_train_conductor7] @keldagrim_icemountain_conductor_menu;
+
+[label,keldagrim_icemountain_conductor_menu]
+def_int $option = ~p_choice4("Who are you?", 1, "Where can you take me?", 2, "I'd like to buy a ticket.", 3, "I have to go.", 4);
+switch_int ($option) {
+    case 1 :
+        ~chatplayer("<p,quiz>Who are you?");
+        ~chatnpc("<p,neutral>I'm an employee of Keldagrim Carts. I make sure the carts in this area run on time and that people pay their fares.");
+        @keldagrim_icemountain_conductor_menu;
+    case 2 :
+        ~chatplayer("<p,quiz>Where can you take me?");
+        ~chatnpc("<p,neutral>This track leads right up to Keldagrim. Only stop.");
+        @keldagrim_icemountain_conductor_menu;
+    case 3 :
+        ~chatplayer("<p,neutral>I'd like to buy a ticket.");
+        ~chatnpc("<p,neutral>One ticket to Keldagrim, that's 150 coins then.");
+        def_int $choice = ~keldagrim_ticket_choice;
+        if ($choice = 2) {
+            ~chatplayer("<p,neutral>No thanks, I changed my mind.");
+            @keldagrim_icemountain_conductor_menu;
+        }
+        if ($choice = 3) {
+            if (~keldagrim_buy_ticket(dwarf_minecart_ticket_ice_kelda, ^keldagrim_ticket_icemountain_charos) = false) {
+                @keldagrim_icemountain_conductor_menu;
+            }
+            ~chatnpc("<p,neutral>This is only 75 coins, I can't let you have a ticket for that.");
+            ~chatplayer("<p,neutral>Oh, don't worry. I'll pay you another 75 coins for the next ticket I buy, alright?");
+            ~chatnpc("<p,neutral>Well... I suppose so.");
+            return;
+        }
+        if (~keldagrim_buy_ticket(dwarf_minecart_ticket_ice_kelda, ^keldagrim_ticket_icemountain) = false) {
+            @keldagrim_icemountain_conductor_menu;
+        }
+        ~chatnpc("<p,happy>Thanks for your custom!");
+    case 4 :
+        ~chatplayer("<p,neutral>I have to go.");
+        ~chatnpc("<p,neutral>Just remember, wherever you go, you go there faster through Keldagrim Carts.");
+}
+
+[ai_timer,dwarf_city_train_conductor4]
+npc_settimer(calc(15 + random(20)));
+switch_int (random(3)) {
+    case 0 : npc_say("Tickets! Tickets!");
+    case 1 : npc_say("Buy your tickets here!");
+    case 2 : npc_say("Selling tickets!");
+}
+
+[ai_timer,dwarf_city_train_conductor8]
+npc_settimer(calc(15 + random(20)));
+switch_int (random(3)) {
+    case 0 : npc_say("Ice Mountain carts departing from Track 1!");
+    case 1 : npc_say("White Wolf Mountain carts departing from Track 4!");
+    case 2 : npc_say("Mind the cart!");
+}
+
+[oploc1,keldagrim_train_cart]
+if (coordz(loc_coord) = ^keldagrim_cart_track1_z) {
+    @keldagrim_cart_ride(dwarf_minecart_ticket_kelda_ice, ^keldagrim_cart_icemountain_coord);
+}
+@keldagrim_cart_ride(dwarf_minecart_ticket_kelda_whitewolf, ^keldagrim_cart_whitewolf_coord);
+
+[oploc1,icemountain_train_cart] @keldagrim_cart_ride(dwarf_minecart_ticket_ice_kelda, ^keldagrim_cart_arrival_coord);
+[oploc1,whitewolfmountain_train_cart] @keldagrim_cart_ride(dwarf_minecart_ticket_whitewolf_kelda, ^keldagrim_cart_arrival_coord);
+
+[label,keldagrim_cart_ride](obj $ticket, coord $dest)
+if (inv_total(inv, $ticket) < 1) {
+    mes("You need a ticket to ride this cart.");
+    return;
+}
+inv_del(inv, $ticket, 1);
+~fade_out;
+p_delay(4);
+p_teleport($dest);
+~fade_in;
+p_delay(4);
+if_openoverlay(null);

@@ -1,0 +1,24 @@
+[oploc1,dwarf_keldagrim_stairs_lower] @keldagrim_stairs_up;
+[oploc1,dwarf_keldagrim_wide_stairs_lower] @keldagrim_stairs_up;
+[oploc1,dwarf_keldagrim_wide_stairs_3_lower] @keldagrim_stairs_up;
+[oploc1,dwarf_keldagrim_stairs_upper] @keldagrim_stairs_down;
+[oploc1,dwarf_keldagrim_wide_stairs_upper] @keldagrim_stairs_down;
+[oploc1,dwarf_keldagrim_wide_stairs_3_upper] @keldagrim_stairs_down;
+
+[label,keldagrim_stairs_up]
+p_arrivedelay;
+switch_int (loc_angle) {
+    case 0 : p_telejump(movecoord(loc_coord, 0, 1, 2));
+    case 1 : p_telejump(movecoord(loc_coord, 2, 1, 0));
+    case 2 : p_telejump(movecoord(loc_coord, 0, 1, -1));
+    case 3 : p_telejump(movecoord(loc_coord, -1, 1, 0));
+}
+
+[label,keldagrim_stairs_down]
+p_arrivedelay;
+switch_int (loc_angle) {
+    case 0 : p_telejump(movecoord(loc_coord, 0, -1, -2));
+    case 1 : p_telejump(movecoord(loc_coord, -2, -1, 0));
+    case 2 : p_telejump(movecoord(loc_coord, 0, -1, 2));
+    case 3 : p_telejump(movecoord(loc_coord, 2, -1, 0));
+}

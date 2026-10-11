@@ -8941,143 +8941,6 @@ model=loc_6099
 sharelight=yes
 active=no
 
-[dwarf_keldagrim_door_interior_palace]
-name=Door
-desc=The door is closed.
-model=loc_6100
-recol1s=9445
-recol1d=8457
-recol2s=16741
-recol2d=7400
-active=yes
-op1=Open
-
-[dwarf_keldagrim_door_interior_palace_open]
-name=Door
-desc=The door is open.
-model=loc_6100
-recol1s=9445
-recol1d=8457
-recol2s=16741
-recol2d=7400
-active=yes
-op1=Close
-
-[dwarf_keldagrim_door_interior_poor]
-name=Door
-desc=The door is closed.
-model=loc_6100
-recol1s=8457
-recol1d=9445
-active=yes
-op1=Open
-
-[dwarf_keldagrim_door_interior_poor_open]
-name=Door
-desc=The door is open.
-model=loc_6100
-recol1s=8457
-recol1d=9445
-active=yes
-op1=Close
-
-[dwarf_keldagrim_door_interior]
-name=Door
-desc=The door is closed.
-model=loc_6100
-active=yes
-op1=Open
-
-[dwarf_keldagrim_door_interior_open]
-name=Door
-desc=The door is open.
-model=loc_6100
-active=yes
-op1=Close
-
-[dwarf_keldagrim_door]
-name=Door
-desc=The door is closed.
-model=loc_6106
-active=yes
-op1=Open
-
-[dwarf_keldagrim_door_open]
-name=Door
-desc=The door is open.
-model=loc_6106
-active=yes
-op1=Close
-
-[dwarf_keldagrim_door_poor]
-name=Door
-desc=The door is closed.
-model=loc_6106
-recol1s=8457
-recol1d=9445
-active=yes
-op1=Open
-
-[dwarf_keldagrim_door_poor_open]
-name=Door
-desc=The door is open.
-model=loc_6106
-recol1s=8457
-recol1d=9445
-active=yes
-op1=Close
-
-[dwarf_keldagrim_door_ornate]
-name=Door
-desc=The door is closed.
-model=loc_6110
-active=yes
-op1=Open
-
-[dwarf_keldagrim_door_ornate_open]
-name=Door
-desc=The door is open.
-model=loc_6110
-active=yes
-op1=Close
-
-[dwarf_keldagrim_door_ornate_mirror]
-name=Door
-desc=The door is closed.
-model=loc_6110
-mirror=yes
-active=yes
-op1=Open
-
-[dwarf_keldagrim_door_ornate_mirror_open]
-name=Door
-desc=The door is open.
-model=loc_6110
-active=yes
-op1=Close
-
-[dwarf_keldagrim_door_palace]
-name=Door
-desc=The door is closed.
-model=loc_6110
-recol1s=9445
-recol1d=8457
-recol2s=16741
-recol2d=7400
-active=yes
-op1=Open
-
-[dwarf_keldagrim_door_palace_open]
-name=Door
-desc=The door is open.
-model=loc_6110
-recol1s=9445
-recol1d=8457
-recol2s=16741
-recol2d=7400
-active=yes
-op1=Close
-
 [dwarf_keldagrim_house_poor_side_chimney]
 model=loc_6116
 recol1s=10571
@@ -17037,37 +16900,6 @@ model=loc_6973
 sharelight=yes
 mirror=yes
 active=no
-
-[dwarf_keldagrim_door_interior_factory]
-name=Door
-desc=The door is closed.
-model=loc_6100
-recol1s=8457
-recol1d=9445
-active=yes
-op1=Open
-
-[dwarf_keldagrim_door_interior_factory_open]
-name=Door
-desc=The door is open.
-model=loc_6100
-recol1s=8457
-recol1d=9445
-active=yes
-op1=Close
-
-[dwarf_keldagrim_factory_door]
-name=Door
-desc=The door is closed.
-model=loc_6106
-active=yes
-op1=Open
-
-[dwarf_keldagrim_factory_door_open]
-name=Door
-desc=The door is open.
-model=loc_6106
-active=yes
 
 [dwarf_keldagrim_door_bank_open]
 model=loc_6110
@@ -53309,13 +53141,6 @@ desc=The gate is open.
 model=loc_9140
 active=yes
 raiseobject=no
-
-[blast_furnace_sink]
-name=Sink
-desc=Used for getting water.
-model=loc_6151
-length=2
-op1=Fill-bucket
 
 [wom_candle_stand]
 name=Candelabrum

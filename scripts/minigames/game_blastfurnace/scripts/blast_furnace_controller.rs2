@@ -1,0 +1,215 @@
+[ai_timer,blast_furnace_instructor]
+%blast_furnace_ticks = add(%blast_furnace_ticks, 1);
+def_boolean $pumping = ~blast_furnace_pumping;
+def_boolean $pedaling = ~blast_furnace_pedaling;
+
+if (%blast_furnace_coke > 0) {
+    %blast_furnace_stove_temp = min(100, add(%blast_furnace_stove_temp, 1));
+} else {
+    %blast_furnace_stove_temp = max(0, sub(%blast_furnace_stove_temp, 1));
+}
+
+if ($pumping = true) {
+    if (%blast_furnace_stove_temp > 66) {
+        %blast_furnace_temp = add(%blast_furnace_temp, 3);
+    } else if (%blast_furnace_stove_temp > 32) {
+        %blast_furnace_temp = add(%blast_furnace_temp, 2);
+    } else if (%blast_furnace_stove_temp > 0) {
+        %blast_furnace_temp = add(%blast_furnace_temp, 1);
+    }
+} else {
+    %blast_furnace_temp = sub(%blast_furnace_temp, 1);
+}
+%blast_furnace_temp = max(0, min(100, %blast_furnace_temp));
+
+if (modulo(%blast_furnace_ticks, 10) = 0) {
+    %blast_furnace_coke = max(0, sub(%blast_furnace_coke, 1));
+}
+
+if ($pumping = true & random(50) = 0) {
+    if (random(2) = 0) {
+        %blast_furnace_broken = setbit(%blast_furnace_broken, ^blast_furnace_pot_pipe_bit);
+    } else {
+        %blast_furnace_broken = setbit(%blast_furnace_broken, ^blast_furnace_pump_pipe_bit);
+    }
+}
+if ($pedaling = true) {
+    if (random(50) = 0) {
+        %blast_furnace_broken = setbit(%blast_furnace_broken, ^blast_furnace_drive_belt_bit);
+    } else if (random(50) = 0) {
+        %blast_furnace_broken = setbit(%blast_furnace_broken, ^blast_furnace_cogs_bit);
+    }
+}
+$pumping = ~blast_furnace_pumping;
+$pedaling = ~blast_furnace_pedaling;
+
+%blast_furnace_belt_moving = 0;
+if ($pedaling = true) {
+    %blast_furnace_belt_moving = 1;
+}
+
+~blast_furnace_restore_machinery;
+
+huntall(^blast_furnace_centre, ^blast_furnace_hunt_range, 0);
+if (huntnext = false) {
+    return;
+}
+
+~blast_furnace_update_scenery($pedaling);
+
+def_int $processed = 0;
+def_int $belt_load = 0;
+huntall(^blast_furnace_centre, ^blast_furnace_hunt_range, 0);
+while (huntnext = true) {
+    if (inzone(^blast_furnace_lower_bound, ^blast_furnace_upper_bound, coord) = true) {
+        if (%blast_furnace_ore_on_conveyor > 0) {
+            if ($pedaling = true & modulo(%blast_furnace_ticks, 2) = 0) {
+                %blast_furnace_ore_on_conveyor = sub(%blast_furnace_ore_on_conveyor, 1);
+                if (%blast_furnace_ore_on_conveyor = 0) {
+                    ~blast_furnace_belt_deposit;
+                }
+            }
+            if (%blast_furnace_ore_on_conveyor > 0) {
+                $belt_load = add($belt_load, 1);
+            }
+        }
+        if (%blast_furnace_bars_hot = ^blast_furnace_dispenser_pouring) {
+            %blast_furnace_bars_hot = ^blast_furnace_dispenser_hot;
+        } else if (%blast_furnace_bars_hot = ^blast_furnace_dispenser_empty & %blast_furnace_temp > 50 & %blast_furnace_temp < 67 & ~blast_furnace_has_ore = true) {
+            if (~blast_furnace_smelt > 0) {
+                %blast_furnace_bars_hot = ^blast_furnace_dispenser_pouring;
+                $processed = add($processed, 1);
+            }
+        }
+    }
+}
+%blast_furnace_belt_load = $belt_load;
+
+if ($processed > 0) {
+    huntall(^blast_furnace_centre, ^blast_furnace_hunt_range, 0);
+    while (huntnext = true) {
+        if (inzone(^blast_furnace_lower_bound, ^blast_furnace_upper_bound, coord) = true) {
+            stat_advance(smithing, multiply($processed, 10));
+        }
+    }
+}
+
+if (modulo(%blast_furnace_ticks, 20) = 0 & random(2) = 0) {
+    npc_say(~blast_furnace_foreman_shout($pumping, $pedaling));
+}
+
+[proc,blast_furnace_pumping]()(boolean)
+if (add(%blast_furnace_pump_clock, 2) < map_clock) {
+    return(false);
+}
+if (testbit(%blast_furnace_broken, ^blast_furnace_pot_pipe_bit) = ^true | testbit(%blast_furnace_broken, ^blast_furnace_pump_pipe_bit) = ^true) {
+    return(false);
+}
+if (testbit(%blast_furnace_broken, ^blast_furnace_drive_belt_bit) = ^true | testbit(%blast_furnace_broken, ^blast_furnace_cogs_bit) = ^true) {
+    return(false);
+}
+return(true);
+
+[proc,blast_furnace_pedaling]()(boolean)
+if (add(%blast_furnace_pedal_clock, 2) < map_clock) {
+    return(false);
+}
+if (testbit(%blast_furnace_broken, ^blast_furnace_drive_belt_bit) = ^true | testbit(%blast_furnace_broken, ^blast_furnace_cogs_bit) = ^true) {
+    return(false);
+}
+return(true);
+
+[proc,blast_furnace_restore_machinery]
+if (add(%blast_furnace_pump_clock, 2) < map_clock & loc_find(^blast_furnace_pump_coord, blast_furnace_pump) = false) {
+    loc_add(^blast_furnace_pump_coord, blast_furnace_pump, 1, centrepiece_straight, ^blast_furnace_loc_duration);
+}
+if (add(%blast_furnace_pedal_clock, 2) < map_clock & loc_find(^blast_furnace_pedals_coord, blast_furnace_pedals) = false) {
+    loc_add(^blast_furnace_pedals_coord, blast_furnace_pedals, 1, centrepiece_straight, ^blast_furnace_loc_duration);
+}
+
+[proc,blast_furnace_update_scenery](boolean $pedaling)
+def_loc $stove = blast_furnace_stove_low;
+if (%blast_furnace_stove_temp > 66) {
+    $stove = blast_furnace_stove_full;
+} else if (%blast_furnace_stove_temp > 33) {
+    $stove = blast_furnace_stove_medium;
+}
+if (loc_find(^blast_furnace_stove_coord, $stove) = false) {
+    ~blast_furnace_change_loc(^blast_furnace_stove_coord, blast_furnace_stove_low, $stove);
+    ~blast_furnace_change_loc(^blast_furnace_stove_coord, blast_furnace_stove_medium, $stove);
+    ~blast_furnace_change_loc(^blast_furnace_stove_coord, blast_furnace_stove_full, $stove);
+}
+
+~blast_furnace_set_broken(^blast_furnace_pot_pipe_coord, blast_furnace_pipes2, blast_furnace_pipes2_broken, ^blast_furnace_pot_pipe_bit);
+~blast_furnace_set_broken(^blast_furnace_pump_pipe_coord, blast_furnace_pipes6, blast_furnace_pipes6_broken, ^blast_furnace_pump_pipe_bit);
+~blast_furnace_set_broken(^blast_furnace_drive_belt_coord, blast_furnace_conveyer_cogs, blast_furnace_conveyer_cogs_broken, ^blast_furnace_drive_belt_bit);
+~blast_furnace_set_broken(^blast_furnace_cogs_coord, blast_furnace_conveyer_cogs2, blast_furnace_conveyer_cogs2_broken, ^blast_furnace_cogs_bit);
+
+if ($pedaling = true & modulo(%blast_furnace_ticks, 4) = 0) {
+    ~blast_furnace_anim_loc(^blast_furnace_belt1_coord, blast_furnace_conveyer_belt_clickable, blast_furnace_conveyer_belt);
+    ~blast_furnace_anim_loc(^blast_furnace_belt2_coord, blast_furnace_conveyer_belt, blast_furnace_conveyer_belt);
+    ~blast_furnace_anim_loc(^blast_furnace_belt3_coord, blast_furnace_conveyer_belt, blast_furnace_conveyer_belt);
+    ~blast_furnace_anim_loc(^blast_furnace_drive_belt_coord, blast_furnace_conveyer_cogs, blast_furnace_conveyer_cogs);
+    ~blast_furnace_anim_loc(^blast_furnace_cogs_coord, blast_furnace_conveyer_cogs2, blast_furnace_conveyer_cogs);
+    ~blast_furnace_anim_loc(^blast_furnace_gear_left_coord, blast_furnace_conveyer_cogs4, blast_furnace_conveyer_cogs);
+    ~blast_furnace_anim_loc(^blast_furnace_cog_left_coord, blast_furnace_conveyer_cogs5, blast_furnace_conveyer_cogs);
+    ~blast_furnace_anim_loc(^blast_furnace_gear_centre_coord, blast_furnace_conveyer_cogs3, blast_furnace_conveyer_cogs);
+}
+
+[proc,blast_furnace_change_loc](coord $coord, loc $from, loc $to)
+if (loc_find($coord, $from) = true) {
+    loc_change($to, ^blast_furnace_loc_duration);
+}
+
+[proc,blast_furnace_set_broken](coord $coord, loc $fixed, loc $broken, int $bit)
+if (testbit(%blast_furnace_broken, $bit) = ^true) {
+    ~blast_furnace_change_loc($coord, $fixed, $broken);
+} else {
+    ~blast_furnace_change_loc($coord, $broken, $fixed);
+}
+
+[proc,blast_furnace_anim_loc](coord $coord, loc $loc, seq $seq)
+if (loc_find($coord, $loc) = true) {
+    loc_anim($seq);
+}
+
+[proc,blast_furnace_foreman_shout](boolean $pumping, boolean $pedaling)(string)
+if (testbit(%blast_furnace_broken, ^blast_furnace_drive_belt_bit) = ^true | testbit(%blast_furnace_broken, ^blast_furnace_cogs_bit) = ^true) {
+    return("Somebody fix the conveyer belt!");
+}
+if (testbit(%blast_furnace_broken, ^blast_furnace_pot_pipe_bit) = ^true | testbit(%blast_furnace_broken, ^blast_furnace_pump_pipe_bit) = ^true) {
+    return("Somebody fix that pipe!");
+}
+if (%blast_furnace_temp = 100) {
+    return("You fools, you let it overheat!");
+}
+if (%blast_furnace_coke = 0) {
+    return("Somebody refuel the stove!");
+}
+if ($pumping = false) {
+    return("Somebody operate the pump!");
+}
+if ($pedaling = false & %blast_furnace_belt_load > 0) {
+    return("Somebody work the conveyer belt!");
+}
+if (%blast_furnace_temp < 51 | %blast_furnace_temp > 66) {
+    return("Keep the temperature controlled.");
+}
+if (random(2) = 0) {
+    return("Work faster!");
+}
+return("That's it, keep it going!");
+
+[ai_timer,_blast_furnace_ore]
+if (%blast_furnace_belt_moving = 0 & %npc_int = 0) {
+    return;
+}
+if (%npc_int = 1) {
+    npc_del;
+    return;
+}
+npc_tele(movecoord(npc_coord, 0, 0, -1));
+if (npc_coord = ^blast_furnace_ore_end_coord) {
+    npc_anim(blast_furnace_conveyer_ore_fall, 0);
+    %npc_int = 1;
+}

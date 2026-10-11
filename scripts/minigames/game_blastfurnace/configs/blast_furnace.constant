@@ -1,0 +1,48 @@
+^blast_furnace_lower_bound = 0_30_77_14_27
+^blast_furnace_upper_bound = 0_30_77_38_47
+^blast_furnace_centre = 0_30_77_25_37
+^blast_furnace_hunt_range = 12
+
+^blast_furnace_entrance_coord = 0_30_77_20_30
+^blast_furnace_exit_coord = 0_45_159_51_21
+
+^blast_furnace_pump_coord = 0_30_77_30_33
+^blast_furnace_pump_face = 0_30_77_29_33
+^blast_furnace_pedals_coord = 0_30_77_27_38
+^blast_furnace_pedals_face = 0_30_77_26_38
+^blast_furnace_pedals_dismount = 0_30_77_27_39
+^blast_furnace_stove_coord = 0_30_77_28_35
+^blast_furnace_pot_pipe_coord = 0_30_77_23_33
+^blast_furnace_pump_pipe_coord = 0_30_77_27_33
+^blast_furnace_drive_belt_coord = 0_30_77_24_39
+^blast_furnace_cogs_coord = 0_30_77_25_39
+^blast_furnace_belt1_coord = 0_30_77_23_39
+^blast_furnace_belt2_coord = 0_30_77_23_38
+^blast_furnace_belt3_coord = 0_30_77_23_37
+^blast_furnace_gear_left_coord = 0_30_77_24_37
+^blast_furnace_cog_left_coord = 0_30_77_25_37
+^blast_furnace_gear_centre_coord = 0_30_77_25_38
+^blast_furnace_ore_start_coord = 0_30_77_22_38
+^blast_furnace_ore_end_coord = 0_30_77_22_35
+^blast_furnace_dispenser_coord = 0_30_77_20_35
+
+^blast_furnace_smithing_level = 60
+^blast_furnace_fee = 2500
+^blast_furnace_fee_charos = 1250
+^blast_furnace_fee_duration = 1000
+^blast_furnace_coal_limit = 226
+^blast_furnace_ore_limit = 28
+^blast_furnace_bar_limit = 28
+^blast_furnace_coke_limit = 15
+^blast_furnace_belt_steps = 3
+^blast_furnace_loc_duration = 100000
+
+^blast_furnace_pot_pipe_bit = 0
+^blast_furnace_pump_pipe_bit = 1
+^blast_furnace_drive_belt_bit = 2
+^blast_furnace_cogs_bit = 3
+
+^blast_furnace_dispenser_empty = 0
+^blast_furnace_dispenser_pouring = 1
+^blast_furnace_dispenser_hot = 2
+^blast_furnace_dispenser_cooled = 3

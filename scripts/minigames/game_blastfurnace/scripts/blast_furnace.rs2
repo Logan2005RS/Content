@@ -1,0 +1,273 @@
+[oploc1,dwarf_keldagrim_factory_stairs]
+p_arrivedelay;
+p_telejump(^blast_furnace_entrance_coord);
+
+[oploc1,blast_furnace_stairs_up]
+p_arrivedelay;
+p_telejump(^blast_furnace_exit_coord);
+
+[oploc1,blast_furnace_pump]
+if (stat(strength) < 30) {
+    mes("You need a Strength level of 30 to do that.");
+    return;
+}
+if (%blast_furnace_pumper ! uid & add(%blast_furnace_pump_clock, 2) >= map_clock) {
+    mes("Someone else is already doing that.");
+    return;
+}
+%blast_furnace_pumper = uid;
+%blast_furnace_pump_clock = map_clock;
+loc_del(^blast_furnace_loc_duration);
+p_telejump(^blast_furnace_pump_coord);
+facesquare(^blast_furnace_pump_face);
+anim(blast_furnace_human_air_pump, 0);
+settimer(blast_furnace_pump, 1);
+
+[oploc1,blast_furnace_pedals]
+if (stat(agility) < 30) {
+    mes("You need an Agility level of 30 to do that.");
+    return;
+}
+if (%blast_furnace_pedaler ! uid & add(%blast_furnace_pedal_clock, 2) >= map_clock) {
+    mes("Someone else is already doing that.");
+    return;
+}
+%blast_furnace_pedaler = uid;
+%blast_furnace_pedal_clock = map_clock;
+loc_del(^blast_furnace_loc_duration);
+p_telejump(^blast_furnace_pedals_coord);
+facesquare(^blast_furnace_pedals_face);
+anim(blast_furnace_human_conveyer_cycle, 0);
+settimer(blast_furnace_pedal, 1);
+
+[timer,blast_furnace_pump]
+if (%blast_furnace_pumper ! uid | coord ! ^blast_furnace_pump_coord) {
+    cleartimer(blast_furnace_pump);
+    return;
+}
+%blast_furnace_pump_clock = map_clock;
+if (~blast_furnace_pumping = false | %blast_furnace_stove_temp = 0) {
+    return;
+}
+if (%blast_furnace_temp = 100 & random(5) = 0) {
+    cleartimer(blast_furnace_pump);
+    mes("A blast of hot air cooks you a bit.");
+    anim(null, 0);
+    p_telejump(movecoord(^blast_furnace_pump_coord, 1, 0, 0));
+    ~damage_self(divide(stat_base(hitpoints), 5));
+    return;
+}
+stat_advance(strength, 20);
+
+[timer,blast_furnace_pedal]
+if (%blast_furnace_pedaler ! uid | coord ! ^blast_furnace_pedals_coord) {
+    cleartimer(blast_furnace_pedal);
+    return;
+}
+if (runenergy < 50) {
+    cleartimer(blast_furnace_pedal);
+    anim(null, 0);
+    p_telejump(^blast_furnace_pedals_dismount);
+    return;
+}
+%blast_furnace_pedal_clock = map_clock;
+if (~blast_furnace_pedaling = true & %blast_furnace_belt_load > 0) {
+    stat_advance(agility, 10);
+    healenergy(-50);
+}
+
+[oploc1,blast_furnace_coke]
+if (inv_total(inv, spade) < 1) {
+    mes("You need a spade to do this!");
+    return;
+}
+anim(human_shovel_coke_up, 0);
+inv_del(inv, spade, 1);
+inv_add(inv, blast_furnace_coke_spade, 1);
+p_delay(0);
+
+[opheld1,blast_furnace_coke_spade]
+inv_delslot(inv, last_slot);
+inv_add(inv, spade, 1);
+
+[oploc1,blast_furnace_stove_low] @blast_furnace_refuel;
+[oploc1,blast_furnace_stove_medium] @blast_furnace_refuel;
+[oploc1,blast_furnace_stove_full] @blast_furnace_refuel;
+
+[label,blast_furnace_refuel]
+if (inv_total(inv, blast_furnace_coke_spade) < 1) {
+    mes("You need some coke to do that!");
+    return;
+}
+if (%blast_furnace_coke >= ^blast_furnace_coke_limit) {
+    mes("The stove is already full of coke!");
+    return;
+}
+if (stat(firemaking) < 30) {
+    mes("You need a Firemaking level of 30 to do this.");
+    return;
+}
+anim(human_shovel_coke_down, 0);
+p_delay(1);
+if (inv_total(inv, blast_furnace_coke_spade) < 1) {
+    return;
+}
+inv_del(inv, blast_furnace_coke_spade, 1);
+inv_add(inv, spade, 1);
+anim(human_shovel_coke_fin, 0);
+stat_advance(firemaking, 50);
+%blast_furnace_coke = min(^blast_furnace_coke_limit, add(%blast_furnace_coke, 1));
+
+[oploc1,blast_furnace_pipes2_broken] @blast_furnace_repair(^blast_furnace_pot_pipe_bit, blast_furnace_pipes2);
+[oploc1,blast_furnace_pipes6_broken] @blast_furnace_repair(^blast_furnace_pump_pipe_bit, blast_furnace_pipes6);
+[oploc1,blast_furnace_conveyer_cogs_broken] @blast_furnace_repair(^blast_furnace_drive_belt_bit, blast_furnace_conveyer_cogs);
+[oploc1,blast_furnace_conveyer_cogs2_broken] @blast_furnace_repair(^blast_furnace_cogs_bit, blast_furnace_conveyer_cogs2);
+
+[label,blast_furnace_repair](int $bit, loc $fixed)
+if (stat(crafting) < 30) {
+    ~mesbox("I need 30 Crafting in order to do this.");
+    return;
+}
+if (testbit(%blast_furnace_broken, $bit) = ^false) {
+    mes("You can't fix something that isn't broken.");
+    return;
+}
+if (inv_total(inv, hammer) < 1) {
+    mes("I need a hammer to do this!");
+    return;
+}
+%blast_furnace_broken = clearbit(%blast_furnace_broken, $bit);
+loc_change($fixed, ^blast_furnace_loc_duration);
+stat_advance(crafting, 500);
+
+[oploc1,blast_furnace_conveyer_belt_clickable]
+if (~p_choice2_header("Yes.", 1, "Nevermind.", 2, "Really place all your ore on the belt?") = 1) {
+    @blast_furnace_put_ore(null);
+}
+
+[oplocu,blast_furnace_conveyer_belt_clickable]
+def_obj $ore = last_useitem;
+db_find(blast_furnace_ore:ore, $ore);
+if (db_findnext = null) {
+    ~displaymessage(^dm_default);
+    return;
+}
+@blast_furnace_put_ore($ore);
+
+[label,blast_furnace_put_ore](obj $only)
+if (~blast_furnace_can_use = false) {
+    if (npc_find(coord, blast_furnace_instructor, 16, 0) = true) {
+        ~chatnpc("<p,neutral>The furnace is very delicate so I charge a fee for anyone who doesn't have level 60 smithing.");
+    }
+    return;
+}
+if (~blast_furnace_place_all($only) > 0) {
+    ~blast_furnace_update_coal_required;
+}
+
+[oploc1,blast_furnace_gauge]
+if_openmain(blast_furnace_temp_gauge);
+~blast_furnace_gauge_update(true);
+settimer(blast_furnace_gauge, 1);
+
+[timer,blast_furnace_gauge]
+~blast_furnace_gauge_update(false);
+
+[if_close,blast_furnace_temp_gauge]
+cleartimer(blast_furnace_gauge);
+
+[proc,blast_furnace_gauge_update](boolean $force)
+if ($force = true | %blast_furnace_temperature_reading ! %blast_furnace_temp) {
+    %blast_furnace_temperature_reading = %blast_furnace_temp;
+    if_setanim(blast_furnace_temp_gauge:temp_gauge_needle, enum(int, seq, blast_furnace_temp_gauge, %blast_furnace_temp));
+}
+def_int $fuel_low = 0;
+if (%blast_furnace_coke = 0) {
+    $fuel_low = 1;
+}
+if ($force = true | %blast_furnace_fuel_low_reading ! $fuel_low) {
+    %blast_furnace_fuel_low_reading = $fuel_low;
+    if ($fuel_low = 1) {
+        if_setanim(blast_furnace_temp_gauge:temp_gauge_fuelflag, temp_gauge_flag_fuel_low_out);
+    } else {
+        if_setanim(blast_furnace_temp_gauge:temp_gauge_fuelflag, temp_gauge_flag_fuel_low_in);
+    }
+}
+
+[oploc1,blast_furnace_dispenser]
+if (%blast_furnace_bars_hot = ^blast_furnace_dispenser_cooled) {
+    %blast_furnace_bars_hot = ^blast_furnace_dispenser_empty;
+}
+~blast_furnace_update_coal_required;
+if_openmain(blast_furnace_bar_stock);
+
+[oplocu,blast_furnace_dispenser]
+if (last_useitem ! bucket_water) {
+    ~displaymessage(^dm_default);
+    return;
+}
+if (%blast_furnace_bars_hot = ^blast_furnace_dispenser_empty) {
+    ~mesbox("There's nothing to cool off!");
+    return;
+}
+if (%blast_furnace_bars_hot = ^blast_furnace_dispenser_cooled) {
+    ~mesbox("These bars have already cooled off!");
+    return;
+}
+anim(human_throw_bucket, 0);
+inv_del(inv, bucket_water, 1);
+inv_add(inv, bucket_empty, 1);
+%blast_furnace_bars_hot = ^blast_furnace_dispenser_cooled;
+huntall(^blast_furnace_dispenser_coord, 5, 0);
+while (.huntnext = true) {
+    if (.%blast_furnace_bars_hot = ^blast_furnace_dispenser_pouring | .%blast_furnace_bars_hot = ^blast_furnace_dispenser_hot) {
+        .%blast_furnace_bars_hot = ^blast_furnace_dispenser_cooled;
+    }
+}
+
+[if_button,blast_furnace_bar_stock:bf_bronze] ~blast_furnace_take(bronze_bar, 1);
+[if_button,blast_furnace_bar_stock:bf_bronzemodel] ~blast_furnace_take(bronze_bar, 1);
+[if_button,blast_furnace_bar_stock:com_100] ~blast_furnace_take(bronze_bar, ^blast_furnace_bar_limit);
+[if_button,blast_furnace_bar_stock:bf_iron] ~blast_furnace_take(iron_bar, 1);
+[if_button,blast_furnace_bar_stock:bf_ironmodel] ~blast_furnace_take(iron_bar, 1);
+[if_button,blast_furnace_bar_stock:com_101] ~blast_furnace_take(iron_bar, ^blast_furnace_bar_limit);
+[if_button,blast_furnace_bar_stock:bf_steel] ~blast_furnace_take(steel_bar, 1);
+[if_button,blast_furnace_bar_stock:bf_steelmodel] ~blast_furnace_take(steel_bar, 1);
+[if_button,blast_furnace_bar_stock:com_102] ~blast_furnace_take(steel_bar, ^blast_furnace_bar_limit);
+[if_button,blast_furnace_bar_stock:bf_mithril] ~blast_furnace_take(mithril_bar, 1);
+[if_button,blast_furnace_bar_stock:bf_mithrilmodel] ~blast_furnace_take(mithril_bar, 1);
+[if_button,blast_furnace_bar_stock:com_103] ~blast_furnace_take(mithril_bar, ^blast_furnace_bar_limit);
+[if_button,blast_furnace_bar_stock:bf_adamantite] ~blast_furnace_take(adamantite_bar, 1);
+[if_button,blast_furnace_bar_stock:bf_adamantitemodel] ~blast_furnace_take(adamantite_bar, 1);
+[if_button,blast_furnace_bar_stock:com_104] ~blast_furnace_take(adamantite_bar, ^blast_furnace_bar_limit);
+[if_button,blast_furnace_bar_stock:bf_runite] ~blast_furnace_take(runite_bar, 1);
+[if_button,blast_furnace_bar_stock:bf_runitemodel] ~blast_furnace_take(runite_bar, 1);
+[if_button,blast_furnace_bar_stock:com_105] ~blast_furnace_take(runite_bar, ^blast_furnace_bar_limit);
+[if_button,blast_furnace_bar_stock:bf_silver] ~blast_furnace_take(silver_bar, 1);
+[if_button,blast_furnace_bar_stock:bf_silvermodel] ~blast_furnace_take(silver_bar, 1);
+[if_button,blast_furnace_bar_stock:com_106] ~blast_furnace_take(silver_bar, ^blast_furnace_bar_limit);
+[if_button,blast_furnace_bar_stock:com_97] ~blast_furnace_take(gold_bar, 1);
+[if_button,blast_furnace_bar_stock:bf_goldmodel] ~blast_furnace_take(gold_bar, 1);
+[if_button,blast_furnace_bar_stock:com_107] ~blast_furnace_take(gold_bar, ^blast_furnace_bar_limit);
+[if_button,blast_furnace_bar_stock:com_98] ~blast_furnace_take(perfect_gold_bar, 1);
+[if_button,blast_furnace_bar_stock:com_117] ~blast_furnace_take(perfect_gold_bar, 1);
+[if_button,blast_furnace_bar_stock:com_108] ~blast_furnace_take(perfect_gold_bar, ^blast_furnace_bar_limit);
+
+[proc,blast_furnace_take](namedobj $bar, int $amount)
+if (%blast_furnace_bars_hot = ^blast_furnace_dispenser_pouring | %blast_furnace_bars_hot = ^blast_furnace_dispenser_hot) {
+    mes("The bars are glowing hot!");
+    return;
+}
+def_int $count = min(min($amount, ~blast_furnace_bar_count($bar)), inv_freespace(inv));
+if ($count < 1) {
+    return;
+}
+~blast_furnace_set_bars($bar, sub(~blast_furnace_bar_count($bar), $count));
+inv_add(inv, $bar, $count);
+
+[oploc1,blast_furnace_sink]
+if (inv_total(inv, bucket_empty) < 1) {
+    ~displaymessage(^dm_default);
+    return;
+}
+@fill_container_water(bucket_empty);

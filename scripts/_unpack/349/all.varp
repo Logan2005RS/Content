@@ -295,20 +295,41 @@
 [rogue_suduku1]
 
 [blast_furnace]
+transmit=yes
 
 [blast_furnace_readings]
+scope=perm
+protect=no
+transmit=yes
 
 [blast_furnace_ore_on_conveyor]
+scope=perm
+protect=no
 
 [blast_furnace_1]
+scope=perm
+protect=no
+transmit=yes
 
 [blast_furnace_2]
+scope=perm
+protect=no
+transmit=yes
 
 [blast_furnace_3]
+scope=perm
+protect=no
+transmit=yes
 
 [blast_furnace_4]
+scope=perm
+protect=no
+transmit=yes
 
 [blast_furnace_5]
+scope=perm
+protect=no
+transmit=yes
 
 [prayer_drain_counter]
 

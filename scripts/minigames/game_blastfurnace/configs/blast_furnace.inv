@@ -1,0 +1,5 @@
+[blast_furnace_inv]
+size=18
+scope=perm
+stackall=yes
+protect=no
