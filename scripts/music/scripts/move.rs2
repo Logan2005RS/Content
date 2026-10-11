@@ -111,6 +111,12 @@ settimer(upass_trap, 1);
 [mapzone,0_40_53] @music_playbyregion(coord);
 [mapzone,0_40_54] @music_playbyregion(coord);
 [mapzone,0_40_56] @music_playbyregion(coord);
+[mapzone,0_38_58] ~waterbirth_snow_overlay; @music_playbyregion(coord);
+[mapzoneexit,0_38_58] ~waterbirth_clear_overlay;
+
+[mapzone,0_39_58] ~waterbirth_snow_overlay; @music_playbyregion(coord);
+[mapzoneexit,0_39_58] ~waterbirth_clear_overlay;
+
 [mapzone,0_40_57] @music_playbyregion(coord);
 [mapzone,0_40_60] @music_playbyregion(coord);
 [mapzone,0_40_70] @music_playbyregion(coord);

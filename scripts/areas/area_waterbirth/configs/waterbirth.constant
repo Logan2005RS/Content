@@ -1,0 +1,16 @@
+^waterbirth_island_arrival = 0_39_58_48_47
+^waterbirth_rellekka_arrival = 0_40_57_60_37
+^waterbirth_dungeon_entrance = 0_38_158_11_34
+^waterbirth_dungeon_exit = 0_39_58_27_28
+^waterbirth_mountain_top = 0_39_58_48_29
+^waterbirth_sublevel_entrance = 3_28_68_7_54
+^waterbirth_dungeon_ladder = 0_39_158_49_31
+^waterbirth_kings_lair = 0_45_69_19_34
+^waterbirth_kings_lair_exit = 0_29_68_56_15
+^waterbirth_pressure_door_behind = 0_38_158_60_34
+^waterbirth_egg_trigger_north = 0_39_158_49_32
+^waterbirth_egg_trigger_south = 0_39_158_49_30
+^waterbirth_egg_north = 0_39_158_50_32
+^waterbirth_egg_south = 0_39_158_50_30
+^waterbirth_island_lower_bound = 0_38_58_0_0
+^waterbirth_island_upper_bound = 0_39_58_63_63

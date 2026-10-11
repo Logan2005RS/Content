@@ -16531,25 +16531,6 @@ recol4d=12583
 recol5s=14560
 recol5d=8356
 
-[dagannoth_weak_door_south]
-name=Door-support
-desc=This support is propping the door closed.
-turnspeed=0
-vislevel=hide
-minimap=no
-op2=Destroy
-model1=npc_2440
-recol1s=7432
-recol1d=4260
-recol2s=8489
-recol2d=5318
-recol3s=9546
-recol3d=6375
-recol4s=10603
-recol4d=7432
-recol5s=11660
-recol5d=8489
-
 [dagannoth_weak_door_falling_south]
 name=Door
 desc=Without it's support, it was no problem!
@@ -16588,26 +16569,6 @@ recol4d=7432
 recol5s=11660
 recol5d=8489
 
-[dagannoth_weak_door_west]
-name=Door-support
-desc=This support is propping the door closed.
-readyanim=weak_door_west
-turnspeed=0
-vislevel=hide
-minimap=no
-op2=Destroy
-model1=npc_2440
-recol1s=7432
-recol1d=4260
-recol2s=8489
-recol2d=5318
-recol3s=9546
-recol3d=6375
-recol4s=10603
-recol4d=7432
-recol5s=11660
-recol5d=8489
-
 [dagannoth_weak_door_falling_west]
 name=Door
 desc=This door seems to have a weak point.
@@ -16634,26 +16595,6 @@ readyanim=weak_door_fallen_west
 turnspeed=0
 vislevel=hide
 minimap=no
-model1=npc_2440
-recol1s=7432
-recol1d=4260
-recol2s=8489
-recol2d=5318
-recol3s=9546
-recol3d=6375
-recol4s=10603
-recol4d=7432
-recol5s=11660
-recol5d=8489
-
-[dagannoth_weak_door_north]
-name=Door-support
-desc=This support is propping the door closed.
-readyanim=weak_door_north
-turnspeed=0
-vislevel=hide
-minimap=no
-op2=Destroy
 model1=npc_2440
 recol1s=7432
 recol1d=4260
@@ -16735,89 +16676,6 @@ turnspeed=0
 vislevel=hide
 minimap=no
 model1=npc_2451
-
-[giant_rockcrab]
-name=Giant Rock Crab
-desc=No one likes crabs... especially really big ones!
-size=2
-resizeh=250
-resizev=250
-walkanim=horror_crab_walk
-readyanim=horror_crab_ready
-op2=Attack
-vislevel=137
-model1=npc_2452
-model2=npc_2452i2
-
-[giant_rockcrab_hidden]
-vislevel=hide
-name=Boulder
-desc=Heavy rock!
-size=2
-resizeh=250
-resizev=250
-turnspeed=0
-model1=npc_2453
-
-[dagganoth_critter]
-name=Dagannoth spawn
-desc=A teeny-tiny horror from the ocean depths...
-walkanim=dagganoth_walk_quickly
-readyanim=horror_dagannoth_ready
-resizeh=60
-resizev=60
-op2=Attack
-vislevel=42
-model1=npc_2454
-
-[dungeon_dagganoth_mainroom]
-name=Dagannoth
-desc=A darkened horror from the ocean depths...
-resizeh=69
-resizev=69
-walkanim=horror_dagannoth_walk
-readyanim=horror_dagannoth_ready
-op2=Attack
-vislevel=90
-model1=quest_horror_npc_dagannoth
-recol1s=13740
-recol1d=12650
-recol2s=12683
-recol2d=11593
-recol3s=11626
-recol3d=10536
-recol4s=10569
-recol4d=9479
-
-[dungeon_dagganoth_lighter]
-name=Dagannoth
-desc=A spiney horror from the ocean depths...
-resizeh=69
-resizev=69
-walkanim=horror_dagannoth_walk
-readyanim=horror_dagannoth_ready
-op2=Attack
-vislevel=88
-model1=quest_horror_npc_dagannoth
-recol1s=13740
-recol1d=14796
-recol2s=12683
-recol2d=13739
-recol3s=11626
-recol3d=13706
-recol4s=10569
-recol4d=12649
-
-[dungeon_dagganoth_magic_monster]
-name=Wallasalki
-desc=A fearsome magical water creature.
-walkanim=wallasalki_walk
-readyanim=wallasalki_ready
-resizeh=110
-resizev=110
-op2=Attack
-vislevel=98
-model1=npc_2457
 
 [macro_forester_m]
 vislevel=hide
@@ -25822,203 +25680,12 @@ recol5d=6369
 recol6s=15649
 recol6d=9445
 
-[jb_baby_dagganoth]
-name=Dagannoth fledgeling
-desc=A knee-high horror from the ocean depths...
-size=2
-resizeh=69
-resizev=69
-contrast=30
-ambient=30
-walkanim=slayer_lizard_walk
-readyanim=slayer_lizard_ready
-resizeh=60
-resizev=60
-op2=Attack
-vislevel=70
-model1=npc_2880
-model2=npc_2880i2
-
-[dagcave_ranged_boss]
-vislevel=303
-name=Dagannoth Supreme
-desc=The dagannoth king responsible for the death of the Bukalla.
-size=3
-walkanim=dagannoth_meganoth_walk
-readyanim=dagannoth_meganoth_ready
-resizeh=167
-resizev=165
-contrast=30
-ambient=30
-op2=Attack
-model1=npc_2881
-model2=npc_2881i2
-
-[dagcave_magic_boss]
-vislevel=303
-name=Dagannoth Prime
-desc=A legendary dagannoth king, rumoured to fly on the North winds.
-size=3
-resizeh=175
-resizev=180
-contrast=30
-ambient=30
-walkanim=dagannoth_meganoth_walk
-readyanim=dagannoth_meganoth_ready
-op2=Attack
-model1=npc_2882
-model2=npc_2881i2
-model3=npc_2882i2
-recol1s=10594
-recol1d=19778
-recol2s=1122
-recol2d=10338
-recol3s=6373
-recol3d=6374
-recol4s=7430
-recol4d=7431
-
-[dagcave_melee_boss]
-vislevel=303
-name=Dagannoth Rex
-desc=Firstborn of the legendary dagannoth kings.
-size=3
-resizeh=220
-resizev=190
-contrast=30
-ambient=30
-walkanim=dagannoth_meganoth_walk
-readyanim=dagannoth_meganoth_ready
-op2=Attack
-model1=npc_2881
-recol1s=6373
-recol1d=8421
-recol2s=7430
-recol2d=9478
-recol3s=1122
-recol3d=10567
-recol4s=16646
-recol4d=13508
-
-[dungeon_dagganoth_magic_monster_deeper]
-name=Wallasalki
-desc=A fearsome magical water creature.
-walkanim=wallasalki_walk
-readyanim=wallasalki_ready
-resizeh=110
-resizev=110
-op2=Attack
-vislevel=98
-model1=npc_2457
-
-[giant_rockcrab_deeper]
-name=Giant Rock Crab
-desc=No one likes crabs... especially really big ones!
-size=2
-resizeh=250
-resizev=250
-walkanim=horror_crab_walk
-readyanim=horror_crab_ready
-op2=Attack
-vislevel=137
-model1=npc_2452
-model2=npc_2452i2
-
-[giant_rockcrab_hidden_deeper]
-vislevel=hide
-name=Boulder
-desc=Heavy rock!
-size=2
-resizeh=250
-resizev=250
-turnspeed=0
-model1=npc_2453
-
-[dungeon_dagganoth_lighter_deeper]
-name=Dagannoth
-desc=A spiney horror from the ocean depths...
-resizeh=69
-resizev=69
-walkanim=horror_dagannoth_walk
-readyanim=horror_dagannoth_ready
-op2=Attack
-vislevel=88
-model1=quest_horror_npc_dagannoth
-recol1s=13740
-recol1d=14796
-recol2s=12683
-recol2d=13739
-recol3s=11626
-recol3d=13706
-recol4s=10569
-recol4d=12649
-
-[dungeon_dagganoth_mainroom_deeper]
-name=Dagannoth
-desc=A darkened horror from the ocean depths...
-resizeh=69
-resizev=69
-walkanim=horror_dagannoth_walk
-readyanim=horror_dagannoth_ready
-op2=Attack
-vislevel=90
-model1=quest_horror_npc_dagannoth
-recol1s=13740
-recol1d=12650
-recol2s=12683
-recol2d=11593
-recol3s=11626
-recol3d=10536
-recol4s=10569
-recol4d=9479
-
-[dagannoth_rock_lobster_2x2]
-name=Rock lobster
-desc=It wasn't a rock... it was a rock lobster!
-size=2
-resizeh=85
-resizev=85
-contrast=15
-ambient=15
-walkanim=dagannoth_rock_lobster_walk
-readyanim=dagannoth_rock_lobster_ready
-op2=Attack
-vislevel=127
-model1=npc_2889
-model2=npc_2889i2
-
-[dagannoth_rock_lobster_2x2_loc]
-vislevel=hide
-name=Rock
-desc=A Rock.
-size=2
-resizeh=85
-resizev=85
-contrast=15
-ambient=15
-turnspeed=0
-minimap=no
-model1=npc_2890
-
 [dagannoth_water_creature_1x1_invisible]
 name=Suspicious water
 desc=If I didn't know better, I'd swear there's something in there...
 minimap=no
 vislevel=34
 model1=loc_6455_8
-
-[dagannoth_water_creature_1x1]
-name=Spinolyp
-desc=A sneaky, spiny, subterranean sea-dwelling scamp.
-resizeh=40
-resizev=40
-contrast=50
-ambient=50
-walkanim=dagannoth_water_creature_walk
-readyanim=dagannoth_water_creature_ready
-op2=Attack
-vislevel=76
-model1=npc_2892
 
 [dagannoth_water_creature_1x1_invisible2]
 name=Suspicious water
@@ -26027,38 +25694,12 @@ minimap=no
 vislevel=34
 model1=loc_6455_8
 
-[dagannoth_water_creature_1x12]
-name=Spinolyp
-desc=A sneaky, spiny, subterranean sea-dwelling scamp.
-resizeh=40
-resizev=40
-contrast=50
-ambient=50
-walkanim=dagannoth_water_creature_walk
-readyanim=dagannoth_water_creature_ready
-op2=Attack
-vislevel=76
-model1=npc_2892
-
 [dagannoth_water_creature_1x1_invisible3]
 name=Suspicious water
 desc=If I didn't know better, I'd swear there's something in there...
 minimap=no
 vislevel=34
 model1=loc_6455_8
-
-[dagannoth_water_creature_1x13]
-name=Spinolyp
-desc=A sneaky, spiny, subterranean sea-dwelling scamp.
-resizeh=40
-resizev=40
-contrast=50
-ambient=50
-walkanim=dagannoth_water_creature_walk
-readyanim=dagannoth_water_creature_ready
-op2=Attack
-vislevel=76
-model1=npc_2892
 
 [agrith_reen_alkharid]
 name=agrith_reen_alkharid

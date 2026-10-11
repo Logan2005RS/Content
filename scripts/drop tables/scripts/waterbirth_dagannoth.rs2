@@ -1,0 +1,181 @@
+[ai_queue3,_waterbirth_dagannoth]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+def_int $random = random(2048);
+if ($random < 1) {
+    obj_add(npc_coord, viking_helmet_range, 1, ^lootdrop_duration);
+} else if ($random < 2) {
+    obj_add(npc_coord, viking_helmet_crush, 1, ^lootdrop_duration);
+} else if ($random < 3) {
+    obj_add(npc_coord, viking_helmet_slash, 1, ^lootdrop_duration);
+} else if ($random < 4) {
+    obj_add(npc_coord, viking_helmet_magic, 1, ^lootdrop_duration);
+} else if ($random < 164) {
+    obj_add(npc_coord, steel_axe, 1, ^lootdrop_duration);
+} else if ($random < 324) {
+    obj_add(npc_coord, mithril_javelin, 3, ^lootdrop_duration);
+} else if ($random < 404) {
+    obj_add(npc_coord, steel_arrow, 15, ^lootdrop_duration);
+} else if ($random < 452) {
+    obj_add(npc_coord, viking_helmet, 1, ^lootdrop_duration);
+} else if ($random < 500) {
+    obj_add(npc_coord, viking_sword, 1, ^lootdrop_duration);
+} else if ($random < 548) {
+    obj_add(npc_coord, viking_shield, 1, ^lootdrop_duration);
+} else if ($random < 580) {
+    obj_add(npc_coord, viking_top_darkbrown, 1, ^lootdrop_duration);
+} else if ($random < 612) {
+    obj_add(npc_coord, viking_cloak_darkbrown, 1, ^lootdrop_duration);
+} else if ($random < 644) {
+    obj_add(npc_coord, vikinggloves, 1, ^lootdrop_duration);
+} else if ($random < 804) {
+    obj_add(npc_coord, waterrune, 10, ^lootdrop_duration);
+} else if ($random < 964) {
+    obj_add(npc_coord, naturerune, add(random(10), 1), ^lootdrop_duration);
+} else if ($random < 1124) {
+    obj_add(npc_coord, lawrune, add(random(10), 1), ^lootdrop_duration);
+} else if ($random < 1156) {
+    obj_add(npc_coord, bloodrune, add(random(10), 1), ^lootdrop_duration);
+} else if ($random < 1220) {
+    obj_add(npc_coord, ~randomherb, ^lootdrop_duration);
+} else if ($random < 1236) {
+    obj_add(npc_coord, ~randomrareseed, ^lootdrop_duration);
+} else if ($random < 1396) {
+    obj_add(npc_coord, dagganoth_hide, 1, ^lootdrop_duration);
+} else if ($random < 1556) {
+    obj_add(npc_coord, tinderbox, 1, ^lootdrop_duration);
+} else if ($random < 1668) {
+    obj_add(npc_coord, smalloysterpearls, 1, ^lootdrop_duration);
+} else if ($random < 1748) {
+    obj_add(npc_coord, raw_lobster, 1, ^lootdrop_duration);
+} else if ($random < 1780) {
+    obj_add(npc_coord, coins, 47, ^lootdrop_duration);
+} else if ($random < 1812) {
+    obj_add(npc_coord, coins, 3, ^lootdrop_duration);
+} else if ($random < 1844) {
+    obj_add(npc_coord, coins, 38, ^lootdrop_duration);
+} else if ($random < 1876) {
+    obj_add(npc_coord, coins, 26, ^lootdrop_duration);
+} else if ($random < 1908) {
+    obj_add(npc_coord, coins, 81, ^lootdrop_duration);
+} else if ($random < 1940) {
+    obj_add(npc_coord, keg_of_beer, 1, ^lootdrop_duration);
+} else if ($random < 1950) {
+    obj_add(npc_coord, air_talisman, 1, ^lootdrop_duration);
+} else if ($random < 1960) {
+    obj_add(npc_coord, earth_talisman, 1, ^lootdrop_duration);
+} else if ($random < 1970) {
+    obj_add(npc_coord, fire_talisman, 1, ^lootdrop_duration);
+} else if ($random < 1980) {
+    obj_add(npc_coord, water_talisman, 1, ^lootdrop_duration);
+} else if ($random < 1990) {
+    obj_add(npc_coord, body_talisman, 1, ^lootdrop_duration);
+} else if ($random < 2000) {
+    obj_add(npc_coord, mind_talisman, 1, ^lootdrop_duration);
+} else if ($random < 2008) {
+    obj_add(npc_coord, cosmic_talisman, 1, ^lootdrop_duration);
+} else if ($random < 2012) {
+    obj_add(npc_coord, chaos_talisman, 1, ^lootdrop_duration);
+} else if ($random < 2016) {
+    obj_add(npc_coord, nature_talisman, 1, ^lootdrop_duration);
+} else if ($random < 2032) {
+    ~trail_mediumcluedrop(1, npc_coord);
+} else if ($random < 2048) {
+    obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
+}
+
+[ai_queue3,_waterbirth_dagannoth_ranged]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+def_int $random = random(2048);
+if ($random < 1) {
+    obj_add(npc_coord, viking_helmet_range, 1, ^lootdrop_duration);
+} else if ($random < 2) {
+    obj_add(npc_coord, viking_helmet_crush, 1, ^lootdrop_duration);
+} else if ($random < 3) {
+    obj_add(npc_coord, viking_helmet_slash, 1, ^lootdrop_duration);
+} else if ($random < 4) {
+    obj_add(npc_coord, viking_helmet_magic, 1, ^lootdrop_duration);
+} else if ($random < 164) {
+    obj_add(npc_coord, steel_arrow, 30, ^lootdrop_duration);
+} else if ($random < 212) {
+    obj_add(npc_coord, viking_helmet, 1, ^lootdrop_duration);
+} else if ($random < 260) {
+    obj_add(npc_coord, viking_sword, 1, ^lootdrop_duration);
+} else if ($random < 308) {
+    obj_add(npc_coord, viking_shield, 1, ^lootdrop_duration);
+} else if ($random < 340) {
+    obj_add(npc_coord, viking_top_darkbrown, 1, ^lootdrop_duration);
+} else if ($random < 372) {
+    obj_add(npc_coord, viking_cloak_darkbrown, 1, ^lootdrop_duration);
+} else if ($random < 404) {
+    obj_add(npc_coord, vikinggloves, 1, ^lootdrop_duration);
+} else if ($random < 436) {
+    obj_add(npc_coord, mithril_javelin, 3, ^lootdrop_duration);
+} else if ($random < 468) {
+    obj_add(npc_coord, dagganoth_range_gloves, 1, ^lootdrop_duration);
+} else if ($random < 500) {
+    obj_add(npc_coord, dagganoth_range_feet, 1, ^lootdrop_duration);
+} else if ($random < 628) {
+    obj_add(npc_coord, ~randomherb, ^lootdrop_duration);
+} else if ($random < 644) {
+    obj_add(npc_coord, ~randomrareseed, ^lootdrop_duration);
+} else if ($random < 1124) {
+    obj_add(npc_coord, cert_seaweed, 10, ^lootdrop_duration);
+} else if ($random < 1284) {
+    obj_add(npc_coord, opal_bolttips, 20, ^lootdrop_duration);
+} else if ($random < 1316) {
+    obj_add(npc_coord, coins, 47, ^lootdrop_duration);
+} else if ($random < 1348) {
+    obj_add(npc_coord, coins, 3, ^lootdrop_duration);
+} else if ($random < 1380) {
+    obj_add(npc_coord, coins, 38, ^lootdrop_duration);
+} else if ($random < 1412) {
+    obj_add(npc_coord, coins, 26, ^lootdrop_duration);
+} else if ($random < 1444) {
+    obj_add(npc_coord, coins, 81, ^lootdrop_duration);
+} else if ($random < 1572) {
+    obj_add(npc_coord, edible_seaweed, 5, ^lootdrop_duration);
+} else if ($random < 1652) {
+    obj_add(npc_coord, casket, 1, ^lootdrop_duration);
+} else if ($random < 1732) {
+    obj_add(npc_coord, bigoysterpearls, 1, ^lootdrop_duration);
+} else if ($random < 1812) {
+    obj_add(npc_coord, raw_bass, 1, ^lootdrop_duration);
+} else if ($random < 1844) {
+    obj_add(npc_coord, dagganoth_range_head_part, 1, ^lootdrop_duration);
+} else if ($random < 1876) {
+    obj_add(npc_coord, dagganoth_range_body_part, 1, ^lootdrop_duration);
+} else if ($random < 1908) {
+    obj_add(npc_coord, dagganoth_range_leg_part, 1, ^lootdrop_duration);
+} else if ($random < 1940) {
+    obj_add(npc_coord, keg_of_beer, 1, ^lootdrop_duration);
+} else if ($random < 1950) {
+    obj_add(npc_coord, air_talisman, 1, ^lootdrop_duration);
+} else if ($random < 1960) {
+    obj_add(npc_coord, earth_talisman, 1, ^lootdrop_duration);
+} else if ($random < 1970) {
+    obj_add(npc_coord, fire_talisman, 1, ^lootdrop_duration);
+} else if ($random < 1980) {
+    obj_add(npc_coord, water_talisman, 1, ^lootdrop_duration);
+} else if ($random < 1990) {
+    obj_add(npc_coord, body_talisman, 1, ^lootdrop_duration);
+} else if ($random < 2000) {
+    obj_add(npc_coord, mind_talisman, 1, ^lootdrop_duration);
+} else if ($random < 2008) {
+    obj_add(npc_coord, cosmic_talisman, 1, ^lootdrop_duration);
+} else if ($random < 2012) {
+    obj_add(npc_coord, chaos_talisman, 1, ^lootdrop_duration);
+} else if ($random < 2016) {
+    obj_add(npc_coord, nature_talisman, 1, ^lootdrop_duration);
+} else if ($random < 2032) {
+    ~trail_mediumcluedrop(1, npc_coord);
+} else if ($random < 2048) {
+    obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
+}

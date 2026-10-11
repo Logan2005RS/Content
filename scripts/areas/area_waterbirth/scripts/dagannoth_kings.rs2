@@ -1,0 +1,81 @@
+[proc,dagannoth_king_max_dealt](int $maxhit, int $spell)(int)
+switch_npc (npc_type) {
+    case dagcave_melee_boss :
+        if ($spell > 0) {
+            return(min($maxhit, npc_param(max_dealt)));
+        }
+    case dagcave_magic_boss :
+        if ($spell = 0 & %damagetype = ^ranged_style) {
+            return(min($maxhit, npc_param(max_dealt)));
+        }
+    case dagcave_ranged_boss :
+        if ($spell = 0 & %damagetype ! ^ranged_style) {
+            return(min($maxhit, npc_param(max_dealt)));
+        }
+}
+return(0);
+
+[ai_queue1,dagcave_ranged_boss] ~npc_default_retaliate_ap;
+[ai_opplayer2,dagcave_ranged_boss] npc_setmode(applayer2);
+[ai_applayer2,dagcave_ranged_boss]
+def_int $last_attack = %npc_action_delay;
+~dagannoth_supreme_attack;
+if (%npc_action_delay ! $last_attack) {
+    ~dagannoth_king_switch_target;
+}
+
+[ai_queue1,dagcave_magic_boss] ~npc_default_retaliate_ap;
+[ai_opplayer2,dagcave_magic_boss] npc_setmode(applayer2);
+[ai_applayer2,dagcave_magic_boss]
+def_int $last_attack = %npc_action_delay;
+~npc_cast_spell_with_forced_max_hit(^water_wave, npc_param(attackrate), 27);
+if (%npc_action_delay ! $last_attack) {
+    ~dagannoth_king_switch_target;
+}
+
+[proc,dagannoth_king_switch_target]
+if (random(6) > 2) {
+    return;
+}
+def_int $count = 0;
+huntall(npc_coord, 9, ^vis_off);
+while (huntnext = true) {
+    $count = add($count, 1);
+}
+if ($count <= 1) {
+    return;
+}
+def_int $pick = random($count);
+def_int $i = 0;
+huntall(npc_coord, 9, ^vis_off);
+while (huntnext = true) {
+    if ($i = $pick) {
+        %npc_aggressive_player = uid;
+        %npc_attacking_uid = uid;
+        npc_setmode(applayer2);
+        return;
+    }
+    $i = add($i, 1);
+}
+
+[proc,dagannoth_supreme_attack]
+if (%npc_action_delay > map_clock) {
+    npc_setmode(applayer2);
+    return;
+}
+if (~npc_check_notcombat = false) {
+    npc_setmode(null);
+    return;
+}
+if (~npc_check_notcombat_self = false) {
+    return;
+}
+npc_anim(npc_param(attack_anim), 0);
+sound_synth(npc_param(rangeattack_sound), 1, 0);
+%npc_action_delay = add(map_clock, npc_param(attackrate));
+def_int $duration = ~player_projectile(npc_coord, coord, uid, npc_param(proj_travel), 40, 36, 32, 15, 0, 11, 5);
+if (randominc(~npc_ranged_attack_roll) > randominc(~player_defence_roll_specific(^ranged_style))) {
+    ~playerhit_n_ranged(true, randominc(~npc_ranged_maxhit), $duration, npc_param(attackrate));
+    return;
+}
+~playerhit_n_ranged(true, 0, $duration, npc_param(attackrate));

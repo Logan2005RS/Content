@@ -1,0 +1,87 @@
+[ai_queue1,_waterbirth_dagannoth_ranged] ~npc_default_retaliate_ap;
+[ai_opplayer2,_waterbirth_dagannoth_ranged] npc_setmode(applayer2);
+[ai_applayer2,_waterbirth_dagannoth_ranged] ~dagannoth_rangeattack(~npc_ranged_maxhit, ^false);
+
+[ai_queue1,_wallasalki] ~npc_default_retaliate_ap;
+[ai_opplayer2,_wallasalki] npc_setmode(applayer2);
+[ai_applayer2,_wallasalki]
+if (~npc_combat_spell_checks = false) {
+    return;
+}
+sound_synth(npc_param(attack_sound), 1, 0);
+~npc_cast_spell_with_forced_max_hit(^water_wave, npc_param(attackrate), 12);
+
+[ai_applayer2,giant_rockcrab_hidden]
+npc_changetype(giant_rockcrab, 1000);
+npc_anim(horror_crab_reveal, 0);
+npc_setmode(opplayer2);
+
+[ai_applayer2,giant_rockcrab_hidden_deeper]
+npc_changetype(giant_rockcrab_deeper, 1000);
+npc_anim(horror_crab_reveal, 0);
+npc_setmode(opplayer2);
+
+[ai_queue1,giant_rockcrab_hidden] ~npc_default_retaliate_ap;
+[ai_queue1,giant_rockcrab_hidden_deeper] ~npc_default_retaliate_ap;
+
+[ai_applayer2,dagannoth_rock_lobster_2x2_loc]
+npc_changetype(dagannoth_rock_lobster_2x2, 1000);
+npc_anim(dagannoth_rock_lobster_spring_up, 0);
+npc_setmode(opplayer2);
+
+[ai_queue1,dagannoth_rock_lobster_2x2_loc] ~npc_default_retaliate_ap;
+
+[ai_queue1,_spinolyp] ~npc_default_retaliate_ap;
+[ai_opplayer2,_spinolyp] npc_setmode(applayer2);
+[ai_applayer2,_spinolyp]
+if (random(2) = 0) {
+    ~spinolyp_magic_attack;
+} else {
+    ~spinolyp_ranged_attack;
+}
+
+[proc,spinolyp_damage](int $maxhit)(int)
+def_int $damage = randominc($maxhit);
+if ($damage = 0 & random(15) < 2) {
+    $damage = add(randominc(10), 1);
+}
+return($damage);
+
+[proc,spinolyp_magic_attack]
+if (~npc_combat_spell_checks = false) {
+    return;
+}
+def_dbrow $spell_data = ~get_spell_data(^water_bolt);
+sound_synth(npc_param(attack_sound), 1, 0);
+def_int $duration = ~npc_spell_cast($spell_data, npc_param(attackrate));
+if (~npc_player_hit_roll(^magic_style) = true & ~check_protect_prayer(^magic_style) = false) {
+    def_int $damage = ~spinolyp_damage(8);
+    if_close;
+    sound_synth(db_getfield($spell_data, magic_spell_table:sound_success, 0), 0, 0);
+    queue(combat_damage_player, calc($duration / 30), $damage);
+    spotanim_pl(db_getfield($spell_data, magic_spell_table:spotanim_target, 0), $duration);
+    queue*(playerhit_n_retaliate, calc($duration / 30))(npc_uid);
+    if ($damage > 0) {
+        stat_sub(prayer, 1, 0);
+    }
+} else {
+    ~npc_spell_fail($spell_data, $duration);
+}
+~npc_set_attack_vars;
+
+[proc,spinolyp_ranged_attack]
+if (~npc_combat_spell_checks = false) {
+    return;
+}
+npc_anim(npc_param(attack_anim), 0);
+sound_synth(npc_param(rangeattack_sound), 1, 0);
+%npc_action_delay = add(map_clock, npc_param(attackrate));
+def_int $duration = ~player_projectile(npc_coord, coord, uid, npc_param(proj_travel), 40, 36, 32, 15, 0, 11, 5);
+def_int $damage = 0;
+if (randominc(~npc_ranged_attack_roll) > randominc(~player_defence_roll_specific(^ranged_style)) & ~check_protect_prayer(^ranged_style) = false) {
+    $damage = ~spinolyp_damage(~npc_ranged_maxhit);
+    if ($damage > 0 & random(20) = 0) {
+        queue(poison_player, 0, 30);
+    }
+}
+~playerhit_n_ranged(false, $damage, $duration, npc_param(attackrate));

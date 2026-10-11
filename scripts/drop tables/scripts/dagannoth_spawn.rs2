@@ -1,0 +1,26 @@
+[ai_queue3,dagganoth_critter]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+def_int $random = random(310);
+if ($random < 50) {
+    obj_add(npc_coord, coins, add(random(23), 16), ^lootdrop_duration);
+} else if ($random < 100) {
+    obj_add(npc_coord, feather, 2, ^lootdrop_duration);
+} else if ($random < 150) {
+    obj_add(npc_coord, raw_tuna, 1, ^lootdrop_duration);
+} else if ($random < 200) {
+    obj_add(npc_coord, raw_sardine, 1, ^lootdrop_duration);
+} else if ($random < 250) {
+    obj_add(npc_coord, waterrune, 3, ^lootdrop_duration);
+} else if ($random < 275) {
+    obj_add(npc_coord, oystershell, 1, ^lootdrop_duration);
+} else if ($random < 300) {
+    obj_add(npc_coord, smalloysterpearls, 1, ^lootdrop_duration);
+} else if ($random < 305) {
+    ~trail_mediumcluedrop(1, npc_coord);
+} else if ($random < 310) {
+    obj_add(npc_coord, ~ultrarare_getitem, ^lootdrop_duration);
+}

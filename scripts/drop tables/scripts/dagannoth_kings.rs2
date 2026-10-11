@@ -1,0 +1,226 @@
+[ai_queue3,dagcave_ranged_boss]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+obj_add(npc_coord, dagganoth_hide, 1, ^lootdrop_duration);
+def_int $random = random(128);
+if ($random < 10) {
+    obj_add(npc_coord, mithril_knife, add(random(26), 25), ^lootdrop_duration);
+} else if ($random < 17) {
+    obj_add(npc_coord, red_dragon_vambraces, 1, ^lootdrop_duration);
+} else if ($random < 22) {
+    obj_add(npc_coord, rune_thrownaxe, add(random(6), 5), ^lootdrop_duration);
+} else if ($random < 27) {
+    obj_add(npc_coord, adamant_dart, add(random(16), 10), ^lootdrop_duration);
+} else if ($random < 32) {
+    obj_add(npc_coord, iron_knife, add(random(301), 200), ^lootdrop_duration);
+} else if ($random < 37) {
+    obj_add(npc_coord, steel_knife, add(random(101), 50), ^lootdrop_duration);
+} else if ($random < 38) {
+    obj_add(npc_coord, viking_sword, 1, ^lootdrop_duration);
+} else if ($random < 39) {
+    obj_add(npc_coord, viking_helmet, 1, ^lootdrop_duration);
+} else if ($random < 40) {
+    obj_add(npc_coord, viking_shield, 1, ^lootdrop_duration);
+} else if ($random < 41) {
+    obj_add(npc_coord, daganoth_cave_magic_shortbow, 1, ^lootdrop_duration);
+} else if ($random < 42) {
+    obj_add(npc_coord, dragon_axe, 1, ^lootdrop_duration);
+} else if ($random < 43) {
+    obj_add(npc_coord, viking_helmet_range, 1, ^lootdrop_duration);
+} else if ($random < 44) {
+    obj_add(npc_coord, dagganoth_ranged_body, 1, ^lootdrop_duration);
+} else if ($random < 45) {
+    obj_add(npc_coord, dagganoth_ranged_legs, 1, ^lootdrop_duration);
+} else if ($random < 46) {
+    obj_add(npc_coord, ranger_ring, 1, ^lootdrop_duration);
+} else if ($random < 51) {
+} else if ($random < 56) {
+    obj_add(npc_coord, steel_arrow, add(random(201), 50), ^lootdrop_duration);
+} else if ($random < 60) {
+    obj_add(npc_coord, iron_arrow, add(random(301), 200), ^lootdrop_duration);
+} else if ($random < 67) {
+    obj_add(npc_coord, ~randomrareseed, ^lootdrop_duration);
+} else if ($random < 77) {
+    obj_add(npc_coord, coins, 156, ^lootdrop_duration);
+} else if ($random < 83) {
+    obj_add(npc_coord, bigoysterpearls, 1, ^lootdrop_duration);
+} else if ($random < 88) {
+    obj_add(npc_coord, opal_bolttips, add(random(21), 10), ^lootdrop_duration);
+} else if ($random < 93) {
+    obj_add(npc_coord, shark, 5, ^lootdrop_duration);
+} else if ($random < 98) {
+    obj_add(npc_coord, unidentified_ranarr, 1, ^lootdrop_duration);
+} else if ($random < 103) {
+    obj_add(npc_coord, cert_maple_logs, add(random(101), 50), ^lootdrop_duration);
+} else if ($random < 106) {
+    obj_add(npc_coord, cert_yew_logs, add(random(101), 50), ^lootdrop_duration);
+} else if ($random < 108) {
+} else if ($random < 109) {
+    obj_add(npc_coord, feather, add(random(251), 250), ^lootdrop_duration);
+} else if ($random < 110) {
+    ~trail_hardcluedrop(1, npc_coord);
+} else if ($random < 120) {
+    obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
+} else if ($random < 128) {
+    obj_add(npc_coord, ~ultrarare_getitem, ^lootdrop_duration);
+}
+
+[ai_queue3,dagcave_magic_boss]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+obj_add(npc_coord, dagganoth_hide, 1, ^lootdrop_duration);
+def_int $random = random(128);
+if ($random < 10) {
+    obj_add(npc_coord, earth_battlestaff, 1, ^lootdrop_duration);
+} else if ($random < 15) {
+    obj_add(npc_coord, water_battlestaff, 1, ^lootdrop_duration);
+} else if ($random < 19) {
+    obj_add(npc_coord, air_battlestaff, 1, ^lootdrop_duration);
+} else if ($random < 20) {
+    obj_add(npc_coord, cert_battlestaff, add(random(10), 1), ^lootdrop_duration);
+} else if ($random < 21) {
+    obj_add(npc_coord, viking_sword, 1, ^lootdrop_duration);
+} else if ($random < 22) {
+    obj_add(npc_coord, viking_helmet, 1, ^lootdrop_duration);
+} else if ($random < 23) {
+    obj_add(npc_coord, viking_shield, 1, ^lootdrop_duration);
+} else if ($random < 24) {
+    obj_add(npc_coord, mud_battlestaff, 1, ^lootdrop_duration);
+} else if ($random < 25) {
+    obj_add(npc_coord, dragon_axe, 1, ^lootdrop_duration);
+} else if ($random < 26) {
+    obj_add(npc_coord, viking_helmet_magic, 1, ^lootdrop_duration);
+} else if ($random < 27) {
+    obj_add(npc_coord, dagganoth_mage_body, 1, ^lootdrop_duration);
+} else if ($random < 28) {
+    obj_add(npc_coord, dagganoth_mage_legs, 1, ^lootdrop_duration);
+} else if ($random < 29) {
+    obj_add(npc_coord, seer_ring, 1, ^lootdrop_duration);
+} else if ($random < 35) {
+    obj_add(npc_coord, airrune, add(random(101), 100), ^lootdrop_duration);
+} else if ($random < 40) {
+    obj_add(npc_coord, earthrune, add(random(51), 50), ^lootdrop_duration);
+} else if ($random < 42) {
+    obj_add(npc_coord, bloodrune, add(random(51), 25), ^lootdrop_duration);
+} else if ($random < 44) {
+    obj_add(npc_coord, lawrune, add(random(51), 25), ^lootdrop_duration);
+} else if ($random < 46) {
+    obj_add(npc_coord, naturerune, add(random(51), 25), ^lootdrop_duration);
+} else if ($random < 48) {
+    obj_add(npc_coord, deathrune, add(random(51), 25), ^lootdrop_duration);
+} else if ($random < 50) {
+    obj_add(npc_coord, mudrune, add(random(51), 25), ^lootdrop_duration);
+} else if ($random < 57) {
+    obj_add(npc_coord, ~randomrareseed, ^lootdrop_duration);
+} else if ($random < 67) {
+    obj_add(npc_coord, cert_earth_talisman, add(random(51), 25), ^lootdrop_duration);
+} else if ($random < 74) {
+    obj_add(npc_coord, cert_air_talisman, add(random(51), 25), ^lootdrop_duration);
+} else if ($random < 81) {
+    obj_add(npc_coord, cert_water_talisman, add(random(51), 25), ^lootdrop_duration);
+} else if ($random < 91) {
+    obj_add(npc_coord, shark, 5, ^lootdrop_duration);
+} else if ($random < 96) {
+    obj_add(npc_coord, bigoysterpearls, 1, ^lootdrop_duration);
+} else if ($random < 101) {
+} else if ($random < 106) {
+    obj_add(npc_coord, unidentified_ranarr, 1, ^lootdrop_duration);
+} else if ($random < 109) {
+    obj_add(npc_coord, coins, 972, ^lootdrop_duration);
+} else if ($random < 110) {
+    ~trail_hardcluedrop(1, npc_coord);
+} else if ($random < 120) {
+    obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
+} else if ($random < 128) {
+    obj_add(npc_coord, ~ultrarare_getitem, ^lootdrop_duration);
+}
+
+[ai_queue3,dagcave_melee_boss]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+obj_add(npc_coord, dagganoth_hide, 1, ^lootdrop_duration);
+def_int $random = random(128);
+if ($random < 17) {
+    obj_add(npc_coord, steel_kiteshield, 1, ^lootdrop_duration);
+} else if ($random < 28) {
+    obj_add(npc_coord, mithril_warhammer, 1, ^lootdrop_duration);
+} else if ($random < 35) {
+    obj_add(npc_coord, adamant_axe, 1, ^lootdrop_duration);
+} else if ($random < 39) {
+    obj_add(npc_coord, steel_platebody, 1, ^lootdrop_duration);
+} else if ($random < 42) {
+    obj_add(npc_coord, mithril_pickaxe, 1, ^lootdrop_duration);
+} else if ($random < 44) {
+    obj_add(npc_coord, adamant_platebody, 1, ^lootdrop_duration);
+} else if ($random < 46) {
+    obj_add(npc_coord, viking_sword, 1, ^lootdrop_duration);
+} else if ($random < 47) {
+    obj_add(npc_coord, rune_axe, 1, ^lootdrop_duration);
+} else if ($random < 48) {
+    obj_add(npc_coord, dragon_axe, 1, ^lootdrop_duration);
+} else if ($random < 49) {
+    obj_add(npc_coord, viking_helmet, 1, ^lootdrop_duration);
+} else if ($random < 50) {
+    obj_add(npc_coord, viking_shield, 1, ^lootdrop_duration);
+} else if ($random < 51) {
+    obj_add(npc_coord, mithril_2h_sword, 1, ^lootdrop_duration);
+} else if ($random < 52) {
+    obj_add(npc_coord, ring_of_life, 1, ^lootdrop_duration);
+} else if ($random < 53) {
+    obj_add(npc_coord, dagganoth_melee_body, 1, ^lootdrop_duration);
+} else if ($random < 54) {
+    obj_add(npc_coord, dagganoth_melee_legs, 1, ^lootdrop_duration);
+} else if ($random < 55) {
+    obj_add(npc_coord, berzerker_ring, 1, ^lootdrop_duration);
+} else if ($random < 56) {
+    obj_add(npc_coord, warrior_ring, 1, ^lootdrop_duration);
+} else if ($random < 57) {
+    obj_add(npc_coord, 2dose1antidragon, 1, ^lootdrop_duration);
+} else if ($random < 58) {
+    obj_add(npc_coord, 2doseprayerrestore, 1, ^lootdrop_duration);
+} else if ($random < 59) {
+    obj_add(npc_coord, 2dosestatrestore, 1, ^lootdrop_duration);
+} else if ($random < 60) {
+    obj_add(npc_coord, 2dose2attack, 1, ^lootdrop_duration);
+} else if ($random < 61) {
+    obj_add(npc_coord, 2dose2strength, 1, ^lootdrop_duration);
+} else if ($random < 62) {
+    obj_add(npc_coord, 2dose2defense, 1, ^lootdrop_duration);
+} else if ($random < 63) {
+    obj_add(npc_coord, 2dosepotionofzamorak, 1, ^lootdrop_duration);
+} else if ($random < 73) {
+    obj_add(npc_coord, cert_mithril_ore, 25, ^lootdrop_duration);
+} else if ($random < 76) {
+    obj_add(npc_coord, adamantite_bar, 1, ^lootdrop_duration);
+} else if ($random < 78) {
+    obj_add(npc_coord, cert_coal, 100, ^lootdrop_duration);
+} else if ($random < 79) {
+    obj_add(npc_coord, cert_iron_ore, 150, ^lootdrop_duration);
+} else if ($random < 80) {
+    obj_add(npc_coord, cert_steel_bar, add(random(16), 15), ^lootdrop_duration);
+} else if ($random < 90) {
+    obj_add(npc_coord, coins, 156, ^lootdrop_duration);
+} else if ($random < 97) {
+    obj_add(npc_coord, unidentified_ranarr, 1, ^lootdrop_duration);
+} else if ($random < 104) {
+    obj_add(npc_coord, bass, 5, ^lootdrop_duration);
+} else if ($random < 108) {
+    obj_add(npc_coord, swordfish, 5, ^lootdrop_duration);
+} else if ($random < 109) {
+    obj_add(npc_coord, shark, 5, ^lootdrop_duration);
+} else if ($random < 110) {
+    ~trail_hardcluedrop(1, npc_coord);
+} else if ($random < 120) {
+    obj_add(npc_coord, ~randomjewel, ^lootdrop_duration);
+} else if ($random < 128) {
+    obj_add(npc_coord, ~ultrarare_getitem, ^lootdrop_duration);
+}

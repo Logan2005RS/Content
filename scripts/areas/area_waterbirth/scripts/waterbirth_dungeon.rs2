@@ -1,0 +1,180 @@
+[oploc1,dagannoth_caveentrance_rock]
+if (~p_choice2_header("Go in, I don't mind dying!", 1, "No I'm holding too much stuff!", 2, "DANGER! High risk of death!") = 1) {
+    p_telejump(^waterbirth_dungeon_entrance);
+}
+
+[oploc1,dagannoth_rocky_steps]
+p_telejump(^waterbirth_dungeon_exit);
+
+[oploc1,dagannoth_ladder_base_ext2] @ladder_options(^waterbirth_mountain_top, ^waterbirth_sublevel_entrance);
+[oploc2,dagannoth_ladder_base_ext2] ~climb_ladder(^waterbirth_mountain_top, true);
+[oploc3,dagannoth_ladder_base_ext2] ~climb_ladder(^waterbirth_sublevel_entrance, false);
+
+[oploc1,dagexp_entrance_ladder] ~climb_ladder(^waterbirth_dungeon_ladder, true);
+
+[oploc1,dagexp_bossroomladder_down] ~climb_ladder(^waterbirth_kings_lair, false);
+[oploc1,dagexp_bossroomladder_up] ~climb_ladder(^waterbirth_kings_lair_exit, true);
+
+[oploc1,dagexp_ladder1] ~climb_ladder(2_28_68_18_53, false);
+[oploc1,dagexp_ladder2] ~climb_ladder(3_28_68_15_53, true);
+[oploc1,dagexp_ladder3] ~climb_ladder(2_28_68_30_52, false);
+[oploc1,dagexp_ladder4] ~climb_ladder(3_28_68_33_52, true);
+[oploc1,dagexp_ladder5] ~climb_ladder(2_28_68_42_35, false);
+[oploc1,dagexp_ladder6] ~climb_ladder(3_28_68_42_38, true);
+[oploc1,dagexp_ladder7] ~climb_ladder(1_28_68_17_42, false);
+[oploc1,dagexp_ladder8] ~climb_ladder(2_28_68_20_42, true);
+[oploc1,dagexp_ladder9] ~climb_ladder(2_28_68_7_34, true);
+[oploc1,dagexp_ladder10] ~climb_ladder(1_28_68_7_37, false);
+[oploc1,dagexp_ladder11] ~climb_ladder(1_28_68_7_30, false);
+[oploc1,dagexp_ladder12] ~climb_ladder(2_28_68_4_30, true);
+[oploc1,dagexp_ladder13] ~climb_ladder(2_28_68_8_17, true);
+[oploc1,dagexp_ladder14] ~climb_ladder(1_28_68_11_17, false);
+[oploc1,dagexp_ladder15] ~climb_ladder(1_28_68_36_10, false);
+[oploc1,dagexp_ladder16] ~climb_ladder(2_28_68_33_10, true);
+[oploc1,dagexp_ladder17] ~climb_ladder(2_29_68_7_21, true);
+[oploc1,dagexp_ladder18] ~climb_ladder(1_29_68_7_18, false);
+[oploc1,dagexp_ladder19] ~climb_ladder(1_29_68_8_38, false);
+[oploc1,dagexp_ladder20] ~climb_ladder(2_29_68_8_35, true);
+[oploc1,dagexp_ladder21] ~climb_ladder(0_29_68_34_57, false);
+[oploc1,dagexp_ladder22] ~climb_ladder(1_29_68_34_54, true);
+[oploc1,dagexp_ladder23] ~climb_ladder(1_30_68_37_21, true);
+[oploc1,dagexp_ladder24] ~climb_ladder(0_30_68_37_18, false);
+[oploc1,dagexp_ladder25] ~climb_ladder(3_28_68_32_27, true);
+[oploc1,dagexp_ladder26] ~climb_ladder(2_28_68_32_30, false);
+[oploc1,dagexp_ladder27] ~climb_ladder(2_28_68_46_22, false);
+[oploc1,dagexp_ladder28] ~climb_ladder(3_28_68_46_25, true);
+[oploc1,dagexp_ladder29] ~climb_ladder(1_28_68_58_32, false);
+[oploc1,dagexp_ladder30] ~climb_ladder(2_28_68_58_35, true);
+[oploc1,dagexp_ladder31] ~climb_ladder(1_30_68_12_25, false);
+[oploc1,dagexp_ladder32] ~climb_ladder(2_30_68_12_28, true);
+[oploc1,dagexp_ladder33] ~climb_ladder(2_30_68_41_40, false);
+[oploc1,dagexp_ladder34] ~climb_ladder(3_30_68_41_41, true);
+
+[oploc1,dagannoth_pressure_door] @dagannoth_pressure_door_open;
+[oploc1,dagannoth_pressure_door2] @dagannoth_pressure_door_open;
+[oploc1,dagannoth_pressure_door3] @dagannoth_pressure_door_open;
+
+[label,dagannoth_pressure_door_open]
+if (coordx(coord) < coordx(^waterbirth_pressure_door_behind)) {
+    if (~dagannoth_pressure_pad_held(movecoord(loc_coord, -1, 0, 0)) = false | ~dagannoth_pressure_pad_held(movecoord(loc_coord, -1, 0, 2)) = false) {
+        mes("You cannot see a way to open this door...");
+        return;
+    }
+}
+sound_synth(dagganoth_pressure_door_open, 1, 0);
+loc_change(dagannoth_pressure_opening2, 30);
+
+[proc,dagannoth_pressure_pad_held](coord $pad)(boolean)
+if (map_playercount($pad, $pad) > 0) {
+    return(true);
+}
+if (obj_find($pad, vt_useless_rock) = true) {
+    return(true);
+}
+return(false);
+
+[proc,dagannoth_door_support_attackable](boolean $magic)(boolean)
+if (npc_range(coord) <= 3) {
+    mes("The door is propped securely shut from this side...");
+    return(false);
+}
+if ($magic = false & %damagetype ! ^ranged_style) {
+    mes("The door is propped securely shut from this side...");
+    return(false);
+}
+return(true);
+
+[opnpc2,_dagannoth_door_support]
+if (~dagannoth_door_support_facing = true) {
+    mes("The door is propped securely shut from this side...");
+    return;
+}
+@player_combat_start;
+
+[apnpc2,_dagannoth_door_support]
+if (~dagannoth_door_support_facing = true) {
+    mes("The door is propped securely shut from this side...");
+    return;
+}
+@player_combat_start_ap;
+
+[proc,dagannoth_door_support_facing]()(boolean)
+if (npc_type = dagannoth_weak_door_north & coordz(coord) > coordz(npc_coord)) {
+    return(true);
+}
+if (npc_type = dagannoth_weak_door_west & coordx(coord) < coordx(npc_coord)) {
+    return(true);
+}
+if (npc_type = dagannoth_weak_door_south & coordz(coord) < coordz(npc_coord)) {
+    return(true);
+}
+return(false);
+
+[ai_queue1,_dagannoth_door_support] return;
+
+[ai_queue2,_dagannoth_door_support]
+if (npc_stat(hitpoints) = 0) {
+    return;
+}
+npc_damage(^hitmark_damage, 1);
+~sound_area(support_death, 0, npc_coord, 10);
+if (loc_find(npc_coord, dagcave_invisibleblocking) = true) {
+    loc_del(57);
+}
+switch_npc (npc_type) {
+    case dagannoth_weak_door_north : npc_changetype(dagannoth_weak_door_falling_north, 57);
+    case dagannoth_weak_door_west : npc_changetype(dagannoth_weak_door_falling_west, 57);
+    case dagannoth_weak_door_south : npc_changetype(dagannoth_weak_door_falling_south, 57);
+}
+npc_queue(4, 0, 2);
+
+[ai_queue4,dagannoth_weak_door_falling_north] npc_changetype(dagannoth_weak_door_fallen_north, 55);
+[ai_queue4,dagannoth_weak_door_falling_west] npc_changetype(dagannoth_weak_door_fallen_west, 55);
+[ai_queue4,dagannoth_weak_door_falling_south] npc_changetype(dagannoth_weak_door_fallen_south, 55);
+
+[zone,0_39_158_48_24] settimer(waterbirth_eggs, 1);
+[zone,0_39_158_48_32] settimer(waterbirth_eggs, 1);
+
+[timer,waterbirth_eggs]
+if (inzone(0_39_158_48_24, 0_39_158_55_39, coord) = false) {
+    cleartimer(waterbirth_eggs);
+    return;
+}
+if (coord ! ^waterbirth_egg_trigger_north & coord ! ^waterbirth_egg_trigger_south) {
+    return;
+}
+def_boolean $hatching = false;
+if (npc_findexact(^waterbirth_egg_north, dungeon_dagganoth_egg1) = true) {
+    npc_changetype(dungeon_dagganoth_egg2, 45);
+    $hatching = true;
+}
+if (npc_findexact(^waterbirth_egg_south, dungeon_dagganoth_egg1) = true) {
+    npc_changetype(dungeon_dagganoth_egg2, 45);
+    $hatching = true;
+}
+if ($hatching = true) {
+    queue(waterbirth_eggs_hatch, 2, 0);
+}
+
+[queue,waterbirth_eggs_hatch]
+~waterbirth_egg_hatch(^waterbirth_egg_north);
+~waterbirth_egg_hatch(^waterbirth_egg_south);
+
+[proc,waterbirth_egg_hatch](coord $egg)
+if (npc_findexact($egg, dungeon_dagganoth_egg2) = false) {
+    return;
+}
+npc_changetype(dungeon_dagganoth_egg3, 43);
+npc_anim(dagganoth_egg_open, 0);
+sound_synth(dagganoth_egg_open, 1, 0);
+npc_add(movecoord($egg, -1, 0, 0), dagganoth_critter, 45);
+%aggressive_npc = npc_uid;
+npc_setmode(opplayer2);
+
+[proc,waterbirth_snow_overlay]
+if_openoverlay(overlay_atmosphere_snow_flakes);
+
+[proc,waterbirth_clear_overlay]
+if (inzone(^waterbirth_island_lower_bound, ^waterbirth_island_upper_bound, coord) = false) {
+    if_openoverlay(null);
+}

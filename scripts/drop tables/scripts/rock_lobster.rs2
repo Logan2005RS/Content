@@ -1,0 +1,82 @@
+[ai_queue3,_rock_lobster]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+def_int $random = random(1200);
+if ($random < 50) {
+    obj_add(npc_coord, earthrune, 5, ^lootdrop_duration);
+} else if ($random < 100) {
+    obj_add(npc_coord, waterrune, 9, ^lootdrop_duration);
+} else if ($random < 150) {
+} else if ($random < 175) {
+    obj_add(npc_coord, fire_talisman, 1, ^lootdrop_duration);
+} else if ($random < 200) {
+    obj_add(npc_coord, air_talisman, 1, ^lootdrop_duration);
+} else if ($random < 225) {
+    obj_add(npc_coord, cosmic_talisman, 1, ^lootdrop_duration);
+} else if ($random < 250) {
+    obj_add(npc_coord, body_talisman, 1, ^lootdrop_duration);
+} else if ($random < 275) {
+    obj_add(npc_coord, water_talisman, 1, ^lootdrop_duration);
+} else if ($random < 300) {
+    obj_add(npc_coord, unidentified_guam, 1, ^lootdrop_duration);
+} else if ($random < 325) {
+    obj_add(npc_coord, unidentified_marentill, 1, ^lootdrop_duration);
+} else if ($random < 350) {
+    obj_add(npc_coord, unidentified_tarromin, 1, ^lootdrop_duration);
+} else if ($random < 375) {
+    obj_add(npc_coord, unidentified_harralander, 1, ^lootdrop_duration);
+} else if ($random < 400) {
+    obj_add(npc_coord, unidentified_ranarr, 1, ^lootdrop_duration);
+} else if ($random < 425) {
+    obj_add(npc_coord, unidentified_irit, 1, ^lootdrop_duration);
+} else if ($random < 450) {
+    obj_add(npc_coord, unidentified_avantoe, 1, ^lootdrop_duration);
+} else if ($random < 475) {
+    obj_add(npc_coord, unidentified_kwuarm, 1, ^lootdrop_duration);
+} else if ($random < 500) {
+    obj_add(npc_coord, unidentified_cadantine, 1, ^lootdrop_duration);
+} else if ($random < 525) {
+    obj_add(npc_coord, unidentified_lantadyme, 1, ^lootdrop_duration);
+} else if ($random < 550) {
+    obj_add(npc_coord, unidentified_dwarf_weed, 1, ^lootdrop_duration);
+} else if ($random < 600) {
+    obj_add(npc_coord, steel_arrow, add(random(4), 4), ^lootdrop_duration);
+} else if ($random < 650) {
+    obj_add(npc_coord, iron_arrow, add(random(16), 2), ^lootdrop_duration);
+} else if ($random < 655) {
+    obj_add(npc_coord, viking_sword, 1, ^lootdrop_duration);
+} else if ($random < 680) {
+    obj_add(npc_coord, onion_seed, 1, ^lootdrop_duration);
+} else if ($random < 705) {
+    obj_add(npc_coord, potato_seed, 1, ^lootdrop_duration);
+} else if ($random < 730) {
+    obj_add(npc_coord, cabbage_seed, 1, ^lootdrop_duration);
+} else if ($random < 755) {
+    obj_add(npc_coord, tomato_seed, 1, ^lootdrop_duration);
+} else if ($random < 760) {
+    obj_add(npc_coord, watermelon_seed, add(random(3), 1), ^lootdrop_duration);
+} else if ($random < 765) {
+} else if ($random < 815) {
+    obj_add(npc_coord, seaweed, 4, ^lootdrop_duration);
+} else if ($random < 865) {
+    obj_add(npc_coord, edible_seaweed, 4, ^lootdrop_duration);
+} else if ($random < 915) {
+    obj_add(npc_coord, raw_lobster, 1, ^lootdrop_duration);
+} else if ($random < 965) {
+    obj_add(npc_coord, lobster_pot, 1, ^lootdrop_duration);
+} else if ($random < 1015) {
+    obj_add(npc_coord, tinderbox, 1, ^lootdrop_duration);
+} else if ($random < 1040) {
+    obj_add(npc_coord, soda_ash, 1, ^lootdrop_duration);
+} else if ($random < 1065) {
+    obj_add(npc_coord, coins, 355, ^lootdrop_duration);
+} else if ($random < 1090) {
+    obj_add(npc_coord, snape_grass, 1, ^lootdrop_duration);
+} else if ($random < 1095) {
+    ~trail_mediumcluedrop(1, npc_coord);
+} else if ($random < 1100) {
+    obj_add(npc_coord, ~ultrarare_getitem, ^lootdrop_duration);
+} else if ($random < 1200) {
+}

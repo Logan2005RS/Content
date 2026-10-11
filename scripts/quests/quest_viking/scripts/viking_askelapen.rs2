@@ -1,4 +1,7 @@
-[opnpc1,viking_askelapen]
+[opnpc1,viking_askelapen] @viking_askelapen_talk;
+[opnpc1,viking_askelapen_dagganoth_mountain] @viking_askelapen_talk;
+
+[label,viking_askelapen_talk]
 def_int $op;
 if(%viking = ^viking_not_started) {
     ~chatplayer("<p,neutral>Hello there.");
