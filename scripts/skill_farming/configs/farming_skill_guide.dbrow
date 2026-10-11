@@ -1,0 +1,117 @@
+[skill_guide_farming]
+table=skill_guide_ops
+data=lookup,farming
+data=op,Vegetables,skill_guide_farming_veg
+data=op,Hops,skill_guide_farming_hops
+data=op,Trees,skill_guide_farming_trees
+data=op,Fruit Trees,skill_guide_farming_fruit_trees
+data=op,Herbs,skill_guide_farming_herbs
+data=op,Flowers,skill_guide_farming_flowers
+data=op,Bushes,skill_guide_farming_bushes
+data=op,Special,skill_guide_farming_special
+
+[skill_guide_farming_veg]
+table=skill_guides
+data=name,Farming - Vegetables
+data=advancement,Able to grow:
+data=inv,skill_guide_farming_veg
+data=unlock,1,Potatoes.
+data=unlock,5,Onions.
+data=unlock,7,Cabbages.
+data=unlock,12,Tomatoes.
+data=unlock,20,Sweetcorn.
+data=unlock,31,Strawberries.
+data=unlock,47,Watermelons.
+
+[skill_guide_farming_hops]
+table=skill_guides
+data=name,Farming - Hops
+data=advancement,Able to grow:
+data=inv,skill_guide_farming_hops
+data=unlock,3,Barley.
+data=unlock,4,Hammerstone Hops.
+data=unlock,8,Asgarnian Hops.
+data=unlock,13,Jute.
+data=unlock,16,Yanillian Hops.
+data=unlock,21,Krandorian Hops.
+data=unlock,28,Wildblood Hops.
+
+[skill_guide_farming_trees]
+table=skill_guides
+data=name,Farming - Trees
+data=advancement,Able to grow:
+data=inv,skill_guide_farming_trees
+data=unlock,15,Oak Trees.
+data=unlock,30,Willow Trees.
+data=unlock,45,Maple Trees.
+data=unlock,60,Yew Trees.
+data=unlock,75,Magic Trees.
+
+[skill_guide_farming_fruit_trees]
+table=skill_guides
+data=name,Farming - Fruit Trees
+data=advancement,Able to grow:
+data=inv,skill_guide_farming_fruit_trees
+data=unlock,27,Apple Trees.
+data=unlock,33,Banana Trees.
+data=unlock,39,Orange Trees.
+data=unlock,42,Curry Trees.
+data=unlock,51,Pineapple Plants.
+data=unlock,57,Papaya Trees.
+data=unlock,68,Palm Trees.
+
+[skill_guide_farming_herbs]
+table=skill_guides
+data=name,Farming - Herbs
+data=advancement,Able to grow:
+data=inv,skill_guide_farming_herbs
+data=unlock,9,Guam.
+data=unlock,14,Marrentill.
+data=unlock,19,Tarromin.
+data=unlock,26,Harralander.
+data=unlock,29,Goutweed.
+data=unlock,32,Ranarr.
+data=unlock,38,Toadflax.
+data=unlock,44,Irit.
+data=unlock,50,Avantoe.
+data=unlock,56,Kwuarm.
+data=unlock,62,Snapdragon.
+data=unlock,67,Cadantine.
+data=unlock,73,Lantadyme.
+data=unlock,79,Dwarf Weed.
+data=unlock,85,Torstol.
+
+[skill_guide_farming_flowers]
+table=skill_guides
+data=name,Farming - Flowers
+data=advancement,Able to grow:
+data=inv,skill_guide_farming_flowers
+data=unlock,2,Marigolds.
+data=unlock,11,Rosemary.
+data=unlock,24,Nasturtiums.
+data=unlock,25,Woad.
+data=unlock,26,Limpwurt.
+
+[skill_guide_farming_bushes]
+table=skill_guides
+data=name,Farming - Bushes
+data=advancement,Able to grow:
+data=inv,skill_guide_farming_bushes
+data=unlock,10,Redberry Bushes.
+data=unlock,22,Cadavaberry Bushes.
+data=unlock,36,Dwellberry Bushes.
+data=unlock,48,Jangerberry Bushes.
+data=unlock,59,Whiteberry Bushes.
+data=unlock,70,Poison Ivy Bushes.
+
+[skill_guide_farming_special]
+table=skill_guides
+data=name,Farming - Special
+data=advancement,Able to grow:
+data=inv,skill_guide_farming_special
+data=unlock,23,Scarecrows.
+data=unlock,53,Bittercap Mushrooms.
+data=unlock,55,Cacti.
+data=unlock,63,Belladonna.
+data=unlock,72,Calquat Trees.
+data=unlock,83,Spirit Trees.

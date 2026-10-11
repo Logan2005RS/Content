@@ -28,7 +28,7 @@ if(loc_type = viking_potteryoven) {
 }
 switch_obj (last_useitem)
 {
-    case bowl_unfired, piedish_unfired, pot_unfired : @fire_pottery(last_useslot);
+    case bowl_unfired, piedish_unfired, pot_unfired, plantpot_unfired : @fire_pottery(last_useslot);
     case default : ~displaymessage(^dm_default);
 }
 
@@ -59,10 +59,11 @@ mes("You now have some soft workable clay.");
 [label,craft_pottery_interface] 
 def_namedobj $item;
 def_int $count;
-$item, $count = ~skill_multi3(
+$item, $count = ~skill_multi4(
     pot_unfired, 0, 2, 185, "\\n\\n\\n\\nPot",
     piedish_unfired, 0, -4, 190, "\\n\\n\\n\\nPie Dish",
-    bowl_unfired, 0, 0, 200, "\\n\\n\\n\\nBowl"
+    bowl_unfired, 0, 0, 200, "\\n\\n\\n\\nBowl",
+    plantpot_unfired, 0, 2, 185, "\\n\\n\\n\\nPlant pot"
 );
 if ($item = null) {
     ~displaymessage(^dm_default);
@@ -104,10 +105,11 @@ if(sub($count, 1) < 1) {
 def_namedobj $item;
 def_int $count;
 // https://youtu.be/WGbO-Xwk8b8?si=ISoIMVCPIAg37Hp4&t=197 uses unfired objs
-$item, $count = ~skill_multi3(
+$item, $count = ~skill_multi4(
     pot_unfired, 0, 2, 185, "\\n\\n\\n\\nPot",
     piedish_unfired, 0, -4, 190, "\\n\\n\\n\\nPie Dish",
-    bowl_unfired, 0, 0, 200, "\\n\\n\\n\\nBowl"
+    bowl_unfired, 0, 0, 200, "\\n\\n\\n\\nBowl",
+    plantpot_unfired, 0, 2, 185, "\\n\\n\\n\\nPlant pot"
 );
 if ($item = null) {
     ~displaymessage(^dm_default);

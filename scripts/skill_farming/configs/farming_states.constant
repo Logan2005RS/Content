@@ -1,0 +1,33 @@
+^farming_kind_allotment = 0
+^farming_kind_flower = 1
+^farming_kind_herb = 2
+^farming_kind_hops = 3
+^farming_kind_tree = 4
+^farming_kind_fruit_tree = 5
+^farming_kind_bush = 6
+^farming_kind_spirit_tree = 7
+^farming_kind_belladonna = 8
+^farming_kind_mushroom = 9
+^farming_kind_cactus = 10
+^farming_kind_calquat = 11
+
+^farming_cond_weeds = 0
+^farming_cond_growing = 1
+^farming_cond_watered = 2
+^farming_cond_diseased = 3
+^farming_cond_dead = 4
+^farming_cond_grown = 5
+^farming_cond_fruit = 6
+^farming_cond_checkhealth = 7
+^farming_cond_choppable = 8
+^farming_cond_stump = 9
+
+^farming_patch_count = 39
+^farming_willow_cut_value = 192
+^farming_bin_done_bit = 24
+^farming_bin_rot_period = 8
+^farming_bin_closed_compost = 31
+^farming_bin_closed_supercompost = 64
+^farming_bin_closed_tomatoes = 159
+^farming_cycle_lowbit = 0
+^farming_cycle_highbit = 23

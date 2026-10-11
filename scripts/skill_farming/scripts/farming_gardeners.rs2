@@ -1,0 +1,281 @@
+[opnpc1,elstan] @farming_gardener_talk;
+[opnpc1,dantaera] @farming_gardener_talk;
+[opnpc1,kragen] @farming_gardener_talk;
+[opnpc1,lyra] @farming_gardener_talk;
+[opnpc1,francis] @farming_gardener_talk;
+[opnpc1,farming_gardener_hops_1] @farming_gardener_talk;
+[opnpc1,farming_gardener_hops_3] @farming_gardener_talk;
+[opnpc1,farming_gardener_hops_4] @farming_gardener_talk;
+[opnpc1,farming_gardener_tree_1] @farming_gardener_talk;
+[opnpc1,farming_gardener_tree_2] @farming_gardener_talk;
+[opnpc1,farming_gardener_tree_3] @farming_gardener_talk;
+[opnpc1,farming_gardener_tree_4] @farming_gardener_talk;
+[opnpc1,farming_gardener_fruit_1] @farming_gardener_talk;
+[opnpc1,farming_gardener_fruit_2] @farming_gardener_talk;
+[opnpc1,farming_gardener_fruit_3] @farming_gardener_talk;
+[opnpc1,farming_gardener_fruit_4] @farming_gardener_talk;
+[opnpc1,farming_gardener_bush_1] @farming_gardener_talk;
+[opnpc1,farming_gardener_bush_2] @farming_gardener_talk;
+[opnpc1,farming_gardener_bush_3] @farming_gardener_talk;
+[opnpc1,farming_gardener_bush_4] @farming_gardener_talk;
+
+[proc,farming_gardener_row]()(dbrow)
+db_find(farming_gardener:gardener, npc_type);
+return(db_findnext);
+
+[proc,farming_gardener_first_patch]()(int)
+def_int $patch;
+def_string $label;
+$patch, $label = db_getfield(~farming_gardener_row, farming_gardener:patch, 0);
+return($patch);
+
+[proc,farming_tree_grown](int $patch)(boolean)
+if (~farming_patch_kind($patch) ! ^farming_kind_tree) {
+    return(false);
+}
+def_int $condition = ~farming_state_condition(^farming_kind_tree, ~farming_patch_get($patch));
+if ($condition = ^farming_cond_checkhealth | $condition = ^farming_cond_choppable | $condition = ^farming_cond_stump) {
+    return(true);
+}
+return(false);
+
+[label,farming_gardener_talk]
+if (~farming_members_check = false) {
+    return;
+}
+def_int $patch = ~farming_gardener_first_patch;
+def_string $first = "Would you look after my crops for me?";
+if (~farming_tree_grown($patch) = true) {
+    $first = "Would you chop my tree down for me?";
+}
+switch_int (~p_choice4($first, 1, "Can you give me any farming advice?", 2, "Can you sell me something?", 3, "That's all, thanks.", 4)) {
+    case 1 :
+        ~chatplayer("<p,quiz><$first>");
+        if (~farming_tree_grown($patch) = true) {
+            @farming_gardener_chop_tree($patch);
+        }
+        @farming_gardener_protect_choose;
+    case 2 :
+        ~chatplayer("<p,quiz>Can you give me any farming advice?");
+        ~chatnpc("<p,neutral><~farming_gardener_advice>");
+        @farming_gardener_talk;
+    case 3 :
+        ~chatplayer("<p,quiz>Can you sell me something?");
+        @farming_gardener_sell;
+    case 4 :
+        ~chatplayer("<p,neutral>That's all, thanks.");
+}
+
+[label,farming_gardener_protect_choose]
+def_dbrow $row = ~farming_gardener_row;
+def_int $patch1;
+def_string $label1;
+$patch1, $label1 = db_getfield($row, farming_gardener:patch, 0);
+if (db_getfieldcount($row, farming_gardener:patch) < 2) {
+    @farming_gardener_protect($patch1);
+}
+def_int $patch2;
+def_string $label2;
+$patch2, $label2 = db_getfield($row, farming_gardener:patch, 1);
+~chatnpc("<p,neutral>I might. Which one were you thinking of?");
+switch_int (~p_choice2($label1, 1, $label2, 2)) {
+    case 1 :
+        ~chatplayer("<p,neutral><$label1>");
+        @farming_gardener_protect($patch1);
+    case 2 :
+        ~chatplayer("<p,neutral><$label2>");
+        @farming_gardener_protect($patch2);
+}
+
+[label,farming_gardener_protect](int $patch)
+def_int $kind = ~farming_patch_kind($patch);
+def_int $value = ~farming_patch_get($patch);
+def_int $condition = ~farming_state_condition($kind, $value);
+if (~farming_patch_paid($patch) = true) {
+    ~chatnpc("<p,neutral>I don't know what you're talking about - I'm already looking after that patch for you.");
+    ~chatplayer("<p,sad>Oh sorry, I forgot.");
+    return;
+}
+if ($condition = ^farming_cond_dead) {
+    ~chatnpc("<p,neutral>That patch is dead - it's too late for me to do anything about it now.");
+    return;
+}
+if ($condition = ^farming_cond_diseased) {
+    ~chatnpc("<p,neutral>That patch is diseased - I can't look after it until it has been cured.");
+    return;
+}
+if ($condition = ^farming_cond_weeds) {
+    ~chatnpc("<p,neutral>You don't have anything planted in that patch. Plant something and I might agree to look after it for you.");
+    return;
+}
+if ($condition ! ^farming_cond_growing & $condition ! ^farming_cond_watered) {
+    ~chatnpc("<p,neutral>That patch is already fully grown! I don't know what you want me to do with it!");
+    return;
+}
+def_dbrow $crop_row = ~farming_crop_row(~farming_state_crop($kind, $value));
+def_namedobj $payment;
+def_int $amount;
+$payment, $amount = db_getfield($crop_row, farming_crop:payment, 0);
+if ($payment = null) {
+    ~chatnpc("<p,neutral>Sorry, I won't protect that.");
+    return;
+}
+def_string $count = tostring($amount);
+if ($amount = 1) {
+    $count = "one";
+}
+~chatnpc("<p,neutral>If you like, but I want <$count> <~farming_payment_name($payment, $amount)> for that.");
+if (inv_total(inv, $payment) < $amount & inv_total(inv, oc_cert($payment)) < $amount) {
+    ~chatplayer("<p,sad>I'm afraid I don't have any of those at the moment.");
+    ~chatnpc("<p,neutral>Well, I'm not wasting my time for free.");
+    return;
+}
+switch_int (~p_choice2("Okay, it's a deal.", 1, "No, that's too much.", 2)) {
+    case 1 :
+        ~chatplayer("<p,neutral>Okay, it's a deal.");
+        if (inv_total(inv, $payment) >= $amount) {
+            inv_del(inv, $payment, $amount);
+        } else {
+            inv_del(inv, oc_cert($payment), $amount);
+        }
+        ~farming_patch_set_protected($patch, true);
+        ~chatnpc("<p,happy>That'll do nicely, <text_gender("sir", "madam")>. Leave it with me - I'll make sure those crops grow for you.");
+    case 2 :
+        ~chatplayer("<p,neutral>No, that's too much.");
+        ~chatnpc("<p,neutral>Well, I'm not wasting my time for free.");
+}
+
+[proc,farming_payment_name](namedobj $payment, int $amount)(string)
+switch_namedobj ($payment) {
+    case bucket_compost :
+        if ($amount = 1) return("bucket of compost");
+        return("buckets of compost");
+    case sack_potato_10 :
+        if ($amount = 1) return("sack of potatoes");
+        return("sacks of potatoes");
+    case sack_onion_10 :
+        if ($amount = 1) return("sack of onions");
+        return("sacks of onions");
+    case sack_cabbage_10 :
+        if ($amount = 1) return("sack of cabbages");
+        return("sacks of cabbages");
+    case jute_fibre : return("jute fibres");
+    case basket_apple_5 :
+        if ($amount = 1) return("basket of apples");
+        return("baskets of apples");
+    case marigold : return("harvest of marigold");
+    case basket_tomato_5 :
+        if ($amount = 1) return("basket of tomatoes");
+        return("baskets of tomatoes");
+    case basket_orange_5 :
+        if ($amount = 1) return("basket of oranges");
+        return("baskets of oranges");
+    case coconut : return("coconuts");
+    case cactus_spine : return("cactus spines");
+    case basket_strawberry_5 :
+        if ($amount = 1) return("basket of strawberries");
+        return("baskets of strawberries");
+    case basket_banana_5 :
+        if ($amount = 1) return("basket of bananas");
+        return("baskets of bananas");
+}
+return(lowercase(oc_name($payment)));
+
+[label,farming_gardener_chop_tree](int $patch)
+~chatnpc("<p,quiz>Why? You look like you could chop it down yourself!");
+switch_int (~p_choice2("Yes, you're right - I'll do it myself.", 1, "I can't be bothered - I'd rather pay you to do it.", 2)) {
+    case 1 :
+        ~chatplayer("<p,neutral>Yes, you're right - I'll do it myself.");
+        return;
+    case 2 :
+        ~chatplayer("<p,neutral>I can't be bothered - I'd rather pay you to do it.");
+}
+~chatnpc("<p,neutral>Well, it's a lot of hard work - if you pay me 200 GP I'll chop it down for you.");
+if (inv_total(inv, coins) < 200) {
+    ~chatplayer("<p,sad>I don't have that much money on me.");
+    return;
+}
+switch_int (~p_choice2("Here's 200GP - chop my tree down please.", 1, "I don't want to pay that much, sorry.", 2)) {
+    case 1 :
+        ~chatplayer("<p,neutral>Here's 200GP - chop my tree down please.");
+        inv_del(inv, coins, 200);
+        ~farming_patch_clear($patch);
+    case 2 :
+        ~chatplayer("<p,neutral>I don't want to pay that much, sorry.");
+}
+
+[label,farming_gardener_sell]
+~chatnpc("<p,neutral>That depends on whether I have it to sell. What is it that you're looking for?");
+switch_int (~p_choice4("Some plant cure.", 1, "A bucket of compost.", 2, "A rake.", 3, "(See more items)", 4)) {
+    case 1 :
+        ~chatplayer("<p,neutral>Some plant cure.");
+        ~chatnpc("<p,neutral>Plant cure, eh? I might have some put aside for myself. Tell you what. I'll sell you some plant cure for 25 gp if you like.");
+        @farming_gardener_buy(plant_cure, 25);
+    case 2 :
+        ~chatplayer("<p,neutral>A bucket of compost.");
+        ~chatnpc("<p,neutral>A bucket of compost, eh? I might have one spare... tell you what, I'll sell it to you for 35 gp if you like.");
+        @farming_gardener_buy(bucket_compost, 35);
+    case 3 :
+        ~chatplayer("<p,neutral>A rake.");
+        ~chatnpc("<p,neutral>A rake, eh? I might have one spare... tell you what, I'll sell it to you for 15 gp if you like.");
+        @farming_gardener_buy(rake, 15);
+    case 4 : @farming_gardener_sell_more;
+}
+
+[label,farming_gardener_sell_more]
+switch_int (~p_choice4("A watering can.", 1, "A gardening trowel.", 2, "A seed dibber.", 3, "Forget it.", 4)) {
+    case 1 :
+        ~chatplayer("<p,neutral>A watering can.");
+        ~chatnpc("<p,neutral>A watering can, eh? I might have one spare... tell you what, I'll sell it to you for 25 gp if you like.");
+        @farming_gardener_buy(watering_can_8, 25);
+    case 2 :
+        ~chatplayer("<p,neutral>A gardening trowel.");
+        ~chatnpc("<p,neutral>A gardening trowel, eh? I might have one spare... tell you what, I'll sell it to you for 15 gp if you like.");
+        @farming_gardener_buy(gardening_trowel, 15);
+    case 3 :
+        ~chatplayer("<p,neutral>A seed dibber.");
+        ~chatnpc("<p,neutral>A seed dibber, eh? I might have one spare... tell you what, I'll sell it to you for 15 gp if you like.");
+        @farming_gardener_buy(dibber, 15);
+    case 4 :
+        ~chatplayer("<p,neutral>Forget it, you don't have anything I need.");
+}
+
+[label,farming_gardener_buy](namedobj $item, int $price)
+switch_int (~p_choice2("Yes, that sounds like a fair price.", 1, "No thanks, I can get that much cheaper elsewhere.", 2)) {
+    case 1 :
+        ~chatplayer("<p,happy>Yes, that sounds like a fair price.");
+        if (inv_total(inv, coins) < $price) {
+            mes("You need <tostring($price)> gp to pay for that.");
+            return;
+        }
+        inv_del(inv, coins, $price);
+        if (inv_freespace(inv) > 0) {
+            inv_add(inv, $item, 1);
+        } else {
+            obj_add(coord, $item, 1, ^lootdrop_duration);
+        }
+    case 2 :
+        ~chatplayer("<p,neutral>No thanks, I can get that much cheaper elsewhere.");
+}
+
+[proc,farming_gardener_advice]()(string)
+switch_int (random(18)) {
+    case 0 : return("There are four main Farming areas - Elstan looks after an area south of Falador, Dantaera has one to the north of Catherby, Kragen has one near Ardougne, and Lyra looks after a place in north Morytania.");
+    case 1 : return("If you want to grow fruit trees you could try a few places: Catherby and Brimhaven have a couple of fruit tree patches, and I hear that the gnomes are big on that sort of thing.");
+    case 2 : return("Bittercap mushrooms can only be grown in a special patch in Morytania, near the Mort Myre swamp. There the ground is especially dank and suited to growing poisonous fungi.");
+    case 3 : return("There is a special patch for growing Belladonna - I believe it's somewhere near Draynor Manor, where the ground is a tad 'unblessed'.");
+    case 4 : return("Don't just throw away your weeds after you've raked a patch - put them in a compost bin and make some compost.");
+    case 5 : return("Applying compost to a patch will not only reduce the chance that your crops will get diseased, but you will also grow more crops to harvest.");
+    case 6 : return("Supercompost is far better than normal compost, but more expensive to make. You need to rot the right type of item; show me an item, and I'll tell you if it's super-compostable or not.");
+    case 7 : return("Tree seeds must be grown in a plantpot of soil into a sapling, and then transferred to a tree patch to continue growing to adulthood.");
+    case 8 : return("You don't have to buy all your plantpots you know, you can make them yourself on a pottery wheel. If you're a good enough <text_gender("craftsman", "craftswoman")>, that is.");
+    case 9 : return("You can fill plantpots with soil from Farming patches, if you have a gardening trowel.");
+    case 10 : return("Vegetables, hops and flowers are far more likely to grow healthily if you water them periodically.");
+    case 11 : return("The only way to cure a bush or tree of disease is to prune away the diseased leaves with a pair of secateurs. For all other crops I would just apply some plant-cure.");
+    case 12 : return("If you need to be rid of your fruit trees for any reason, all you have to do is chop them down and then dig up the stump.");
+    case 13 : return("You can put up to ten potatoes, cabbages or onions in vegetable sacks, although you can't have a mix in the same sack.");
+    case 14 : return("You can put up to five tomatoes, strawberries, apples, bananas or oranges into a fruit basket, although you can't have a mix in the same basket.");
+    case 15 : return("If you want to make your own sacks and baskets you'll need to use the loom that's near the Farming shop in Falador. If you're a good enough <text_gender("craftsman", "craftswoman")>, that is.");
+    case 16 : return("You can buy all the farming tools from farming shops, which can be found close to the allotments.");
+}
+return("Hops are good for brewing ales. I believe there's a brewery up in Keldagrim somewhere, and I've heard rumours that a place called Phasmatys used to be good for that type of thing. 'Fore they all died, of course.");

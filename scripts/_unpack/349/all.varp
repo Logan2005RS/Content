@@ -215,34 +215,62 @@
 [varp_501]
 
 [farming_tree_varp]
+transmit=yes
+scope=perm
 
 [farming_fruit_tree_varp]
+transmit=yes
+scope=perm
 
 [farming_allotment_varp_1]
+transmit=yes
+scope=perm
 
 [farming_allotment_varp_2]
+transmit=yes
+scope=perm
 
 [farming_hops_varp]
+transmit=yes
+scope=perm
 
 [farming_special_tree_varp]
+transmit=yes
+scope=perm
 
 [farming_flower_varp]
+transmit=yes
+scope=perm
 
 [farming_bush_varp]
+transmit=yes
+scope=perm
 
 [farming_varp_9]
 
 [farming_varp_10]
+transmit=yes
+scope=perm
 
 [farming_varp_11]
+transmit=yes
+scope=perm
 
 [farming_varp_12]
+transmit=yes
+scope=perm
 
 [farming_varp_13]
+transmit=yes
+scope=perm
 
 [farming_varp_14]
+transmit=yes
+scope=perm
 
 [farming_varp_15]
+transmit=yes
+scope=perm
 
 [mourning_quest]
 
@@ -343,6 +371,7 @@
 [varp_565]
 
 [farming_growth_data]
+scope=perm
 
 [varp_567]
 
@@ -441,6 +470,8 @@
 [varp_614]
 
 [farming_tools]
+transmit=yes
+scope=perm
 
 [elid_main]
 

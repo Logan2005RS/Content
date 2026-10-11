@@ -1,0 +1,58 @@
+[oploc2,loom]
+def_namedobj $item;
+def_int $count;
+$item, $count = ~skill_multi3(
+    sack_empty, 0, 2, 185, "\\n\\n\\n\\nSack",
+    basket_empty, 0, 2, 185, "\\n\\n\\n\\nBasket",
+    regicide_cloth, 0, 2, 185, "\\n\\n\\n\\nCloth"
+);
+if ($item = null) {
+    return;
+}
+@weave_item($item, $count);
+
+[proc,weave_material](namedobj $item)(namedobj, int, int, int, string)
+switch_namedobj ($item) {
+    case sack_empty : return(jute_fibre, 4, 21, 380, "jute fibres");
+    case basket_empty : return(willow_branch, 6, 36, 560, "willow branches");
+}
+return(ball_of_wool, 4, 10, 120, "balls of wool");
+
+[label,weave_item](namedobj $item, int $count)
+def_namedobj $material;
+def_int $amount;
+def_int $level;
+def_int $exp;
+def_string $material_name;
+$material, $amount, $level, $exp, $material_name = ~weave_material($item);
+def_string $product = ~add_article(lowercase(oc_name($item)));
+if (stat(crafting) < $level) {
+    mes("You need a Crafting level of at least <tostring($level)> in order to do this.");
+    return;
+}
+if (inv_total(inv, $material) < $amount) {
+    mes("You need <tostring($amount)> <$material_name> to weave <$product>.");
+    return;
+}
+anim(farming_useloom, 0);
+sound_synth(loom_weave, 1, 0);
+weakqueue*(weave_item, 5)($item, $count);
+
+[queue,weave_item](namedobj $item, int $count)
+def_namedobj $material;
+def_int $amount;
+def_int $level;
+def_int $exp;
+def_string $material_name;
+$material, $amount, $level, $exp, $material_name = ~weave_material($item);
+if (inv_total(inv, $material) < $amount) {
+    return;
+}
+inv_del(inv, $material, $amount);
+inv_add(inv, $item, 1);
+stat_advance(crafting, $exp);
+mes("You weave the <$material_name> into <~add_article(lowercase(oc_name($item)))>.");
+if (sub($count, 1) < 1) {
+    return;
+}
+@weave_item($item, sub($count, 1));

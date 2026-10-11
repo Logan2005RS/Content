@@ -21,6 +21,7 @@ val=16,cooking
 val=17,firemaking
 val=18,woodcutting
 val=19,fletching
+val=20,farming
 
 [stats_free]
 inputtype=int

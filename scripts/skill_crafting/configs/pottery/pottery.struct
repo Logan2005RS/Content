@@ -21,3 +21,10 @@ param=levelrequire,8
 param=processexp,180
 param=productexp,150
 param=pottery_name,bowls
+
+[unfired_plantpot]
+param=product,plantpot_empty
+param=levelrequire,19
+param=processexp,200
+param=productexp,175
+param=pottery_name,plant pots

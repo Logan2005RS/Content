@@ -1,0 +1,166 @@
+[proc,farming_login]
+~farming_update_patches;
+settimer(farming_growth, 50);
+
+[timer,farming_growth]
+~farming_update_patches;
+
+[proc,farming_cycle]()(int)
+return(calc(date_minutes / 5));
+
+[proc,farming_update_patches]
+def_int $now = ~farming_cycle;
+def_int $last = getbit_range(%farming_growth_data, ^farming_cycle_lowbit, ^farming_cycle_highbit);
+if ($last = 0) {
+    %farming_growth_data = setbit_range_toint(%farming_growth_data, $now, ^farming_cycle_lowbit, ^farming_cycle_highbit);
+    return;
+}
+if ($now <= $last) {
+    return;
+}
+def_int $patch = 0;
+while ($patch < ^farming_patch_count) {
+    ~farming_update_patch($patch, $last, $now);
+    $patch = add($patch, 1);
+}
+~farming_compost_bins_update($last, $now);
+~farming_seedlings_update;
+%farming_growth_data = setbit_range_toint(%farming_growth_data, $now, ^farming_cycle_lowbit, ^farming_cycle_highbit);
+
+[proc,farming_steps](int $period, int $last, int $now, int $max)(int)
+return(min(sub(divide($now, $period), divide($last, $period)), $max));
+
+[proc,farming_update_patch](int $patch, int $last, int $now)
+def_dbrow $patch_row = ~farming_patch_row($patch);
+def_int $kind = db_getfield($patch_row, farming_patch:kind, 0);
+def_int $value = ~farming_patch_get($patch);
+def_int $condition = ~farming_state_condition($kind, $value);
+if ($condition = ^farming_cond_weeds) {
+    if ($value > 0 & $value <= 3) {
+        ~farming_patch_set($patch, max(0, sub($value, ~farming_steps(1, $last, $now, 3))));
+    }
+    return;
+}
+def_int $steps = ~farming_steps(~farming_growth_period($kind), $last, $now, 16);
+while ($steps > 0) {
+    $value = ~farming_patch_get($patch);
+    $condition = ~farming_state_condition($kind, $value);
+    if ($condition = ^farming_cond_growing | $condition = ^farming_cond_watered) {
+        ~farming_grow_step($patch, $kind, $value);
+    } else if ($condition = ^farming_cond_diseased) {
+        ~farming_patch_set($patch, ~farming_state_value($kind, ~farming_state_crop($kind, $value), ~farming_state_stage($kind, $value), ^farming_cond_dead, 0));
+        $steps = 0;
+    } else {
+        $steps = 0;
+    }
+    $steps = sub($steps, 1);
+}
+$steps = ~farming_steps(~farming_regrowth_period($kind), $last, $now, 6);
+while ($steps > 0) {
+    if (~farming_regrow_step($patch, $kind) = false) {
+        $steps = 0;
+    }
+    $steps = sub($steps, 1);
+}
+
+[proc,farming_grow_step](int $patch, int $kind, int $value)
+def_namedobj $crop = ~farming_state_crop($kind, $value);
+def_int $stage = ~farming_state_stage($kind, $value);
+def_int $condition = ~farming_state_condition($kind, $value);
+def_dbrow $crop_row = ~farming_crop_row($crop);
+def_int $stages = db_getfield($crop_row, farming_crop:stages, 0);
+if ($condition = ^farming_cond_growing & $stage > 0 & ~farming_patch_protected($patch, $kind, $crop) = false) {
+    if (random(128) < sub(18, ~farming_compost_disease_mod(~farming_compost_get($patch)))) {
+        def_int $diseased = ~farming_state_value($kind, $crop, $stage, ^farming_cond_diseased, 0);
+        if ($diseased ! -1) {
+            ~farming_patch_set($patch, $diseased);
+            return;
+        }
+    }
+}
+$stage = add($stage, 1);
+if ($stage < $stages) {
+    ~farming_patch_set($patch, ~farming_state_value($kind, $crop, $stage, ^farming_cond_growing, 0));
+    return;
+}
+if (~farming_kind_checkable($kind) = true) {
+    ~farming_patch_set($patch, ~farming_state_value($kind, $crop, $stages, ^farming_cond_checkhealth, 0));
+    return;
+}
+if ($kind = ^farming_kind_mushroom) {
+    ~farming_patch_set($patch, ~farming_state_value($kind, $crop, $stages, ^farming_cond_fruit, 6));
+    return;
+}
+def_int $grown = ~farming_state_value($kind, $crop, $stages, ^farming_cond_grown, 3);
+if ($grown = -1) {
+    $grown = ~farming_state_value($kind, $crop, $stages, ^farming_cond_grown, 2);
+}
+if ($grown = -1) {
+    $grown = ~farming_state_value($kind, $crop, $stages, ^farming_cond_grown, 0);
+}
+~farming_patch_set($patch, $grown);
+
+[proc,farming_regrow_step](int $patch, int $kind)(boolean)
+def_int $value = ~farming_patch_get($patch);
+def_int $condition = ~farming_state_condition($kind, $value);
+def_namedobj $crop = ~farming_state_crop($kind, $value);
+if ($kind = ^farming_kind_tree) {
+    if ($condition = ^farming_cond_stump | $value = ^farming_willow_cut_value) {
+        ~farming_patch_set($patch, ~farming_state_value($kind, $crop, ~farming_state_stage($kind, $value), ^farming_cond_choppable, 0));
+        return(true);
+    }
+    return(false);
+}
+def_int $max = ~farming_kind_max_fruit($kind);
+if ($max = 0) {
+    return(false);
+}
+def_dbrow $crop_row = ~farming_crop_row($crop);
+def_int $stages = db_getfield($crop_row, farming_crop:stages, 0);
+if ($condition = ^farming_cond_grown) {
+    ~farming_patch_set($patch, ~farming_state_value($kind, $crop, $stages, ^farming_cond_fruit, 1));
+    return(true);
+}
+if ($condition = ^farming_cond_fruit) {
+    def_int $count = ~farming_state_count($kind, $value);
+    if ($count < $max) {
+        ~farming_patch_set($patch, ~farming_state_value($kind, $crop, $stages, ^farming_cond_fruit, add($count, 1)));
+        return(true);
+    }
+}
+return(false);
+
+[proc,farming_compost_disease_mod](int $compost)(int)
+switch_int ($compost) {
+    case 1 : return(8);
+    case 2 : return(13);
+}
+return(0);
+
+[proc,farming_patch_protected](int $patch, int $kind, namedobj $crop)(boolean)
+if ($crop = poisonivy_bush_seed) {
+    return(true);
+}
+def_dbrow $patch_row = ~farming_patch_row($patch);
+def_int $bit = db_getfield($patch_row, farming_patch:protect_bit, 0);
+if ($bit ! -1) {
+    if (testbit(%farming_gardener_varbit, $bit) = ^true) {
+        return(true);
+    }
+}
+def_int $flower_patch = db_getfield($patch_row, farming_patch:flower_patch, 0);
+if ($flower_patch = -1) {
+    return(false);
+}
+def_namedobj $flower = db_getfield(~farming_crop_row($crop), farming_crop:protect_flower, 0);
+if ($flower = null) {
+    return(false);
+}
+def_int $flower_value = ~farming_patch_get($flower_patch);
+if (~farming_state_crop(^farming_kind_flower, $flower_value) ! $flower) {
+    return(false);
+}
+if (~farming_state_condition(^farming_kind_flower, $flower_value) = ^farming_cond_grown) {
+    return(true);
+}
+return(false);

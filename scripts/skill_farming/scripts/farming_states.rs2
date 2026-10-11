@@ -1,0 +1,111 @@
+[proc,farming_crop_row](namedobj $seed)(dbrow)
+db_find(farming_crop:seed, $seed);
+return(db_findnext);
+
+[proc,farming_state_row](int $kind, int $value)(dbrow)
+db_find(farming_state:key, calc($kind * 256 + $value));
+return(db_findnext);
+
+[proc,farming_patch_row](int $patch)(dbrow)
+db_find(farming_patch:id, $patch);
+return(db_findnext);
+
+[proc,farming_patch_row_for_loc](loc $loc)(dbrow)
+db_find(farming_patch:patch, $loc);
+return(db_findnext);
+
+[proc,farming_state_value](int $kind, namedobj $crop, int $stage, int $condition, int $count)(int)
+def_dbrow $crop_row = ~farming_crop_row($crop);
+if ($crop_row = null) {
+    return(-1);
+}
+db_find(farming_state:crop_key, calc($kind * 1024 + db_getfield($crop_row, farming_crop:value, 0)));
+def_dbrow $row = db_findnext;
+while ($row ! null) {
+    if (db_getfield($row, farming_state:stage, 0) = $stage & db_getfield($row, farming_state:condition, 0) = $condition & db_getfield($row, farming_state:count, 0) = $count) {
+        return(db_getfield($row, farming_state:value, 0));
+    }
+    $row = db_findnext;
+}
+return(-1);
+
+[proc,farming_state_crop](int $kind, int $value)(namedobj)
+def_dbrow $row = ~farming_state_row($kind, $value);
+if ($row = null) {
+    return(null);
+}
+return(db_getfield($row, farming_state:crop, 0));
+
+[proc,farming_state_stage](int $kind, int $value)(int)
+def_dbrow $row = ~farming_state_row($kind, $value);
+if ($row = null) {
+    return(0);
+}
+return(db_getfield($row, farming_state:stage, 0));
+
+[proc,farming_state_condition](int $kind, int $value)(int)
+def_dbrow $row = ~farming_state_row($kind, $value);
+if ($row = null) {
+    return(^farming_cond_weeds);
+}
+return(db_getfield($row, farming_state:condition, 0));
+
+[proc,farming_state_count](int $kind, int $value)(int)
+def_dbrow $row = ~farming_state_row($kind, $value);
+if ($row = null) {
+    return(0);
+}
+return(db_getfield($row, farming_state:count, 0));
+
+[proc,farming_kind_name](int $kind)(string)
+switch_int ($kind) {
+    case ^farming_kind_allotment : return("allotment");
+    case ^farming_kind_flower : return("flower patch");
+    case ^farming_kind_herb : return("herb patch");
+    case ^farming_kind_hops : return("hops patch");
+    case ^farming_kind_tree : return("tree patch");
+    case ^farming_kind_fruit_tree : return("fruit tree patch");
+    case ^farming_kind_bush : return("bush patch");
+    case ^farming_kind_spirit_tree : return("spirit tree patch");
+    case ^farming_kind_belladonna : return("belladonna patch");
+    case ^farming_kind_mushroom : return("mushroom patch");
+    case ^farming_kind_cactus : return("cactus patch");
+    case ^farming_kind_calquat : return("calquat tree patch");
+}
+return("patch");
+
+[proc,farming_kind_checkable](int $kind)(boolean)
+switch_int ($kind) {
+    case ^farming_kind_tree, ^farming_kind_fruit_tree, ^farming_kind_bush, ^farming_kind_spirit_tree, ^farming_kind_cactus, ^farming_kind_calquat : return(true);
+}
+return(false);
+
+[proc,farming_kind_max_fruit](int $kind)(int)
+switch_int ($kind) {
+    case ^farming_kind_bush : return(4);
+    case ^farming_kind_fruit_tree, ^farming_kind_calquat : return(6);
+    case ^farming_kind_cactus : return(3);
+}
+return(0);
+
+[proc,farming_growth_period](int $kind)(int)
+switch_int ($kind) {
+    case ^farming_kind_allotment, ^farming_kind_hops : return(2);
+    case ^farming_kind_flower : return(1);
+    case ^farming_kind_herb, ^farming_kind_bush : return(4);
+    case ^farming_kind_tree : return(8);
+    case ^farming_kind_fruit_tree, ^farming_kind_calquat : return(32);
+    case ^farming_kind_spirit_tree : return(59);
+    case ^farming_kind_belladonna : return(16);
+    case ^farming_kind_mushroom : return(6);
+    case ^farming_kind_cactus : return(12);
+}
+return(4);
+
+[proc,farming_regrowth_period](int $kind)(int)
+switch_int ($kind) {
+    case ^farming_kind_fruit_tree, ^farming_kind_calquat : return(8);
+    case ^farming_kind_bush : return(4);
+    case ^farming_kind_cactus : return(12);
+}
+return(1);

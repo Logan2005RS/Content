@@ -1,0 +1,310 @@
+[opnpc1,farming_tools_leprechaun]
+if (~farming_members_check = false) {
+    return;
+}
+~chatnpc("<p,happy>Ah, 'tis a foine day to be sure! Can I help ye with tool storage, or what?");
+@farming_leprechaun_options;
+
+[label,farming_leprechaun_options]
+switch_int (~p_choice3("Yes, please.", 1, "What can you store?", 2, "No thanks, I'll keep hold of my stuff.", 3)) {
+    case 1 :
+        ~chatplayer("<p,neutral>Yes, please.");
+        @farming_tools_open;
+    case 2 :
+        ~chatplayer("<p,quiz>What can you store?");
+        ~chatnpc("<p,happy>We'll hold onto yer rake, yer seed dibber, yer spade, yer secateurs, yer waterin' can and yer trowel - but mind it's not one of them fancy trowels only archaeologists use!");
+        ~chatnpc("<p,happy>We'll take a few buckets off yer hands too, and even yer compost and supercompost! There's room in our shed for plenty of compost, so bring it on.");
+        ~chatnpc("<p,happy>Also if ye hands us yer farming produce, we might be able to change it into banknotes.");
+        ~chatnpc("<p,happy>So... do ye want to be using the store?");
+        switch_int (~p_choice3("Yes, please.", 1, "What do you do with the tools you're storing?", 2, "No thanks, I'll keep hold of my stuff.", 3)) {
+            case 1 :
+                ~chatplayer("<p,neutral>Yes, please.");
+                @farming_tools_open;
+            case 2 :
+                ~chatplayer("<p,quiz>What do you do with the tools you're storing? They can't possibly all fit in your pockets!");
+                ~chatnpc("<p,happy>We leprechauns have a shed where we keep 'em. It's a magic shed, so ye can get yer items back from any of us leprechauns whenever ye want. Saves ye havin' to carry loads of stuff around the country!");
+                ~chatnpc("<p,happy>So... do ye want to be using the store?");
+                @farming_leprechaun_options;
+            case 3 : @farming_leprechaun_decline;
+        }
+    case 3 : @farming_leprechaun_decline;
+}
+
+[label,farming_leprechaun_decline]
+~chatplayer("<p,neutral>No thanks, I'll keep hold of my stuff.");
+~chatnpc("<p,neutral>Ye must be dafter than ye look if ye likes luggin' yer tools everywhere ye goes!");
+
+[opnpc3,farming_tools_leprechaun] @farming_tools_open;
+
+[label,farming_tools_open]
+if (~farming_members_check = false) {
+    return;
+}
+inv_transmit(farming_tools_store, farming_tools:farming_tools_1);
+inv_transmit(farming_tools_store_2, farming_tools:farming_tools_2);
+inv_transmit(farming_tools_side_icons, farming_tools_side:farming_tools_side_1);
+inv_transmit(farming_tools_side_icons_2, farming_tools_side:farming_tools_side_2);
+~farming_tools_refresh;
+if_openmain_side(farming_tools, farming_tools_side);
+
+[if_close,farming_tools]
+inv_stoptransmit(farming_tools:farming_tools_1);
+inv_stoptransmit(farming_tools:farming_tools_2);
+inv_stoptransmit(farming_tools_side:farming_tools_side_1);
+inv_stoptransmit(farming_tools_side:farming_tools_side_2);
+
+[proc,farming_tools_refresh]
+inv_clear(farming_tools_store);
+inv_clear(farming_tools_store_2);
+if (%farming_tools_rake = 1) inv_setslot(farming_tools_store, 0, rake, 1);
+if (%farming_tools_dibber = 1) inv_setslot(farming_tools_store, 1, dibber, 1);
+if (%farming_tools_spade = 1) inv_setslot(farming_tools_store, 2, spade, 1);
+if (%farming_tools_secateurs = 1) inv_setslot(farming_tools_store, 3, secateurs, 1);
+if (%farming_tools_wateringcan > 0) inv_setslot(farming_tools_store, 4, ~farming_stored_can, 1);
+if (%farming_tools_trowel = 1) inv_setslot(farming_tools_store, 5, gardening_trowel, 1);
+if (%farming_tools_buckets > 0) inv_setslot(farming_tools_store_2, 0, bucket_empty, %farming_tools_buckets);
+if (%farming_tools_compost > 0) inv_setslot(farming_tools_store_2, 1, bucket_compost, %farming_tools_compost);
+if (%farming_tools_supercompost > 0) inv_setslot(farming_tools_store_2, 2, bucket_supercompost, %farming_tools_supercompost);
+
+[proc,farming_stored_can]()(namedobj)
+switch_int (%farming_tools_wateringcan) {
+    case 2 : return(watering_can_1);
+    case 3 : return(watering_can_2);
+    case 4 : return(watering_can_3);
+    case 5 : return(watering_can_4);
+    case 6 : return(watering_can_5);
+    case 7 : return(watering_can_6);
+    case 8 : return(watering_can_7);
+    case 9 : return(watering_can_8);
+}
+return(watering_can_0);
+
+[proc,farming_can_store_value](obj $can)(int)
+switch_obj ($can) {
+    case watering_can_0 : return(1);
+    case watering_can_1 : return(2);
+    case watering_can_2 : return(3);
+    case watering_can_3 : return(4);
+    case watering_can_4 : return(5);
+    case watering_can_5 : return(6);
+    case watering_can_6 : return(7);
+    case watering_can_7 : return(8);
+    case watering_can_8 : return(9);
+}
+return(0);
+
+[proc,farming_highest_can]()(namedobj)
+if (inv_total(inv, watering_can_8) > 0) return(watering_can_8);
+if (inv_total(inv, watering_can_7) > 0) return(watering_can_7);
+if (inv_total(inv, watering_can_6) > 0) return(watering_can_6);
+if (inv_total(inv, watering_can_5) > 0) return(watering_can_5);
+if (inv_total(inv, watering_can_4) > 0) return(watering_can_4);
+if (inv_total(inv, watering_can_3) > 0) return(watering_can_3);
+if (inv_total(inv, watering_can_2) > 0) return(watering_can_2);
+if (inv_total(inv, watering_can_1) > 0) return(watering_can_1);
+if (inv_total(inv, watering_can_0) > 0) return(watering_can_0);
+return(null);
+
+[inv_button1,farming_tools_side:farming_tools_side_1]
+switch_int (last_slot) {
+    case 0 :
+        if (~farming_tool_deposit(rake, %farming_tools_rake, "rake", "a") = true) %farming_tools_rake = 1;
+    case 1 :
+        if (~farming_tool_deposit(dibber, %farming_tools_dibber, "dibber", "a") = true) %farming_tools_dibber = 1;
+    case 2 :
+        if (~farming_tool_deposit(spade, %farming_tools_spade, "spade", "a") = true) %farming_tools_spade = 1;
+    case 3 :
+        if (inv_total(inv, secateurs) < 1) {
+            mes("You haven't got any secateurs to store.");
+        } else if (%farming_tools_secateurs = 1) {
+            mes("You cannot store more than one pair of secateurs in here.");
+        } else {
+            inv_del(inv, secateurs, 1);
+            %farming_tools_secateurs = 1;
+        }
+    case 4 :
+        def_obj $can = ~farming_highest_can;
+        if ($can = null) {
+            mes("You haven't got a watering can to store.");
+        } else if (%farming_tools_wateringcan > 0) {
+            mes("You cannot store more than one watering can in here.");
+        } else {
+            inv_del(inv, $can, 1);
+            %farming_tools_wateringcan = ~farming_can_store_value($can);
+        }
+    case 5 :
+        if (~farming_tool_deposit(gardening_trowel, %farming_tools_trowel, "trowel", "a") = true) %farming_tools_trowel = 1;
+}
+~farming_tools_refresh;
+
+[proc,farming_tool_deposit](obj $tool, int $stored, string $name, string $determiner)(boolean)
+if (inv_total(inv, $tool) < 1) {
+    mes("You haven't got <$determiner> <lowercase(oc_name($tool))> to store.");
+    return(false);
+}
+if ($stored = 1) {
+    mes("You cannot store more than one <$name> in here.");
+    return(false);
+}
+inv_del(inv, $tool, 1);
+return(true);
+
+[inv_button1,farming_tools_side:farming_tools_side_2] @farming_store_stack(last_slot, 1);
+[inv_button2,farming_tools_side:farming_tools_side_2] @farming_store_stack(last_slot, 5);
+[inv_button3,farming_tools_side:farming_tools_side_2] @farming_store_stack(last_slot, -1);
+[inv_button4,farming_tools_side:farming_tools_side_2] @farming_store_stack(last_slot, 0);
+
+[label,farming_store_stack](int $slot, int $amount)
+def_obj $item = ~farming_stack_item($slot);
+if ($item = null) {
+    return;
+}
+def_int $has = inv_total(inv, $item);
+if ($has = 0) {
+    if ($slot = 0) {
+        mes("You haven't got any buckets to store.");
+    } else {
+        mes("You haven't got any <lowercase(oc_name($item))> to store.");
+    }
+    return;
+}
+if ($amount = 0) {
+    p_countdialog;
+    if (last_int <= 0) return;
+    $amount = last_int;
+}
+def_int $space = sub(~farming_stack_max($slot), ~farming_stack_stored($slot));
+if ($amount = -1) {
+    $amount = min($has, $space);
+}
+$amount = min($amount, $has);
+if ($amount > $space | $amount <= 0) {
+    if ($slot = 0) {
+        mes("You can't store that many buckets in here.");
+    } else {
+        mes("You can't store that much <lowercase(oc_name($item))> in here.");
+    }
+    return;
+}
+inv_del(inv, $item, $amount);
+~farming_stack_set($slot, add(~farming_stack_stored($slot), $amount));
+~farming_tools_refresh;
+
+[inv_button1,farming_tools:farming_tools_1]
+switch_int (last_slot) {
+    case 0 :
+        if (~farming_tool_withdraw(rake, %farming_tools_rake, "a") = true) %farming_tools_rake = 0;
+    case 1 :
+        if (~farming_tool_withdraw(dibber, %farming_tools_dibber, "a") = true) %farming_tools_dibber = 0;
+    case 2 :
+        if (~farming_tool_withdraw(spade, %farming_tools_spade, "a") = true) %farming_tools_spade = 0;
+    case 3 :
+        if (~farming_tool_withdraw(secateurs, %farming_tools_secateurs, "any") = true) %farming_tools_secateurs = 0;
+    case 4 :
+        if (%farming_tools_wateringcan = 0) {
+            mes("You haven't got a watering can stored in here!");
+        } else if (inv_freespace(inv) < 1) {
+            mes("You don't have enough space for that.");
+        } else {
+            inv_add(inv, ~farming_stored_can, 1);
+            %farming_tools_wateringcan = 0;
+        }
+    case 5 :
+        if (~farming_tool_withdraw(gardening_trowel, %farming_tools_trowel, "a") = true) %farming_tools_trowel = 0;
+}
+~farming_tools_refresh;
+
+[proc,farming_tool_withdraw](namedobj $tool, int $stored, string $determiner)(boolean)
+if ($stored = 0) {
+    mes("You haven't got <$determiner> <lowercase(oc_name($tool))> stored in here!");
+    return(false);
+}
+if (inv_freespace(inv) < 1) {
+    mes("You don't have enough space for that.");
+    return(false);
+}
+inv_add(inv, $tool, 1);
+return(true);
+
+[inv_button1,farming_tools:farming_tools_2] @farming_withdraw_stack(last_slot, 1);
+[inv_button2,farming_tools:farming_tools_2] @farming_withdraw_stack(last_slot, 5);
+[inv_button3,farming_tools:farming_tools_2] @farming_withdraw_stack(last_slot, -1);
+[inv_button4,farming_tools:farming_tools_2] @farming_withdraw_stack(last_slot, 0);
+
+[label,farming_withdraw_stack](int $slot, int $amount)
+def_namedobj $item = ~farming_stack_item($slot);
+if ($item = null) {
+    return;
+}
+def_int $stored = ~farming_stack_stored($slot);
+if ($stored = 0) {
+    if ($slot = 0) {
+        mes("You haven't got any buckets stored in here!");
+    } else {
+        mes("You haven't got any <lowercase(oc_name($item))> stored in here!");
+    }
+    return;
+}
+if ($amount = 0) {
+    p_countdialog;
+    if (last_int <= 0) return;
+    $amount = last_int;
+}
+if ($amount = -1) {
+    $amount = inv_freespace(inv);
+}
+$amount = min(min($amount, $stored), inv_freespace(inv));
+if ($amount <= 0) {
+    mes("You don't have enough inventory space for that.");
+    return;
+}
+inv_add(inv, $item, $amount);
+~farming_stack_set($slot, sub($stored, $amount));
+~farming_tools_refresh;
+
+[proc,farming_stack_item](int $slot)(namedobj)
+switch_int ($slot) {
+    case 0 : return(bucket_empty);
+    case 1 : return(bucket_compost);
+    case 2 : return(bucket_supercompost);
+}
+return(null);
+
+[proc,farming_stack_max](int $slot)(int)
+if ($slot = 0) {
+    return(31);
+}
+return(255);
+
+[proc,farming_stack_stored](int $slot)(int)
+switch_int ($slot) {
+    case 0 : return(%farming_tools_buckets);
+    case 1 : return(%farming_tools_compost);
+    case 2 : return(%farming_tools_supercompost);
+}
+return(0);
+
+[proc,farming_stack_set](int $slot, int $value)
+switch_int ($slot) {
+    case 0 : %farming_tools_buckets = $value;
+    case 1 : %farming_tools_compost = $value;
+    case 2 : %farming_tools_supercompost = $value;
+}
+
+[opnpcu,farming_tools_leprechaun]
+if (~farming_members_check = false) {
+    return;
+}
+def_obj $item = last_useitem;
+if (oc_cert($item) = $item & oc_uncert($item) ! $item) {
+    ~chatnpc("<p,neutral>That IS a banknote!");
+    return;
+}
+db_find(farming_crop_product:product, $item);
+if (db_findnext = null | oc_cert($item) = $item) {
+    ~chatnpc("<p,neutral>Nay, I can't turn that into a banknote.");
+    return;
+}
+def_int $count = inv_total(inv, $item);
+inv_moveitem_cert(inv, inv, $item, $count);
+~objbox($item, "The leprechaun exchanges your items for banknotes.", 250, 0, 0);

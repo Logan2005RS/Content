@@ -2933,7 +2933,7 @@ shadowed=yes
 text=%1
 colour=0xFFFF00
 
-[com_247]
+[farming]
 type=text
 x=128
 y=188

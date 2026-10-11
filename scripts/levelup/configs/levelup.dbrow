@@ -229,3 +229,14 @@ data=level_prefix,Your fletching level is now
 data=levelup_jingle,advance fletching
 data=unlocks_jingle,advance fletching2
 data=unlocks_levels,levelup_unlocks_fletching
+
+[levelup_farming]
+table=levelup
+data=stat,farming
+data=interface,levelup_farming
+data=title,levelup_farming:line1
+data=body,levelup_farming:line2
+data=message,"Congratulations, you just advanced a farming level."
+data=level_prefix,Your farming level is now
+data=levelup_jingle,advance farming
+data=unlocks_jingle,advance farming2

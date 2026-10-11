@@ -1,0 +1,25 @@
+[opnpc1,farming_shopkeeper_1]
+~chatnpc("<p,neutral>Hello.");
+~chatplayer("<p,neutral>Hi!");
+~chatnpc("<p,neutral>Would you like to see what I have in stock?");
+switch_int (~p_choice2("Yes please.", 1, "No, thank you.", 2)) {
+    case 1 :
+        ~chatplayer("<p,neutral>Yes please.");
+        ~openshop_activenpc;
+    case 2 :
+        ~chatplayer("<p,neutral>No, thank you.");
+}
+
+[opnpc1,farming_shopkeeper_2]
+~chatnpc("<p,happy>Hello. How can I help you?");
+switch_int (~p_choice3("What are you selling?", 1, "Can you give me any Farming advice?", 2, "I'm okay, thank you.", 3)) {
+    case 1 : ~openshop_activenpc;
+    case 2 :
+        ~chatplayer("<p,quiz>Can you give me any Farming advice?");
+        ~chatnpc("<p,neutral>Yes - ask a gardener.");
+    case 3 :
+        ~chatplayer("<p,happy>I'm okay, thank you.");
+}
+
+[opnpc1,farming_shopkeeper_3] ~openshop_activenpc;
+[opnpc1,farming_shopkeeper_4] ~openshop_activenpc;

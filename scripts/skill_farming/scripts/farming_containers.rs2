@@ -1,0 +1,196 @@
+[opheld1,sack_empty] @farming_container_fill(sack_empty);
+[opheld1,basket_empty] @farming_container_fill(basket_empty);
+[opheld1,sack_potato_1] @farming_container_fill(last_item);
+[opheld2,sack_potato_1] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_potato_2] @farming_container_fill(last_item);
+[opheld2,sack_potato_2] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_potato_3] @farming_container_fill(last_item);
+[opheld2,sack_potato_3] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_potato_4] @farming_container_fill(last_item);
+[opheld2,sack_potato_4] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_potato_5] @farming_container_fill(last_item);
+[opheld2,sack_potato_5] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_potato_6] @farming_container_fill(last_item);
+[opheld2,sack_potato_6] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_potato_7] @farming_container_fill(last_item);
+[opheld2,sack_potato_7] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_potato_8] @farming_container_fill(last_item);
+[opheld2,sack_potato_8] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_potato_9] @farming_container_fill(last_item);
+[opheld2,sack_potato_9] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_potato_10] @farming_container_fill(last_item);
+[opheld2,sack_potato_10] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_onion_1] @farming_container_fill(last_item);
+[opheld2,sack_onion_1] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_onion_2] @farming_container_fill(last_item);
+[opheld2,sack_onion_2] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_onion_3] @farming_container_fill(last_item);
+[opheld2,sack_onion_3] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_onion_4] @farming_container_fill(last_item);
+[opheld2,sack_onion_4] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_onion_5] @farming_container_fill(last_item);
+[opheld2,sack_onion_5] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_onion_6] @farming_container_fill(last_item);
+[opheld2,sack_onion_6] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_onion_7] @farming_container_fill(last_item);
+[opheld2,sack_onion_7] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_onion_8] @farming_container_fill(last_item);
+[opheld2,sack_onion_8] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_onion_9] @farming_container_fill(last_item);
+[opheld2,sack_onion_9] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_onion_10] @farming_container_fill(last_item);
+[opheld2,sack_onion_10] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_cabbage_1] @farming_container_fill(last_item);
+[opheld2,sack_cabbage_1] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_cabbage_2] @farming_container_fill(last_item);
+[opheld2,sack_cabbage_2] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_cabbage_3] @farming_container_fill(last_item);
+[opheld2,sack_cabbage_3] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_cabbage_4] @farming_container_fill(last_item);
+[opheld2,sack_cabbage_4] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_cabbage_5] @farming_container_fill(last_item);
+[opheld2,sack_cabbage_5] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_cabbage_6] @farming_container_fill(last_item);
+[opheld2,sack_cabbage_6] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_cabbage_7] @farming_container_fill(last_item);
+[opheld2,sack_cabbage_7] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_cabbage_8] @farming_container_fill(last_item);
+[opheld2,sack_cabbage_8] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_cabbage_9] @farming_container_fill(last_item);
+[opheld2,sack_cabbage_9] @farming_container_remove_one(last_item, last_slot);
+[opheld1,sack_cabbage_10] @farming_container_fill(last_item);
+[opheld2,sack_cabbage_10] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_apple_1] @farming_container_fill(last_item);
+[opheld2,basket_apple_1] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_apple_2] @farming_container_fill(last_item);
+[opheld2,basket_apple_2] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_apple_3] @farming_container_fill(last_item);
+[opheld2,basket_apple_3] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_apple_4] @farming_container_fill(last_item);
+[opheld2,basket_apple_4] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_apple_5] @farming_container_fill(last_item);
+[opheld2,basket_apple_5] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_banana_1] @farming_container_fill(last_item);
+[opheld2,basket_banana_1] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_banana_2] @farming_container_fill(last_item);
+[opheld2,basket_banana_2] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_banana_3] @farming_container_fill(last_item);
+[opheld2,basket_banana_3] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_banana_4] @farming_container_fill(last_item);
+[opheld2,basket_banana_4] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_banana_5] @farming_container_fill(last_item);
+[opheld2,basket_banana_5] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_orange_1] @farming_container_fill(last_item);
+[opheld2,basket_orange_1] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_orange_2] @farming_container_fill(last_item);
+[opheld2,basket_orange_2] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_orange_3] @farming_container_fill(last_item);
+[opheld2,basket_orange_3] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_orange_4] @farming_container_fill(last_item);
+[opheld2,basket_orange_4] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_orange_5] @farming_container_fill(last_item);
+[opheld2,basket_orange_5] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_strawberry_1] @farming_container_fill(last_item);
+[opheld2,basket_strawberry_1] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_strawberry_2] @farming_container_fill(last_item);
+[opheld2,basket_strawberry_2] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_strawberry_3] @farming_container_fill(last_item);
+[opheld2,basket_strawberry_3] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_strawberry_4] @farming_container_fill(last_item);
+[opheld2,basket_strawberry_4] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_strawberry_5] @farming_container_fill(last_item);
+[opheld2,basket_strawberry_5] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_tomato_1] @farming_container_fill(last_item);
+[opheld2,basket_tomato_1] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_tomato_2] @farming_container_fill(last_item);
+[opheld2,basket_tomato_2] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_tomato_3] @farming_container_fill(last_item);
+[opheld2,basket_tomato_3] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_tomato_4] @farming_container_fill(last_item);
+[opheld2,basket_tomato_4] @farming_container_remove_one(last_item, last_slot);
+[opheld1,basket_tomato_5] @farming_container_fill(last_item);
+[opheld2,basket_tomato_5] @farming_container_remove_one(last_item, last_slot);
+
+[proc,farming_container_type](obj $produce)(int)
+switch_obj ($produce) {
+    case potato : return(0);
+    case onion : return(1);
+    case cabbage : return(2);
+    case cooking_apple : return(3);
+    case banana : return(4);
+    case orange : return(5);
+    case strawberry : return(6);
+    case tomato : return(7);
+}
+return(-1);
+
+[proc,farming_container_for](int $type, int $count)(dbrow)
+db_find(farming_container:key, calc($type * 16 + $count));
+return(db_findnext);
+
+[proc,farming_container_produce](obj $container)(namedobj)
+if ($container = sack_empty) {
+    if (inv_total(inv, potato) > 0) return(potato);
+    if (inv_total(inv, onion) > 0) return(onion);
+    if (inv_total(inv, cabbage) > 0) return(cabbage);
+    return(null);
+}
+if ($container = basket_empty) {
+    if (inv_total(inv, orange) > 0) return(orange);
+    if (inv_total(inv, cooking_apple) > 0) return(cooking_apple);
+    if (inv_total(inv, banana) > 0) return(banana);
+    if (inv_total(inv, strawberry) > 0) return(strawberry);
+    if (inv_total(inv, tomato) > 0) return(tomato);
+    return(null);
+}
+db_find(farming_container:item, $container);
+def_dbrow $row = db_findnext;
+if ($row = null) {
+    return(null);
+}
+return(db_getfield($row, farming_container:produce, 0));
+
+[label,farming_container_fill](obj $container)
+def_namedobj $produce = ~farming_container_produce($container);
+if ($produce = null | inv_total(inv, $produce) = 0) {
+    ~displaymessage(^dm_default);
+    return;
+}
+def_int $type = ~farming_container_type($produce);
+def_int $count = 0;
+def_int $capacity = 10;
+db_find(farming_container:item, $container);
+def_dbrow $row = db_findnext;
+if ($row ! null) {
+    $count = db_getfield($row, farming_container:count, 0);
+    $capacity = db_getfield($row, farming_container:capacity, 0);
+} else if ($container = basket_empty) {
+    $capacity = 5;
+}
+if ($count >= $capacity) {
+    mes("This is already full.");
+    return;
+}
+def_int $amount = min(inv_total(inv, $produce), sub($capacity, $count));
+inv_del(inv, $produce, $amount);
+inv_del(inv, $container, 1);
+inv_add(inv, db_getfield(~farming_container_for($type, add($count, $amount)), farming_container:result, 0), 1);
+
+[label,farming_container_remove_one](obj $container, int $slot)
+db_find(farming_container:item, $container);
+def_dbrow $row = db_findnext;
+if ($row = null) {
+    return;
+}
+if (inv_freespace(inv) < 1) {
+    mes("You don't have enough inventory space to do this.");
+    return;
+}
+def_namedobj $produce = db_getfield($row, farming_container:produce, 0);
+def_int $count = db_getfield($row, farming_container:count, 0);
+if ($count <= 1) {
+    inv_setslot(inv, $slot, db_getfield($row, farming_container:empty, 0), 1);
+} else {
+    inv_setslot(inv, $slot, db_getfield(~farming_container_for(~farming_container_type($produce), sub($count, 1)), farming_container:result, 0), 1);
+}
+inv_add(inv, $produce, 1);

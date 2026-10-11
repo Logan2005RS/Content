@@ -1,0 +1,399 @@
+[proc,farming_patch_kind](int $patch)(int)
+return(db_getfield(~farming_patch_row($patch), farming_patch:kind, 0));
+
+[proc,farming_patch_name](int $patch)(string)
+return(~farming_kind_name(~farming_patch_kind($patch)));
+
+[proc,farming_patch_article](int $patch)(string)
+if (~farming_patch_kind($patch) = ^farming_kind_allotment) {
+    return("an allotment");
+}
+return("a <~farming_patch_name($patch)>");
+
+[proc,farming_patch_clear](int $patch)
+~farming_patch_set($patch, 3);
+~farming_compost_set($patch, 0);
+~farming_patch_set_protected($patch, false);
+
+[proc,farming_patch_set_protected](int $patch, boolean $protected)
+def_int $bit = db_getfield(~farming_patch_row($patch), farming_patch:protect_bit, 0);
+if ($bit = -1) {
+    return;
+}
+if ($protected = true) {
+    %farming_gardener_varbit = setbit(%farming_gardener_varbit, $bit);
+} else {
+    %farming_gardener_varbit = clearbit(%farming_gardener_varbit, $bit);
+}
+
+[proc,farming_patch_paid](int $patch)(boolean)
+def_int $bit = db_getfield(~farming_patch_row($patch), farming_patch:protect_bit, 0);
+if ($bit = -1) {
+    return(false);
+}
+if (testbit(%farming_gardener_varbit, $bit) = ^true) {
+    return(true);
+}
+return(false);
+
+[proc,farming_patch_crop_name](obj $crop)(string)
+def_string $name = lowercase(oc_name($crop));
+def_int $index = string_indexof_string(" sapling", $name);
+if ($index ! -1) {
+    return(substring($name, 0, $index));
+}
+return($name);
+
+[label,farming_patch_guide] @skill_guide(farming, 0);
+
+[label,farming_patch_inspect](int $patch)
+if (~farming_members_check = false) {
+    return;
+}
+def_int $kind = ~farming_patch_kind($patch);
+def_int $value = ~farming_patch_get($patch);
+def_int $condition = ~farming_state_condition($kind, $value);
+def_namedobj $crop = ~farming_state_crop($kind, $value);
+def_string $compost = "The soil has not been treated.";
+switch_int (~farming_compost_get($patch)) {
+    case 1 : $compost = "The soil has been treated with compost.";
+    case 2 : $compost = "The soil has been treated with supercompost.";
+}
+def_string $status = "The patch has something growing in it.";
+if ($crop = scarecrow_complete) {
+    $status = "";
+} else if ($condition = ^farming_cond_weeds & $value < 3) {
+    $status = "The patch needs weeding.";
+} else if ($condition = ^farming_cond_weeds) {
+    $status = "The patch is empty and weeded.";
+} else if ($condition = ^farming_cond_diseased) {
+    $status = "The patch is diseased and needs attending to before it dies.";
+} else if ($condition = ^farming_cond_dead) {
+    $status = "The patch has become infected by disease and has died.";
+} else if ($condition ! ^farming_cond_growing & $condition ! ^farming_cond_watered) {
+    $status = "The patch is fully grown.";
+}
+if (string_length($status) = 0) {
+    mes("This is <~farming_patch_article($patch)>. <$compost>");
+} else {
+    mes("This is <~farming_patch_article($patch)>. <$compost> <$status>");
+}
+if (~farming_patch_paid($patch) = true) {
+    mes("A nearby gardener is looking after this patch for you.");
+}
+
+[label,farming_patch_op1](int $patch)
+if (~farming_members_check = false) {
+    return;
+}
+def_int $kind = ~farming_patch_kind($patch);
+def_int $value = ~farming_patch_get($patch);
+def_int $condition = ~farming_state_condition($kind, $value);
+if ($condition = ^farming_cond_checkhealth) {
+    @farming_check_health($patch);
+}
+if ($kind = ^farming_kind_tree) {
+    @farming_tree_chop($patch);
+}
+if ($kind = ^farming_kind_spirit_tree) {
+    @farming_spirit_tree_talk($patch);
+}
+if ($condition = ^farming_cond_fruit & $kind ! ^farming_kind_mushroom) {
+    @farming_pick_fruit($patch);
+}
+if ($kind = ^farming_kind_fruit_tree & $condition ! ^farming_cond_fruit) {
+    @farming_fruit_tree_chop($patch);
+}
+@farming_harvest($patch);
+
+[label,farming_check_health](int $patch)
+def_int $kind = ~farming_patch_kind($patch);
+def_int $value = ~farming_patch_get($patch);
+def_namedobj $crop = ~farming_state_crop($kind, $value);
+def_dbrow $crop_row = ~farming_crop_row($crop);
+def_int $stages = db_getfield($crop_row, farming_crop:stages, 0);
+stat_advance(farming, db_getfield($crop_row, farming_crop:check_xp, 0));
+switch_int ($kind) {
+    case ^farming_kind_tree :
+        ~farming_patch_set($patch, ~farming_state_value($kind, $crop, $stages, ^farming_cond_choppable, 0));
+        mes("You examine the tree for signs of disease and find that it is in perfect health.");
+    case ^farming_kind_fruit_tree :
+        ~farming_patch_set($patch, ~farming_state_value($kind, $crop, $stages, ^farming_cond_fruit, 6));
+        mes("You examine the tree for signs of disease and find that it is in perfect health.");
+    case ^farming_kind_spirit_tree :
+        ~farming_patch_set($patch, ~farming_state_value($kind, $crop, $stages, ^farming_cond_grown, 0));
+        mes("You examine the tree for signs of disease and find that it is in perfect health.");
+    case ^farming_kind_bush :
+        ~farming_patch_set($patch, ~farming_state_value($kind, $crop, $stages, ^farming_cond_fruit, 4));
+        mes("You examine the bush for signs of disease and find that it's in perfect health.");
+    case ^farming_kind_cactus :
+        ~farming_patch_set($patch, ~farming_state_value($kind, $crop, $stages, ^farming_cond_fruit, 3));
+        mes("You examine the cactus for signs of disease and find that it is in perfect health.");
+    case ^farming_kind_calquat :
+        ~farming_patch_set($patch, ~farming_state_value($kind, $crop, $stages, ^farming_cond_fruit, 6));
+        mes("You examine the calquat tree for signs of disease and find that it is in perfect health.");
+}
+
+[label,farming_harvest](int $patch)
+def_int $kind = ~farming_patch_kind($patch);
+def_int $value = ~farming_patch_get($patch);
+def_namedobj $crop = ~farming_state_crop($kind, $value);
+def_dbrow $crop_row = ~farming_crop_row($crop);
+if ($crop_row = null) {
+    ~displaymessage(^dm_default);
+    return;
+}
+def_namedobj $product = db_getfield($crop_row, farming_crop:product, 0);
+if (inv_total(inv, spade) < 1) {
+    mes("You lack the needed tool to harvest these crops.");
+    return;
+}
+if (inv_freespace(inv) < 1 & (oc_stackable($product) = false | inv_total(inv, $product) = 0)) {
+    mes("You don't have enough inventory space to do that.");
+    return;
+}
+def_int $amount = 1;
+if ($kind = ^farming_kind_flower & ($crop = limpwurt_seed | $crop = woad_seed)) {
+    $amount = 3;
+}
+if ($kind ! ^farming_kind_flower) {
+    mes("You begin to harvest the <~farming_patch_name($patch)>.");
+}
+def_boolean $done = false;
+while ($done = false) {
+    if (inv_freespace(inv) < 1 & (oc_stackable($product) = false | inv_total(inv, $product) = 0)) {
+        mes("You have run out of inventory space.");
+        return;
+    }
+    switch_int ($kind) {
+        case ^farming_kind_herb : anim(picking_low, 0);
+        case ^farming_kind_flower, ^farming_kind_mushroom : anim(farming_pick_mushroom, 0);
+        case default : anim(human_dig, 0);
+    }
+    sound_synth(digspade, 1, 0);
+    p_delay(1);
+    inv_add(inv, $product, 1);
+    stat_advance(farming, db_getfield($crop_row, farming_crop:harvest_xp, 0));
+    if (~farming_harvest_take($patch, $kind, $crop, $amount) = true) {
+        if ($kind ! ^farming_kind_flower) {
+            mes("The <~farming_patch_name($patch)> is now empty.");
+        }
+        return;
+    }
+    $amount = sub($amount, 1);
+}
+
+[proc,farming_harvest_take](int $patch, int $kind, namedobj $crop, int $amount)(boolean)
+def_int $value = ~farming_patch_get($patch);
+def_dbrow $crop_row = ~farming_crop_row($crop);
+def_int $stages = db_getfield($crop_row, farming_crop:stages, 0);
+switch_int ($kind) {
+    case ^farming_kind_allotment, ^farming_kind_hops, ^farming_kind_herb :
+        if (~farming_lose_life($patch, $kind, $crop) = false) {
+            return(false);
+        }
+        def_int $lives = ~farming_state_count($kind, $value);
+        if ($lives <= 1) {
+            ~farming_patch_clear($patch);
+            return(true);
+        }
+        ~farming_patch_set($patch, ~farming_state_value($kind, $crop, $stages, ^farming_cond_grown, sub($lives, 1)));
+        return(false);
+    case ^farming_kind_mushroom :
+        def_int $count = ~farming_state_count($kind, $value);
+        if ($count <= 1) {
+            ~farming_patch_clear($patch);
+            return(true);
+        }
+        ~farming_patch_set($patch, ~farming_state_value($kind, $crop, $stages, ^farming_cond_fruit, sub($count, 1)));
+        return(false);
+}
+if ($amount <= 1) {
+    ~farming_patch_clear($patch);
+    return(true);
+}
+return(false);
+
+[proc,farming_lose_life](int $patch, int $kind, namedobj $crop)(boolean)
+def_boolean $lose = false;
+if ($kind = ^farming_kind_herb) {
+    if (random(256) > ~farming_herb_save_chance($crop)) {
+        $lose = true;
+    }
+} else if ($kind = ^farming_kind_allotment) {
+    if (random(8) = 0) {
+        $lose = true;
+    }
+} else if (random(6) = 0) {
+    $lose = true;
+}
+if ($lose = true & random(add(3, ~farming_compost_get($patch))) >= 3) {
+    $lose = false;
+}
+return($lose);
+
+[proc,farming_herb_save_chance](namedobj $crop)(int)
+def_int $base = 24;
+switch_namedobj ($crop) {
+    case marrentill_seed : $base = 28;
+    case tarromin_seed : $base = 31;
+    case harralander_seed : $base = 36;
+    case village_rare_tuber, ranarr_seed : $base = 39;
+    case toadflax_seed : $base = 43;
+    case irit_seed : $base = 46;
+    case avantoe_seed : $base = 50;
+    case kwuarm_seed : $base = 54;
+    case snapdragon_seed : $base = 57;
+    case cadantine_seed : $base = 60;
+    case lantadyme_seed : $base = 64;
+    case dwarf_weed_seed : $base = 67;
+    case torstol_seed : $base = 71;
+}
+return(min(add($base, stat(farming)), 80));
+
+[label,farming_pick_fruit](int $patch)
+def_int $kind = ~farming_patch_kind($patch);
+def_namedobj $crop = ~farming_state_crop($kind, ~farming_patch_get($patch));
+def_dbrow $crop_row = ~farming_crop_row($crop);
+def_namedobj $product = db_getfield($crop_row, farming_crop:product, 0);
+def_int $stages = db_getfield($crop_row, farming_crop:stages, 0);
+if (inv_freespace(inv) < 1 & (oc_stackable($product) = false | inv_total(inv, $product) = 0)) {
+    mes("You don't have enough inventory space to do that.");
+    return;
+}
+def_int $count = ~farming_state_count($kind, ~farming_patch_get($patch));
+while ($count > 0) {
+    if (inv_freespace(inv) < 1 & (oc_stackable($product) = false | inv_total(inv, $product) = 0)) {
+        mes("You have run out of inventory space.");
+        return;
+    }
+    anim(picking_mid, 0);
+    if ($kind = ^farming_kind_cactus) {
+        sound_synth(pick_cactus, 1, 0);
+    } else {
+        sound_synth(farming_pick, 1, 0);
+    }
+    p_delay(1);
+    inv_add(inv, $product, 1);
+    stat_advance(farming, db_getfield($crop_row, farming_crop:harvest_xp, 0));
+    $count = sub($count, 1);
+    if ($count = 0) {
+        ~farming_patch_set($patch, ~farming_state_value($kind, $crop, $stages, ^farming_cond_grown, 0));
+    } else {
+        ~farming_patch_set($patch, ~farming_state_value($kind, $crop, $stages, ^farming_cond_fruit, $count));
+    }
+    if ($kind = ^farming_kind_cactus) {
+        mes("You carefully pick a spine from the cactus.");
+    } else if ($kind = ^farming_kind_bush) {
+        mes("You pick some <lowercase(oc_name($product))>.");
+    } else {
+        mes("You pick a <lowercase(oc_name($product))>.");
+    }
+}
+
+[label,farming_fruit_tree_chop](int $patch)
+def_int $kind = ~farming_patch_kind($patch);
+def_int $value = ~farming_patch_get($patch);
+if (~farming_state_condition($kind, $value) ! ^farming_cond_grown) {
+    ~displaymessage(^dm_default);
+    return;
+}
+def_obj $axe = ~woodcutting_axe_checker(false);
+if ($axe = null) {
+    mes("You do not have an axe to use.");
+    return;
+}
+def_namedobj $crop = ~farming_state_crop($kind, $value);
+def_dbrow $crop_row = ~farming_crop_row($crop);
+anim(oc_param($axe, woodcutting_anim), 0);
+sound_synth(woodchop, 1, 0);
+p_delay(2);
+~farming_patch_set($patch, ~farming_state_value($kind, $crop, db_getfield($crop_row, farming_crop:stages, 0), ^farming_cond_stump, 0));
+mes("You chop down the <~farming_patch_crop_name($crop)>.");
+
+[proc,farming_tree_table](namedobj $crop)(dbrow)
+switch_namedobj ($crop) {
+    case plantpot_oak_sapling : return(oak_tree_table);
+    case plantpot_willow_sapling : return(willow_tree_table);
+    case plantpot_maple_sapling : return(maple_tree_table);
+    case plantpot_yew_sapling : return(yew_tree_table);
+    case plantpot_magic_tree_sapling : return(magic_tree_table);
+}
+return(null);
+
+[label,farming_tree_chop](int $patch)
+def_int $kind = ~farming_patch_kind($patch);
+def_int $value = ~farming_patch_get($patch);
+if (~farming_state_condition($kind, $value) ! ^farming_cond_choppable & $value ! ^farming_willow_cut_value) {
+    return;
+}
+def_namedobj $crop = ~farming_state_crop($kind, $value);
+def_dbrow $data = ~farming_tree_table($crop);
+def_obj $axe = ~woodcutting_axe_checker(true);
+if ($axe = null | $data = null) {
+    return;
+}
+def_int $level = db_getfield($data, woodcutting_trees:levelrequired, 0);
+if (stat(woodcutting) < $level) {
+    anim(null, 0);
+    mes("You need a Woodcutting level of <tostring($level)> to chop down this tree.");
+    return;
+}
+if (inv_freespace(inv) < 1) {
+    anim(null, 0);
+    mes("Your inventory is too full to hold any more logs.");
+    return;
+}
+if (%action_delay < map_clock) {
+    %action_delay = calc(map_clock + 3);
+    anim(oc_param($axe, woodcutting_anim), 0);
+    sound_synth(woodchop, 1, 0);
+    mes("You swing your axe at the tree.");
+    p_oploc(3);
+    return;
+}
+if (%action_delay = map_clock) {
+    anim(oc_param($axe, woodcutting_anim), 0);
+    def_int $low;
+    def_int $high;
+    $low, $high = ~woodcutting_successchance($data, $axe);
+    if (stat_random(woodcutting, $low, $high) = true) {
+        def_namedobj $product = db_getfield($data, woodcutting_trees:product, 0);
+        mes("You get some <lowercase(oc_name($product))>.");
+        stat_advance(woodcutting, db_getfield($data, woodcutting_trees:productexp, 0));
+        inv_add(inv, $product, 1);
+        if (random(8) = 0) {
+            ~farming_patch_set($patch, ~farming_state_value($kind, $crop, db_getfield(~farming_crop_row($crop), farming_crop:stages, 0), ^farming_cond_stump, 0));
+            sound_synth(tree_fall, 1, 0);
+            anim(null, 0);
+            return;
+        }
+    }
+}
+p_oploc(3);
+
+[label,farming_spirit_tree_talk](int $patch)
+if (~farming_state_condition(^farming_kind_spirit_tree, ~farming_patch_get($patch)) ! ^farming_cond_grown) {
+    return;
+}
+if (%treequest ! ^tree_complete) {
+    ~mesbox("The tree doesn't feel like talking.");
+    return;
+}
+~mesbox("The young spirit tree talks...");
+~mesbox("Hello gnome friend. Where would you like to go?");
+switch_int (~p_choice4("Tree Gnome Village.", 1, "Gnome Stronghold.", 2, "Battlefield of Khazard.", 3, "Forest north of Varrock.", 4)) {
+    case 1 : @spirit_tree_tele(^village_tree);
+    case 2 : @spirit_tree_tele(^stronghold_tree);
+    case 3 : @spirit_tree_tele(^khazard_tree);
+    case 4 : @spirit_tree_tele(^varrock_tree);
+}
+
+[if_button,stats:farming] @skill_guide(farming, 0);
+
+[proc,farming_members_check]()(boolean)
+if (map_members = ^false) {
+    mes(^mes_members_feature);
+    return(false);
+}
+return(true);

@@ -1,0 +1,112 @@
+[opheldu,plantpot_compost] @farming_sow_seed(last_useitem);
+
+[opheldu,acorn] @farming_sow_seed(last_item);
+[opheldu,willow_seed] @farming_sow_seed(last_item);
+[opheldu,maple_seed] @farming_sow_seed(last_item);
+[opheldu,yew_seed] @farming_sow_seed(last_item);
+[opheldu,magic_tree_seed] @farming_sow_seed(last_item);
+[opheldu,apple_tree_seed] @farming_sow_seed(last_item);
+[opheldu,banana_tree_seed] @farming_sow_seed(last_item);
+[opheldu,orange_tree_seed] @farming_sow_seed(last_item);
+[opheldu,curry_tree_seed] @farming_sow_seed(last_item);
+[opheldu,pineapple_tree_seed] @farming_sow_seed(last_item);
+[opheldu,papaya_tree_seed] @farming_sow_seed(last_item);
+[opheldu,palm_tree_seed] @farming_sow_seed(last_item);
+[opheldu,spirit_tree_seed] @farming_sow_seed(last_item);
+[opheldu,calquat_tree_seed] @farming_sow_seed(last_item);
+
+[opheldu,plantpot_acorn] @farming_water_seedling(last_item, last_useitem);
+[opheldu,plantpot_willow_seed] @farming_water_seedling(last_item, last_useitem);
+[opheldu,plantpot_maple_seed] @farming_water_seedling(last_item, last_useitem);
+[opheldu,plantpot_yew_seed] @farming_water_seedling(last_item, last_useitem);
+[opheldu,plantpot_magic_tree_seed] @farming_water_seedling(last_item, last_useitem);
+[opheldu,plantpot_apple_seed] @farming_water_seedling(last_item, last_useitem);
+[opheldu,plantpot_banana_seed] @farming_water_seedling(last_item, last_useitem);
+[opheldu,plantpot_orange_seed] @farming_water_seedling(last_item, last_useitem);
+[opheldu,plantpot_curry_seed] @farming_water_seedling(last_item, last_useitem);
+[opheldu,plantpot_pineapple_seed] @farming_water_seedling(last_item, last_useitem);
+[opheldu,plantpot_papaya_seed] @farming_water_seedling(last_item, last_useitem);
+[opheldu,plantpot_palm_seed] @farming_water_seedling(last_item, last_useitem);
+[opheldu,plantpot_spirit_tree_seed] @farming_water_seedling(last_item, last_useitem);
+[opheldu,plantpot_calquat_seed] @farming_water_seedling(last_item, last_useitem);
+
+[opheldu,watering_can_1] @farming_water_seedling(last_useitem, last_item);
+[opheldu,watering_can_2] @farming_water_seedling(last_useitem, last_item);
+[opheldu,watering_can_3] @farming_water_seedling(last_useitem, last_item);
+[opheldu,watering_can_4] @farming_water_seedling(last_useitem, last_item);
+[opheldu,watering_can_5] @farming_water_seedling(last_useitem, last_item);
+[opheldu,watering_can_6] @farming_water_seedling(last_useitem, last_item);
+[opheldu,watering_can_7] @farming_water_seedling(last_useitem, last_item);
+[opheldu,watering_can_8] @farming_water_seedling(last_useitem, last_item);
+
+[label,farming_sow_seed](obj $seed)
+db_find(farming_seedling:seed, $seed);
+def_dbrow $row = db_findnext;
+if ($row = null | inv_total(inv, plantpot_compost) < 1) {
+    ~displaymessage(^dm_default);
+    return;
+}
+if (inv_total(inv, gardening_trowel) < 1) {
+    ~mesbox("You need a gardening trowel on you to do this.");
+    return;
+}
+inv_del(inv, $seed, 1);
+inv_del(inv, plantpot_compost, 1);
+inv_add(inv, db_getfield($row, farming_seedling:sow_result, 0), 1);
+mes("You sow <~add_article(lowercase(oc_name($seed)))> in the plantpot.");
+mes("It needs watering before it will grow.");
+
+[label,farming_water_seedling](obj $seedling, obj $can)
+db_find(farming_seedling:seedling, $seedling);
+def_dbrow $row = db_findnext;
+if ($row = null) {
+    ~displaymessage(^dm_default);
+    return;
+}
+switch_obj ($can) {
+    case watering_can_1, watering_can_2, watering_can_3, watering_can_4, watering_can_5, watering_can_6, watering_can_7, watering_can_8 :
+        inv_del(inv, $seedling, 1);
+        inv_add(inv, db_getfield($row, farming_seedling:water_result, 0), 1);
+        inv_del(inv, $can, 1);
+        inv_add(inv, ~farming_watering_can_next($can), 1);
+    case default : ~displaymessage(^dm_default);
+}
+
+[proc,farming_seedlings_update]
+def_int $slot = 0;
+def_obj $obj;
+while ($slot < inv_size(inv)) {
+    $obj = inv_getobj(inv, $slot);
+    if ($obj ! null) {
+        db_find(farming_seedling:watered, $obj);
+        def_dbrow $row = db_findnext;
+        if ($row ! null) {
+            inv_setslot(inv, $slot, db_getfield($row, farming_seedling:sapling, 0), 1);
+        }
+    }
+    $slot = add($slot, 1);
+}
+~farming_seedlings_update_bank;
+
+[proc,farming_seedlings_update_bank]
+~farming_bank_replace(plantpot_acorn_watered, plantpot_oak_sapling);
+~farming_bank_replace(plantpot_willow_seed_watered, plantpot_willow_sapling);
+~farming_bank_replace(plantpot_maple_seed_watered, plantpot_maple_sapling);
+~farming_bank_replace(plantpot_yew_seed_watered, plantpot_yew_sapling);
+~farming_bank_replace(plantpot_magic_tree_seed_watered, plantpot_magic_tree_sapling);
+~farming_bank_replace(plantpot_apple_seed_watered, plantpot_apple_sapling);
+~farming_bank_replace(plantpot_banana_seed_watered, plantpot_banana_sapling);
+~farming_bank_replace(plantpot_orange_seed_watered, plantpot_orange_sapling);
+~farming_bank_replace(plantpot_curry_seed_watered, plantpot_curry_sapling);
+~farming_bank_replace(plantpot_pineapple_seed_watered, plantpot_pineapple_sapling);
+~farming_bank_replace(plantpot_papaya_seed_watered, plantpot_papaya_sapling);
+~farming_bank_replace(plantpot_palm_seed_watered, plantpot_palm_sapling);
+~farming_bank_replace(plantpot_spirit_tree_seed_watered, plantpot_spirit_tree_sapling);
+~farming_bank_replace(plantpot_calquat_seed_watered, plantpot_calquat_sapling);
+
+[proc,farming_bank_replace](namedobj $from, namedobj $to)
+def_int $count = inv_total(bank, $from);
+if ($count > 0) {
+    inv_del(bank, $from, $count);
+    inv_add(bank, $to, $count);
+}

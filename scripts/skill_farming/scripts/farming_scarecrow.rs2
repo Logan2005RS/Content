@@ -1,0 +1,57 @@
+[oplocu,haystack] @farming_fill_hay_sack;
+[oplocu,haystack2] @farming_fill_hay_sack;
+[oplocu,haystack3] @farming_fill_hay_sack;
+
+[label,farming_fill_hay_sack]
+if (last_useitem ! sack_empty) {
+    ~displaymessage(^dm_default);
+    return;
+}
+inv_del(inv, sack_empty, 1);
+inv_add(inv, scarecrow_torso, 1);
+mes("You fill the sack with hay.");
+
+[opheldu,scarecrow_torso]
+if (last_useitem ! bronze_spear) {
+    ~displaymessage(^dm_default);
+    return;
+}
+inv_del(inv, scarecrow_torso, 1);
+inv_del(inv, bronze_spear, 1);
+inv_add(inv, scarecrow_torso_spear, 1);
+mes("You stab the hay sack with a bronze spear");
+
+[opheldu,bronze_spear]
+if (last_useitem ! scarecrow_torso) {
+    ~displaymessage(^dm_default);
+    return;
+}
+inv_del(inv, scarecrow_torso, 1);
+inv_del(inv, bronze_spear, 1);
+inv_add(inv, scarecrow_torso_spear, 1);
+mes("You stab the hay sack with a bronze spear");
+
+[opheldu,scarecrow_torso_spear]
+if (last_useitem ! watermelon) {
+    ~displaymessage(^dm_default);
+    return;
+}
+@farming_finish_scarecrow;
+
+[opheldu,watermelon]
+if (last_useitem ! scarecrow_torso_spear) {
+    ~displaymessage(^dm_default);
+    return;
+}
+@farming_finish_scarecrow;
+
+[label,farming_finish_scarecrow]
+if (stat(farming) < 23) {
+    mes("Your Farming level is not high enough to do this");
+    return;
+}
+inv_del(inv, scarecrow_torso_spear, 1);
+inv_del(inv, watermelon, 1);
+inv_add(inv, scarecrow_complete, 1);
+stat_advance(farming, 250);
+mes("You stab the watermelon on top of the spear, finishing your scarecrow");

@@ -1,0 +1,335 @@
+[label,farming_patch_use](int $patch)
+if (~farming_members_check = false) {
+    return;
+}
+switch_obj (last_useitem) {
+    case rake : @farming_rake($patch);
+    case dibber : mes("I should plant a seed, not the seed dibber.");
+    case spade : @farming_dig($patch);
+    case secateurs : @farming_prune($patch);
+    case gardening_trowel, plantpot_empty : @farming_fill_pots($patch);
+    case plant_cure : @farming_plant_cure($patch);
+    case watering_can_0, watering_can_1, watering_can_2, watering_can_3, watering_can_4, watering_can_5, watering_can_6, watering_can_7, watering_can_8 : @farming_water($patch, last_useitem);
+    case bucket_compost : @farming_add_compost($patch, 1);
+    case bucket_supercompost : @farming_add_compost($patch, 2);
+}
+db_find(farming_crop:seed, last_useitem);
+def_dbrow $crop_row = db_findnext;
+if ($crop_row = null) {
+    ~displaymessage(^dm_default);
+    return;
+}
+@farming_plant($patch, $crop_row);
+
+[label,farming_rake](int $patch)
+def_int $value = ~farming_patch_get($patch);
+if (~farming_state_condition(~farming_patch_kind($patch), $value) ! ^farming_cond_weeds | $value >= 3) {
+    mes("This <~farming_patch_name($patch)> doesn't need weeding right now.");
+    return;
+}
+while ($value < 3) {
+    anim(farming_raking, 0);
+    sound_synth(farming_raking, 1, 0);
+    p_delay(4);
+    if (inv_total(inv, rake) < 1) {
+        anim(null, 0);
+        return;
+    }
+    $value = add($value, 1);
+    ~farming_patch_set($patch, $value);
+    if (inv_freespace(inv) > 0) {
+        inv_add(inv, weeds, 1);
+    }
+    stat_advance(farming, 40);
+}
+anim(null, 0);
+
+[label,farming_dig](int $patch)
+def_int $kind = ~farming_patch_kind($patch);
+def_int $value = ~farming_patch_get($patch);
+def_int $condition = ~farming_state_condition($kind, $value);
+if ($condition = ^farming_cond_weeds) {
+    ~mesbox("There aren't any crops in this patch to dig up.");
+    return;
+}
+if ($condition ! ^farming_cond_dead) {
+    if (($kind = ^farming_kind_tree | $kind = ^farming_kind_fruit_tree) & $condition ! ^farming_cond_stump & $condition ! ^farming_cond_growing & $condition ! ^farming_cond_diseased) {
+        mes("You need to chop this tree down first.");
+        return;
+    }
+    if (~p_choice2_header("Yes, I want to clear it for new crops.", 1, "No, I want to leave it as it is.", 2, "Are you sure you want to dig up this patch?") ! 1) {
+        return;
+    }
+}
+mes("You start digging the farming patch...");
+anim(human_dig, 0);
+sound_synth(digspade, 1, 0);
+p_delay(2);
+anim(human_dig, 0);
+sound_synth(digspade, 1, 0);
+p_delay(1);
+def_namedobj $crop = ~farming_state_crop($kind, ~farming_patch_get($patch));
+if ($kind = ^farming_kind_tree & ~farming_state_condition($kind, ~farming_patch_get($patch)) = ^farming_cond_stump) {
+    inv_add(inv, db_getfield(~farming_crop_row($crop), farming_crop:product, 0), 1);
+}
+if ($crop = scarecrow_complete) {
+    inv_add(inv, scarecrow_complete, 1);
+}
+~farming_patch_clear($patch);
+mes("You have successfully cleared this patch for new crops.");
+
+[proc,farming_kind_trimmable](int $kind)(boolean)
+switch_int ($kind) {
+    case ^farming_kind_tree, ^farming_kind_bush, ^farming_kind_fruit_tree, ^farming_kind_spirit_tree, ^farming_kind_calquat : return(true);
+}
+return(false);
+
+[proc,farming_cure_value](int $kind, int $value)(int)
+def_namedobj $crop = ~farming_state_crop($kind, $value);
+def_int $stage = ~farming_state_stage($kind, $value);
+def_int $cured = ~farming_state_value($kind, $crop, $stage, ^farming_cond_growing, 0);
+if ($cured = -1) {
+    $cured = ~farming_state_value($kind, $crop, $stage, ^farming_cond_checkhealth, 0);
+}
+if ($cured = -1) {
+    $cured = ~farming_state_value($kind, $crop, $stage, ^farming_cond_grown, 0);
+}
+return($cured);
+
+[label,farming_prune](int $patch)
+def_int $kind = ~farming_patch_kind($patch);
+def_int $value = ~farming_patch_get($patch);
+if (~farming_kind_trimmable($kind) = false) {
+    ~displaymessage(^dm_default);
+    return;
+}
+if (~farming_state_condition($kind, $value) = ^farming_cond_diseased) {
+    anim(pruning_high, 0);
+    sound_synth(farming_prune, 1, 0);
+    p_delay(1);
+    ~farming_patch_set($patch, ~farming_cure_value($kind, $value));
+    return;
+}
+if ($kind = ^farming_kind_tree & $value ! ^farming_willow_cut_value & ~farming_state_crop($kind, $value) = plantpot_willow_sapling & ~farming_state_condition($kind, $value) = ^farming_cond_choppable) {
+    if (inv_freespace(inv) < 1) {
+        mes("You don't have enough inventory space to do that.");
+        return;
+    }
+    mes("You begin to harvest the <~farming_patch_name($patch)>.");
+    anim(pruning_high, 0);
+    sound_synth(farming_pick, 1, 0);
+    p_delay(1);
+    inv_add(inv, willow_branch, 1);
+    ~farming_patch_set($patch, ^farming_willow_cut_value);
+    return;
+}
+~displaymessage(^dm_default);
+
+[label,farming_fill_pots](int $patch)
+if (inv_total(inv, gardening_trowel) < 1) {
+    mes("You need a trowel to fill plant pots with dirt.");
+    return;
+}
+def_int $value = ~farming_patch_get($patch);
+if (~farming_state_condition(~farming_patch_kind($patch), $value) ! ^farming_cond_weeds) {
+    mes("This patch has something growing in it.");
+    return;
+}
+if ($value ! 3) {
+    mes("I should clear this of weeds before trying to take some dirt.");
+    return;
+}
+if (inv_total(inv, plantpot_empty) < 1) {
+    mes("You have no plant pots to fill.");
+    return;
+}
+while (inv_total(inv, plantpot_empty) > 0) {
+    anim(farming_trowel_digging, 0);
+    sound_synth(farming_fillpot, 1, 0);
+    p_delay(2);
+    inv_del(inv, plantpot_empty, 1);
+    inv_add(inv, plantpot_compost, 1);
+}
+
+[label,farming_plant_cure](int $patch)
+def_int $kind = ~farming_patch_kind($patch);
+def_int $value = ~farming_patch_get($patch);
+if (~farming_state_condition($kind, $value) ! ^farming_cond_diseased | ~farming_kind_trimmable($kind) = true) {
+    mes("I have no reason to do this right now.");
+    return;
+}
+mes("You treat the <~farming_patch_name($patch)> with the plant cure.");
+anim(farming_plant_cure, 0);
+sound_synth(farming_plantcure, 1, 0);
+p_delay(2);
+inv_del(inv, plant_cure, 1);
+inv_add(inv, vial_empty, 1);
+~farming_patch_set($patch, ~farming_cure_value($kind, $value));
+mes("It is restored to health.");
+
+[label,farming_water](int $patch, obj $can)
+def_int $kind = ~farming_patch_kind($patch);
+if ($kind ! ^farming_kind_allotment & $kind ! ^farming_kind_flower & $kind ! ^farming_kind_hops) {
+    mes("This patch doesn't need watering.");
+    return;
+}
+def_int $value = ~farming_patch_get($patch);
+def_int $condition = ~farming_state_condition($kind, $value);
+def_namedobj $crop = ~farming_state_crop($kind, $value);
+if ($condition = ^farming_cond_weeds) {
+    mes("You should grow something first.");
+    return;
+}
+if ($condition ! ^farming_cond_growing | $crop = scarecrow_complete) {
+    if ($condition = ^farming_cond_diseased | $condition = ^farming_cond_dead) {
+        mes("Water isn't going to cure that!");
+        return;
+    }
+    mes("This patch doesn't need watering.");
+    return;
+}
+if ($can = watering_can_0) {
+    mes("You need to fill the watering can first.");
+    return;
+}
+anim(farming_watering, 0);
+sound_synth(farming_watering, 1, 0);
+p_delay(1);
+inv_del(inv, $can, 1);
+inv_add(inv, ~farming_watering_can_next($can), 1);
+~farming_patch_set($patch, ~farming_state_value($kind, $crop, ~farming_state_stage($kind, $value), ^farming_cond_watered, 0));
+
+[proc,farming_watering_can_next](obj $can)(namedobj)
+switch_obj ($can) {
+    case watering_can_8 : return(watering_can_7);
+    case watering_can_7 : return(watering_can_6);
+    case watering_can_6 : return(watering_can_5);
+    case watering_can_5 : return(watering_can_4);
+    case watering_can_4 : return(watering_can_3);
+    case watering_can_3 : return(watering_can_2);
+    case watering_can_2 : return(watering_can_1);
+}
+return(watering_can_0);
+
+[label,farming_add_compost](int $patch, int $type)
+def_string $name = ~farming_patch_name($patch);
+if (~farming_patch_get($patch) ! 3) {
+    mes("This patch needs to be empty and weeded to do that.");
+    return;
+}
+if (~farming_compost_get($patch) ! 0) {
+    if (~farming_compost_get($patch) = 2) {
+        mes("This <$name> has already been treated with supercompost.");
+    } else {
+        mes("This <$name> has already been treated with compost.");
+    }
+    return;
+}
+anim(farming_pour_water, 0);
+sound_synth(farming_compost, 1, 0);
+p_delay(1);
+if ($type = 2) {
+    inv_del(inv, bucket_supercompost, 1);
+    mes("You treat the <$name> with supercompost.");
+    stat_advance(farming, 260);
+} else {
+    inv_del(inv, bucket_compost, 1);
+    mes("You treat the <$name> with compost.");
+    stat_advance(farming, 185);
+}
+inv_add(inv, bucket_empty, 1);
+~farming_compost_set($patch, $type);
+
+[label,farming_plant](int $patch, dbrow $crop_row)
+def_int $kind = ~farming_patch_kind($patch);
+def_obj $seed = db_getfield($crop_row, farming_crop:seed, 0);
+def_int $crop_kind = db_getfield($crop_row, farming_crop:kind, 0);
+if ($crop_kind ! $kind) {
+    if ($crop_kind = ^farming_kind_allotment) {
+        mes("You can only plant <lowercase(oc_name($seed))>s in a vegetable patch.");
+    } else {
+        mes("You can only plant <lowercase(oc_name($seed))>s in a <~farming_kind_name($crop_kind)>.");
+    }
+    return;
+}
+def_int $level = db_getfield($crop_row, farming_crop:level, 0);
+if (stat(farming) < $level) {
+    mes("You need a Farming level of <tostring($level)> to plant this.");
+    return;
+}
+def_int $value = ~farming_patch_get($patch);
+if ($value < 3) {
+    mes("This patch needs weeding first.");
+    return;
+}
+if ($value > 3) {
+    mes("There is already something growing in this patch.");
+    return;
+}
+def_int $amount = 1;
+if ($kind = ^farming_kind_allotment | $seed = jute_seed) {
+    $amount = 3;
+} else if ($kind = ^farming_kind_hops) {
+    $amount = 4;
+}
+if (inv_total(inv, $seed) < $amount) {
+    if ($amount = 1) {
+        mes("You need 1 seed to plant <~farming_patch_article($patch)>.");
+    } else {
+        mes("You need <tostring($amount)> seeds to plant <~farming_patch_article($patch)>.");
+    }
+    return;
+}
+def_boolean $tree = false;
+if ($kind = ^farming_kind_tree | $kind = ^farming_kind_fruit_tree | $kind = ^farming_kind_spirit_tree | $kind = ^farming_kind_calquat) {
+    $tree = true;
+    if (inv_total(inv, spade) < 1) {
+        ~mesbox("You need a spade to plant that.");
+        return;
+    }
+} else if ($seed ! scarecrow_complete & inv_total(inv, dibber) < 1) {
+    ~mesbox("You need a seed dibber to plant that.");
+    return;
+}
+if ($seed = plantpot_spirit_tree_sapling & (~farming_spirit_tree_planted(32) = true | ~farming_spirit_tree_planted(33) = true | ~farming_spirit_tree_planted(34) = true)) {
+    ~mesbox("You already have a spirit tree. You can't plant another one.");
+    return;
+}
+if ($tree = true) {
+    anim(human_dig, 0);
+    sound_synth(digspade, 1, 0);
+    p_delay(3);
+} else if ($seed = scarecrow_complete) {
+    anim(human_pickuptable, 0);
+    sound_synth(farming_plant_scarecrow, 1, 0);
+    p_delay(3);
+} else {
+    anim(farming_seed_dibbing, 0);
+    sound_synth(farming_dibbing, 1, 0);
+    p_delay(1);
+}
+if (inv_total(inv, $seed) < $amount) {
+    return;
+}
+inv_del(inv, $seed, $amount);
+~farming_patch_set($patch, db_getfield($crop_row, farming_crop:value, 0));
+stat_advance(farming, db_getfield($crop_row, farming_crop:plant_xp, 0));
+if ($tree = true & $kind ! ^farming_kind_calquat) {
+    inv_add(inv, plantpot_empty, 1);
+}
+def_string $name = lowercase(oc_name($seed));
+if ($seed = scarecrow_complete) {
+    mes("You place the scarecrow in the <~farming_patch_name($patch)>.");
+} else if ($tree = true) {
+    mes("You plant the <~farming_patch_crop_name($seed)> sapling in the <~farming_patch_name($patch)>.");
+} else if ($amount = 1) {
+    mes("You plant a <$name> in the <~farming_patch_name($patch)>.");
+} else {
+    mes("You plant <tostring($amount)> <$name>s in the <~farming_patch_name($patch)>.");
+}
+
+[proc,farming_spirit_tree_planted](int $patch)(boolean)
+if (~farming_patch_get($patch) > 3) {
+    return(true);
+}
+return(false);

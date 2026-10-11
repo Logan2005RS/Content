@@ -58,3 +58,23 @@ recol2d=11488
 2dxan=204
 weight=24oz
 param=crafting_pottery_struct,unfired_bowl
+
+[plantpot_unfired]
+name=Unfired plant pot
+recol1s=16611
+recol1d=18858
+recol2s=15554
+recol2d=18824
+recol3s=14497
+recol3d=17767
+recol4s=13440
+recol4d=16710
+recol5s=12384
+recol5d=15653
+desc=An unfired plant pot.
+model=obj_5350
+2dzoom=1210
+2dyan=2012
+2dxan=104
+members=yes
+param=crafting_pottery_struct,unfired_plantpot
