@@ -610,3 +610,22 @@ data=sound_success,flames_of_zamorak
 data=sound_fail,flames_of_zamorak_fail
 data=continue_by_autocast,true
 data=maxhit,20
+
+[magic_spell_magic_dart]
+table=magic_spell_table
+data=spell,^magic_dart
+data=spellcom,magic:magic_dart
+data=name,Magic Dart
+data=members,true
+data=levelrequired,50
+data=runesrequired,deathrune,1,mindrune,4,null,null
+data=wornrequired,slayer_staff
+data=worn_reqmessage,"You need to be wielding a Slayer's staff to cast this spell."
+data=experience,305
+data=maxhit,10
+data=anim,slayer_magicdart_cast
+data=staffanim,slayer_magicdart_cast
+data=spotanim_proj,slayer_magicdart_travel,43,31,51,16,-5,64,10
+data=spotanim_target,slayer_magicdart_impact,124
+data=sound_success,magic_dart_fire
+data=continue_by_autocast,true

@@ -8396,7 +8396,7 @@ graphic=magicoff2,4
 activegraphic=magicon2,4
 option=Cast @gre@Trollheim Teleport
 
-[com_448]
+[magic_dart]
 layer=com_458
 type=graphic
 x=0

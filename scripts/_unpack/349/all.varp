@@ -1,6 +1,10 @@
 [slayer_count]
+scope=perm
+protect=no
 
 [slayer_target]
+scope=perm
+protect=no
 
 [waa_varbits]
 

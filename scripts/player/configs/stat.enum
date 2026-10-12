@@ -21,6 +21,7 @@ val=16,cooking
 val=17,firemaking
 val=18,woodcutting
 val=19,fletching
+val=20,slayer
 
 [stats_free]
 inputtype=int
@@ -65,6 +66,7 @@ val=cooking,Cooking
 val=firemaking,Firemaking
 val=woodcutting,Woodcutting
 val=fletching,Fletching
+val=slayer,Slayer
 
 [stat_members]
 inputtype=stat
@@ -89,3 +91,4 @@ val=cooking,^false
 val=firemaking,^false
 val=woodcutting,^false
 val=fletching,^true
+val=slayer,^true

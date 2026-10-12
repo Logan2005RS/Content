@@ -962,3 +962,45 @@ data=inv,skill_guide_fletching_bolts
 data=unlock,11,Opal-tipped bolts.
 data=unlock,41,Pearl-tipped bolts.
 data=unlock,51,Barbed-tipped bolts.
+
+[skill_guide_slayer]
+table=skill_guide_ops
+data=lookup,slayer
+data=op,Monsters,skill_guide_slayer_monsters
+data=op,Equipment,skill_guide_slayer_equipment
+
+[skill_guide_slayer_monsters]
+table=skill_guides
+data=name,Slayer - Monsters
+data=inv,skill_guide_slayer_monsters
+data=unlock,5,Crawling hands.
+data=unlock,10,Cave crawlers.
+data=unlock,15,Banshees.
+data=unlock,20,Rockslugs.
+data=unlock,25,Cockatrices.
+data=unlock,30,Pyrefiends.
+data=unlock,40,Basilisks.
+data=unlock,45,Infernal mages.
+data=unlock,50,Bloodvelds.
+data=unlock,52,Jellies.
+data=unlock,55,Turoths.
+data=unlock,60,Aberrant spectres.
+data=unlock,65,Dust devils.
+data=unlock,70,Kurasks.
+data=unlock,75,Gargoyles.
+data=unlock,80,Nechryael.
+data=unlock,85,Abyssal demons.
+
+[skill_guide_slayer_equipment]
+table=skill_guides
+data=name,Slayer - Equipment
+data=inv,skill_guide_slayer_equipment
+data=unlock,15,Earmuffs.
+data=unlock,20,Bag of salt.
+data=unlock,25,Mirror shield.
+data=unlock,55,Leaf-bladed spear.
+data=unlock,55,Broad arrows.
+data=unlock,55,Slayer's staff.
+data=unlock,60,Nose peg.
+data=unlock,65,Facemask.
+data=unlock,75,Rock hammer.

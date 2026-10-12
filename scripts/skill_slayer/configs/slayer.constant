@@ -1,0 +1,9 @@
+^slayer_master_turael = 1
+^slayer_master_mazchna = 2
+^slayer_master_vannaka = 3
+^slayer_master_chaeldar = 4
+^slayer_master_duradel = 5
+^slayer_task_startbit = 0
+^slayer_task_endbit = 7
+^slayer_master_startbit = 8
+^slayer_master_endbit = 11

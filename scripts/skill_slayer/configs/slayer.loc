@@ -1,0 +1,53 @@
+[loc_10527]
+name=Door
+desc=A tall wooden door.
+model=loc_5126
+hillskew=yes
+ambient=20
+resizez=128
+resizex=128
+resizey=192
+op1=Open
+category=door_closed
+param=next_loc_stage,loc_10528
+
+[loc_10528]
+name=Door
+desc=A tall wooden door.
+model=loc_5126
+hillskew=yes
+ambient=20
+resizez=128
+resizex=128
+resizey=192
+op1=Close
+category=door_opened
+param=next_loc_stage,loc_10527
+
+[loc_10529]
+name=Door
+desc=A tall wooden door.
+model=loc_5126
+hillskew=yes
+ambient=20
+resizez=128
+resizex=128
+resizey=192
+op1=Open
+mirror=yes
+category=door_closed
+param=next_loc_stage,loc_10530
+
+[loc_10530]
+name=Door
+desc=A tall wooden door.
+model=loc_5126
+hillskew=yes
+ambient=20
+resizez=128
+resizex=128
+resizey=192
+op1=Close
+mirror=yes
+category=door_opened
+param=next_loc_stage,loc_10529

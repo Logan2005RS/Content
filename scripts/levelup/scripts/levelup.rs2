@@ -19,6 +19,7 @@
 [advancestat,firemaking] @levelup(enum(int, stat, stats, ^firemaking));
 [advancestat,woodcutting] @levelup(enum(int, stat, stats, ^woodcutting));
 [advancestat,fletching] @levelup(enum(int, stat, stats, ^fletching));
+[advancestat,slayer] @levelup(enum(int, stat, stats, ^slayer));
 
 [label,levelup](stat $stat)
 db_find(levelup:stat, $stat);

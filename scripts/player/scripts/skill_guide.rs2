@@ -17,6 +17,7 @@
 [if_button,stats:fletching] @skill_guide(fletching, 0);
 [if_button,stats:woodcutting] @skill_guide(woodcutting, 0);
 [if_button,stats:runecrafting] @skill_guide(runecraft, 0);
+[if_button,stats:slayer] @skill_guide(slayer, 0);
 
 [label,skill_guide](stat $lookup, int $page)
 db_find(skill_guide_ops:lookup, $lookup);

@@ -2854,7 +2854,7 @@ shadowed=yes
 text=%1
 colour=0xFFFF00
 
-[com_225]
+[slayer]
 type=text
 x=64
 y=188

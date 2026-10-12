@@ -229,3 +229,14 @@ data=level_prefix,Your fletching level is now
 data=levelup_jingle,advance fletching
 data=unlocks_jingle,advance fletching2
 data=unlocks_levels,levelup_unlocks_fletching
+
+[levelup_slayer]
+table=levelup
+data=stat,slayer
+data=interface,levelup_slayer
+data=title,levelup_slayer:line1
+data=body,levelup_slayer:line2
+data=message,"Congratulations, you just advanced a Slayer level."
+data=level_prefix,Your Slayer level is now
+data=levelup_jingle,advance slayer
+data=unlocks_jingle,advance slayer2

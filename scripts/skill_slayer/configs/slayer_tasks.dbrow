@@ -1,0 +1,585 @@
+[slayer_task_banshees]
+table=slayer_task
+data=task,^slayer_task_banshees
+data=name,banshees
+data=level,15
+data=combat,20
+data=tip,"Banshees use a piercing scream to shock their enemies."
+data=tip,"You'll need some earmuffs to protect yourself from them."
+
+[slayer_task_bats]
+table=slayer_task
+data=task,^slayer_task_bats
+data=name,bats
+data=level,1
+data=combat,5
+data=tip,"Bats are rarely found on the ground, so you'll have"
+data=tip,"to fight them while they're airborne, which won't be"
+data=tip,"easy for melee."
+
+[slayer_task_bears]
+table=slayer_task
+data=task,^slayer_task_bears
+data=name,bears
+data=level,1
+data=combat,13
+data=tip,"Bears are tough creatures and fierce fighters, watch"
+data=tip,"out for their powerful claws."
+
+[slayer_task_birds]
+table=slayer_task
+data=task,^slayer_task_birds
+data=name,birds
+data=level,1
+data=combat,1
+data=tip,"Birds aren't the most intelligent of creatures, but"
+data=tip,"watch out for their sharp stabbing beaks."
+
+[slayer_task_cave_bugs]
+table=slayer_task
+data=task,^slayer_task_cave_bugs
+data=name,cave bugs
+data=level,7
+data=combat,1
+data=tip,"Cave Bugs are like Cave Crawlers, except smaller and"
+data=tip,"easier to squish, though they still have a fondness"
+data=tip,"for plants."
+
+[slayer_task_cave_crawlers]
+table=slayer_task
+data=task,^slayer_task_cave_crawlers
+data=name,cave crawlers
+data=level,10
+data=combat,10
+data=tip,"Cave Crawlers are small and fast, often hiding in"
+data=tip,"ambush. Avoid their barbed tongue or you'll"
+data=tip,"get poisoned."
+
+[slayer_task_cave_slimes]
+table=slayer_task
+data=task,^slayer_task_cave_slimes
+data=name,cave slimes
+data=level,17
+data=combat,15
+data=tip,"Cave Slimes are the lesser cousins of Jellies, though"
+data=tip,"don't be fooled they can still be dangerous as"
+data=tip,"they're often poisonous."
+
+[slayer_task_cows]
+table=slayer_task
+data=task,^slayer_task_cows
+data=name,cows
+data=level,1
+data=combat,5
+data=tip,"Cows are bigger than you, so they'll often hit fairly"
+data=tip,"hard but are usually fairly slow to react."
+
+[slayer_task_crawling_hands]
+table=slayer_task
+data=task,^slayer_task_crawling_hands
+data=name,crawling hands
+data=level,5
+data=combat,1
+data=tip,"Crawling Hands are undead severed hands, fast and"
+data=tip,"dexterous they claw their victims."
+
+[slayer_task_desert_lizards]
+table=slayer_task
+data=task,^slayer_task_desert_lizards
+data=name,desert lizards
+data=level,22
+data=combat,15
+data=tip,"Lizards are large reptiles with tough skin. Those"
+data=tip,"found in the desert will need you to douse them with"
+data=tip,"freezing water to finish them off after a tough battle."
+
+[slayer_task_dogs]
+table=slayer_task
+data=task,^slayer_task_dogs
+data=name,dogs
+data=level,1
+data=combat,15
+data=tip,"Dogs are much like Wolves, they are"
+data=tip,"pack creatures which will hunt in groups."
+
+[slayer_task_dwarves]
+table=slayer_task
+data=task,^slayer_task_dwarves
+data=name,dwarves
+data=level,1
+data=combat,6
+data=tip,"Dwarves are a small but tough race of miners, often"
+data=tip,"using pickaxes to pierce their opponents armour."
+
+[slayer_task_ghosts]
+table=slayer_task
+data=task,^slayer_task_ghosts
+data=name,ghosts
+data=level,1
+data=combat,13
+data=tip,"Ghosts are undead so magic is your best bet against"
+data=tip,"them, there is even a spell specially for fighting"
+data=tip,"the undead."
+
+[slayer_task_goblins]
+table=slayer_task
+data=task,^slayer_task_goblins
+data=name,goblins
+data=level,1
+data=combat,1
+data=tip,"Goblins are mostly just annoying, but they can be vicious."
+data=tip,"Watch out for the spears they sometimes carry."
+
+[slayer_task_kalphites]
+table=slayer_task
+data=task,^slayer_task_kalphites
+data=name,kalphites
+data=level,1
+data=combat,15
+data=tip,"Kalphites are large insects which live in great hives"
+data=tip,"under the desert sands."
+
+[slayer_task_monkeys]
+table=slayer_task
+data=task,^slayer_task_monkeys
+data=name,monkeys
+data=level,1
+data=combat,1
+data=tip,"Monkeys are tricky creatures, they are agile and"
+data=tip,"fairly fast. Learn to anticipate their movements."
+
+[slayer_task_scorpions]
+table=slayer_task
+data=task,^slayer_task_scorpions
+data=name,scorpions
+data=level,1
+data=combat,7
+data=tip,"Scorpions are almost always poisonous, their hard"
+data=tip,"carapace makes them resistant to crushing and"
+data=tip,"stabbing attacks."
+
+[slayer_task_skeletons]
+table=slayer_task
+data=task,^slayer_task_skeletons
+data=name,skeletons
+data=level,1
+data=combat,15
+data=tip,"Skeletons are undead so magic is your best bet against"
+data=tip,"them, there is even a spell specially for fighting the undead."
+
+[slayer_task_spiders]
+table=slayer_task
+data=task,^slayer_task_spiders
+data=name,spiders
+data=level,1
+data=combat,1
+data=tip,"Spiders are often poisonous, and many varieties are"
+data=tip,"camouflaged too."
+
+[slayer_task_wolves]
+table=slayer_task
+data=task,^slayer_task_wolves
+data=name,wolves
+data=level,1
+data=combat,20
+data=tip,"Wolves are pack animals, so you'll always find them"
+data=tip,"in groups. Watch out for their bite, it can be nasty."
+
+[slayer_task_zombies]
+table=slayer_task
+data=task,^slayer_task_zombies
+data=name,zombies
+data=level,1
+data=combat,10
+data=tip,"Zombies are undead so magic is your best bet against"
+data=tip,"them, there is even a spell specially for"
+data=tip,"fighting the undead."
+
+[slayer_task_cockatrices]
+table=slayer_task
+data=task,^slayer_task_cockatrices
+data=name,cockatrices
+data=level,25
+data=combat,25
+data=tip,"Cockatrice, like Basilisks, have a gaze which will"
+data=tip,"paralyse and harm their prey. You'll need a Mirror"
+data=tip,"Shield to protect you."
+
+[slayer_task_earth_warriors]
+table=slayer_task
+data=task,^slayer_task_earth_warriors
+data=name,earth warriors
+data=level,1
+data=combat,35
+data=tip,"Earth Warriors are a kind of earth elemental,"
+data=tip,"grind them to dust with blunt weapons."
+
+[slayer_task_ghouls]
+table=slayer_task
+data=task,^slayer_task_ghouls
+data=name,ghouls
+data=level,1
+data=combat,25
+data=tip,"Ghouls aren't undead but they are stronger and"
+data=tip,"tougher than they look. However they're also very"
+data=tip,"cowardly and will run if they're losing a fight."
+
+[slayer_task_hill_giants]
+table=slayer_task
+data=task,^slayer_task_hill_giants
+data=name,hill giants
+data=level,1
+data=combat,25
+data=tip,"Hill Giants often wield large weapons, learn to"
+data=tip,"recognise what kind of weapon it is and"
+data=tip,"act accordingly."
+
+[slayer_task_hobgoblins]
+table=slayer_task
+data=task,^slayer_task_hobgoblins
+data=name,hobgoblins
+data=level,1
+data=combat,20
+data=tip,"Hobgoblins are sneaky underhanded creatures, they"
+data=tip,"often wield spears and some times carry javelins too."
+
+[slayer_task_ice_warriors]
+table=slayer_task
+data=task,^slayer_task_ice_warriors
+data=name,ice warriors
+data=level,1
+data=combat,45
+data=tip,"Ice Warriors are a kind of ice elemental, shatter them"
+data=tip,"with blunt weapons or melt them with fire."
+
+[slayer_task_pyrefiends]
+table=slayer_task
+data=task,^slayer_task_pyrefiends
+data=name,pyrefiends
+data=level,30
+data=combat,25
+data=tip,"Pyrefiends are beings of fire and molten rock,"
+data=tip,"they're quick and agile so you'll want to be careful"
+data=tip,"when getting close to them."
+
+[slayer_task_rockslugs]
+table=slayer_task
+data=task,^slayer_task_rockslugs
+data=name,rockslugs
+data=level,20
+data=combat,20
+data=tip,"Rockslugs are strange stoney slugs. You'll need to"
+data=tip,"fight them to near death before finishing them off"
+data=tip,"with Salt."
+
+[slayer_task_shades]
+table=slayer_task
+data=task,^slayer_task_shades
+data=name,shades
+data=level,1
+data=combat,30
+data=tip,"Shades are undead so magic is your best best against"
+data=tip,"them, you can find Shades at Mort'ton."
+
+[slayer_task_vampires]
+table=slayer_task
+data=task,^slayer_task_vampires
+data=name,vampires
+data=level,1
+data=combat,35
+data=tip,"Vampires are extremely powerful beings. They feed on"
+data=tip,"the blood of the living so watch out you don't"
+data=tip,"get bitten."
+
+[slayer_task_aberrant_spectres]
+table=slayer_task
+data=task,^slayer_task_aberrant_spectres
+data=name,aberrant spectres
+data=level,60
+data=combat,65
+data=tip,"Aberrant Spectres are fetid, vile ghosts. The very"
+data=tip,"smell of them will paralyse and harm you. A nose peg"
+data=tip,"will help ignore their stink."
+
+[slayer_task_basilisks]
+table=slayer_task
+data=task,^slayer_task_basilisks
+data=name,basilisks
+data=level,40
+data=combat,40
+data=tip,"Basilisks, like Cockatrice, have a gaze which will"
+data=tip,"paralyse and harm their prey. You'll need a Mirror"
+data=tip,"Shield to protect you."
+
+[slayer_task_blue_dragons]
+table=slayer_task
+data=task,^slayer_task_blue_dragons
+data=name,blue dragons
+data=level,1
+data=combat,65
+data=tip,"Blue dragons aren't as strong as other dragons but they're"
+data=tip,"still very powerful, watch out for their fiery breath."
+
+[slayer_task_bloodvelds]
+table=slayer_task
+data=task,^slayer_task_bloodvelds
+data=name,bloodvelds
+data=level,50
+data=combat,50
+data=tip,"Bloodvelds are strange demonic creatures, they use their"
+data=tip,"long rasping tongue to feed on just about"
+data=tip,"anything they can find."
+
+[slayer_task_dagannoths]
+table=slayer_task
+data=task,^slayer_task_dagannoths
+data=name,dagannoths
+data=level,1
+data=combat,75
+data=tip,"Dagannoth are large sea dwelling creatures which are"
+data=tip,"very aggressive. You'll often find them in caves"
+data=tip,"near sea water."
+
+[slayer_task_dust_devils]
+table=slayer_task
+data=task,^slayer_task_dust_devils
+data=name,dust devils
+data=level,65
+data=combat,70
+data=tip,"Dust Devils use clouds of dust, sand, ash and whatever"
+data=tip,"else they can inhale to blind and disorientate"
+data=tip,"their victims."
+
+[slayer_task_fire_giants]
+table=slayer_task
+data=task,^slayer_task_fire_giants
+data=name,fire giants
+data=level,1
+data=combat,65
+data=tip,"Like other giants, Fire Giants often wield large weapons"
+data=tip,"learn to recognise what kind of weapon it is,"
+data=tip,"and act accordingly."
+
+[slayer_task_green_dragons]
+table=slayer_task
+data=task,^slayer_task_green_dragons
+data=name,green dragons
+data=level,1
+data=combat,52
+data=tip,"Green Dragons are the weakest dragon but still very"
+data=tip,"powerful, watch out for their fiery breath."
+
+[slayer_task_hellhounds]
+table=slayer_task
+data=task,^slayer_task_hellhounds
+data=name,hellhounds
+data=level,1
+data=combat,75
+data=tip,"Hellhounds are a cross between Dogs and Demons, they"
+data=tip,"are dangerous with a fierce bite."
+
+[slayer_task_ice_giants]
+table=slayer_task
+data=task,^slayer_task_ice_giants
+data=name,ice giants
+data=level,1
+data=combat,50
+data=tip,"Like other giants, Ice Giants often wield large"
+data=tip,"weapons, learn to recognise what kind of weapon it is"
+data=tip,"and act accordingly."
+
+[slayer_task_infernal_mages]
+table=slayer_task
+data=task,^slayer_task_infernal_mages
+data=name,infernal mages
+data=level,45
+data=combat,40
+data=tip,"Infernal Mages are dangerous spell users, beware of"
+data=tip,"their magic spells and go properly prepared"
+
+[slayer_task_jellies]
+table=slayer_task
+data=task,^slayer_task_jellies
+data=name,jellies
+data=level,52
+data=combat,57
+data=tip,"Jellies are nasty cube-like gelatinous creatures which"
+data=tip,"absorb everything they come across into themselves."
+
+[slayer_task_kurasks]
+table=slayer_task
+data=task,^slayer_task_kurasks
+data=name,kurasks
+data=level,70
+data=combat,65
+data=tip,"Kurasks are large brutal creatures with very thick"
+data=tip,"hides. You'll need a Leaf-Bladed Spear, Broad Arrows,"
+data=tip,"or a Magic Dart to harm them."
+
+[slayer_task_lesser_demons]
+table=slayer_task
+data=task,^slayer_task_lesser_demons
+data=name,lesser demons
+data=level,1
+data=combat,60
+data=tip,"Lesser Demons are magic creatures so they are weak to"
+data=tip,"magical attacks. Though they're relatively weak they"
+data=tip,"are still dangerous."
+
+[slayer_task_moss_giants]
+table=slayer_task
+data=task,^slayer_task_moss_giants
+data=name,moss giants
+data=level,1
+data=combat,40
+data=tip,"Like other giants, Moss Giants often wield large"
+data=tip,"weapons, learn to recognise what kind of weapon it is"
+data=tip,"and act accordingly."
+
+[slayer_task_ogres]
+table=slayer_task
+data=task,^slayer_task_ogres
+data=name,ogres
+data=level,1
+data=combat,40
+data=tip,"Ogres are brutal creatures, favouring large blunt"
+data=tip,"maces and clubs they often attack without warning."
+
+[slayer_task_otherworldly_beings]
+table=slayer_task
+data=task,^slayer_task_otherworldly_beings
+data=name,otherworldly beings
+data=level,1
+data=combat,40
+data=tip,"Otherworldly Beings are ethereal beings making them"
+data=tip,"weak to magical attack."
+
+[slayer_task_trolls]
+table=slayer_task
+data=task,^slayer_task_trolls
+data=name,trolls
+data=level,1
+data=combat,60
+data=tip,"Trolls regenerate damage quickly but are still"
+data=tip,"vulnerable to poisons, they usually use crushing"
+data=tip,"weapons."
+
+[slayer_task_turoths]
+table=slayer_task
+data=task,^slayer_task_turoths
+data=name,turoths
+data=level,55
+data=combat,60
+data=tip,"Turoth are large vicious creatures with thick hides."
+data=tip,"You'll need a Leaf-Bladed Spear, Broad Arrows, or a"
+data=tip,"Magic Dart to harm them."
+
+[slayer_task_abyssal_demons]
+table=slayer_task
+data=task,^slayer_task_abyssal_demons
+data=name,abyssal demons
+data=level,85
+data=combat,85
+data=tip,"Abyssal Demons are nasty creatures to fight. They"
+data=tip,"aren't really part of this realm, and are able to"
+data=tip,"move very quickly to trap their prey."
+
+[slayer_task_bronze_dragons]
+table=slayer_task
+data=task,^slayer_task_bronze_dragons
+data=name,bronze dragons
+data=level,1
+data=combat,75
+data=tip,"Bronze Dragons are the weakest of the metallic"
+data=tip,"dragons, their bronze scales are far thicker than"
+data=tip,"normal bronze armour."
+
+[slayer_task_gargoyles]
+table=slayer_task
+data=task,^slayer_task_gargoyles
+data=name,gargoyles
+data=level,75
+data=combat,80
+data=tip,"Gargoyles are winged creatures of stone. You'll need"
+data=tip,"to fight them to near death before breaking them apart"
+data=tip,"with a rock hammer."
+
+[slayer_task_greater_demons]
+table=slayer_task
+data=task,^slayer_task_greater_demons
+data=name,greater demons
+data=level,1
+data=combat,75
+data=tip,"Greater Demons are magic creatures so they are weak"
+data=tip,"to magical attacks. Though not the strongest demon,"
+data=tip,"they are still dangerous."
+
+[slayer_task_iron_dragons]
+table=slayer_task
+data=task,^slayer_task_iron_dragons
+data=name,iron dragons
+data=level,1
+data=combat,80
+data=tip,"Iron Dragons are some of the weaker metallic dragons,"
+data=tip,"their iron scales are far thicker than normal"
+data=tip,"iron armour."
+
+[slayer_task_nechryael]
+table=slayer_task
+data=task,^slayer_task_nechryael
+data=name,nechryael
+data=level,80
+data=combat,85
+data=tip,"Nechryael are demons of decay which summon small"
+data=tip,"winged beings to help them fight their victims."
+
+[slayer_task_black_demons]
+table=slayer_task
+data=task,^slayer_task_black_demons
+data=name,black demons
+data=level,1
+data=combat,80
+data=tip,"Black Demons are magic creatures that are weak"
+data=tip,"to magic attacks. They're a very strong"
+data=tip,"demon and very dangerous."
+
+[slayer_task_black_dragons]
+table=slayer_task
+data=task,^slayer_task_black_dragons
+data=name,black dragons
+data=level,1
+data=combat,80
+data=tip,"Black dragons are the strongest dragons;"
+data=tip,"watch out for their fiery breath."
+
+[slayer_task_skeletal_wyverns]
+table=slayer_task
+data=task,^slayer_task_skeletal_wyverns
+data=name,skeletal wyverns
+data=level,72
+data=combat,70
+data=tip,"Skeletal Wyverns are extremely dangerous and they are"
+data=tip,"hard to hit with arrows as they slip right through."
+data=tip,"To stand a good chance of surviving you'll need some"
+data=tip,"elemental shielding from its icy breath."
+
+[slayer_task_steel_dragons]
+table=slayer_task
+data=task,^slayer_task_steel_dragons
+data=name,steel dragons
+data=level,1
+data=combat,85
+data=tip,"Steel dragons are dangerous and metallic, with steel"
+data=tip,"scales that are far thicker than normal steel armour. As"
+data=tip,"you are an accomplished slayer, I am sure you'll be"
+data=tip,"able to deal with them easily."
+
+[slayer_task_wall_beasts]
+table=slayer_task
+data=task,^slayer_task_wall_beasts
+data=name,wall beasts
+data=level,35
+data=combat,1
+data=tip,"Wall Beasts are really much larger creatures but"
+data=tip,"you'll only see their arms. You'll want something"
+data=tip,"sharp on your head to stop them grabbing you."

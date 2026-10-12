@@ -1,4 +1,4 @@
-[com_0]
+[magic_dart]
 type=graphic
 x=116
 y=23
@@ -19,7 +19,7 @@ script5=gt,54
 graphic=magicoff2,5
 activegraphic=magicon2,5
 
-[com_1]
+[wind_wave]
 type=graphic
 x=52
 y=75
@@ -42,7 +42,7 @@ script3=gt,61
 graphic=magicoff,31
 activegraphic=magicon,31
 
-[com_2]
+[water_wave]
 type=graphic
 x=116
 y=75
@@ -75,7 +75,7 @@ script4=gt,64
 graphic=magicoff,33
 activegraphic=magicon,33
 
-[com_3]
+[earth_wave]
 type=graphic
 x=52
 y=126
@@ -110,7 +110,7 @@ script4=gt,69
 graphic=magicoff,36
 activegraphic=magicon,36
 
-[com_4]
+[fire_wave]
 type=graphic
 x=116
 y=126
@@ -728,7 +728,7 @@ text=%1/1
 colour=0xC00000
 activecolour=0x00C000
 
-[com_49]
+[cancelspell]
 type=text
 x=143
 y=169
@@ -1010,7 +1010,7 @@ text=%1/1
 colour=0xC00000
 activecolour=0x00C000
 
-[com_61]
+[crumble_undead]
 type=graphic
 x=52
 y=23

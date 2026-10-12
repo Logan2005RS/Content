@@ -68170,52 +68170,6 @@ forceapproach=north
 mapscene=7
 ambient=60
 
-[loc_10527]
-name=Door
-desc=A tall wooden door.
-model=loc_5126
-hillskew=yes
-ambient=20
-resizez=128
-resizex=128
-resizey=192
-op1=Open
-
-[loc_10528]
-name=Door
-desc=A tall wooden door.
-model=loc_5126
-hillskew=yes
-ambient=20
-resizez=128
-resizex=128
-resizey=192
-op1=Close
-
-[loc_10529]
-name=Door
-desc=A tall wooden door.
-model=loc_5126
-hillskew=yes
-ambient=20
-resizez=128
-resizex=128
-resizey=192
-op1=Open
-mirror=yes
-
-[loc_10530]
-name=Door
-desc=A tall wooden door.
-model=loc_5126
-hillskew=yes
-ambient=20
-resizez=128
-resizex=128
-resizey=192
-op1=Close
-mirror=yes
-
 [champions_wall]
 model=loc_7358
 recol1s=13707

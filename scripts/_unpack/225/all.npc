@@ -1720,39 +1720,6 @@ param=attack_sound,lizardman_attack
 param=defend_sound,lizardman_hit
 param=death_sound,lizardman_death
 
-[slayer_master_1]
-vislevel=hide
-name=Turael
-desc=He looks dangerous!
-walkanim=human_halberdwalk_f,human_halberdwalk_b,human_halberdwalk_l,human_halberdwalk_r
-readyanim=human_staffready
-op1=Talk-to
-op4=Trade
-alwaysontop=yes
-model1=man_head_hood2
-model2=man_jaw_medium
-model3=man_torso_platemail_trim
-model4=man_torsoextra_cloak_plain
-model5=model_174_npc
-model6=man_hands_gloves
-model7=man_legs_turnups
-model8=man_feet_boots
-model9=human_weapons_halberd
-head1=chat_male_head_hood2
-head2=chat_male_jaw_medium
-recol1s=14724
-recol1d=10572
-recol2s=2340
-recol2d=5320
-recol3s=7329
-recol3d=5317
-recol4s=15855
-recol4d=15889
-recol5s=10570
-recol5d=10604
-recol6s=6342
-recol6d=6376
-
 [orc]
 name=Orc
 desc=A hideous malformed elf.

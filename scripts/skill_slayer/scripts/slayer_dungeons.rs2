@@ -1,0 +1,159 @@
+[oploc1,slayertower_door] @slayer_tower_entrance;
+[oploc1,slayertower_door_mirror] @slayer_tower_entrance;
+[oploc1,slayertower_door_arch] @slayer_tower_entrance;
+[oploc1,slayertower_door_arch_mirror] @slayer_tower_entrance;
+
+[label,slayer_tower_entrance]
+p_arrivedelay;
+sound_synth(slayerdoors, 1, 0);
+~slayer_tower_statue(0_53_55_34_14);
+~slayer_tower_statue(0_53_55_38_14);
+if (coordz(coord) > coordz(loc_coord)) {
+    p_teleport(movecoord(coord, 0, 0, -1));
+} else {
+    p_teleport(movecoord(coord, 0, 0, 1));
+}
+
+[proc,slayer_tower_statue](coord $coord)
+if (loc_find($coord, slayer_gargoyle_statue) = true) {
+    loc_anim(gargoyle_statue_open);
+    sound_synth(slayer_statuemove, 1, 0);
+}
+
+[oploc1,loc_5126]
+p_arrivedelay;
+sound_synth(slayerdoors, 1, 0);
+if (coordz(coord) > coordz(loc_coord)) {
+    p_teleport(movecoord(coord, 0, 0, -1));
+} else {
+    p_teleport(movecoord(coord, 0, 0, 1));
+}
+
+[oploc1,loc_5127]
+~mesbox("@red@WARNING!|This area contains very dangerous creatures!|Do not pass unless properly prepared!");
+
+[oploc1,loc_4493]
+p_arrivedelay;
+p_telejump(1_53_55_41_17);
+
+[oploc1,loc_4494]
+p_arrivedelay;
+p_telejump(0_53_55_46_17);
+
+[oploc1,loc_4495]
+p_arrivedelay;
+p_telejump(2_53_55_25_20);
+
+[oploc1,loc_4496]
+p_arrivedelay;
+p_telejump(1_53_55_20_20);
+
+[oploc1,loc_9319]
+def_int $level = 61;
+if (coordy(loc_coord) > 0) {
+    $level = 71;
+}
+if (stat(agility) < $level) {
+    mes("You need an Agility level of at least <tostring($level)> in order to do this.");
+    return;
+}
+anim(human_reachforladdertop, 0);
+p_delay(0);
+p_telejump(movecoord(coord, 0, 1, 0));
+
+[oploc1,loc_9320]
+anim(human_reachforladder, 0);
+p_delay(0);
+p_telejump(movecoord(coord, 0, -1, 0));
+
+[oploc1,slayer_dungeon_entrance]
+p_arrivedelay;
+p_telejump(0_43_156_56_18);
+
+[oploc1,slayer_dungeon_exit]
+p_arrivedelay;
+p_telejump(0_43_56_44_31);
+
+[oploc1,slayer_dungeon_2_sc_wall_crack]
+if (stat(agility) < 62) {
+    mes("You need an Agility level of at least 62 to do this.");
+    return;
+}
+def_int $dx = 4;
+if (coordx(coord) > coordx(loc_coord)) {
+    $dx = -4;
+}
+anim(human_pipesqueeze, 0);
+p_delay(1);
+p_teleport(movecoord(loc_coord, $dx, 0, 0));
+anim(human_pipeunsqueeze, 0);
+mes("You climb your way through the narrow crevice.");
+
+[oploc1,loc_9326]
+if (stat(agility) < 81) {
+    mes("You need an Agility level of at least 81 to do this.");
+    return;
+}
+def_int $dx = 0;
+def_int $dz = 0;
+if (coordx(coord) < coordx(loc_coord)) {
+    $dx = 1;
+} else if (coordx(coord) > coordx(loc_coord)) {
+    $dx = -1;
+}
+if (coordz(coord) < coordz(loc_coord)) {
+    $dz = 1;
+} else if (coordz(coord) > coordz(loc_coord)) {
+    $dz = -1;
+}
+anim(human_longjump, 0);
+p_delay(0);
+p_teleport(movecoord(loc_coord, $dx, 0, $dz));
+if (stat_random(agility, 180, 250) = false) {
+    mes("You trigger the trap as you jump over it.");
+    ~damage_self(randominc(6));
+}
+
+[oploc1,goblin_cave_entrance]
+p_arrivedelay;
+anim(human_reachforladder, 0);
+p_delay(0);
+p_telejump(map_findsquare(0_49_149_33_36, 1, 1, ^map_findsquare_none));
+
+[oploc1,swamp_cave_climbing_rope]
+p_arrivedelay;
+anim(human_reachforladdertop, 0);
+p_delay(0);
+p_telejump(map_findsquare(0_49_49_33_36, 1, 1, ^map_findsquare_none));
+
+[oploc1,swamp_cave_steppingstone_a] @slayer_stepping_stone;
+[oploc1,swamp_cave_steppingstone_b] @slayer_stepping_stone;
+
+[label,slayer_stepping_stone]
+def_int $dx = 0;
+def_int $dz = 0;
+if (coordx(coord) < coordx(loc_coord)) {
+    $dx = 1;
+} else if (coordx(coord) > coordx(loc_coord)) {
+    $dx = -1;
+}
+if (coordz(coord) < coordz(loc_coord)) {
+    $dz = 1;
+} else if (coordz(coord) > coordz(loc_coord)) {
+    $dz = -1;
+}
+anim(human_steppingstonejump, 0);
+p_delay(0);
+p_teleport(loc_coord);
+p_delay(0);
+anim(human_steppingstonejump, 0);
+p_delay(0);
+p_teleport(movecoord(loc_coord, $dx, 0, $dz));
+
+[oploc1,wyvern_snow_cave_entrance]
+p_arrivedelay;
+p_telejump(0_47_149_48_19);
+
+[oploc1,wyvern_snow_cave_exit]
+p_arrivedelay;
+p_telejump(0_47_149_48_26);

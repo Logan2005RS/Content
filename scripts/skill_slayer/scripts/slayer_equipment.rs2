@@ -1,0 +1,59 @@
+[opnpct,magic:magic_dart] ~pvm_magic_dart;
+[apnpct,magic:magic_dart] ~pvm_magic_dart;
+
+[proc,pvm_magic_dart]
+def_dbrow $spell_data = ~get_spell_data(^magic_dart);
+if (stat(slayer) < 55) {
+    mes("You need a Slayer level of 55 to cast this spell.");
+    return;
+}
+if (~pvm_combat_spell_checks($spell_data) = false) {
+    return;
+}
+def_int $duration = ~pvm_spell_cast($spell_data);
+if (~player_npc_hit_roll(^magic_style) = true) {
+    ~pvm_spell_success($spell_data, add(10, divide(stat(magic), 10)), $duration);
+} else {
+    ~pvm_spell_fail($spell_data, $duration);
+}
+
+[if_button,slayer_staff_spells:magic_dart] @set_autocast_spell(^magic_dart);
+[if_button,slayer_staff_spells:crumble_undead] @set_autocast_spell(^crumble_undead);
+[if_button,slayer_staff_spells:wind_wave] @set_autocast_spell(^wind_wave);
+[if_button,slayer_staff_spells:water_wave] @set_autocast_spell(^water_wave);
+[if_button,slayer_staff_spells:earth_wave] @set_autocast_spell(^earth_wave);
+[if_button,slayer_staff_spells:fire_wave] @set_autocast_spell(^fire_wave);
+
+[if_button,slayer_staff_spells:cancelspell]
+if_close;
+if (p_finduid(uid) = true) {
+    ~initalltabs;
+}
+
+[opheld2,slayer_leafbladed_spear] @slayer_levelrequire(attack, 50, 55, last_slot);
+[opheld2,slayer_staff] @slayer_levelrequire(magic, 50, 55, last_slot);
+[opheld2,slayer_mirror_shield] @slayer_levelrequire(defence, 20, 25, last_slot);
+[opheld2,slayer_broad_arrows] @slayer_levelrequire(null, 0, 55, last_slot);
+[opheld2,slayer_earmuffs] @slayer_levelrequire(null, 0, 15, last_slot);
+[opheld2,slayer_nosepeg] @slayer_levelrequire(null, 0, 60, last_slot);
+[opheld2,slayer_facemask] @slayer_levelrequire(null, 0, 0, last_slot);
+[opheld2,wallbeast_spike_helmet] @slayer_levelrequire(defence, 5, 0, last_slot);
+
+[label,slayer_levelrequire](stat $stat, int $level, int $slayer, int $slot)
+if ($stat ! null & stat_base($stat) < $level) {
+    mes("You are not a high enough level to use this item.");
+    mes("You need to have <~slayer_stat_article($stat)> <lowercase(enum(stat, string, stat_names, $stat))> level of <tostring($level)>.");
+    return;
+}
+if (stat_base(slayer) < $slayer) {
+    mes("You are not a high enough level to use this item.");
+    mes("You need to have a slayer level of <tostring($slayer)>.");
+    return;
+}
+~equip($slot);
+
+[proc,slayer_stat_article](stat $stat)(string)
+if ($stat = attack) {
+    return("an");
+}
+return("a");

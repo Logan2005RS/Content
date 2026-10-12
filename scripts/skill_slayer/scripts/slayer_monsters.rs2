@@ -1,0 +1,294 @@
+[proc,slayer_npc_attack_ready]()(boolean)
+if (%death = ^true) {
+    npc_setmode(null);
+    return(false);
+}
+if (%npc_action_delay > map_clock) {
+    return(false);
+}
+if (~npc_check_notcombat = false) {
+    npc_setmode(null);
+    return(false);
+}
+if (~npc_check_notcombat_self = false) {
+    return(false);
+}
+return(true);
+
+[proc,slayer_wearing_head](obj $obj)(boolean)
+if (inv_getobj(worn, ^wearpos_hat) = $obj) {
+    return(true);
+}
+return(false);
+
+[proc,slayer_wearing_mirror_shield]()(boolean)
+if (inv_getobj(worn, ^wearpos_lhand) = slayer_mirror_shield) {
+    return(true);
+}
+return(false);
+
+[proc,slayer_unprotected_hit](int $damage)
+anim(%com_defendanim, 0);
+npc_anim(npc_param(attack_anim), 0);
+if (npc_param(attack_sound) ! null) {
+    sound_synth(npc_param(attack_sound), 1, 0);
+}
+~playerhit_n_melee(false, randominc($damage), npc_param(attackrate));
+
+[ai_opplayer2,slayer_banshee_1]
+if (~slayer_npc_attack_ready = false) {
+    return;
+}
+if (~slayer_wearing_head(slayer_earmuffs) = true) {
+    gosub(npc_default_attack);
+    return;
+}
+spotanim_pl(banshee_scream, 92, 0);
+sound_synth(banshee_attack, 1, 0);
+~slayer_unprotected_hit(6);
+stat_sub(attack, 0, 50);
+stat_sub(strength, 0, 50);
+stat_sub(defence, 0, 50);
+stat_sub(ranged, 0, 50);
+stat_sub(magic, 0, 50);
+stat_sub(prayer, 0, 50);
+stat_sub(agility, 0, 50);
+
+[ai_opplayer2,slayer_dustdevil]
+if (~slayer_npc_attack_ready = false) {
+    return;
+}
+if (~slayer_wearing_head(slayer_facemask) = true) {
+    gosub(npc_default_attack);
+    return;
+}
+~slayer_unprotected_hit(16);
+stat_sub(attack, 0, 100);
+stat_sub(strength, 0, 100);
+stat_sub(ranged, 0, 100);
+stat_sub(magic, 0, 100);
+stat_sub(prayer, 0, 50);
+
+[ai_opplayer2,slayer_basilisk] @slayer_gaze_attack;
+[ai_opplayer2,slayer_basilisk_baby] @slayer_gaze_attack;
+[ai_opplayer2,slayer_cockatrice] @slayer_gaze_attack;
+[ai_opplayer2,slayer_cockatrice_daddy] @slayer_gaze_attack;
+
+[label,slayer_gaze_attack]
+if (~slayer_npc_attack_ready = false) {
+    return;
+}
+if (~slayer_wearing_mirror_shield = true) {
+    gosub(npc_default_attack);
+    return;
+}
+~slayer_unprotected_hit(11);
+stat_sub(attack, 0, 25);
+stat_sub(strength, 0, 25);
+stat_sub(defence, 0, 25);
+stat_sub(ranged, 0, 25);
+
+[ai_opplayer2,slayer_abberant_spectre_1] @slayer_spectre_attack;
+[ai_opplayer2,slayer_abberant_spectre_2] @slayer_spectre_attack;
+[ai_opplayer2,slayer_abberant_spectre_3] @slayer_spectre_attack;
+[ai_opplayer2,slayer_abberant_spectre_4] @slayer_spectre_attack;
+
+[label,slayer_spectre_attack]
+if (~slayer_npc_attack_ready = false) {
+    return;
+}
+def_int $maxhit = 8;
+if (~slayer_wearing_head(slayer_nosepeg) = false) {
+    $maxhit = 14;
+    stat_sub(attack, 0, 50);
+    stat_sub(strength, 0, 50);
+    stat_sub(defence, 0, 50);
+    stat_sub(ranged, 0, 50);
+    stat_sub(magic, 0, 50);
+    stat_sub(prayer, 0, 50);
+    stat_sub(agility, 0, 50);
+}
+~slayer_npc_magic_projectile(specter_goo_launch, specter_goo_travel, specter_goo_impact, $maxhit);
+
+[ai_opplayer2,slayer_infernal_mage_1] @slayer_infernal_mage_attack;
+[ai_opplayer2,slayer_infernal_mage_2] @slayer_infernal_mage_attack;
+[ai_opplayer2,slayer_infernal_mage_3] @slayer_infernal_mage_attack;
+[ai_opplayer2,slayer_infernal_mage_4] @slayer_infernal_mage_attack;
+[ai_opplayer2,slayer_infernal_mage_5] @slayer_infernal_mage_attack;
+
+[label,slayer_infernal_mage_attack]
+if (~slayer_npc_attack_ready = false) {
+    return;
+}
+~slayer_npc_magic_projectile(null, slayer_infernalmage_magicdart_travel, slayer_infernalmage_magicdart_impact, 8);
+
+[proc,slayer_npc_magic_projectile](spotanim $launch, spotanim $travel, spotanim $impact, int $maxhit)
+npc_anim(npc_param(attack_anim), 0);
+if (npc_param(attack_sound) ! null) {
+    sound_synth(npc_param(attack_sound), 1, 0);
+}
+if ($launch ! null) {
+    spotanim_npc($launch, 92, 0);
+}
+%npc_action_delay = add(map_clock, npc_param(attackrate));
+def_int $duration = ~player_projectile(npc_coord, coord, uid, $travel, 40, 36, 32, 15, 0, 11, 5);
+def_int $damage = 0;
+if (randominc(~npc_magic_attack_roll) > randominc(~player_defence_roll_specific(^magic_style))) {
+    $damage = randominc($maxhit);
+    spotanim_pl($impact, 92, $duration);
+}
+if (~check_protect_prayer(^magic_style) = true) {
+    $damage = 0;
+}
+if_close;
+anim(%com_defendanim, $duration);
+queue(combat_damage_player, calc($duration / 30), $damage);
+queue*(playerhit_n_retaliate, calc($duration / 30))(npc_uid);
+~npc_set_attack_vars;
+
+[ai_opplayer2,skeletal_wyvern1] @slayer_wyvern_attack;
+[ai_opplayer2,skeletal_wyvern2] @slayer_wyvern_attack;
+[ai_opplayer2,skeletal_wyvern3] @slayer_wyvern_attack;
+[ai_opplayer2,skeletal_wyvern4] @slayer_wyvern_attack;
+
+[label,slayer_wyvern_attack]
+if (~slayer_npc_attack_ready = false) {
+    return;
+}
+if (random(5) ! 0) {
+    gosub(npc_default_attack);
+    return;
+}
+npc_anim(wyvern_skeleton_ice_breath, 0);
+%npc_action_delay = add(map_clock, npc_param(attackrate));
+def_int $duration = ~player_projectile(npc_coord, coord, uid, wyvern_skeleton_travel_breath, 40, 36, 32, 15, 0, 11, 5);
+spotanim_pl(wyvern_skeleton_impact_breath, 92, $duration);
+def_int $maxhit = 50;
+if (inv_getobj(worn, ^wearpos_lhand) = elemental_shield | inv_getobj(worn, ^wearpos_lhand) = antidragonbreathshield) {
+    $maxhit = 10;
+}
+if_close;
+anim(%com_defendanim, $duration);
+queue(combat_damage_player, calc($duration / 30), randominc($maxhit));
+queue*(playerhit_n_retaliate, calc($duration / 30))(npc_uid);
+~npc_set_attack_vars;
+
+[ai_queue2,slayer_nechryael]
+~npc_default_damage(last_int);
+if (npc_stat(hitpoints) = 0 | %npc_int > map_clock | random(5) ! 0) {
+    return;
+}
+if (finduid(%npc_aggressive_player) = false) {
+    return;
+}
+%npc_int = add(map_clock, 50);
+npc_anim(demons_bringdead, 0);
+npc_add(map_findsquare(npc_coord, 1, 2, ^map_findsquare_none), slayer_nechryael_spawn, 100);
+npc_setmode(opplayer2);
+
+[proc,slayer_max_dealt](int $maxhit, int $spell)(int)
+switch_npc (npc_type) {
+    case slayer_turoth, slayer_turoth_dad, slayer_turoth_mum, slayer_turoth_child, slayer_turoth_baby, slayer_turoth_dad2, slayer_turoth_dad3, slayer_kursk_1, slayer_kursk_2 :
+        if (~slayer_leafbladed_attack($spell) = false) {
+            return(0);
+        }
+    case slayer_gargoyle, slayer_rockslug, slayer_rockslug_baby, slayer_lizard_massive, slayer_lizard_large1_green, slayer_lizard_large2_sandy, slayer_lizard_large3_sandy, slayer_lizard_small1_green, slayer_lizard_small2_sandy :
+        return(max(0, min($maxhit, sub(npc_stat(hitpoints), 1))));
+}
+return($maxhit);
+
+[proc,slayer_leafbladed_attack](int $spell)(boolean)
+if ($spell = ^magic_dart) {
+    return(true);
+}
+if ($spell > 0) {
+    return(false);
+}
+if (%damagetype = ^ranged_style) {
+    if (inv_getobj(worn, ^wearpos_quiver) = slayer_broad_arrows) {
+        return(true);
+    }
+    return(false);
+}
+if (inv_getobj(worn, ^wearpos_rhand) = slayer_leafbladed_spear) {
+    return(true);
+}
+return(false);
+
+[opnpcu,slayer_gargoyle]
+if (last_useitem ! slayer_rock_hammer) {
+    ~displaymessage(^dm_default);
+    return;
+}
+if (npc_stat(hitpoints) > 9) {
+    mes("The gargoyle isn't weak enough to be harmed by the hammer.");
+    return;
+}
+mes("The gargoyle cracks apart.");
+@slayer_finish_npc;
+
+[opnpcu,slayer_rockslug] @slayer_use_salt;
+[opnpcu,slayer_rockslug_baby] @slayer_use_salt;
+
+[label,slayer_use_salt]
+if (last_useitem ! slayer_bag_of_salt) {
+    ~displaymessage(^dm_default);
+    return;
+}
+inv_del(inv, slayer_bag_of_salt, 1);
+anim(slayer_salt_sprinkle, 0);
+spotanim_npc(slayer_salt_sprinkle_spotanim, 0, 0);
+if (npc_stat(hitpoints) >= 5) {
+    mes("Your bag of salt is ineffective. The Rockslug is not weak enough.");
+    return;
+}
+mes("The rockslug shrivels up and dies.");
+@slayer_finish_npc;
+
+[opnpcu,slayer_lizard_massive] @slayer_use_ice_cooler;
+[opnpcu,slayer_lizard_large1_green] @slayer_use_ice_cooler;
+[opnpcu,slayer_lizard_large2_sandy] @slayer_use_ice_cooler;
+[opnpcu,slayer_lizard_large3_sandy] @slayer_use_ice_cooler;
+[opnpcu,slayer_lizard_small1_green] @slayer_use_ice_cooler;
+[opnpcu,slayer_lizard_small2_sandy] @slayer_use_ice_cooler;
+
+[label,slayer_use_ice_cooler]
+if (last_useitem ! slayer_icy_water) {
+    ~displaymessage(^dm_default);
+    return;
+}
+if (stat(slayer) < 22) {
+    mes("You need a Slayer level of at least 22 to do this.");
+    return;
+}
+if (npc_stat(hitpoints) > 2) {
+    mes("The lizard isn't weak enough to be affected by the icy water.");
+    return;
+}
+inv_del(inv, slayer_icy_water, 1);
+mes("The lizard shudders and collapses from the freezing water.");
+@slayer_finish_npc;
+
+[label,slayer_finish_npc]
+%npc_aggressive_player = uid;
+npc_queue(2, npc_stat(hitpoints), 0);
+
+[ai_timer,swamp_wallbeast]
+if (%npc_int > map_clock) {
+    return;
+}
+huntall(movecoord(npc_coord, 0, 0, -1), 0, 0);
+if (huntnext = false) {
+    return;
+}
+%npc_int = add(map_clock, 8);
+if (inv_getobj(worn, ^wearpos_hat) = wallbeast_spike_helmet) {
+    npc_anim(wall_beast_specialattack_fail, 0);
+    sound_synth(wall_beast_foiled, 1, 0);
+    npc_changetype(swamp_wallbeast_combat, 200);
+    npc_setmode(opplayer2);
+    return;
+}
+npc_anim(wall_beast_specialattack_attack, 0);
+sound_synth(wall_beast_swipe, 1, 0);
+queue(combat_damage_player, 2, randominc(18));

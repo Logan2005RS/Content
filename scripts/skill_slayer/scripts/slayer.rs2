@@ -1,0 +1,325 @@
+[proc,slayer_task]()(int)
+return(getbit_range(%slayer_target, ^slayer_task_startbit, ^slayer_task_endbit));
+
+[proc,slayer_current_master]()(int)
+return(getbit_range(%slayer_target, ^slayer_master_startbit, ^slayer_master_endbit));
+
+[proc,slayer_has_task]()(boolean)
+if (%slayer_count > 0 & ~slayer_task > 0) {
+    return(true);
+}
+return(false);
+
+[proc,slayer_task_row](int $task)(dbrow)
+db_find(slayer_task:task, $task);
+return(db_findnext);
+
+[proc,slayer_task_name](int $task)(string)
+def_dbrow $row = ~slayer_task_row($task);
+if ($row = null) {
+    return("monsters");
+}
+return(db_getfield($row, slayer_task:name, 0));
+
+[proc,slayer_master_row](int $master)(dbrow)
+db_find(slayer_master:master, $master);
+return(db_findnext);
+
+[proc,slayer_master_row_npc](npc $npc)(dbrow)
+db_find(slayer_master:npc, $npc);
+return(db_findnext);
+
+[proc,slayer_npc_row](npc $npc)(dbrow)
+db_find(slayer_npc:npc, $npc);
+return(db_findnext);
+
+[proc,slayer_npc_on_task](npc $npc)(boolean)
+if (~slayer_has_task = false) {
+    return(false);
+}
+def_dbrow $row = ~slayer_npc_row($npc);
+if ($row = null) {
+    return(false);
+}
+if (db_getfield($row, slayer_npc:task, 0) = ~slayer_task) {
+    return(true);
+}
+return(false);
+
+[proc,slayer_npc_killed](npc $npc, int $hitpoints)
+if (~slayer_npc_on_task($npc) = false) {
+    return;
+}
+stat_advance(slayer, multiply($hitpoints, 10));
+%slayer_count = sub(%slayer_count, 1);
+if (%slayer_count = 0) {
+    mes("You've completed your task; return to a Slayer master.");
+}
+
+[proc,slayer_attack_allowed](npc $npc)(boolean)
+def_dbrow $row = ~slayer_npc_row($npc);
+if ($row = null) {
+    return(true);
+}
+def_int $level = db_getfield($row, slayer_npc:level, 0);
+if ($level > 0 & stat(slayer) < $level) {
+    mes("You need a higher slayer level to know how to wound this monster.");
+    return(false);
+}
+return(true);
+
+[proc,slayer_assign](npc $master_npc)(boolean)
+def_dbrow $master = ~slayer_master_row_npc($master_npc);
+if ($master = null) {
+    return(false);
+}
+def_int $total = 0;
+def_dbrow $row;
+db_find(slayer_assignment:master, $master_npc);
+$row = db_findnext;
+while ($row ! null) {
+    if (~slayer_can_assign(db_getfield($row, slayer_assignment:task, 0)) = true) {
+        $total = add($total, db_getfield($row, slayer_assignment:weight, 0));
+    }
+    $row = db_findnext;
+}
+if ($total = 0) {
+    return(false);
+}
+def_int $roll = random($total);
+db_find(slayer_assignment:master, $master_npc);
+$row = db_findnext;
+while ($row ! null) {
+    def_int $task = db_getfield($row, slayer_assignment:task, 0);
+    if (~slayer_can_assign($task) = true) {
+        def_int $weight = db_getfield($row, slayer_assignment:weight, 0);
+        if ($roll < $weight) {
+            def_int $min;
+            def_int $max;
+            $min, $max = db_getfield($row, slayer_assignment:amount, 0);
+            %slayer_target = setbit_range_toint(0, $task, ^slayer_task_startbit, ^slayer_task_endbit);
+            %slayer_target = setbit_range_toint(%slayer_target, db_getfield($master, slayer_master:master, 0), ^slayer_master_startbit, ^slayer_master_endbit);
+            %slayer_count = ~random_range($min, $max);
+            return(true);
+        }
+        $roll = sub($roll, $weight);
+    }
+    $row = db_findnext;
+}
+return(false);
+
+[proc,slayer_can_assign](int $task)(boolean)
+def_dbrow $row = ~slayer_task_row($task);
+if ($row = null) {
+    return(false);
+}
+if (stat_base(slayer) < db_getfield($row, slayer_task:level, 0)) {
+    return(false);
+}
+if (~player_combat_level < db_getfield($row, slayer_task:combat, 0)) {
+    return(false);
+}
+if ($task = ^slayer_task_dagannoths & %horrorquest < ^horror_complete) {
+    return(false);
+}
+return(true);
+
+[proc,slayer_master_has_task](npc $master_npc, int $task)(boolean)
+db_find(slayer_assignment:master, $master_npc);
+def_dbrow $row = db_findnext;
+while ($row ! null) {
+    if (db_getfield($row, slayer_assignment:task, 0) = $task) {
+        return(true);
+    }
+    $row = db_findnext;
+}
+return(false);
+
+[proc,slayer_master_requirements](npc $master_npc)(boolean)
+def_dbrow $master = ~slayer_master_row_npc($master_npc);
+if ($master = null) {
+    return(false);
+}
+if (~player_combat_level < db_getfield($master, slayer_master:combat, 0) | stat_base(slayer) < db_getfield($master, slayer_master:slayer, 0)) {
+    return(false);
+}
+return(true);
+
+[proc,slayer_tip](int $task)
+def_dbrow $row = ~slayer_task_row($task);
+if ($row = null) {
+    return;
+}
+def_int $count = db_getfieldcount($row, slayer_task:tip);
+def_string $tip = "";
+def_int $i = 0;
+while ($i < $count) {
+    if ($i > 0) {
+        $tip = append($tip, " ");
+    }
+    $tip = append($tip, db_getfield($row, slayer_task:tip, $i));
+    $i = add($i, 1);
+}
+~chatnpc("<p,neutral><$tip>");
+
+[opnpc1,_slayer_master]
+if (map_members = ^false) {
+    mes(^mes_members_feature);
+    return;
+}
+~chatnpc("<p,neutral>'Ello, and what are you after, then?");
+if (~slayer_current_master = 0) {
+    @multi3("Who are you?", slayer_master_who, "Do you have anything for trade?", slayer_master_trade, "Er...nothing...", slayer_master_nothing);
+}
+@multi3("I need another assignment.", slayer_master_assignment, "Do you have anything for trade?", slayer_master_trade, "Er...nothing...", slayer_master_nothing);
+
+[opnpc4,_slayer_master]
+if (map_members = ^false) {
+    mes(^mes_members_feature);
+    return;
+}
+~openshop_activenpc;
+
+[label,slayer_master_nothing]
+~chatplayer("<p,neutral>Er...nothing...");
+
+[label,slayer_master_trade]
+~chatplayer("<p,quiz>Do you have anything for trade?");
+~chatnpc("<p,happy>I have a wide selection of Slayer equipment; take a look!");
+~openshop_activenpc;
+
+[label,slayer_master_who]
+~chatplayer("<p,quiz>Who are you?");
+if (npc_type = slayer_master_1) {
+    ~chatnpc("<p,neutral>I'm the lowest level Slayer Master available. The other Slayer Masters are spread around the world.");
+} else {
+    ~chatnpc("<p,neutral>I'm one of the elite Slayer Masters. I can teach you about the ways of the Slayer.");
+}
+def_int $option = ~p_choice2("What's a Slayer?", 1, "Never heard of you...", 2);
+if ($option = 2) {
+    ~chatplayer("<p,confused>Never heard of you...");
+    ~chatnpc("<p,angry>I am one of the greatest Slayer masters!");
+    return;
+}
+~chatplayer("<p,quiz>What's a Slayer?");
+~chatnpc("<p,neutral>Oh dear, what do they teach you in school?");
+~chatplayer("<p,confused>Well....er...");
+~chatnpc("<p,neutral>I suppose I'll have to educate you, then. A Slayer is someone who is trained to fight specific creatures. They know those creatures' every weakness and strength. As you can guess, it makes killing those creatures a lot easier.");
+$option = ~p_choice2("Wow, can you teach me?", 1, "Sounds useless to me.", 2);
+if ($option = 2) {
+    ~chatplayer("<p,neutral>Sounds useless to me.");
+    ~chatnpc("<p,neutral>That's what you think..");
+    return;
+}
+~chatplayer("<p,happy>Wow, can you teach me?");
+~chatnpc("<p,neutral>Hmmm, well, I'm not so sure...");
+~chatplayer("<p,happy>Pleeeaasssse! I'll be your best friend!");
+if (~slayer_master_requirements(npc_type) = false) {
+    ~chatnpc("<p,neutral>Sorry, but you're not strong enough to be taught by me.");
+    return;
+}
+~chatnpc("<p,neutral>Oh, okay then; you twisted my arm. You'll have to train against specific groups of creatures.");
+~chatplayer("<p,happy>Okay then, what's first?");
+if (inv_freespace(inv) < 1) {
+    ~chatplayer("<p,sad>Sorry, I don't have enough inventory space.");
+    return;
+}
+if (~slayer_assign(npc_type) = false) {
+    ~chatnpc("<p,neutral>Sorry, but you're not strong enough to be taught by me.");
+    return;
+}
+inv_add(inv, slayer_gem, 1);
+~chatnpc("<p,neutral>We'll start you off hunting <~slayer_task_name(~slayer_task)>, you'll need to kill <tostring(%slayer_count)> of them.");
+~chatnpc("<p,neutral>You'll also need this enchanted gem. It allows Slayer Masters like myself to contact you and update you on your progress. Don't worry if you lose it; you can buy another from any Slayer Master.");
+~chatplayer("<p,happy>Okay, great!");
+
+[label,slayer_master_assignment]
+~chatplayer("<p,neutral>I need another assignment.");
+if (~slayer_master_requirements(npc_type) = false) {
+    ~chatnpc("<p,neutral>Sorry, but you're not strong enough to be taught by me.");
+    return;
+}
+if (~slayer_has_task = true) {
+    if (npc_type ! slayer_master_1 | ~slayer_master_has_task(slayer_master_1, ~slayer_task) = true) {
+        ~chatnpc("<p,neutral>You're still hunting something. Come back when you've finished your task.");
+        return;
+    }
+}
+if (~slayer_assign(npc_type) = false) {
+    ~chatnpc("<p,neutral>Sorry, but you're not strong enough to be taught by me.");
+    return;
+}
+~chatnpc("<p,happy>Excellent, you're doing great. Your new task is to kill <tostring(%slayer_count)> <~slayer_task_name(~slayer_task)>.");
+def_int $option = ~p_choice2("Got any tips for me?", 1, "Okay, great!", 2);
+if ($option = 2) {
+    ~chatplayer("<p,happy>Okay, great!");
+    return;
+}
+~chatplayer("<p,quiz>Got any tips for me?");
+~slayer_tip(~slayer_task);
+~chatplayer("<p,happy>Great, thanks!");
+
+[opheld1,slayer_gem]
+def_dbrow $master = ~slayer_master_row(~slayer_current_master);
+if ($master = null) {
+    mes("You have no Slayer master to contact.");
+    return;
+}
+def_npc $npc = db_getfield($master, slayer_master:npc, 0);
+~chatnpc_specific(nc_name($npc), $npc, "<p,neutral>Hello there <displayname()>, what can I help you with?");
+@slayer_gem_menu($master, true);
+
+[label,slayer_gem_menu](dbrow $master, boolean $first)
+def_npc $npc = db_getfield($master, slayer_master:npc, 0);
+def_int $option;
+if ($first = true) {
+    $option = ~p_choice5("How am I doing so far?", 1, "Who are you?", 2, "Where are you?", 3, "Got any tips for me?", 4, "Nothing really.", 5);
+} else {
+    $option = ~p_choice5("How am I doing so far?", 1, "Who are you?", 2, "Where are you?", 3, "Got any tips for me?", 4, "That's all thanks.", 5);
+}
+switch_int ($option) {
+    case 1 :
+        ~chatplayer("<p,quiz>How am I doing so far?");
+        if (~slayer_has_task = false) {
+            ~chatnpc_specific(nc_name($npc), $npc, "<p,neutral>You need something new to hunt. Come and see me when you can and I'll give you a new task.");
+        } else {
+            ~chatnpc_specific(nc_name($npc), $npc, "<p,neutral>You're currently assigned to kill <~slayer_task_name(~slayer_task)>; only <tostring(%slayer_count)> more to go.");
+        }
+    case 2 :
+        ~chatplayer("<p,quiz>Who are you?");
+        ~chatnpc_specific(nc_name($npc), $npc, "<p,neutral>My name's <nc_name($npc)>, I'm the Slayer Master best able to train you.");
+    case 3 :
+        ~chatplayer("<p,quiz>Where are you?");
+        ~chatnpc_specific(nc_name($npc), $npc, "<p,neutral>You'll find me in <db_getfield($master, slayer_master:location, 0)>, I'll be here when you need a new task.");
+    case 4 :
+        ~chatplayer("<p,quiz>Got any tips for me?");
+        if (~slayer_has_task = true) {
+            ~slayer_gem_tip($npc, ~slayer_task);
+        }
+        ~chatplayer("<p,happy>Great, thanks!");
+    case 5 :
+        if ($first = true) {
+            ~chatplayer("<p,neutral>Nothing really.");
+        } else {
+            ~chatplayer("<p,happy>That's all thanks.");
+        }
+        return;
+}
+@slayer_gem_menu($master, false);
+
+[proc,slayer_gem_tip](npc $npc, int $task)
+def_dbrow $row = ~slayer_task_row($task);
+if ($row = null) {
+    return;
+}
+def_int $count = db_getfieldcount($row, slayer_task:tip);
+def_string $tip = "";
+def_int $i = 0;
+while ($i < $count) {
+    if ($i > 0) {
+        $tip = append($tip, " ");
+    }
+    $tip = append($tip, db_getfield($row, slayer_task:tip, $i));
+    $i = add($i, 1);
+}
+~chatnpc_specific(nc_name($npc), $npc, "<p,neutral><$tip>");

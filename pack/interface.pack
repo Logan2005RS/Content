@@ -12035,7 +12035,7 @@
 12034=xplamp:com_1
 12035=xplamp:com_20
 12036=xplamp:com_21
-12037=magic:com_448
+12037=magic:magic_dart
 12038=magic:com_449
 12039=magic:com_450
 12040=magic:com_451
@@ -12049,12 +12049,12 @@
 12048=music:com_38
 12049=music:com_39
 12050=slayer_staff_spells
-12051=slayer_staff_spells:com_0
-12052=slayer_staff_spells:com_61
-12053=slayer_staff_spells:com_1
-12054=slayer_staff_spells:com_2
-12055=slayer_staff_spells:com_3
-12056=slayer_staff_spells:com_4
+12051=slayer_staff_spells:magic_dart
+12052=slayer_staff_spells:crumble_undead
+12053=slayer_staff_spells:wind_wave
+12054=slayer_staff_spells:water_wave
+12055=slayer_staff_spells:earth_wave
+12056=slayer_staff_spells:fire_wave
 12057=slayer_staff_spells:com_5
 12058=slayer_staff_spells:com_7
 12059=slayer_staff_spells:com_8
@@ -12099,7 +12099,7 @@
 12098=slayer_staff_spells:com_47
 12099=slayer_staff_spells:com_48
 12100=keldagrim_story1:keldagrim_story1_line3_l
-12101=slayer_staff_spells:com_49
+12101=slayer_staff_spells:cancelspell
 12102=slayer_staff_spells:com_50
 12103=keldagrim_story1:keldagrim_story1_line4_l
 12104=slayer_staff_spells:com_52
@@ -12121,9 +12121,9 @@
 12120=slayer_staff_spells:com_69
 12121=slayer_staff_spells:com_70
 12122=levelup_slayer
-12123=levelup_slayer:com_0
-12124=levelup_slayer:com_1
-12125=levelup_slayer:com_2
+12123=levelup_slayer:line1
+12124=levelup_slayer:line2
+12125=levelup_slayer:continue
 12126=music:com_40
 12127=music:com_41
 12128=music:com_42
@@ -12160,7 +12160,7 @@
 12159=tutorial_progress:tutorial_progress18
 12160=tutorial_progress:tutorial_progress19
 12161=tutorial_progress:tutorial_progress_overlay
-12162=stats:com_225
+12162=stats:slayer
 12163=stats:com_226
 12164=stats:com_227
 12165=stats:com_228
@@ -12171,7 +12171,7 @@
 12170=stats:com_233
 12171=stats:com_234
 12172=stats:com_235
-12173=levelup_slayer:com_3
+12173=levelup_slayer:icon
 12174=questjournal_scroll:com_1
 12175=questjournal_scroll:com_2
 12176=questjournal_scroll:com_3

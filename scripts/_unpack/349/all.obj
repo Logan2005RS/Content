@@ -595,55 +595,6 @@ womanwear=human_weapons_gem,6
 members=yes
 iop1=Activate
 
-[slayer_mirror_shield]
-name=Mirror shield
-cost=1000
-desc=I can just about see things in this shield's reflection.
-model=obj_4156
-2dxof=1
-2dzoom=1910
-2dyan=400
-2dxan=480
-iop2=Wield
-manwear=obj_4156_manwear,0
-womanwear=obj_4156_manwear,6
-members=yes
-cost=5000
-
-[slayer_leafbladed_spear]
-name=Leaf-bladed spear
-cost=31000
-desc=A spear with a leaf-shaped point.
-model=obj_4158
-iop2=Wield
-manwear=obj_4158_manwear,0
-womanwear=obj_4158_manwear,6
-2dxof=1
-2dyof=6
-2dyan=472
-2dxan=368
-members=yes
-
-[slayer_broad_arrows]
-name=Broad arrows
-recol1s=10368
-recol1d=9445
-cost=60
-desc=Arrows with a wider than normal tip.
-2dxof=6
-2dyof=30
-2dzoom=1330
-2dyan=128
-2dxan=300
-stackable=yes
-members=yes
-model=obj_4150
-iop2=Wield
-count1=slayer_broad_arrows_2,2
-count2=slayer_broad_arrows_3,3
-count3=slayer_broad_arrows_4,4
-count4=slayer_broad_arrows_5,5
-
 [slayer_bag_of_salt]
 name=Bag of salt
 cost=10
@@ -671,82 +622,6 @@ womanwear=obj_4162_manwear,6
 2dzoom=1460
 2dyan=88
 2dxan=248
-members=yes
-
-[slayer_facemask]
-name=Facemask
-recol1s=25330
-recol1d=12646
-recol2s=20047
-recol2d=16874
-cost=200
-desc=Stops me breathing in too much dust.
-model=obj_4164
-2dxof=3
-2dyof=-15
-2dzoom=480
-2dyan=156
-2dxan=208
-iop2=Wear
-manwear=obj_4164_manwear,0
-womanwear=obj_4164_womanwear,0
-manhead=obj_4164_manhead
-womanhead=obj_4164_womanhead
-members=yes
-
-[slayer_earmuffs]
-name=Earmuffs
-recol1s=4162
-recol1d=7264
-recol2s=2048
-recol2d=10435
-cost=200
-desc=These will protect my ears from loud noise.
-model=obj_4166
-2dxof=4
-2dyof=5
-2dzoom=490
-2dyan=2020
-2dzan=252
-2dxan=552
-iop2=Wear
-manwear=obj_4166_manwear,0
-womanwear=obj_4166_womanwear,0
-manhead=obj_4166_manhead
-womanhead=obj_4166_womanhead
-members=yes
-
-[slayer_nosepeg]
-name=Nose peg
-cost=200
-desc=Protects me from any bad smells.
-model=obj_4168
-2dxof=2
-2dyof=7
-2dzoom=320
-2dyan=112
-2dxan=332
-iop2=Wear
-manwear=obj_4168_manwear,0
-womanwear=obj_4168_womanwear,0
-manhead=obj_4168_manhead
-womanhead=obj_4168_womanhead
-iop2=Wear
-members=yes
-
-[slayer_staff]
-name=Slayer's staff
-cost=21000
-desc=An old and magical staff.
-model=obj_4170
-2dxof=-2
-2dyof=30
-2dzoom=1890
-2dyan=44
-2dxan=296
-iop2=Wield
-manwear=obj_4170_manwear,0
-womanwear=obj_4170_manwear,6
 members=yes
 
 [slayer_broad_arrows_5]
@@ -4667,23 +4542,6 @@ iop2=Extinguish
 2dxan=28
 cost=420
 members=yes
-
-[wallbeast_spike_helmet]
-name=Spiny helmet
-desc=You don't want to wear it inside-out.
-cost=650
-manwear=obj_4551_manwear,0
-womanwear=obj_4551_womanwear,0
-manhead=obj_4551_manhead
-womanhead=obj_4551_womanhead
-model=obj_4551
-2dxof=5
-2dyof=-3
-2dzoom=660
-2dyan=440
-2dxan=444
-members=yes
-iop2=Wear
 
 [74_teleother_lumbridge]
 name=Spell
