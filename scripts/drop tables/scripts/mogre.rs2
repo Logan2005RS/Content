@@ -1,0 +1,47 @@
+[ai_queue3,mudskipper_ogre] @mogre_drop_table;
+
+[label,mogre_drop_table]
+gosub(npc_death);
+if (npc_findhero = ^false) {
+    return;
+}
+obj_add(npc_coord, npc_param(death_drop), 1, ^lootdrop_duration);
+
+def_int $random = random(128);
+if ($random < 4) {
+    obj_add(npc_coord, waterrune, 5, ^lootdrop_duration);
+} else if ($random < 8) {
+    obj_add(npc_coord, waterrune, 7, ^lootdrop_duration);
+} else if ($random < 12) {
+    obj_add(npc_coord, waterrune, 14, ^lootdrop_duration);
+} else if ($random < 32) {
+    obj_add(npc_coord, raw_swordfish, 1, ^lootdrop_duration);
+} else if ($random < 41) {
+    obj_add(npc_coord, raw_tuna, 1, ^lootdrop_duration);
+} else if ($random < 48) {
+    obj_add(npc_coord, raw_pike, 1, ^lootdrop_duration);
+} else if ($random < 52) {
+    obj_add(npc_coord, raw_salmon, 1, ^lootdrop_duration);
+} else if ($random < 55) {
+    obj_add(npc_coord, raw_herring, 1, ^lootdrop_duration);
+} else if ($random < 58) {
+    obj_add(npc_coord, raw_sardine, 1, ^lootdrop_duration);
+} else if ($random < 61) {
+    obj_add(npc_coord, raw_shark, 1, ^lootdrop_duration);
+} else if ($random < 91) {
+    obj_add(npc_coord, fishing_bait, 5, ^lootdrop_duration);
+} else if ($random < 101) {
+    obj_add(npc_coord, fishing_bait, 15, ^lootdrop_duration);
+} else if ($random < 106) {
+    obj_add(npc_coord, mudskipper_hat, 1, ^lootdrop_duration);
+} else if ($random < 109) {
+    obj_add(npc_coord, oystershell, 1, ^lootdrop_duration);
+} else if ($random < 111) {
+    obj_add(npc_coord, mudskipper_flippers, 1, ^lootdrop_duration);
+} else if ($random < 113) {
+    obj_add(npc_coord, seaweed, 1, ^lootdrop_duration);
+} else if ($random < 114) {
+    obj_add(npc_coord, staff_of_water, 1, ^lootdrop_duration);
+} else if ($random < 115) {
+    obj_add(npc_coord, fishbowl_water, 1, ^lootdrop_duration);
+}

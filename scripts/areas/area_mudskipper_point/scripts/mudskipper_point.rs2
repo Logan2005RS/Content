@@ -1,0 +1,55 @@
+[oploc1,ominous_fishing_spot_a] mes("Something seems to have scared all the fishes away...");
+[oploc2,ominous_fishing_spot_a] mes("Something seems to have scared all the fishes away...");
+[oploc1,ominous_fishing_spot_b] mes("Something seems to have scared all the fishes away...");
+[oploc2,ominous_fishing_spot_b] mes("Something seems to have scared all the fishes away...");
+[oploc1,ominous_fishing_spot_c] mes("Something seems to have scared all the fishes away...");
+[oploc2,ominous_fishing_spot_c] mes("Something seems to have scared all the fishes away...");
+
+[aplocu,ominous_fishing_spot_a] @mogre_explosive;
+[aplocu,ominous_fishing_spot_b] @mogre_explosive;
+[aplocu,ominous_fishing_spot_c] @mogre_explosive;
+[oplocu,ominous_fishing_spot_a] @mogre_explosive;
+[oplocu,ominous_fishing_spot_b] @mogre_explosive;
+[oplocu,ominous_fishing_spot_c] @mogre_explosive;
+
+[label,mogre_explosive]
+if (last_useitem ! fishing_explosive) {
+    ~displaymessage(^dm_default);
+    return;
+}
+if (%skippy_state ! ^skippy_sober) {
+    ~mesbox("Sinister as that fishing spot is, why would I want to|explode it?");
+    return;
+}
+def_int $distance = distance(coord, loc_coord);
+if ($distance < 5) {
+    ~chatplayer("<p,shifty>If this thing explodes, I think I should stand a liiiiitle further away.");
+    return;
+}
+if ($distance > 14) {
+    ~chatplayer("<p,sad>I can't throw that far.");
+    return;
+}
+def_coord $spot = loc_coord;
+inv_del(inv, fishing_explosive, 1);
+facesquare($spot);
+anim(human_throw, 0);
+mes("You hurl the shuddering vial into the water...");
+def_int $duration = ~coord_projectile(coord, $spot, vial_travel, 30, 20, 30, 16, 0, 11, 5);
+p_delay(calc(2 + $distance / 2));
+spotanim_map(watersplash, $spot, 0, 0);
+npc_add(map_findsquare($spot, 1, 4, ^map_findsquare_lineofwalk), mudskipper_ogre, 500);
+switch_int (random(7)) {
+    case 0 : npc_say("Da boom-boom kill all da fishies!");
+    case 1 : npc_say("I smack you good!");
+    case 2 : npc_say("Smash stupid human!");
+    case 3 : npc_say("Tasty human!");
+    case 4 : npc_say("Human hit me on the head!");
+    case 5 : npc_say("I get you!");
+    case 6 : npc_say("Human scare all da fishies!");
+}
+npc_setmode(opplayer2);
+mes("...and a Mogre appears!");
+
+[oploc1,mudskipper_sign]
+~mesbox("@red@BEWARE OF THE MUDSKIPPERS!");

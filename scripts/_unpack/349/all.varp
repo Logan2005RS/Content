@@ -405,6 +405,8 @@
 [varp_596]
 
 [rimmington_extras_var]
+scope=perm
+transmit=yes
 
 [musicmulti_12]
 

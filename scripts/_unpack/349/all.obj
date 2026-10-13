@@ -27392,39 +27392,6 @@ cost=60
 stackable=yes
 members=yes
 
-[mudskipper_hat]
-name=Mudskipper hat
-desc=Fishy, damp and smelly.
-model=obj_6665
-members=yes
-manwear=obj_6665_manwear,0
-womanwear=obj_6665_manwear,0
-manhead=obj_6665_manhead
-womanhead=obj_6665_manhead
-2dxof=-3
-2dyof=-95
-2dzoom=1450
-2dyan=48
-2dxan=220
-iop2=Wear
-cost=0
-
-[mudskipper_flippers]
-name=Flippers
-recol1s=7298
-recol1d=7299
-desc=Strangely uncomfortable flippers.
-members=yes
-model=obj_6666
-2dxof=-5
-2dyof=18
-2dzoom=1730
-2dyan=8
-2dxan=312
-iop2=Wear
-manwear=obj_6666_manwear,0
-womanwear=obj_6666_womanwear,0
-
 [fishbowl_empty]
 name=Fishbowl
 desc=An empty fishbowl.
