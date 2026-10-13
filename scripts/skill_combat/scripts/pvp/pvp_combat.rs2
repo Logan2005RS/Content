@@ -48,6 +48,16 @@ if ($wilderness_level < $combat_level_diff) {
 return(true);
 
 [proc,pvp_is_attackable]()(boolean)
+if (~in_fightpit(coord) = true) {
+    if (~in_fightpit(.coord) = false) {
+        return(false);
+    }
+    if (%fightpit_state ! ^fightpit_state_fighting) {
+        mes("The fight hasn't started yet.");
+        return(false);
+    }
+    return(true);
+}
 if (~in_duel_arena(coord) = true) {
     if (~duel_arena_checks = false) {
         return(false);
@@ -75,6 +85,16 @@ if (~player_autocast_enabled = false & ~inzone_coord_pair_table(mage_arena, coor
 
 // For magic
 [proc,pvp_is_attackable_opt]()(boolean)
+if (~in_fightpit(coord) = true) {
+    if (~in_fightpit(.coord) = false) {
+        return(false);
+    }
+    if (%fightpit_state ! ^fightpit_state_fighting) {
+        mes("The fight hasn't started yet.");
+        return(false);
+    }
+    return(true);
+}
 if (~in_duel_arena(coord) = true) {
     if (~duel_arena_checks = false) {
         return(false);

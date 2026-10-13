@@ -17,6 +17,9 @@ if (~in_castlewars_game(coord) = true) {
     }
     if (p_finduid(uid) = true) @player_death_castlewars;
 }
+if (~in_fightpit(coord) = true) {
+    if (p_finduid(uid) = true) @player_death_fightpit;
+}
 if (~in_castlewars_waitingroom(coord) = true) {
     if (p_finduid(uid) = true) @player_death_castlewars_waitingroom;
 }

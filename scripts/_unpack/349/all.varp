@@ -331,8 +331,12 @@
 [varp_559]
 
 [tzhaar_fightpit_remaining]
+transmit=yes
+protect=no
 
 [tzhaar_temp]
+transmit=yes
+protect=no
 
 [bankpin_1]
 

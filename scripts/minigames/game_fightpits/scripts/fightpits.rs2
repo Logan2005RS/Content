@@ -1,0 +1,276 @@
+[proc,in_fightpit](coord $coord)(boolean)
+return(inzone(^fightpit_pit_lower, ^fightpit_pit_upper, $coord));
+
+[proc,in_fightpit_lobby](coord $coord)(boolean)
+return(inzone(^fightpit_lobby_lower, ^fightpit_lobby_upper, $coord));
+
+[oploc1,dillo_tzhaar_wall_crack_tunnel_1_entrance]
+p_arrivedelay;
+p_telejump(^fightpit_tzhaar_arrival);
+
+[oploc1,tzhaar_karamjadungeon_wall_exit]
+p_arrivedelay;
+p_telejump(^fightpit_karamja_arrival);
+
+[oploc1,tzhaar_fightpit_door_entrance]
+p_arrivedelay;
+if (~in_fightpit_lobby(coord) = true) {
+    ~fightpit_clear_champion_skull;
+    p_teleport(^fightpit_outside);
+    return;
+}
+p_teleport(^fightpit_lobby_entry);
+
+[oploc1,tzhaar_fightpit_door_closed]
+p_arrivedelay;
+if (~in_fightpit(coord) = false) {
+    mes("This vent is too hot for you to pass!");
+    return;
+}
+p_teleport(^fightpit_lobby_vent);
+~fightpit_leave_pit;
+
+[proc,fightpit_leave_pit]
+set_player_op(null, 2, ^false);
+if_openoverlay(null);
+%tzhaar_fightpit_remaining = 0;
+
+[proc,fightpit_clear_champion_skull]
+if (skullicons_get = ^fightpit_skull) {
+    ~skullicon_set(-1);
+}
+
+[ai_timer,tzhaar_fightpit_master]
+def_int $pit = 0;
+def_int $lobby = 0;
+huntall(^fightpit_centre, 32, 0);
+while (huntnext = true) {
+    if (~in_fightpit(coord) = true) {
+        $pit = add($pit, 1);
+    } else if (~in_fightpit_lobby(coord) = true) {
+        $lobby = add($lobby, 1);
+    }
+}
+if (%fightpit_state = ^fightpit_state_idle) {
+    if ($lobby > 0 & add($pit, $lobby) > 1) {
+        %fightpit_clock = add(%fightpit_clock, 1);
+        if (%fightpit_clock >= ^fightpit_start_delay) {
+            ~fightpit_start_round;
+        }
+    } else {
+        %fightpit_clock = 0;
+    }
+    return;
+}
+%fightpit_clock = add(%fightpit_clock, 1);
+if (%fightpit_state = ^fightpit_state_waiting) {
+    if (%fightpit_clock >= ^fightpit_signal_delay) {
+        %fightpit_state = ^fightpit_state_fighting;
+        %fightpit_clock = 0;
+        ~fightpit_announce("FIGHT!");
+    }
+    return;
+}
+if ($pit <= 1) {
+    ~fightpit_end_round;
+    return;
+}
+huntall(^fightpit_centre, 32, 0);
+while (huntnext = true) {
+    if (~in_fightpit(coord) = true) {
+        %tzhaar_fightpit_remaining = sub($pit, 1);
+        if (%fightpit_clock >= ^fightpit_gas_ticks) {
+            queue(combat_damage_player, 0, 1);
+        } else if (%fightpit_clock >= ^fightpit_kih_ticks & modulo(sub(%fightpit_clock, ^fightpit_kih_ticks), 100) = 0) {
+            ~fightpit_spawn_swarm;
+        }
+    }
+}
+
+[proc,fightpit_spawn_swarm]
+def_npc $swarm = tzhaar_fightpit_swarm_1a;
+if (%fightpit_clock >= ^fightpit_xil_ticks) {
+    $swarm = tzhaar_fightpit_swarm_3a;
+} else if (%fightpit_clock >= ^fightpit_kek_ticks) {
+    $swarm = tzhaar_fightpit_swarm_2a;
+}
+npc_add(map_findsquare(coord, 2, 5, ^map_findsquare_lineofwalk), $swarm, 300);
+npc_setmode(opplayer2);
+
+[proc,fightpit_announce](string $text)
+huntall(^fightpit_centre, 32, 0);
+while (huntnext = true) {
+    if (~in_fightpit(coord) = true) {
+        mes("TzHaar-Mej-Kah: <$text>");
+    }
+}
+
+[proc,fightpit_start_round]
+%fightpit_state = ^fightpit_state_waiting;
+%fightpit_clock = 0;
+%fightpit_tokkul = 0;
+huntall(^fightpit_centre, 32, 0);
+while (huntnext = true) {
+    if (~in_fightpit(coord) = true | ~in_fightpit_lobby(coord) = true) {
+        %fightpit_tokkul = add(%fightpit_tokkul, ~player_combat_level);
+        if (~in_fightpit_lobby(coord) = true) {
+            queue(fightpit_enter, 0, 0);
+        }
+    }
+}
+~fightpit_announce("Wait for my signal before fighting.");
+
+[queue,fightpit_enter]
+if (~in_fightpit_lobby(coord) = false) {
+    return;
+}
+if_close;
+p_teleport(map_findsquare(movecoord(^fightpit_centre, sub(random(29), 14), 0, sub(random(29), 14)), 0, 8, ^map_findsquare_lineofwalk));
+set_player_op("Attack", 2, ^true);
+if_openoverlay(tzhaar_fightpit);
+if (string_length(%fightpit_champion_name) > 0) {
+    if_settext(tzhaar_fightpit:tzhaar_fightpit_champion, "Current Champion: <%fightpit_champion_name>");
+}
+mes("TzHaar-Mej-Kah: Wait for my signal before fighting.");
+
+[proc,fightpit_end_round]
+%fightpit_state = ^fightpit_state_idle;
+%fightpit_clock = 0;
+huntall(^fightpit_centre, 32, 0);
+while (huntnext = true) {
+    if (~in_fightpit(coord) = true) {
+        queue(fightpit_champion, 0, %fightpit_tokkul);
+    }
+}
+npc_huntall(^fightpit_centre, 32, 0);
+while (npc_findnext = true) {
+    if (npc_type = tzhaar_fightpit_swarm_1a | npc_type = tzhaar_fightpit_swarm_2a | npc_type = tzhaar_fightpit_swarm_3a) {
+        npc_del;
+    }
+}
+%fightpit_tokkul = 0;
+
+[queue,fightpit_champion](int $pool)
+if (~in_fightpit(coord) = false) {
+    return;
+}
+if (.finduid(%fightpit_champion) = true & %fightpit_champion ! uid) {
+    if (.skullicons_get = ^fightpit_skull) {
+        .skullicons_set(-1);
+        .buildappearance(worn);
+    }
+}
+%fightpit_champion = uid;
+%fightpit_champion_name = ~fightpit_champion_title;
+~skullicon_set(^fightpit_skull);
+%tzhaar_fightpit_remaining = 0;
+if_settext(tzhaar_fightpit:tzhaar_fightpit_champion, "Current Champion: <%fightpit_champion_name>");
+def_int $tokkul = sub($pool, ~player_combat_level);
+if (inv_getobj(worn, ^wearpos_back) = tzhaar_cape_fire) {
+    $tokkul = multiply($tokkul, 2);
+}
+if ($tokkul > 0) {
+    inv_add(inv, tzhaar_token, $tokkul);
+}
+mes("You are the champion of the Fight Pit!");
+
+[proc,fightpit_champion_title]()(string)
+def_int $melee = max(stat_base(attack), stat_base(strength));
+if (stat_base(ranged) > $melee & stat_base(ranged) >= stat_base(magic)) {
+    return("JalYt-Xil-<displayname>");
+}
+if (stat_base(magic) > $melee) {
+    return("JalYt-Mej-<displayname>");
+}
+return("JalYt-Ket-<displayname>");
+
+[label,player_death_fightpit]
+~player_death;
+mes("Oh dear you are dead!");
+~music_jingle(death2);
+~combat_clearqueue;
+clearqueue(player_death);
+p_teleport(map_findsquare(^fightpit_lobby_centre, 0, 2, ^map_findsquare_lineofwalk));
+~fightpit_leave_pit;
+~fightpit_clear_champion_skull;
+buildappearance(worn);
+~prayer_deactivate_all;
+anim(null, 0);
+p_stopaction;
+~stat_reset_all;
+healenergy(10000);
+~clear_pk_skull;
+~clear_poison;
+~update_all(null);
+~initalltabs;
+
+[proc,fightpit_login]
+if (~in_fightpit(coord) = true | ~in_fightpit_lobby(coord) = true) {
+    p_teleport(^fightpit_outside);
+    %tzhaar_fightpit_remaining = 0;
+}
+
+[oploc1,tzhaar_fightpit_orb]
+if_openside(tzhaar_fightpit_orb);
+@fightpit_orb_view(^fightpit_orb_centre, 1);
+
+[if_button,tzhaar_fightpit_orb:tzhaar_fightpit_orb_centre] @fightpit_orb_view(^fightpit_orb_centre, 1);
+[if_button,tzhaar_fightpit_orb:tzhaar_fightpit_orb_nw] @fightpit_orb_view(^fightpit_orb_nw, 2);
+[if_button,tzhaar_fightpit_orb:tzhaar_fightpit_orb_ne] @fightpit_orb_view(^fightpit_orb_ne, 3);
+[if_button,tzhaar_fightpit_orb:tzhaar_fightpit_orb_se] @fightpit_orb_view(^fightpit_orb_se, 4);
+[if_button,tzhaar_fightpit_orb:tzhaar_fightpit_orb_sw] @fightpit_orb_view(^fightpit_orb_sw, 5);
+
+[label,fightpit_orb_view](coord $coord, int $view)
+%tzhaar_fightpit_orb = $view;
+cam_moveto(movecoord($coord, 0, 0, -6), 900, 100, 100);
+cam_lookat($coord, 200, 100, 100);
+walktrigger(fightpit_orb_close);
+
+[if_button,tzhaar_fightpit_orb:tzhaar_fightpit_orb_off] @fightpit_orb_off;
+[if_close,tzhaar_fightpit_orb] @fightpit_orb_off;
+[walktrigger,fightpit_orb_close] @fightpit_orb_off;
+
+[label,fightpit_orb_off]
+%tzhaar_fightpit_orb = 0;
+cam_reset;
+if_close;
+
+[opnpc1,tzhaar_fightpit_master]
+~chatnpc("<p,neutral>You want help JalYt-Ket-<displayname()>?");
+def_int $option = ~p_choice4("What is this place?", 1, "Who's the current champion?", 2, "What did you call me?", 3, "No I'm fine thanks.", 4);
+switch_int ($option) {
+    case 1 :
+        ~chatplayer("<p,quiz>What is this place?");
+        ~chatnpc("<p,neutral>This is the fight pit, TzHaar-Xil made it for their sport but many JalYt come here to fight too. If you are wanting to fight then enter the cage, you will be summoned when the next round is ready to begin.");
+        $option = ~p_choice2("Are there any rules?", 1, "Ok thanks.", 2);
+        if ($option = 2) {
+            ~chatplayer("<p,neutral>Ok thanks.");
+            return;
+        }
+        ~chatplayer("<p,quiz>Are there any rules?");
+        ~chatnpc("<p,neutral>No rules, you use whatever you want. Last person standing wins and is declared champion, they stay in the pit for the next fight.");
+        $option = ~p_choice2("Do I win anything?", 1, "Sounds good.", 2);
+        if ($option = 2) {
+            ~chatplayer("<p,happy>Sounds good.");
+            return;
+        }
+        ~chatplayer("<p,quiz>Do I win anything?");
+        ~chatnpc("<p,neutral>You ask a lot of questions. Champion gets TokKul as reward, but more fights the more TokKul they get.");
+        ~chatplayer("<p,neutral>...");
+        ~chatnpc("<p,neutral>Before you ask, TokKul is like your coins.");
+        ~chatnpc("<p,neutral>Gold is like you JalYt, soft and easily broken, we use hard rock forged in fire like TzHaar!");
+    case 2 :
+        ~chatplayer("<p,quiz>Who's the current champion?");
+        if (string_length(%fightpit_champion_name) = 0) {
+            ~chatnpc("<p,neutral>Ah that would be JalYt-Ket-Emperor");
+        } else {
+            ~chatnpc("<p,neutral>Ah that would be <%fightpit_champion_name>");
+        }
+    case 3 :
+        ~chatplayer("<p,confused>What did you call me?");
+        ~chatnpc("<p,neutral>Are you not JalYt-Ket?");
+        ~chatplayer("<p,confused>I guess so...");
+        ~chatnpc("<p,neutral>Well then, no problems.");
+    case 4 :
+        ~chatplayer("<p,neutral>No I'm fine thanks.");
+}
