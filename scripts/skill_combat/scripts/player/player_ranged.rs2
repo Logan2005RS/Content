@@ -52,6 +52,9 @@ if (~player_npc_hit_roll(%damagetype) = true) {
     def_int $damage_capped = min($damage, npc_stat(hitpoints));
     ~give_combat_experience(%damagestyle, $damage_capped, %npc_combat_xp_multiplier);
     npc_heropoints($damage_capped);
+    if ($damage > 0 & ~barrows_karil_effect = true) {
+        spotanim_npc(barrows_karil_tainted_shot, 96, 0);
+    }
 }
 
 def_int $poison_severity = oc_param($ammo, poison_severity);
@@ -90,7 +93,11 @@ if (($rhand = ogre_bow & $ammo_cat ! ogre_arrows) |
     mes("You can't use that ammo with your bow."); // todo confirm this for 2004.
     return(null);
 }
-if ($weapon_cat = weapon_crossbow & $ammo_cat ! bolts) {
+if ($weapon_cat = weapon_crossbow & oc_param($rhand, barrows_set) = ^barrows_karil & $ammo_cat ! bolt_rack) {
+    mes("You can't use that ammo with your crossbow.");
+    return(null);
+}
+if ($weapon_cat = weapon_crossbow & oc_param($rhand, barrows_set) ! ^barrows_karil & $ammo_cat ! bolts) {
     mes("You can't use that ammo with your crossbow."); // todo confirm this for 2004.
     return(null);
 }

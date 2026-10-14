@@ -1,0 +1,31 @@
+[debugproc,barrowsreset]
+if (p_finduid(uid) = false) return;
+~barrows_full_reset;
+mes("Randomized barrows, entrance: <tostring(~barrows_tunnel)>");
+
+[debugproc,barrowsloot]
+if (p_finduid(uid) = false) return;
+%barrows_kills = 0;
+%barrows_killed_ahrim = 1;
+%barrows_killed_dharok = 1;
+%barrows_killed_guthan = 1;
+%barrows_killed_karil = 1;
+%barrows_killed_torag = 1;
+%barrows_killed_verac = 1;
+%barrows_killed_monster = 206;
+%barrows_killed_count = 9;
+%barrows_chest_open = 1;
+%barrows = setbit(%barrows, ^barrows_collapsing_bit);
+~music_jingle(midi_382);
+~barrows_loot;
+
+[debugproc,barrowsequip]
+inv_add(inv, barrows_ahrim_head, 1);
+inv_add(inv, barrows_ahrim_weapon, 1);
+inv_add(inv, barrows_ahrim_body, 1);
+inv_add(inv, barrows_ahrim_legs, 1);
+
+[debugproc,barrowsdegrade]
+if (p_finduid(uid) = false) return;
+cleartimer(barrows_degrade);
+~barrows_degrade_combat;

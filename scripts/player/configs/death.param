@@ -5,3 +5,7 @@ default=0
 [destroy_drop]
 type=int
 default=0
+
+[replace_on_drop]
+type=namedobj
+default=null

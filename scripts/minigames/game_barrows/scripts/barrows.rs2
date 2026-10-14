@@ -1,0 +1,209 @@
+[proc,barrows_underground](coord $coord)(boolean)
+return(inzone(^barrows_underground_lower, ^barrows_underground_upper, $coord));
+
+[proc,barrows_in_tunnels](coord $coord)(boolean)
+return(inzone(^barrows_tunnels_lower, ^barrows_tunnels_upper, $coord));
+
+[proc,barrows_brother_npc](int $brother)(npc)
+switch_int ($brother) {
+    case ^barrows_ahrim : return(barrows_ahrim);
+    case ^barrows_dharok : return(barrows_dharok);
+    case ^barrows_guthan : return(barrows_guthan);
+    case ^barrows_karil : return(barrows_karil);
+    case ^barrows_torag : return(barrows_torag);
+    case ^barrows_verac : return(barrows_verac);
+}
+return(null);
+
+[proc,barrows_brother_index](npc $npc)(int)
+switch_npc ($npc) {
+    case barrows_ahrim : return(^barrows_ahrim);
+    case barrows_dharok : return(^barrows_dharok);
+    case barrows_guthan : return(^barrows_guthan);
+    case barrows_karil : return(^barrows_karil);
+    case barrows_torag : return(^barrows_torag);
+    case barrows_verac : return(^barrows_verac);
+}
+return(0);
+
+[proc,barrows_killed](int $brother)(boolean)
+if (testbit(%barrows_kills, sub($brother, 1)) = ^true) {
+    return(true);
+}
+return(false);
+
+[proc,barrows_killed_total]()(int)
+def_int $total = 0;
+def_int $brother = ^barrows_ahrim;
+while ($brother <= ^barrows_verac) {
+    if (~barrows_killed($brother) = true) {
+        $total = add($total, 1);
+    }
+    $brother = add($brother, 1);
+}
+return($total);
+
+[proc,barrows_tunnel]()(int)
+return(getbit_range(%barrows, ^barrows_tunnel_bit_start, ^barrows_tunnel_bit_end));
+
+[proc,barrows_collapsing]()(boolean)
+if (testbit(%barrows, ^barrows_collapsing_bit) = ^true) {
+    return(true);
+}
+return(false);
+
+[proc,barrows_full_reset]
+%barrows = 0;
+%barrows_kills = 0;
+~barrows_catacombs_randomize;
+%barrows = setbit_range_toint(%barrows, add(random(6), ^barrows_ahrim), ^barrows_tunnel_bit_start, ^barrows_tunnel_bit_end);
+
+[proc,barrows_overlay_open]
+if_openoverlay(barrows_overlay);
+~barrows_overlay_clear_heads;
+
+[mapzone,0_55_151]
+minimap_toggle(2);
+~barrows_overlay_open;
+settimer(barrows_drain, ^barrows_drain_interval);
+if (~barrows_collapsing = true) {
+    cam_shake(0, 5, 0, 0);
+    settimer(barrows_collapse, 3);
+}
+
+[mapzoneexit,0_55_151]
+minimap_toggle(0);
+if_openoverlay(null);
+cleartimer(barrows_drain);
+cleartimer(barrows_collapse);
+cam_reset;
+
+[timer,barrows_drain]
+if (~barrows_underground(coord) = false) {
+    cleartimer(barrows_drain);
+    return;
+}
+queue(barrows_drain, 0, 0);
+
+[queue,barrows_drain]
+def_int $killed = ~barrows_killed_total;
+stat_sub(prayer, add(^barrows_drain_base, $killed), 0);
+~barrows_overlay_clear_heads;
+if ($killed = 0) {
+    return;
+}
+def_int $pick = random($killed);
+def_int $brother = ^barrows_ahrim;
+while ($brother <= ^barrows_verac) {
+    if (~barrows_killed($brother) = true) {
+        if ($pick = 0) {
+            def_component $target = ~barrows_overlay_head($brother);
+            if_sethide($target, false);
+            if_setanim($target, null);
+            if_setobject($target, ~barrows_overlay_head_obj($brother, ~barrows_in_tunnels(coord)), 100);
+            if_setanim($target, barrows_chathead_fade);
+            queue(barrows_overlay_clear_heads_later, 4, 0);
+            return;
+        }
+        $pick = sub($pick, 1);
+    }
+    $brother = add($brother, 1);
+}
+
+[queue,barrows_overlay_clear_heads_later]
+~barrows_overlay_clear_heads;
+
+[proc,barrows_overlay_clear_heads]
+if_sethide(barrows_overlay:barrows_ahrim, true);
+if_sethide(barrows_overlay:barrows_dharok, true);
+if_sethide(barrows_overlay:barrows_guthan, true);
+if_sethide(barrows_overlay:barrows_karil, true);
+if_sethide(barrows_overlay:barrows_torag, true);
+if_sethide(barrows_overlay:barrows_verac, true);
+if_setanim(barrows_overlay:barrows_ahrim, null);
+if_setanim(barrows_overlay:barrows_dharok, null);
+if_setanim(barrows_overlay:barrows_guthan, null);
+if_setanim(barrows_overlay:barrows_karil, null);
+if_setanim(barrows_overlay:barrows_torag, null);
+if_setanim(barrows_overlay:barrows_verac, null);
+
+[proc,barrows_overlay_head](int $brother)(component)
+switch_int ($brother) {
+    case ^barrows_ahrim : return(barrows_overlay:barrows_ahrim);
+    case ^barrows_dharok : return(barrows_overlay:barrows_dharok);
+    case ^barrows_guthan : return(barrows_overlay:barrows_guthan);
+    case ^barrows_karil : return(barrows_overlay:barrows_karil);
+    case ^barrows_torag : return(barrows_overlay:barrows_torag);
+}
+return(barrows_overlay:barrows_verac);
+
+[proc,barrows_overlay_head_obj](int $brother, boolean $green)(namedobj)
+switch_int ($brother) {
+    case ^barrows_ahrim :
+        if ($green = true) return(barrows_interface_ahrim_green);
+        return(barrows_interface_ahrim);
+    case ^barrows_dharok :
+        if ($green = true) return(barrows_interface_dharok_green);
+        return(barrows_interface_dharok);
+    case ^barrows_guthan :
+        if ($green = true) return(barrows_interface_guthan_green);
+        return(barrows_interface_guthan);
+    case ^barrows_karil :
+        if ($green = true) return(barrows_interface_karil_green);
+        return(barrows_interface_karil);
+    case ^barrows_torag :
+        if ($green = true) return(barrows_interface_torag_green);
+        return(barrows_interface_torag);
+}
+if ($green = true) return(barrows_interface_verac_green);
+return(barrows_interface_verac);
+
+[timer,barrows_collapse]
+if (~barrows_in_tunnels(coord) = false | ~barrows_collapsing = false) {
+    cleartimer(barrows_collapse);
+    return;
+}
+if (random(15) = 0) {
+    spotanim_map(goblincaves_roofcollapse, coord, 0, 0);
+    queue(combat_damage_player, 0, random(5));
+}
+
+[proc,barrows_spawn_brother](npc $npc, string $say)
+if ($npc = barrows_ahrim | $npc = barrows_karil) {
+    ~barrows_spawn_npc($npc, ^barrows_brother_lifetime, applayer2);
+} else {
+    ~barrows_spawn_npc($npc, ^barrows_brother_lifetime, opplayer2);
+}
+hint_npc;
+if (~string_isnullorempty($say) = false) {
+    npc_say($say);
+}
+
+[proc,barrows_spawn_npc](npc $npc, int $duration, npc_mode $mode)
+def_coord $coord = map_findsquare(coord, 0, 2, ^map_findsquare_lineofwalk);
+if ($coord = null) {
+    $coord = coord;
+}
+npc_add($coord, $npc, $duration);
+%aggressive_npc = npc_uid;
+%npc_aggressive_player = uid;
+npc_setmode($mode);
+
+[proc,barrows_hunt_brother](npc $npc)(boolean)
+npc_huntall(coord, 10, 0);
+while (npc_findnext = true) {
+    if (npc_type = $npc & %npc_aggressive_player = uid) {
+        return(true);
+    }
+}
+return(false);
+
+[proc,barrows_increment_kc](int $reward)
+%barrows_killed_monster = min(^barrows_max_reward, add(%barrows_killed_monster, $reward));
+%barrows_killed_count = min(32767, add(%barrows_killed_count, 1));
+
+[ai_queue3,_barrows_monster]
+if (npc_findhero = ^true) {
+    ~barrows_increment_kc(npc_param(barrows_reward));
+}
+gosub(npc_default_death);

@@ -12,6 +12,31 @@ if(inzone(0_45_46_40_54, 0_45_46_43_55, coord) = true) {
     }
 }
 
+if (inzone(0_55_51_43_22, 0_55_51_47_26, coord) = true) {
+    ~barrows_mound_dig(3_55_151_37_39);
+    return;
+}
+if (inzone(0_55_51_53_32, 0_55_51_57_36, coord) = true) {
+    ~barrows_mound_dig(3_55_151_36_54);
+    return;
+}
+if (inzone(0_55_51_55_15, 0_55_51_59_19, coord) = true) {
+    ~barrows_mound_dig(3_55_151_14_40);
+    return;
+}
+if (inzone(0_55_51_43_9, 0_55_51_47_13, coord) = true) {
+    ~barrows_mound_dig(3_55_151_26_20);
+    return;
+}
+if (inzone(0_55_51_31_16, 0_55_51_35_20, coord) = true) {
+    ~barrows_mound_dig(3_55_151_48_19);
+    return;
+}
+if (inzone(0_55_51_34_32, 0_55_51_38_36, coord) = true) {
+    ~barrows_mound_dig(3_55_151_58_42);
+    return;
+}
+
 // Everything else
 p_arrivedelay;
 p_stopaction;

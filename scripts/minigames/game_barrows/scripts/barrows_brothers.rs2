@@ -1,0 +1,150 @@
+[opnpc2,_barrows_brother]
+if (%npc_aggressive_player ! uid) {
+    mes("Someone else is fighting that.");
+    return;
+}
+@player_combat_start;
+
+[apnpc2,_barrows_brother]
+if (%npc_aggressive_player ! uid) {
+    mes("Someone else is fighting that.");
+    return;
+}
+@player_combat_start_ap;
+
+[ai_despawn,_barrows_brother]
+if (finduid(%npc_aggressive_player) = false) return;
+mes("We'll finish this later...");
+
+[ai_timer,_barrows_brother]
+if (finduid(%npc_aggressive_player) = false) {
+    npc_del;
+    return;
+}
+if (~barrows_underground(coord) = false | distance(coord, npc_coord) > 20 | stat(hitpoints) = 0) {
+    npc_del;
+}
+
+[ai_queue3,_barrows_brother]
+if (finduid(%npc_aggressive_player) = true) {
+    def_int $brother = ~barrows_brother_index(npc_type);
+    if (~barrows_killed($brother) = false) {
+        %barrows_kills = setbit(%barrows_kills, sub($brother, 1));
+        ~barrows_increment_kc(npc_param(barrows_reward));
+    }
+    hint_stop;
+}
+gosub(npc_death);
+
+[ai_queue1,barrows_ahrim] ~npc_default_retaliate_ap;
+[ai_queue1,barrows_karil] ~npc_default_retaliate_ap;
+
+[ai_applayer2,barrows_ahrim] ~barrows_ahrim_combat;
+[ai_opplayer2,barrows_ahrim] npc_setmode(applayer2);
+[ai_applayer2,barrows_karil] ~barrows_karil_combat;
+[ai_opplayer2,barrows_karil] npc_setmode(applayer2);
+[ai_opplayer2,_barrows_brother] ~barrows_melee_combat;
+
+[proc,barrows_ahrim_combat]
+if (~npc_combat_spell_checks = false) {
+    return;
+}
+npc_setmode(applayer2);
+def_dbrow $spell_data = ~get_spell_data(^fire_wave);
+if (stat_base(attack) <= stat(attack) & random(6) = 0) {
+    $spell_data = ~get_spell_data(^confuse);
+} else if (stat_base(strength) <= stat(strength) & random(6) = 0) {
+    $spell_data = ~get_spell_data(^weaken);
+} else if (stat_base(defence) <= stat(defence) & random(6) = 0) {
+    $spell_data = ~get_spell_data(^curse);
+}
+def_int $duration = ~npc_spell_cast($spell_data, npc_param(attackrate));
+if (~npc_player_hit_roll(^magic_style) = true) {
+    def_int $maxhit = db_getfield($spell_data, magic_spell_table:maxhit, 0);
+    if ($maxhit ! null & ~check_protect_prayer(^magic_style) = true) {
+        $maxhit = 0;
+    }
+    ~npc_spell_success($spell_data, $maxhit, $duration);
+    ~npc_stat_change_effect($spell_data);
+    if (random(100) < 25) {
+        stat_sub(strength, 5, 0);
+        spotanim_pl(barrows_ahirm_blighted_aura, 96, $duration);
+    }
+} else {
+    ~npc_spell_fail($spell_data, $duration);
+}
+~npc_set_attack_vars;
+
+[proc,barrows_karil_combat]
+if (%npc_action_delay > map_clock) {
+    npc_setmode(applayer2);
+    return;
+}
+if (~npc_check_notcombat = false) {
+    npc_setmode(null);
+    return;
+}
+if (~npc_check_notcombat_self = false) {
+    return;
+}
+npc_anim(npc_param(attack_anim), 0);
+sound_synth(npc_param(rangeattack_sound), 1, 0);
+%npc_action_delay = add(map_clock, npc_param(attackrate));
+def_int $duration = ~player_projectile(npc_coord, coord, uid, npc_param(proj_travel), 40, 36, 41, 15, 5, 11, 5);
+def_int $damage = 0;
+if (randominc(~npc_ranged_attack_roll) > randominc(~player_defence_roll_specific(npc_param(damagetype)))) {
+    $damage = randominc(~npc_ranged_maxhit);
+}
+if ($damage > 0 & random(100) < 25) {
+    stat_sub(agility, divide(stat(agility), 5), 0);
+    spotanim_pl(barrows_karil_tainted_shot, 96, $duration);
+}
+~playerhit_n_ranged(true, $damage, $duration, npc_param(attackrate));
+
+[proc,barrows_melee_combat]
+if (%death = ^true) {
+    npc_setmode(null);
+    return;
+}
+if (%npc_action_delay > map_clock) {
+    return;
+}
+if (~npc_check_notcombat = false) {
+    npc_setmode(null);
+    return;
+}
+if (~npc_check_notcombat_self = false) {
+    return;
+}
+anim(%com_defendanim, 0);
+npc_anim(npc_param(attack_anim), 0);
+sound_synth(npc_param(attack_sound), 1, 0);
+def_int $maxhit = ~npc_melee_maxhit;
+if (npc_type = barrows_dharok) {
+    $maxhit = ~barrows_dharok_maxhit($maxhit, npc_basestat(hitpoints), npc_stat(hitpoints));
+}
+def_boolean $verac = false;
+if (npc_type = barrows_verac & random(4) = 0) {
+    $verac = true;
+}
+def_int $damage = 0;
+if ($verac = true | randominc(~npc_melee_attack_roll) > randominc(~player_defence_roll_specific(npc_param(damagetype)))) {
+    if ($verac = true & ~check_protect_prayer(^melee_style) = true) {
+        $maxhit = scale(2, 3, $maxhit);
+    }
+    $damage = randominc($maxhit);
+    if ($verac = false & ~check_protect_prayer(^melee_style) = true) {
+        $damage = 0;
+    }
+}
+~playerhit_n_melee(false, $damage, npc_param(attackrate));
+if (npc_type = barrows_guthan & random(100) < 25) {
+    npc_statheal(hitpoints, $damage, 0);
+    spotanim_pl(barrows_guthan_effect, 96, 0);
+} else if (npc_type = barrows_torag & $damage > 0 & random(100) < 25) {
+    healenergy(-2000);
+    spotanim_pl(barrows_torag_effect, 96, 0);
+}
+
+[proc,barrows_dharok_maxhit](int $maxhit, int $base, int $current)(int)
+return(scale(add(100, sub($base, $current)), 100, $maxhit));

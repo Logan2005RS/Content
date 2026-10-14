@@ -41,6 +41,10 @@ if (~pvp_hit_roll(%damagetype) = true) {
     $damage = min(randominc($maxhit), .stat(hitpoints)); // tick eating existed! https://oldschool.runescape.wiki/w/Update:The_Wintertodt
     ~give_combat_experience_pvp(%damagestyle, $damage, ~pvp_xp_multiplier(~.player_combat_level));
     both_heropoints($damage);
+    if ($damage > 0 & ~barrows_karil_effect = true) {
+        .stat_sub(agility, divide(.stat(agility), 5), 0);
+        .spotanim_pl(barrows_karil_tainted_shot, 96, 0);
+    }
 }
 def_int $poison_severity = oc_param($ammo, poison_severity); // ammo will never be null
 if ($damage > 0 & $poison_severity > 0 & random(4) = 0) { // 1/4 chance to poison

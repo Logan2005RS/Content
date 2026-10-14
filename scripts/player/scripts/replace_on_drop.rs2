@@ -1,0 +1,6 @@
+[proc,replace_on_drop](inv $inv, int $slot)
+def_obj $obj = inv_getobj($inv, $slot);
+if ($obj = null) return;
+def_namedobj $replacement = oc_param($obj, replace_on_drop);
+if ($replacement = null) return;
+inv_setslot($inv, $slot, $replacement, inv_getnum($inv, $slot));

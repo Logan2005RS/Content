@@ -82,6 +82,10 @@ if (~player_npc_hit_roll(^magic_style) = true) {
         $maxhit = add($maxhit, 1);
     }
     ~pvm_spell_success($spell_data, $maxhit, $duration);
+    if ($maxhit ! null & ~barrows_ahrim_effect = true) {
+        npc_statsub(strength, 5, 0);
+        spotanim_npc(barrows_ahirm_blighted_aura, 96, $duration);
+    }
     ~pvm_stat_change_effect($spell_data);
     ~pvm_freeze_effect($spell_data);
 } else {

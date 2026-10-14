@@ -115,10 +115,18 @@
 [varp_451]
 
 [barrows]
+scope=perm
+transmit=yes
+protect=no
 
 [barrows_kills]
+scope=perm
+transmit=yes
+protect=no
 
 [worn_set]
+scope=perm
+protect=no
 
 [zombie_ogre]
 

@@ -26,8 +26,9 @@ if ($rhand = null) {
 def_int $damage = 0;
 // not sure if xp multipler exists for us or not?!
 // https://oldschool.runescape.wiki/w/Combat#PvP_bonus_experience
-if (~pvp_hit_roll(%damagetype) = true) {
-    def_int $maxhit = %com_maxhit;
+def_boolean $verac = ~barrows_verac_hit;
+if (~pvp_hit_roll(%damagetype) = true | $verac = true) {
+    def_int $maxhit = ~barrows_dharok_player_maxhit(%com_maxhit);
     if (~.check_protect_prayer(^melee_style) = true) {
         $maxhit = scale(6, 10, $maxhit); // reduction of 40%
     }
@@ -42,6 +43,12 @@ sound_synth(%com_attacksound, 1, 0);
 
 .queue*(pvp_retaliate, 0)(uid);
 ~.pvp_damage(0, $damage);
+if (~barrows_guthan_heal($damage) = true) {
+    .spotanim_pl(barrows_guthan_effect, 96, 0);
+} else if ($damage > 0 & ~barrows_torag_effect = true) {
+    .healenergy(-2000);
+    .spotanim_pl(barrows_torag_effect, 96, 0);
+}
 
 .anim(.%com_defendanim, 20);
 // .sound_synth(.%com_defendsound, 1, 20);

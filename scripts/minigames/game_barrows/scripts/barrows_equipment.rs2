@@ -1,0 +1,133 @@
+[proc,barrows_worn_set]()(int)
+def_obj $head = inv_getobj(worn, ^wearpos_hat);
+def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
+def_obj $body = inv_getobj(worn, ^wearpos_torso);
+def_obj $legs = inv_getobj(worn, ^wearpos_legs);
+if ($head = null | $weapon = null | $body = null | $legs = null) {
+    return(0);
+}
+def_int $set = oc_param($head, barrows_set);
+if ($set = 0) {
+    return(0);
+}
+if (oc_param($weapon, barrows_set) ! $set | oc_param($body, barrows_set) ! $set | oc_param($legs, barrows_set) ! $set) {
+    return(0);
+}
+return($set);
+
+[proc,barrows_wearing_any]()(boolean)
+if (~barrows_degradable(inv_getobj(worn, ^wearpos_hat)) = true) return(true);
+if (~barrows_degradable(inv_getobj(worn, ^wearpos_rhand)) = true) return(true);
+if (~barrows_degradable(inv_getobj(worn, ^wearpos_torso)) = true) return(true);
+if (~barrows_degradable(inv_getobj(worn, ^wearpos_legs)) = true) return(true);
+return(false);
+
+[proc,barrows_degradable](obj $obj)(boolean)
+if ($obj = null) {
+    return(false);
+}
+if (oc_param($obj, barrows_degrade) = null) {
+    return(false);
+}
+return(true);
+
+[proc,barrows_degrade_combat]
+if (gettimer(barrows_degrade) = ^true) {
+    return;
+}
+if (~barrows_wearing_any = false) {
+    return;
+}
+settimer(barrows_degrade, ^barrows_degrade_interval);
+def_obj $weapon = inv_getobj(worn, ^wearpos_rhand);
+def_boolean $changed = false;
+if (~barrows_degrade_slot(^wearpos_hat, ^barrows_worn_head_bit) = true) $changed = true;
+if (~barrows_degrade_slot(^wearpos_rhand, ^barrows_worn_weapon_bit) = true) $changed = true;
+if (~barrows_degrade_slot(^wearpos_torso, ^barrows_worn_body_bit) = true) $changed = true;
+if (~barrows_degrade_slot(^wearpos_legs, ^barrows_worn_legs_bit) = true) $changed = true;
+if ($changed = true) {
+    buildappearance(worn);
+    ~update_all($weapon);
+}
+
+[queue,barrows_degrade]
+~barrows_degrade_combat;
+
+[timer,barrows_degrade]
+cleartimer(barrows_degrade);
+
+[proc,barrows_degrade_slot](int $slot, int $bit)(boolean)
+def_obj $obj = inv_getobj(worn, $slot);
+if (~barrows_degradable($obj) = false) {
+    return(false);
+}
+def_int $end = add($bit, 7);
+def_int $points = add(getbit_range(%worn_set, $bit, $end), 1);
+if (oc_param($obj, fixed) = null | $points >= ^barrows_degrade_points) {
+    def_namedobj $next = oc_param($obj, barrows_degrade);
+    inv_setslot(worn, $slot, $next, 1);
+    $points = 0;
+    if (oc_param($obj, fixed) = null) {
+        $points = 1;
+    } else if (oc_param($next, barrows_degrade) = null) {
+        mes("Your <oc_name(oc_param($next, fixed))> has broken.");
+    } else {
+        mes("Your <oc_name(oc_param($next, fixed))> has degraded.");
+    }
+    %worn_set = setbit_range_toint(%worn_set, $points, $bit, $end);
+    return(true);
+}
+%worn_set = setbit_range_toint(%worn_set, $points, $bit, $end);
+return(false);
+
+[proc,barrows_dharok_player_maxhit](int $maxhit)(int)
+if (~barrows_worn_set ! ^barrows_dharok) {
+    return($maxhit);
+}
+return(~barrows_dharok_maxhit($maxhit, stat_base(hitpoints), stat(hitpoints)));
+
+[proc,barrows_verac_hit]()(boolean)
+if (~barrows_worn_set = ^barrows_verac & random(4) = 0) {
+    return(true);
+}
+return(false);
+
+[proc,barrows_guthan_heal](int $damage)(boolean)
+if (~barrows_worn_set = ^barrows_guthan & random(100) < 25) {
+    stat_heal(hitpoints, $damage, 0);
+    return(true);
+}
+return(false);
+
+[proc,barrows_ahrim_effect]()(boolean)
+if (~barrows_worn_set = ^barrows_ahrim & random(100) < 25) {
+    return(true);
+}
+return(false);
+
+[proc,barrows_karil_effect]()(boolean)
+if (~barrows_worn_set = ^barrows_karil & random(100) < 25) {
+    return(true);
+}
+return(false);
+
+[proc,barrows_torag_effect]()(boolean)
+if (~barrows_worn_set = ^barrows_torag & random(100) < 25) {
+    return(true);
+}
+return(false);
+
+[label,barrows_equip_repair](obj $item, int $slot)
+def_int $cost = oc_param($item, barrows_repair_cost);
+if (~p_choice2_header("Repair that item: <tostring($cost)> coins.", 1, "Cancel.", 2, "What would you like to do?") ! 1) {
+    return;
+}
+if (inv_total(inv, coins) < $cost) {
+    ~chatnpc("<p,sad>I'll need <tostring($cost)>gp to repair that.");
+    return;
+}
+inv_del(inv, coins, $cost);
+inv_delslot(inv, $slot);
+inv_add(inv, oc_param($item, fixed), 1);
+mes("The item is repaired.");
+~chatnpc("<p,happy>There you go, happy doing business with you!");

@@ -1,0 +1,50 @@
+[proc,barrows_mound_dig](coord $crypt)
+if (p_finduid(uid) = false) return;
+if (%barrows = 0 | ~barrows_collapsing = true) {
+    ~barrows_full_reset;
+}
+mes("You've broken into a crypt!");
+p_arrivedelay;
+p_stopaction;
+anim(human_dig, 0);
+p_delay(0);
+minimap_toggle(2);
+~barrows_overlay_open;
+p_telejump($crypt);
+
+[oploc1,_barrows_sarcophagus]
+mes("You don't find anything.");
+def_int $brother = loc_param(barrows_brother);
+if (~barrows_tunnel = $brother) {
+    @barrows_catacombs_enter;
+}
+def_npc $npc = ~barrows_brother_npc($brother);
+if (~barrows_killed($brother) = false & ~barrows_hunt_brother($npc) = false) {
+    ~barrows_spawn_brother($npc, ^barrows_speech_disturb);
+}
+
+[oploc1,_barrows_stairs]
+if (p_finduid(uid) = false) return;
+minimap_toggle(0);
+if_openoverlay(null);
+p_telejump(map_findsquare(~barrows_crypt_exit(loc_param(barrows_brother)), 0, 2, ^map_findsquare_lineofwalk));
+
+[proc,barrows_crypt_exit](int $brother)(coord)
+switch_int ($brother) {
+    case ^barrows_ahrim : return(0_55_51_43_25);
+    case ^barrows_dharok : return(0_55_51_54_33);
+    case ^barrows_guthan : return(0_55_51_57_18);
+    case ^barrows_karil : return(0_55_51_45_10);
+    case ^barrows_torag : return(0_55_51_34_18);
+}
+return(0_55_51_37_33);
+
+[proc,barrows_crypt_ladder_exit](int $brother)(coord)
+switch_int ($brother) {
+    case ^barrows_ahrim : return(3_55_151_35_33);
+    case ^barrows_dharok : return(3_55_151_37_50);
+    case ^barrows_guthan : return(3_55_151_17_39);
+    case ^barrows_karil : return(3_55_151_30_17);
+    case ^barrows_torag : return(3_55_151_49_20);
+}
+return(3_55_151_53_40);

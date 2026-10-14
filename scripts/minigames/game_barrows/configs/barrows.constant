@@ -1,0 +1,33 @@
+^barrows_ahrim = 1
+^barrows_dharok = 2
+^barrows_guthan = 3
+^barrows_karil = 4
+^barrows_torag = 5
+^barrows_verac = 6
+
+^barrows_underground_lower = 0_55_151_0_0
+^barrows_underground_upper = 3_55_151_63_63
+^barrows_tunnels_lower = 0_55_151_0_0
+^barrows_tunnels_upper = 0_55_151_63_63
+
+^barrows_tunnel_bit_start = 0
+^barrows_tunnel_bit_end = 2
+^barrows_collapsing_bit = 26
+^barrows_puzzle_completed = 3
+
+^barrows_brother_lifetime = 1000
+^barrows_npc_lifetime = 500
+
+^barrows_worn_head_bit = 0
+^barrows_worn_weapon_bit = 8
+^barrows_worn_body_bit = 16
+^barrows_worn_legs_bit = 24
+^barrows_degrade_points = 250
+^barrows_degrade_interval = 90
+
+^barrows_drain_interval = 30
+^barrows_drain_base = 8
+^barrows_max_reward = 1000
+
+^barrows_speech_disturb = "You dare disturb my rest!"
+^barrows_speech_steal_chest = "You dare steal from us!"

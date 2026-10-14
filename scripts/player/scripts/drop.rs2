@@ -19,6 +19,14 @@ if (~in_games_room(coord) = true & %boardgames_drop_warning = ^false) {
     %boardgames_drop_warning = ^true;
 }
 
+if (oc_param(inv_getobj(inv, $last), replace_on_drop) ! null) {
+    def_int $choice = ~p_choice2_header("Yes", 1, "No", 2, "Do you really want to do that?");
+    if_close;
+    if ($choice ! 1) {
+        return;
+    }
+    ~replace_on_drop(inv, $last);
+}
 inv_dropslot(inv, coord, $last, calc(calc(^lootdrop_duration * 3) / 2));
 anim(null, 0); // https://youtu.be/QvDYolBZNjY?t=164, https://youtu.be/DVHCP2JhQE0?t=142
 sound_synth(put_down, 1, 0);
